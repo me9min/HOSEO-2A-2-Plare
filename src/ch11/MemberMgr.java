@@ -6,9 +6,9 @@ import ch11.RegisterBean;
 
 public class MemberMgr {
 	private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/basicjsp";
-	private final String USER = "jspid";
-	private final String PASS = "jsppass";
+	private final String JDBC_URL = "jdbc:mysql://localhost:3306/web";
+	private final String USER = "root";
+	private final String PASS = "root";
 	
 	public MemberMgr() {
 		try {
@@ -25,21 +25,16 @@ public class MemberMgr {
 		Vector vecList = new Vector();
 		try {
 			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
-			String strQuery = "select * from member2";
+			String strQuery = "select * from member";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(strQuery);
 			while(rs.next()) {
 				RegisterBean regBean = new RegisterBean();
-				regBean.setMem_id(rs.getString("id"));
-				regBean.setMem_passwd(rs.getString("passwd"));
+				regBean.setMem_email(rs.getString("email"));
+				regBean.setMem_pw(rs.getString("pw"));
 				regBean.setMem_name(rs.getString("name"));
-				regBean.setMem_num1(rs.getString("mem_num1"));
-				regBean.setMem_num2(rs.getString("mem_num2"));
-				regBean.setMem_email(rs.getString("e_mail"));
 				regBean.setMem_phone(rs.getString("phone"));
 				regBean.setMem_zipcode(rs.getString("zipcode"));
-				regBean.setMem_address(rs.getString("address"));
-				regBean.setMem_job(rs.getString("job"));
 				vecList.add(regBean);
 			}
 			System.out.println(vecList.capacity());

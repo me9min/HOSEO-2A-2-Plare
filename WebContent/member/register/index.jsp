@@ -70,12 +70,14 @@
 			<input type="text" name="referrer" id="referrer" value="" placeholder="추천인 아이디" />
 		</div>
 		
+		<ul class="actions">
+			<li><input type="submit" value="만들기"/></li>
+			<li><a href="#" class="button special">만들기 장식</a></li>
+			<li><a href="../login" class="button alt">그냥 로그인 하기</a></li>
+		</ul>
+
 	</div>
 </form>
-<ul class="actions">
-	<li><input type="submit" value="만들기"/><a href="#" class="button special">만들기</a></li>
-	<li><a href="../login" class="button alt">그냥 로그인 하기</a></li>
-</ul>
 						</div>
 					</div>
 				</div>

@@ -6,7 +6,7 @@
 		<title>프로필</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<style type="text/css">
 			.px-200{font-size: 200px;}
@@ -23,13 +23,13 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/">홈</a></li>
-					<li><a href="/guide">게임소개/가이드</a></li>
-					<li><a href="/rank">랭크</a></li>
-					<li><a href="/shop">상점</a></li>
-					<li><a href="/list">게시판</a></li>
-					<li><a href="/member">내정보</a></li>
-					<li><a href="/member/login">로그아웃</a></li>
+					<li><a href="../">홈</a></li>
+					<li><a href="../guide">게임소개/가이드</a></li>
+					<li><a href="../rank">랭크</a></li>
+					<li><a href="../shop">상점</a></li>
+					<li><a href="../list">게시판</a></li>
+					<li><a href="../member">내정보</a></li>
+					<li><a href="../member/login">로그아웃</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -113,11 +113,11 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="/assets/js/jquery.min.js"></script>
-			<script src="/assets/js/jquery.scrollex.min.js"></script>
-			<script src="/assets/js/skel.min.js"></script>
-			<script src="/assets/js/util.js"></script>
-			<script src="/assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>

@@ -56,6 +56,10 @@
 				<div class="inner">
 					<div class="box">
 						<div class="content">
+							<header class="align-center">
+								<p>더 많은 기능이용</p>
+								<h2>로그인</h2>
+							</header>
 <form method="post" action="db_login.jsp" name="login">
 	<div class="row uniform">
 

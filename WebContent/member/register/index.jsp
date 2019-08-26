@@ -8,24 +8,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script language="JavaScript" src="../../assets/js/check.js"></script>
 	</head>
 	<body class="subpage">
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="../../">plare.cf <span>host by BSM</span></a></div>
+				<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
 				<a href="#menu">메뉴</a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="../../">홈</a></li>
-					<li><a href="../../guide">게임소개/가이드</a></li>
-					<li><a href="../../rank">랭크</a></li>
-					<li><a href="../../shop">상점</a></li>
-					<li><a href="../../list">게시판</a></li>
-					<li><a href="../../member/login">로그인/회원가입</a></li>
+					<li><a href="../../index.jsp">홈</a></li>
+					<li><a href="../../guide/index.jsp">게임소개/가이드</a></li>
+					<li><a href="../../rank/index.jsp">랭크</a></li>
+					<li><a href="../../shop/index.jsp">상점</a></li>
+					<li><a href="../../list/index.jsp">게시판</a></li>
+					<li><a href="../login/index.jsp">로그인/회원가입</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -46,16 +47,20 @@
 			<input type="text" name="email" id="email" value="" placeholder="이메일" />
 		</div>
 		
-		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="name" id="name" value="" placeholder="닉네임" />
-		</div>
-		
 		<div class="12u 12u$(xsmall)">
-			<input type="password" name="pw" id="pw" value="" placeholder="비밀번호" />
+			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="pwc" id="pwc" value="" placeholder="비밀번호 확인" />
+			<input type="password" name="passwordc" id="passwordc" value="" placeholder="비밀번호 확인" />
+		</div>
+		
+		<div class="12u$ 12u$(xsmall)">
+			<input type="text" name="nickname" id="nickname" value="" placeholder="닉네임" />
+		</div>
+		
+		<div class="12u$ 12u$(xsmall)">
+			<input type="text" name="birthday" id="birthday" value="" placeholder="생일" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
@@ -63,21 +68,19 @@
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="" placeholder="주소" />
+			<input type="text" name="address" id="address" value="" placeholder="주소" disabled />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="referrer" id="referrer" value="" placeholder="추천인 아이디" />
+			<input type="text" name="referer" id="referer" value="" placeholder="추천인 아이디" />
 		</div>
 		
-		<ul class="actions">
-			<li><input type="submit" value="만들기"/></li>
-			<li><a href="#" class="button special">만들기 장식</a></li>
-			<li><a href="../login" class="button alt">그냥 로그인 하기</a></li>
-		</ul>
-
 	</div>
 </form>
+<ul class="actions">
+	<li><a href="#" class="button special" onclick="register_check()">회원가입</a></li>
+	<li><a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a></li>
+</ul>
 						</div>
 					</div>
 				</div>

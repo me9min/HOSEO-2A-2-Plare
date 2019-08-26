@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<script language="JavaScript" src="../../assets/js/check.js"></script>
+		<script language="JavaScript" src="register.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -72,13 +73,12 @@
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="referer" id="referer" value="" placeholder="추천인 아이디" />
+			<input type="text" name="referrer" id="referrer" value="" placeholder="추천인 아이디" />
 		</div>
-		
 	</div>
 </form>
 <ul class="actions">
-	<li><a href="#" class="button special" onclick="register_check()">회원가입</a></li>
+	<li><a class="button special" onclick="inputCheck()">회원가입</a></li>
 	<li><a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a></li>
 </ul>
 						</div>

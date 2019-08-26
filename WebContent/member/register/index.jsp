@@ -60,26 +60,27 @@
 								<p>더 많은 기능이용</p>
 								<h2>회원가입</h2>
 							</header>
+<p>*은 필수항목입니다</p>
 <form method="post" action="db_register.jsp" name="register">
 	<div class="row uniform">
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="email" id="email" value="" placeholder="이메일 형식" />
+			<input type="text" name="email" id="email" value="" placeholder="* 이메일" />
 		</div>
 		<div>
 			<a href="#" class="button alt">중복확인</a>
 		</div>
 		
 		<div class="12u 12u$(xsmall)">
-			<input type="password" name="password" id="password" value="" placeholder="비밀번호 20자 이하" />
+			<input type="password" name="password" id="password" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="passwordc" id="passwordc" value="" placeholder="비밀번호 확인" />
+			<input type="password" name="passwordc" id="passwordc" value="" placeholder="* 비밀번호 확인" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value="" placeholder="닉네임 20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" value="" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt">중복확인</a>

@@ -10,7 +10,7 @@ public class MemberBean {
 	private String phone;
 	private String address;
 	private String referrer;
-	private String nickname_latest_changed;
+	private Date nickname_latest_changed;
 	
 	public String getEmail() {
 		return email;
@@ -54,10 +54,10 @@ public class MemberBean {
 	public void setReferrer(String referrer) {
 		this.referrer = referrer;
 	}
-	public String getNickname_latest_changed() {
+	public Date getNickname_latest_changed() {
 		return nickname_latest_changed;
 	}
-	public void setNickname_latest_changed(String nickname_latest_changed) {
+	public void setNickname_latest_changed(Date nickname_latest_changed) {
 		this.nickname_latest_changed = nickname_latest_changed;
 	}
 }

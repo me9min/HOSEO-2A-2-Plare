@@ -11,6 +11,9 @@
 <%
 	}
 %>
+<%--
+	load_info(email)
+--%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -19,7 +22,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script language="JavaScript" src="./register.js"></script>
+		<script language="JavaScript" src="./edit.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -61,7 +64,8 @@
 								<p>더 많은 기능이용</p>
 								<h2>내정보수정</h2>
 							</header>
-<form method="post" action="db_register.jsp" name="register">
+<p>*은 필수항목입니다</p>
+<form method="post" action="db_edit.jsp" name="edit">
 	<div class="row uniform">
 		
 		<div class="12u 12u$(xsmall)">
@@ -69,15 +73,15 @@
 		</div>
 		
 		<div class="12u 12u$(xsmall)">
-			<input type="password" name="password" id="password" value="" placeholder="비밀번호 20자 이하" />
+			<input type="password" name="password" id="password" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="passwordc" id="passwordc" value="" placeholder="비밀번호 확인" />
+			<input type="password" name="passwordc" id="passwordc" value="" placeholder="* 비밀번호 확인" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value="" placeholder="닉네임 20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" value="" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt">중복확인</a>
@@ -194,17 +198,12 @@
 			<input type="text" name="address_detail" id="address_detail" value="" placeholder="상세주소" />
 		</div>
 		
-		<div class="8u 12u$(xsmall)">
-			<input type="text" name="referrer" id="referrer" value="" placeholder="추천인 닉네임" />
-		</div>
-		<div>
-			<a href="#" class="button alt">확인</a>
-		</div>
-		
 	</div>
 </form>
 <ul class="actions">
 	<li><a class="button special" onclick="inputCheck()">수정</a></li>
+	<li><a href="../logout" class="button alt">로그아웃</a></li>
+	<li><a href="./db_delete.jsp" class="button alt" target="_blank">회원탈퇴</a></li>
 </ul>
 			</div>
 			</div>

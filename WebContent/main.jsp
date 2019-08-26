@@ -14,8 +14,11 @@
 		<!-- Header -->
 			<header id="header" class="alt">
 				<div class="logo"><a href="./">plare <img src=""></a></div>
-			<!-- <a href="#menu">메뉴</a>  -->	
-			</header>
+				<div class="dropown">
+				  <button type="button"></button>
+				</div>
+			</header>		
+					  
 
 		<!-- Nav -->
 		<!--  	

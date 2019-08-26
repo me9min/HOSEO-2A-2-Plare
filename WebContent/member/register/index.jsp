@@ -175,7 +175,7 @@
 			<input type="text" name="zipcode" id="zipcode" value="" placeholder="주소" />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="" placeholder="상세주소" />
+			<input type="text" name="zipcode" id="zipcode" value="" placeholder="상세주소 적기" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">

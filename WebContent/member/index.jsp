@@ -45,14 +45,13 @@
 				</ul>
 			</nav>
 
-
 		<!-- Main -->
 			<section id="one" class="wrapper style2">
 				<div class="inner">
 					<div class="grid-style">
 
 						<div>
-							<div class="box" onclick="window.location.replace('./edit/password_check.jsp');" href="./edit">
+							<div class="box" onclick="window.location.replace('./edit/password_check.jsp');">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-pencil px-200"></span>

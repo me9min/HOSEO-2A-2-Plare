@@ -48,28 +48,24 @@
 					<img src="images/no_room_in_hell_2.jpg" alt="" />
 					<div class="inner">
 						<header>
-							ㅎㅇ
+							<h2>ㅎㅇ</h2>
 						</header>
 					</div>
 				</article>
 				<article>
-					<img src="images/slide02.jpg" alt="" />
+					<img src="images/gasstation.jpg" alt="" />
 					<div class="inner">
+						<header>
+							<h2>새로운맵!</h2>
+						</header>
 					</div>
 				</article>
 				<article>
-					<img src="images/slide03.jpg"  alt="" />
+					<img src="images/m4.jpg"  alt="" />
 					<div class="inner">
-					</div>
-				</article>
-				<article>
-					<img src="images/slide04.jpg"  alt="" />
-					<div class="inner">
-					</div>
-				</article>
-				<article>
-					<img src="images/slide05.jpg"  alt="" />
-					<div class="inner">
+						<header>
+							<h2>새로운무기!</h2>
+						</header>
 					</div>
 				</article>
 			</section>

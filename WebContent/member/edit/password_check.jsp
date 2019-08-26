@@ -70,11 +70,10 @@
 		<div class="12u 12u$(xsmall)">
 			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 		</div>
-		
 	</div>
 </form>
 <ul class="actions">
-	<li><a class="button special" onclick="passwordCheck()">확인</a></li>
+	<li><input type="button" class="button special" value="확인" onclick="passwordCheck()"></li>
 </ul>
 			</div>
 			</div>

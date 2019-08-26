@@ -20,7 +20,7 @@
 	<div id="lmain">
 		<center>
 		<h2 id="lhead">아이디/비밀번호 찾기</h2>
-		<form method="post" name="find" action="db_member_find.jsp">
+		<form method="post" name="find" action="db_find.jsp">
 			<table>
 				<tr>
 					<th>이메일</th>

@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String email = (String)session.getAttribute("email");
+	if(email != null) {
+%>
+<script>
+	alert('로그아웃을먼저해야합니다');
+    window.location.replace('../');
+</script>
+<%
+	}
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>

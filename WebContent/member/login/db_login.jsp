@@ -24,7 +24,6 @@
 		System.out.println(email);
 %>
 <script>
-	alert("성공적으로 로그인되었습니다.");
 	window.location = '../../index.jsp';
 </script>
 <%

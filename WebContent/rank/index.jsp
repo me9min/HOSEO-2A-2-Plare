@@ -42,9 +42,6 @@
 
 <div id="main" class="container">
 	<div class="table-wrapper">
-<%
-	$po=1;
-%>
 		<div class="row uniform">
 			<div class="9u 12u$(small)">
 				<input type="text" name="query" id="query" value="" placeholder="닉네임,스팀고유번호 로 검색" />
@@ -65,8 +62,8 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><%=rank %></td>
-					<td></td>
+					<td>1</td>
+					<td>플레어</td>
 					<td>STEAM_1:1:52589830</td>
 					<td>1999</td>
 				</tr>

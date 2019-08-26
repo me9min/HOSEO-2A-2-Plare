@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script language="JavaScript" src="login.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -49,7 +50,7 @@
 								<p>다양한 서버기능 이용</p>
 								<h2>로그인</h2>
 							</header>
-<form method="post" action="#">
+<form method="post" action="db_login.jsp" name="login">
 	<div class="row uniform">
 
 		<div class="12u 12u$(xsmall)">
@@ -63,9 +64,7 @@
 	</div>
 </form>
 <ul class="actions">
-	<li><a href="#" class="button special">로그인</a></li>
-</ul>
-<ul class="actions">
+	<li><a class="button special" onclick="loginCheck()">로그인</a></li>
 	<li><a href="#" class="button alt">아이디/비밀번호 찾기</a></li>
 	<li><a href="../register" class="button alt">회원가입</a></li>
 </ul>

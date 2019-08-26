@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script language="JavaScript" src="login.js"></script>
+		<script language="JavaScript" src="./login.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -26,7 +26,6 @@
 					<li><a href="../../rank">랭크</a></li>
 					<li><a href="../../shop">상점</a></li>
 					<li><a href="../../list">게시판</a></li>
-					<li><a href="../../member/login">로그인/회원가입</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -54,11 +53,11 @@
 	<div class="row uniform">
 
 		<div class="12u 12u$(xsmall)">
-			<input type="text" name="id" id="id" value="" placeholder="아이디/이메일" />
+			<input type="text" name="email" id="email" value="" placeholder="아이디/이메일" />
 		</div>
 
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="pw" id="pw" value="" placeholder="비밀번호" />
+			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 		</div>
 
 	</div>

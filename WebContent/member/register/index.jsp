@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script language="JavaScript" src="./register.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -25,7 +26,6 @@
 					<li><a href="../../rank">랭크</a></li>
 					<li><a href="../../shop">상점</a></li>
 					<li><a href="../../list">게시판</a></li>
-					<li><a href="../../member/login">로그인/회원가입</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -46,22 +46,22 @@
 			<input type="text" name="email" id="email" value="" placeholder="이메일 형식" />
 		</div>
 		<div>
-			<a href="#" class="button alt"> 중복확인 </a>
+			<a href="#" class="button alt">중복확인</a>
 		</div>
 		
 		<div class="12u 12u$(xsmall)">
-			<input type="password" name="pw" id="pw" value="" placeholder="비밀번호 20자 이하" />
+			<input type="password" name="password" id="password" value="" placeholder="비밀번호 20자 이하" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="pwc" id="pwc" value="" placeholder="비밀번호 확인" />
+			<input type="password" name="passwordc" id="passwordc" value="" placeholder="비밀번호 확인" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="name" id="name" value="" placeholder="닉네임 20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" value="" placeholder="닉네임 20자 이하, 특수문자 가능" />
 		</div>
 		<div>
-			<a href="#" class="button alt"> 중복확인 </a>
+			<a href="#" class="button alt">중복확인</a>
 		</div>
 		
 		<div class="4u 12u$(small)"><center>
@@ -166,16 +166,13 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="" placeholder="우편주소" />
+			<input type="text" name="address" id="address" value="" placeholder="주소" disabled />
 		</div>
 		<div class="2u 12u$(xsmall)">
-			<a href="#" class="button alt"> 검색 </a>
+			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="" placeholder="주소" />
-		</div>
-		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="" placeholder="상세주소 적기" />
+			<input type="text" name="address_detail" id="address_detail" value="" placeholder="상세주소" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
@@ -186,12 +183,12 @@
 		</div>
 		
 	</div>
+<input type="submit" value="강제입력" class="button special">
 </form>
-	<div class="12u$ 12u$(xsmall)">
-		<a href="../login" class="button alt">만들기</a>
-	</div>
-	<!--  <li><input type="submit" value="만들기"/><a href="#" class="button special">만들기</a></li>	-->
-
+<ul class="actions">
+	<li><a class="button special" onclick="inputCheck()">회원가입</a></li>
+	<li><a href="../login" class="button alt">로그인하기</a></li>
+</ul>
 			</div>
 			</div>
 			</div>

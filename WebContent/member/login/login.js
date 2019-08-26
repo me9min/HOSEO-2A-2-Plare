@@ -1,4 +1,5 @@
-function loginCheck(){
+function loginCheck()
+{
 	if(document.login.email.value==""){
 		alert("아이디를 입력해주세요");
 		document.login.email.focus();

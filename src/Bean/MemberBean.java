@@ -48,10 +48,10 @@ public class MemberBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getreferrer() {
+	public String getReferrer() {
 		return referrer;
 	}
-	public void setreferrer(String referrer) {
+	public void setReferrer(String referrer) {
 		this.referrer = referrer;
 	}
 	public String getNickname_latest_changed() {

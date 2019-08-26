@@ -25,7 +25,19 @@
 					<li><a href="../rank">랭킹</a></li>
 					<li><a href="../shop">상점</a></li>
 					<li><a href="../board">게시판</a></li>
+<%
+	String email = (String)session.getAttribute("email");
+	if(email == null) {
+%>
 					<li><a href="../member/login">로그인/회원가입</a></li>
+<%
+	} else {
+%>
+					<li><a href="../member">내정보</a></li>
+					<li><a href="../member/login">로그아웃</a></li>
+<%
+	}
+%>
 					<li><a href="https://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li></a></li>
 				</ul>
 			</nav>

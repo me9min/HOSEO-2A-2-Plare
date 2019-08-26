@@ -40,16 +40,22 @@
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
-
+			
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>더 많은 기능이용</p>
+						<h2>회원가입</h2>
+					</header>
+				</div>
+			</section>
+			
 		<!-- main -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-							<header class="align-center">
-								<p>다양한 서버기능 이용</p>
-								<h2>회원가입</h2>
-							</header>
 <form method="post" action="db_register.jsp" name="register">
 	<div class="row uniform">
 		

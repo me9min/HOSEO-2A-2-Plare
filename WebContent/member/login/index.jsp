@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String email = (String)session.getAttribute("email");
+	if(email != null) {
+%>
+<script>
+	alert('로그아웃을먼저해야합니다');
+    window.location.replace('../');
+</script>
+<%
+	}
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -46,7 +57,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>다양한 서버기능 이용</p>
+								<p>더 많은 기능이용</p>
 								<h2>로그인</h2>
 							</header>
 <form method="post" action="db_login.jsp" name="login">

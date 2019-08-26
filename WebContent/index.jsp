@@ -34,7 +34,7 @@
 	} else {
 %>
 					<li><a href="./member">내정보</a></li>
-					<li><a href="./member/login">로그아웃</a></li>
+					<li><a href="./member/logout">로그아웃</a></li>
 <%
 	}
 %>

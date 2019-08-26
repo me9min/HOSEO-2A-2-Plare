@@ -37,6 +37,7 @@
 					<li><a href="../../rank">랭크</a></li>
 					<li><a href="../../shop">상점</a></li>
 					<li><a href="../../list">게시판</a></li>
+					<li><a href="../logout">로그아웃</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>

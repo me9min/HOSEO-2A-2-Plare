@@ -7,13 +7,10 @@
 	<meta charset="UTF-8">
 	<title>주소 검색</title>
 	<script>
-		function auto_input(zip, address) {
-			zip1 = zip.substring(0, 3);
-			zip2 = zip.substring(4, 7);
-			opener.nform.zip1.value = zip1;
-			opener.nform.zip2.value = zip2;
-			opener.nform.address.value = address;
-			self.close();
+		function auto_input(zipcode, address) {
+			var address_value = zipcode + " " + address;
+			window.opener.register.address.value = address_value;
+			window.close();
 		}
 	</script>
 </head>

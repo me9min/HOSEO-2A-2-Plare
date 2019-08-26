@@ -91,7 +91,10 @@
 								</div>
 							</div>
 						</div>
-
+					  </div>
+					<div>
+						<a href="#">로그아웃</a>
+						<a href="#">회원탈퇴</a>
 					</div>
 				</div>
 			</section>

@@ -5,10 +5,11 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String email = (String)session.getAttribute("email");
-	
-	boolean del_check = passwordCheck(email, password);
-	
+		
 	member.delete_member(email);
 	session.invalidate();
-	response.sendRedirect("../../");
 %>
+<script>
+	alert("회원탈퇴가 성공적으로 완료되었습니다.");
+	location.href = "../../";
+</script>

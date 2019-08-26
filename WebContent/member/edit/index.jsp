@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, Bean.*" %>
+<jsp:useBean id="member" class="Bean.Member" />
 <%
 	String email = (String)session.getAttribute("email");
 	if(email == null) {
@@ -10,10 +12,17 @@
 </script>
 <%
 	}
+	MemberBean member_sql = member.load_info(email);
+		
+	String nickname = member_sql.getNickname();
+	if(nickname == null) {nickname = "''";}
+	String phone = member_sql.getPhone();
+	if(phone == null) {phone = "''";}
+	String address = member_sql.getAddress();
+	if(address == null) {address = "''";}
+	String referrer = member_sql.getReferrer();
+	if(referrer == null) {referrer = "''";}
 %>
-<%--
-	load_info(email)
---%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -81,7 +90,7 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value="" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" value=<%=nickname %> placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt">중복확인</a>
@@ -185,11 +194,11 @@
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" value="" placeholder="휴대전화번호" />
+			<input type="text" name="phone" id="phone" value=<%=phone %> placeholder="휴대전화번호" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="" placeholder="주소" disabled />
+			<input type="text" name="address" id="address" value=<%=address %> placeholder="주소" disabled />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
@@ -197,13 +206,16 @@
 		<div class="12u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" value="" placeholder="상세주소" />
 		</div>
+		<div class="12u$ 12u$(xsmall)">
+			<input type="text" name="referrer" id="referrer" value=<%=referrer %> placeholder="추천인" disabled />
+		</div>
 		
 	</div>
 </form>
 <ul class="actions">
 	<li><a class="button special" onclick="inputCheck()">수정</a></li>
 	<li><a href="../logout" class="button alt">로그아웃</a></li>
-	<li><a href="./db_delete.jsp" class="button alt" target="_blank">회원탈퇴</a></li>
+	<li><a href="./db_delete.jsp" class="button alt">회원탈퇴</a></li>
 </ul>
 			</div>
 			</div>

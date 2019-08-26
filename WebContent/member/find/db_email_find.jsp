@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, Bean.*" %>
+<jsp:useBean id="member" class="Bean.Member" />
+<%
+	request.setCharacterEncoding("UTF-8");
+	
+	String phone = request.getParameter("phone");
+	
+	String email = member.find_email(phone);
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>아이디/비밀번호 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../../assets/css/main.css" href="login.css"/>
+		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script type="text/javascript" src="../login/login.js"></script>
+		<script language="JavaScript" src="./find.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -26,6 +35,7 @@
 					<li><a href="../../rank">랭크</a></li>
 					<li><a href="../../shop">상점</a></li>
 					<li><a href="../../list">게시판</a></li>
+					<li><a href="../logout">로그아웃</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -48,38 +58,40 @@
 							<header class="align-center">
 								<h2>이메일 찾기</h2>
 							</header>
-<form method="post" action="db_member_find.jsp" name="find">
-	<div class="row uniform"><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  전화번호
+	<div class="row uniform">
+		<div class="12u 12u$(xsmall)">
+		<center>
+<%
+		if(email == null) {
+%>
+			<p>해당되는 회원 정보가 없습니다. 다시 시도해주세요.</p>
+		</center>
 		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="phone" id="email" value="" placeholder="전화번호 -없이" />
-		</div><br><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  인증번호
+		<div class="12u 12u$(xsmall)">
+		<center>
+			<input type="button" class="button alt" onclick="location.href('email_find.jsp')" value="돌아가기" />
+		</center>
 		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
-		</div><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
+<%		
+		} else {
+%>
+			<p>회원님의 이메일은 <%=email %>입니다.</p>
+		</center>
 		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" value="비밀번호 찾기" />
+		<div class="12u 12u$(xsmall)">
+		<center>
+			<input type="button" class="button alt" onclick="location.href('../login/index.jsp')" value="로그인" />
+		</center>
 		</div>
-		<div class="0.5u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
-		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" value="인증번호 확인" />
-		</div><br>
-
-
-</form>
-						</div>
-					</div>
-				</div>
+<%
+		}
+%>
+		</center>
+		
+	</div>
+			</div>
+			</div>
+			</div>
 			</section>
 
 		<!-- Footer -->

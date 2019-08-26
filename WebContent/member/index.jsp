@@ -52,7 +52,7 @@
 					<div class="grid-style">
 
 						<div>
-							<div class="box" onclick="window.location.replace('./edit');" href="./edit">
+							<div class="box" onclick="window.location.replace('./edit/password_check.jsp');" href="./edit">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-pencil px-200"></span>

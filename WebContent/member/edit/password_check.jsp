@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String email = (String)session.getAttribute("email");
+	if(email == null) {
+%>
+<script>
+	alert('로그인이필요합니다');
+    window.location.replace('../login');
+</script>
+<%
+	}
+%>
+<%--
+	load_info(email)
+--%>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>아이디/비밀번호 찾기</title>
+		<title>내정보수정</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../../assets/css/main.css" href="login.css"/>
+		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script type="text/javascript" src="../find/find.js"></script>
+		<script language="JavaScript" src="./edit.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -26,6 +40,7 @@
 					<li><a href="../../rank">랭크</a></li>
 					<li><a href="../../shop">상점</a></li>
 					<li><a href="../../list">게시판</a></li>
+					<li><a href="../logout">로그아웃</a></li>
 					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 				</ul>
 			</nav>
@@ -34,8 +49,8 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>아이디(이메일) 또는 비밀번호 찾기</p>
-						<h2>아이디/비밀번호 찾기</h2>
+						<p>더 많은 기능이용</p>
+						<h2>비밀번호확인</h2>
 					</header>
 				</div>
 			</section>
@@ -46,46 +61,24 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>비밀번호 찾기</h2>
+								<p>더 많은 기능이용</p>
+								<h2>비밀번호확인</h2>
 							</header>
-<form method="post" action="db_password_find.jsp" name="password_find">
-	<div class="row uniform"><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  이메일
+<center><p>본인 확인을 위해 비밀번호를 입력해주세요.</p></center>
+<form method="post" action="./db_check.jsp" name="check">
+	<div class="row uniform">
+		<div class="12u 12u$(xsmall)">
+			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="email" id="email" value="" placeholder="이메일" />
-		</div><br><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  전화번호
-		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" value="" placeholder="전화번호 -없이" />
-		</div><br><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  인증번호
-		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
-		</div><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
-		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" onclick="location.href('index.jsp')" value="이메일 찾기" />
-		</div>
-		<div class="0.5u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
-		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" value="비밀번호 찾기" onclick="passwordFindCheck()" />
-		</div><br>
-
-
+		
+	</div>
 </form>
-						</div>
-					</div>
-				</div>
+<ul class="actions">
+	<li><a class="button special" onclick="passwordCheck()">확인</a></li>
+</ul>
+			</div>
+			</div>
+			</div>
 			</section>
 
 		<!-- Footer -->

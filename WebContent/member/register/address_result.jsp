@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>주소 검색</title>
 	<script>
-		function auto_input(zipcode, address) {
+		function autoInput(zipcode, address) {
 			var address_value = zipcode + " " + address;
 			window.opener.register.address.value = address_value;
 			window.close();
@@ -56,10 +56,10 @@
 %>
 		<tr>
 			<td>
-				<a href="#" onclick="auto_input('<%=zipcode%>', '<%=address_result%>')"><%=zipcode%></a>
+				<a href="#" onclick="autoInput('<%=zipcode%>', '<%=address_result%>')"><%=zipcode%></a>
 			</td>
 			<td>
-				<a href="#" onclick="auto_input('<%=zipcode%>', '<%=address_result%>')"><%=address_result%></a>
+				<a href="#" onclick="autoInput('<%=zipcode%>', '<%=address_result%>')"><%=address_result%></a>
 			</td>
 		</tr>
 <%

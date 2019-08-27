@@ -16,10 +16,22 @@
 		
 	String nickname = member_sql.getNickname();
 	if(nickname == null) {nickname = "''";}
+	
 	String phone = member_sql.getPhone();
 	if(phone == null) {phone = "''";}
+	
+	String birthday_year = member_sql.getBirthday_year();
+	if(birthday_year == null) {birthday_year = "''";}
+	String birthday_month = member_sql.getBirthday_month();
+	if(birthday_month == null) {birthday_month = "''";}
+	String birthday_day = member_sql.getBirthday_day();
+	if(birthday_day == null) {birthday_day = "''";}
+	
 	String address = member_sql.getAddress();
 	if(address == null) {address = "''";}
+	String address_detail = member_sql.getAddress_detail();
+	if(address_detail == null) {address_detail = "''";}
+	
 	String referrer = member_sql.getReferrer();
 	if(referrer == null) {referrer = "''";}
 %>
@@ -90,7 +102,7 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value=<%=nickname %> placeholder="* 닉네임  20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt">중복확인</a>
@@ -98,6 +110,7 @@
 		
 		<div class="4u 12u$(small)"><center>
 			<select name="birthday_year">
+				<option value="<%=birthday_year %>" selected><%=birthday_year %></option>
 				<option value="2019">2019년</option>
 				<option value="2018">2018년</option>
 				<option value="2017">2017년</option>
@@ -144,6 +157,7 @@
 			</select></center></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_month">
+				<option value="<%=birthday_month %>" selected><%=birthday_month %></option>
 				<option value="1">1월</option>
 				<option value="2">2월</option>
 				<option value="3">3월</option>
@@ -159,6 +173,7 @@
 			</select></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_day">
+				<option value="<%=birthday_day %>" selected><%=birthday_day %></option>
 				<option value="1">1일</option>
 				<option value="2">2일</option>
 				<option value="3">3일</option>
@@ -194,20 +209,20 @@
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" value=<%=phone %> placeholder="휴대전화번호" />
+			<input type="text" name="phone" id="phone" value="<%=phone %>" placeholder="휴대전화번호" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value=<%=address %> placeholder="주소" disabled />
+			<input type="text" name="address" id="address" value="<%=address %>" placeholder="주소" disabled />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="address_detail" id="address_detail" value="" placeholder="상세주소" />
+			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="referrer" id="referrer" value=<%=referrer %> placeholder="추천인" disabled />
+			<input type="text" name="referrer" id="referrer" value="<%=referrer %>" placeholder="추천인" disabled />
 		</div>
 		
 	</div>

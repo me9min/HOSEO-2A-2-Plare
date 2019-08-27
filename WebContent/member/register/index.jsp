@@ -134,30 +134,30 @@
 			</select></center></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_month">
-				<option value="1">1월</option>
-				<option value="2">2월</option>
-				<option value="3">3월</option>
-				<option value="4">4월</option>
-				<option value="5">5월</option>
-				<option value="6">6월</option>
-				<option value="7">7월</option>
-				<option value="8">8월</option>
-				<option value="9">9월</option>
+				<option value="01">1월</option>
+				<option value="02">2월</option>
+				<option value="03">3월</option>
+				<option value="04">4월</option>
+				<option value="05">5월</option>
+				<option value="06">6월</option>
+				<option value="07">7월</option>
+				<option value="08">8월</option>
+				<option value="09">9월</option>
 				<option value="10">10월</option>
 				<option value="11">11월</option>
 				<option value="12">12월</option>
 			</select></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_day">
-				<option value="1">1일</option>
-				<option value="2">2일</option>
-				<option value="3">3일</option>
-				<option value="4">4일</option>
-				<option value="5">5일</option>
-				<option value="6">6일</option>
-				<option value="7">7일</option>
-				<option value="8">8일</option>
-				<option value="9">9일</option>
+				<option value="01">1일</option>
+				<option value="02">2일</option>
+				<option value="03">3일</option>
+				<option value="04">4일</option>
+				<option value="05">5일</option>
+				<option value="06">6일</option>
+				<option value="07">7일</option>
+				<option value="08">8일</option>
+				<option value="09">9일</option>
 				<option value="10">10일</option>
 				<option value="11">11일</option>
 				<option value="12">12일</option>
@@ -188,7 +188,7 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="" placeholder="주소" disabled />
+			<input type="text" name="address" id="address" value="" placeholder="주소" />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>

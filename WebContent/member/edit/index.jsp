@@ -110,7 +110,7 @@
 		
 		<div class="4u 12u$(small)"><center>
 			<select name="birthday_year">
-				<option value="<%=birthday_year %>" selected><%=birthday_year %></option>
+				<option value="<%=birthday_year %>" selected><%=birthday_year %>년</option>
 				<option value="2019">2019년</option>
 				<option value="2018">2018년</option>
 				<option value="2017">2017년</option>
@@ -157,7 +157,7 @@
 			</select></center></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_month">
-				<option value="<%=birthday_month %>" selected><%=birthday_month %></option>
+				<option value="<%=birthday_month %>" selected><%=birthday_month %>월</option>
 				<option value="1">1월</option>
 				<option value="2">2월</option>
 				<option value="3">3월</option>
@@ -173,7 +173,7 @@
 			</select></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_day">
-				<option value="<%=birthday_day %>" selected><%=birthday_day %></option>
+				<option value="<%=birthday_day %>" selected><%=birthday_day %>일</option>
 				<option value="1">1일</option>
 				<option value="2">2일</option>
 				<option value="3">3일</option>

@@ -66,22 +66,22 @@
 		<input type="hidden" name="email_check" id="email_check" value="false" />
 		<input type="hidden" name="nickname_check" id="password_check" value="false" />
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="email" id="email" value="" placeholder="* 이메일" />
+			<input type="text" name="email" id="email" maxlength="40" value="" placeholder="* 이메일" />
 		</div>
 		<div>
 			<a href="#" class="button alt" onclick="emailCheck()">중복확인</a>
 		</div>
 		
 		<div class="12u 12u$(xsmall)">
-			<input type="password" name="password" id="password" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
+			<input type="password" name="password" id="password" maxlength="20" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="passwordc" id="passwordc" value="" placeholder="* 비밀번호 확인" />
+			<input type="password" name="passwordc" id="passwordc" maxlength="20" value="" placeholder="* 비밀번호 확인" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value="" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" maxlength="20" value="" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt" onclick="nicknameCheck()">중복확인</a>
@@ -185,21 +185,21 @@
 		</div>
 		
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" value="" placeholder="휴대전화번호" />
+			<input type="text" name="phone" id="phone" maxlength="11" value="" placeholder="휴대전화번호" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="" placeholder="주소" />
+			<input type="text" name="address" id="address" maxlength="100" value="" placeholder="주소" />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" name="address_detail" id="address_detail" value="" placeholder="상세주소" />
+			<input type="text" name="address_detail" id="address_detail" maxlength="40" value="" placeholder="상세주소" />
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="referrer" id="referrer" value="" placeholder="추천인 닉네임" />
+			<input type="text" name="referrer" id="referrer" maxlength="20" value="" placeholder="추천인 닉네임" />
 		</div>
 		<div>
 			<a href="#" class="button alt">확인</a>

@@ -15,16 +15,15 @@
 %>
 <script>
 	alert("이메일이나 비밀번호가 올바르지 않습니다. 다시 시도해주세요.");
-	window.location = 'index.jsp';
+	window.location = './';
 </script>
 <%		
 	} else {
 		String email = member_sql.getEmail();
 		session.setAttribute("email", email);
-		System.out.println(email);
 %>
 <script>
-	window.location = '../../index.jsp';
+	window.location = '../../';
 </script>
 <%
 	}

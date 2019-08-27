@@ -8,6 +8,8 @@ function inputCheck()
 	var email_check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	var check_number = password.value.search(/[0-9]/g);
 	var check_english = password.value.search(/[a-z]/ig);
+	var email_check = document.register.email_check;
+	var nickname_check = document.register.nickname_check;
 	
 	if(document.register.email.value==""){
 		alert("아이디를 입력해주세요");
@@ -54,7 +56,43 @@ function inputCheck()
 		password.focus();
 		return;
 	}
+	if(email_check.value == "false") {
+		alert("이메일 중복 확인을 진행해주세요.");
+		return;
+	}
+	if(nickname_check.value == "false") {
+		alert("닉네임 중복 확인을 진행해주세요.");
+		return;
+	}
+	document.register.action = "db_register.jsp";
+	document.register.target = "_self";
 	document.register.submit();
+}
+
+function emailCheck() {
+	if(document.register.email.value == "") {
+		alert("이메일을 입력해주세요");
+		document.register.email.focus();
+		return;
+	} else {
+		var gsWin = window.open("about:blank", "winName");
+		document.register.action = "db_email_check.jsp";
+		document.register.target = "winName";
+		document.register.submit();
+	}
+}
+
+function nicknameCheck() {
+	if(document.register.nickname.value == "") {
+		alert("닉네임을 입력해주세요");
+		document.register.nickname.focus();
+		return;
+	} else {
+		var gsWin = window.open("about:blank", "winName");
+		document.register.action = "db_nickname_check.jsp";
+		document.register.target = "winName";
+		document.register.submit();
+	}
 }
 
 function addressCheck() {

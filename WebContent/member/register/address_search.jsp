@@ -9,6 +9,13 @@
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<script language="JavaScript" src="./register.js"></script>
+		<script>
+		function autoInput(zipcode, address) {
+			var address_value = zipcode + " " + address;
+			window.opener.register.email.value = address_value;
+			window.close();
+		}
+	</script>
 </head>
 <body>
 <section id="two" class="wrapper style2">

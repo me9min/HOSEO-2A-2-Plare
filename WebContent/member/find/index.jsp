@@ -50,30 +50,31 @@
 							</header>
 <form method="post" action="db_email_find.jsp" name="email_find">
 	<div class="row uniform"><br>
-		<div class="4u 12u$(xsmall)" align="right">
+		<div class="3u 12u$(xsmall)" align="right">
 			  전화번호
 		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" value="" placeholder="전화번호 -없이" />
-		</div><br><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
+		<div class="5u 12u$(xsmall)">
+			<input type="text" name="phone" id="email" value="" placeholder="전화번호 -없이" />
+		</div>
+		<div class="4u 12u$(xsmall)">
+			<input type="button" class="button alt" value="인증번호 전송" />
+		</div><br>
+		<div class="3u 12u$(xsmall)" align="right">
 			  인증번호
 		</div>
-		<div class="6u 12u$(xsmall)">
+		<div class="5u 12u$(xsmall)">
 			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
-		</div><br><br>
-		<div class="4u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
 		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" onclick="location.href('password_find.jsp')" value="비밀번호 찾기" />
-		</div>
-		<div class="0.5u 12u$(xsmall)" align="right">
-			  <div id="cattery" style="visibility:hidden;">내용</div>
-		</div>
-		<div class="3u 12u$(xsmall)">
-			<input type="button" class="button alt" value="이메일 찾기" onclick="emailFindCheck()" />
+		<div class="4u 12u$(xsmall)">
+			<input type="button" class="button alt" value="&nbsp;&nbsp;이메일 찾기&nbsp;&nbsp;" onclick="emailFindCheck()" />
 		</div><br>
+		<div class="8u 12u$(xsmall)" align="right">
+			  <div id="cattery" style="visibility:hidden;">내용임</div>
+		</div>
+		<div class="4u 12u$(xsmall)">
+			<a href="password_find.jsp" class="button alt">비밀번호 찾기</a>
+		</div><br><br>
+
 
 
 </form>

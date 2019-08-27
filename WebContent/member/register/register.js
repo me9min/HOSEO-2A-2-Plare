@@ -56,3 +56,12 @@ function inputCheck()
 	}
 	document.register.submit();
 }
+
+function addressCheck() {
+	if(document.address.address.value == "") {
+		alert("주소를 입력하세요.");
+		document.address.address.focus();
+		return;
+	}
+	document.address.submit();
+}

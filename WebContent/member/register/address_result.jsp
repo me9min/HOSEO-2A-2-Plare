@@ -13,12 +13,24 @@
 			window.close();
 		}
 	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
+<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<p>더 많은 기능이용</p>
+								<h2>우편번호 검색</h2>
+							</header>
+							
 	<table align="center">
 		<tr>
-			<th>우편번호</th>
-			<th>주소</th>
+			<td style="font-size:14px; text-align:center; color:black; font-weight:bold;">우편번호</td>
+			<td style="font-size:14px; text-align:center; color:black; font-weight:bold;">주소</td>
 		</tr>
 <%
 	Database database = new Database();
@@ -62,6 +74,12 @@
 <%
 	}
 %>
-	<center><a href="JavaScript:self.close()">닫기</a></center>
+	<center><a href="JavaScript:self.close()" class="button alt">닫기</a> <a href="JavaScript:history.back()" class="button alt">뒤로가기</a></center>
+						</div>
+					</div>
+				</div>
+			</section>
 </body>
+<body>
+
 </html>

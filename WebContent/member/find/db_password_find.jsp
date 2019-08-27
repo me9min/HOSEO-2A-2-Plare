@@ -70,7 +70,7 @@
 		</div>
 		<div class="12u 12u$(xsmall)">
 		<center>
-			<input type="button" class="button alt" onclick="location.href('password_find.jsp')" value="돌아가기" />
+			<a href="password_find.jsp" class="button alt">돌아가기</a>
 		</center>
 		</div>
 <%
@@ -81,7 +81,7 @@
 		</div>
 		<div class="12u 12u$(xsmall)">
 		<center>
-			<input type="button" class="button alt" onclick="location.href('../login/index.jsp')" value="로그인" />
+			<a href="../login/" class="button alt">로그인</a>
 		</center>
 		</div>
 <%

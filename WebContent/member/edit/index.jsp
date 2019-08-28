@@ -15,25 +15,25 @@
 	MemberBean member_sql = member.load_info(email);
 		
 	String nickname = member_sql.getNickname();
-	if(nickname == null) {nickname = "''";}
+	if(nickname == null) {nickname = "";}
 	
 	String phone = member_sql.getPhone();
-	if(phone == null) {phone = "''";}
+	if(phone == null) {phone = "";}
 	
 	String birthday_year = member_sql.getBirthday_year();
-	if(birthday_year == null) {birthday_year = "''";}
+	if(birthday_year == null) {birthday_year = "";}
 	String birthday_month = member_sql.getBirthday_month();
-	if(birthday_month == null) {birthday_month = "''";}
+	if(birthday_month == null) {birthday_month = "";}
 	String birthday_day = member_sql.getBirthday_day();
-	if(birthday_day == null) {birthday_day = "''";}
+	if(birthday_day == null) {birthday_day = "";}
 	
 	String address = member_sql.getAddress();
-	if(address == null) {address = "''";}
+	if(address == null) {address = "";}
 	String address_detail = member_sql.getAddress_detail();
-	if(address_detail == null) {address_detail = "''";}
+	if(address_detail == null) {address_detail = "";}
 	
 	String referrer = member_sql.getReferrer();
-	if(referrer == null) {referrer = "''";}
+	if(referrer == null) {referrer = "";}
 %>
 <!DOCTYPE HTML>
 <html>
@@ -43,7 +43,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script language="JavaScript" src="./edit.js"></script>
+		<script language="JavaScript" src="edit.js"></script>
 	</head>
 	<body class="subpage">
 

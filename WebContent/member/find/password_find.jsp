@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" href="login.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script type="text/javascript" src="../find/find.js"></script>
+		<script type="text/javascript" src="find/find.js"></script>
 
 	</head>
 	<body class="subpage">

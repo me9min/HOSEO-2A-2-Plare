@@ -42,7 +42,42 @@ function inputCheck()
 		password.focus();
 		return;
 	}
+	document.edit.action = "db_edit.jsp";
+	document.edit.target = "_self";
 	document.edit.submit();
+}
+
+function nicknameCheck() {
+	var nickname = document.edit.nickname;
+	
+	if(nickname.value == "") {
+		alert("닉네임을 입력해주세요.");
+		nickname.focus();
+		return;
+	}
+	var gsWin = window.open("about:blank", "winName");
+	document.edit.action = "nickname_change.jsp";
+	document.edit.target = "winName";
+	document.edit.submit();
+}
+
+function nicknameDoubleCheck() {
+	var nickname = document.change.nickname;
+	
+	if(nickname.value == "") {
+		alert("닉네임을 입력해주세요.");
+		nickname.focus();
+		return;
+	}
+	if(nickname.value == window.opener.edit.nickname.value) {
+		alert("변경할 닉네임이 기존 닉네임과 동일합니다.");
+		nickname.value = "";
+		nickname.focus();
+		return;
+	}
+	 else {
+		document.change.submit();
+	}
 }
 
 function passwordCheck() {

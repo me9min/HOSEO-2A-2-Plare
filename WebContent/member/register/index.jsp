@@ -64,7 +64,7 @@
 <form method="post" action="db_register.jsp" name="register">
 	<div class="row uniform">
 		<input type="hidden" name="email_check" id="email_check" value="false" />
-		<input type="hidden" name="nickname_check" id="password_check" value="false" />
+		<input type="hidden" name="nickname_check" id="nickname_check" value="false" />
 		<div class="8u 12u$(xsmall)">
 			<input type="text" name="email" id="email" maxlength="40" value="" placeholder="* 이메일" />
 		</div>

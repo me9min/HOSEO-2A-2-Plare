@@ -89,7 +89,7 @@
 <p>*은 필수항목입니다</p>
 <form method="post" action="db_edit.jsp" name="edit">
 	<div class="row uniform">
-		
+		<input type="hidden" name="nickname_check" id="nickname_check" value="false" />
 		<div class="12u 12u$(xsmall)">
 			<input type="text" value="<%=email %>" disabled />
 		</div>
@@ -106,7 +106,7 @@
 			<input type="text" name="nickname" id="nickname" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
-			<a href="#" class="button alt">중복확인</a>
+			<a href="#" class="button alt" onclick="nicknameCheck()">닉네임 변경</a>
 		</div>
 		
 		<div class="4u 12u$(small)"><center>

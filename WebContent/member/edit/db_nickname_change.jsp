@@ -19,13 +19,8 @@
 		<script>
 			function autoInput(nickname) {
 				var nickname_value = nickname;
-				window.opener.register.nickname.value = nickname_value;
-				window.opener.register.nickname_check.value = "true";
-				window.close();
-			}
-			
-			function autoReset() {
-				window.opener.register.nickname.value = "";
+				window.opener.edit.nickname.value = nickname_value;
+				window.opener.edit.nickname_check.value = "true";
 				window.close();
 			}
 		</script>
@@ -59,7 +54,7 @@
 		</div>
 
 		<div class="12u$ 12u$(xsmall)">
-			<a href="#" class="button alt" onclick="autoReset()">닫기</a>
+			<a href="#" class="button alt" onclick="window.close()">닫기</a>
 		</div>
 <%
 	}

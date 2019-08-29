@@ -11,11 +11,11 @@
 <html>
 <head>
 		<meta charset="UTF-8">
-		<title>이메일 중복 확인</title>
+		<title>닉네임 중복 확인</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<script language="JavaScript" src="./register.js"></script>
+		<script language="JavaScript" src="register.js"></script>
 		<script>
 			function autoInput(nickname) {
 				var nickname_value = nickname;
@@ -37,7 +37,7 @@
 						<div class="content">
 							<header class="align-center">
 								<p>더 많은 기능이용</p>
-								<h2>이메일 중복 확인</h2>
+								<h2>닉네임 중복 확인</h2>
 							</header>
 	<center>
 	<div class="row uniform">

@@ -1,40 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, Bean.*" %>
-<% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="member" class="Bean.Member" />
-<%
-	String email = (String)session.getAttribute("email");
-	if(email == null) {
-%>
-<script>
-	alert('로그인이필요합니다');
-    window.location.replace('../login');
-</script>
-<%
-	}
-	MemberBean member_sql = member.load_info(email);
-		
-	String nickname = member_sql.getNickname();
-	if(nickname == null) {nickname = "";}
+<%	
+	String email = "0";
+
+	String nickname = "1";
 	
-	String phone = member_sql.getPhone();
-	if(phone == null) {phone = "";}
+	String phone = "2";
 	
-	String birthday_year = member_sql.getBirthday_year();
-	if(birthday_year == null) {birthday_year = "";}
-	String birthday_month = member_sql.getBirthday_month();
-	if(birthday_month == null) {birthday_month = "";}
-	String birthday_day = member_sql.getBirthday_day();
-	if(birthday_day == null) {birthday_day = "";}
+	String birthday_year = "3";
+	String birthday_month = "4";
+	String birthday_day = "5";
 	
-	String address = member_sql.getAddress();
-	if(address == null) {address = "";}
-	String address_detail = member_sql.getAddress_detail();
-	if(address_detail == null) {address_detail = "";}
+	String address = "6";
+	String address_detail = "7";
 	
-	String referrer = member_sql.getReferrer();
-	if(referrer == null) {referrer = "";}
+	String referrer = "8";
 %>
 <!DOCTYPE HTML>
 <html>
@@ -155,26 +136,19 @@
 				<option value="1979">1979년</option>
 				<option value="1978">1978년</option>
 				<option value="1977">1977년</option>
-				<option value="1976">1976년</option>
-				<option value="1975">1975년</option>
-				<option value="1974">1974년</option>
-				<option value="1973">1973년</option>
-				<option value="1972">1972년</option>
-				<option value="1971">1971년</option>
-				<option value="1970">1970년</option>
 			</select></center></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_month">
 				<option value="<%=birthday_month %>" selected><%=birthday_month %>월</option>
-				<option value="01">1월</option>
-				<option value="02">2월</option>
-				<option value="03">3월</option>
-				<option value="04">4월</option>
-				<option value="05">5월</option>
-				<option value="06">6월</option>
-				<option value="07">7월</option>
-				<option value="08">8월</option>
-				<option value="09">9월</option>
+				<option value="1">1월</option>
+				<option value="2">2월</option>
+				<option value="3">3월</option>
+				<option value="4">4월</option>
+				<option value="5">5월</option>
+				<option value="6">6월</option>
+				<option value="7">7월</option>
+				<option value="8">8월</option>
+				<option value="9">9월</option>
 				<option value="10">10월</option>
 				<option value="11">11월</option>
 				<option value="12">12월</option>
@@ -182,15 +156,15 @@
 			<div class="4u 12u$(small)">
 			<select name="birthday_day">
 				<option value="<%=birthday_day %>" selected><%=birthday_day %>일</option>
-				<option value="01">1일</option>
-				<option value="02">2일</option>
-				<option value="03">3일</option>
-				<option value="04">4일</option>
-				<option value="05">5일</option>
-				<option value="06">6일</option>
-				<option value="07">7일</option>
-				<option value="08">8일</option>
-				<option value="09">9일</option>
+				<option value="1">1일</option>
+				<option value="2">2일</option>
+				<option value="3">3일</option>
+				<option value="4">4일</option>
+				<option value="5">5일</option>
+				<option value="6">6일</option>
+				<option value="7">7일</option>
+				<option value="8">8일</option>
+				<option value="9">9일</option>
 				<option value="10">10일</option>
 				<option value="11">11일</option>
 				<option value="12">12일</option>
@@ -221,7 +195,7 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="<%=address %>" placeholder="주소" readonly />
+			<input type="text" name="address" id="address" value="<%=address %>" placeholder="주소" disabled />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
@@ -230,7 +204,7 @@
 			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
-			<input type="text" value="<%=referrer %>" placeholder="추천인" disabled />
+			<input type="text" name="referrer" id="referrer" value="<%=referrer %>" placeholder="추천인" disabled />
 		</div>
 		
 	</div>

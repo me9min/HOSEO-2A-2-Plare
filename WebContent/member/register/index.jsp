@@ -132,6 +132,13 @@
 				<option value="1979">1979년</option>
 				<option value="1978">1978년</option>
 				<option value="1977">1977년</option>
+				<option value="1976">1976년</option>
+				<option value="1975">1975년</option>
+				<option value="1974">1974년</option>
+				<option value="1973">1973년</option>
+				<option value="1972">1972년</option>
+				<option value="1971">1971년</option>
+				<option value="1970">1970년</option>
 			</select></center></div>
 			<div class="4u 12u$(small)">
 			<select name="birthday_month">
@@ -189,7 +196,7 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" maxlength="100" value="" placeholder="주소" />
+			<input type="text" name="address" id="address" maxlength="100" value="" placeholder="주소" readonly />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>

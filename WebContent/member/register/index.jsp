@@ -202,7 +202,7 @@
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="1u 12u$(xsmall) hidden">
-			<input type="text" name="address" id="address" value="" readonly />
+			<input type="hidden" name="address" id="address" value="" readonly />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" maxlength="40" value="" placeholder="상세주소" />

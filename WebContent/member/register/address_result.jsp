@@ -110,7 +110,7 @@
 %>
 		<tr>
 			<td>
-				<a onclick="autoInput('<%=address_result_road%>,<%=buildingcode%>')"><%=address_result_road%></a>
+				<a onclick="autoInput('<%=address_result_road%>','<%=buildingcode%>')"><%=address_result_road%></a>
 			</td>
 			<td>
 				<%=address_result_jibun%>

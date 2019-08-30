@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<title>주소 검색</title>
 	<script>
-		function autoInput(zipcode, address) {
-			var address_value = zipcode + " " + address;
-			window.opener.edit.address.value = address_value;
+		function autoInput(address_road,address) {
+			window.opener.edit.address_road.value = address_road;
+			window.opener.edit.address.value = address;
 			window.close();
 		}
 	</script>
@@ -29,37 +29,97 @@
 							
 	<table align="center">
 		<tr>
-			<td style="font-size:14px; text-align:center; color:black; font-weight:bold;">우편번호</td>
-			<td style="font-size:14px; text-align:center; color:black; font-weight:bold;">주소</td>
+			<th style="font-size:14px; text-align:center; color:black;">도로명주소</th>
+			<th style="font-size:14px; text-align:center; color:black;">지번주소</th>
+			<th style="font-size:14px; text-align:center; color:black;">영어주소</th>
+			<th style="font-size:14px; text-align:center; color:black;">우편번호</th>
 		</tr>
 <%
 	request.setCharacterEncoding("utf-8");
+	String address_find = request.getParameter("address_find");
+	address_find = address_find.trim().replaceAll(" +"," ");
+	address_find = address_find.replace(" ","|");
+	address_find = "'"+address_find+"'";
+	//address_find = address_find.trim().replaceAll(" ","");
+	//address_find = "'?"+address_find+"?'";
+	
+	if(address_find.length() > 50 || address_find == "") {
+%>
+<script>
+	alert("최대 허용 길이 초과 (50자)");
+	close();
+</script>
+<%
+		return;
+	}
+	
 	Database database = new Database();
 	database.connect();
 	
-	String address = request.getParameter("address");
-	
-	String sql = "select * from zipcode where dong like '%" + address + "%'";
+	String sql = "select buildingcode,zipcode,sido,sigungu,roadname,building1,building2,dongname,buildingname,jibun1,jibun2,roadname_en,sigungu_en,sido_en"
+	+" from zipcode where"
+	+" zipcode regexp "+address_find
+	+" or sido regexp "+address_find
+	+" or sigungu regexp "+address_find
+	+" or roadname regexp "+address_find
+	//+" and building1 regexp "+address_find
+	//+" and building2 regexp "+address_find
+	+" or dongname regexp "+address_find
+	+" or buildingname regexp "+address_find;
+	//+" and jibun1 regexp "+address_find
+	//+" and jibun2 regexp "+address_find;
+	// 주소검색
 	ResultSet rs = database.result_query(sql);
 	
 	if(rs.next()) {
 		do {
+			String buildingcode = rs.getString("buildingcode");
 			String zipcode = rs.getString("zipcode");
 			String sido = rs.getString("sido");
-			String gugun = rs.getString("gugun");
-			String dong = rs.getString("dong");
-			String ri = rs.getString("ri");
-			String bunji = rs.getString("bunji");
-			if(ri == null) ri = "";
-			if(bunji == null) bunji = "";
-			String address_result = sido + " " + gugun + " " + dong + " " + ri + " " + bunji;
+			String sigungu = rs.getString("sigungu");
+			String roadname = rs.getString("roadname");
+			int building1 =  rs.getInt("building1");
+			int building2 =  rs.getInt("building2");
+			String dongname = rs.getString("dongname");
+			String buildingname = rs.getString("buildingname");
+			int jibun1 =  rs.getInt("jibun1");
+			int jibun2 =  rs.getInt("jibun2");
+			String roadname_en = rs.getString("roadname_en");
+			String sigungu_en = rs.getString("sigungu_en");
+			String sido_en = rs.getString("sido_en");
+			
+			String bar = "-";
+			String building1s = "";
+			String building2s = "";
+			String jibun1s = "";
+			String jibun2s = "";
+			if(building1 > 0) {building1s = String.valueOf(building1);} else {building1s = "";}
+			if(building2 > 0) {building2s = String.valueOf(building2);} else {building2s = "";bar = "";}
+			if(dongname == null) {dongname = "";}
+			if(buildingname == null) {buildingname = "";}
+			if(jibun1 > 0) {jibun1s = String.valueOf(jibun1);} else {jibun1s = "";}
+			if(jibun2 > 0) {jibun2s = String.valueOf(jibun2);} else {jibun2s = "";bar = "";}
+			
+			String address_result_road = sido+" "+sigungu+" "+roadname+" "+building1s+bar+building2s+"("+dongname+", "+buildingname+")";
+			address_result_road = address_result_road.trim().replaceAll(" +"," ");
+			
+			String address_result_jibun = sido+" "+sigungu+" "+dongname+" "+jibun1s+bar+jibun2s+" "+buildingname;
+			address_result_jibun = address_result_jibun.trim().replaceAll(" +"," ");
+			
+			String address_result_en = building1s+bar+building2s+", "+roadname_en+", "+sigungu_en+", "+sido_en;
 %>
 		<tr>
 			<td>
-				<a href="#" onclick="autoInput('<%=zipcode%>', '<%=address_result%>')"><%=zipcode%></a>
+				<a onclick="autoInput('<%=address_result_road%>','<%=buildingcode%>')"><%=address_result_road%></a>
 			</td>
 			<td>
-				<a href="#" onclick="autoInput('<%=zipcode%>', '<%=address_result%>')"><%=address_result%></a>
+				<%=address_result_jibun%>
+			</td>
+			<td>
+				<%=address_result_en%>
+			</td>
+			<td>
+				<%=zipcode%>
 			</td>
 		</tr>
 <%

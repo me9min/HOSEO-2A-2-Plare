@@ -28,6 +28,8 @@
 	String birthday_day = member_sql.getBirthday_day();
 	if(birthday_day == null) {birthday_day = "";}
 	
+	String address_road = member_sql.getAddress_road();
+	if(address_road == null) {address_road = "";}
 	String address = member_sql.getAddress();
 	if(address == null) {address = "";}
 	String address_detail = member_sql.getAddress_detail();
@@ -221,10 +223,13 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="<%=address %>" placeholder="주소" readonly />
+			<input type="text" name="address_road" id="address_road" value="<%=address_road %>" placeholder="주소" readonly />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
+		</div>
+		<div class="1u 12u$(xsmall) hidden">
+			<input type="hidden" name="address" id="address" value="" readonly />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />

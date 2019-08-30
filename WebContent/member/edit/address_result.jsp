@@ -33,10 +33,10 @@
 			<td style="font-size:14px; text-align:center; color:black; font-weight:bold;">주소</td>
 		</tr>
 <%
-	Database database = new Database();
 	request.setCharacterEncoding("utf-8");
-	
+	Database database = new Database();
 	database.connect();
+	
 	String address = request.getParameter("address");
 	
 	String sql = "select * from zipcode where dong like '%" + address + "%'";

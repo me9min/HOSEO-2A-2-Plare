@@ -96,9 +96,11 @@ function nicknameCheck() {
 }
 
 function addressCheck() {
-	if(document.address.address.value == "") {
+	address = document.address.address_find.value.trim();
+	if(address == "") {
 		alert("주소를 입력하세요.");
-		document.address.address.focus();
+		document.address.address_find.focus();
+		document.address.address_find.value = "";
 		return;
 	}
 	document.address.submit();

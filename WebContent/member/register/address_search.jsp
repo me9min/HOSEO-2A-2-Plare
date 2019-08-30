@@ -23,11 +23,11 @@
 	<div class="row uniform">
 
 		<div class="10u 12u$(xsmall)">
-			<input type="text" name="address" id="address" value="" placeholder="주소를 입력하세요." />
+			<input type="text" name="address_find" id="address_find" value="" placeholder="주소를 입력하세요." maxlength="50"/>
 		</div>
 
 		<div class="2u$ 12u$(xsmall)">
-			<a href="#" class="button alt" onclick="addressCheck()">검색</a>
+			<input type="button" value="검색" class="button alt" onclick="addressCheck()">
 		</div>
 
 	</div>

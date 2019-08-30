@@ -74,7 +74,7 @@
 	</div>
 </form>
 <ul class="actions">
-	<li><a class="button special" onclick="loginCheck()">로그인</a></li>
+	<li><input type="button" value="로그인" class="button special" onclick="loginCheck()"></li>
 	<li><a href="../find" class="button alt">아이디/비밀번호 찾기</a></li>
 	<li><a href="../register" class="button alt">회원가입</a></li>
 </ul>

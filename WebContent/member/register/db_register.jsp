@@ -18,6 +18,7 @@
 	window.location = './';
 </script>
 <%
+		return;
 	} finally {
 %>
 <script>

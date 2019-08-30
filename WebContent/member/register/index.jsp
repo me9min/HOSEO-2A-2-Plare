@@ -196,10 +196,13 @@
 		</div>
 		
 		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address" id="address" maxlength="100" value="" placeholder="주소" readonly />
+			<input type="text" name="address_road" id="address_road" value="" placeholder="주소" readonly />
 		</div>
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
+		</div>
+		<div class="1u 12u$(xsmall) hidden">
+			<input type="text" name="address" id="address" value="" readonly />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" maxlength="40" value="" placeholder="상세주소" />
@@ -215,7 +218,7 @@
 	</div>
 </form>
 <ul class="actions">
-	<li><a class="button special" onclick="inputCheck()">회원가입</a></li>
+	<li><input type="button" value="회원가입" class="button special" onclick="inputCheck()"></li>
 	<li><a href="../login" class="button alt">로그인하기</a></li>
 </ul>
 			</div>

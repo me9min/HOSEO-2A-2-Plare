@@ -1,6 +1,6 @@
 package Bean;
 
-import java.sql.Date;
+import java.sql.*;
 
 public class MemberBean {
 	private String email;

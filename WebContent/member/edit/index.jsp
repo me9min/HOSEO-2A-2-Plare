@@ -30,10 +30,10 @@
 	
 	String address_road = member_sql.getAddress_road();
 	if(address_road == null) {address_road = "";}
-	String address = member_sql.getAddress();
-	if(address == null) {address = "";}
 	String address_detail = member_sql.getAddress_detail();
 	if(address_detail == null) {address_detail = "";}
+	String address = member_sql.getAddress();
+	if(address == null) {address = "";}
 	
 	String referrer = member_sql.getReferrer();
 	if(referrer == null) {referrer = "";}
@@ -229,7 +229,7 @@
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="1u 12u$(xsmall) hidden">
-			<input type="hidden" name="address" id="address" value="" readonly />
+			<input type="hidden" name="address" id="address" value="<%=address %>" readonly />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />

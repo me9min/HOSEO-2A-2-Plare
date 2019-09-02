@@ -64,6 +64,10 @@ function inputCheck()
 		alert("닉네임 중복 확인을 진행해주세요.");
 		return;
 	}
+	if(referrer_check.value == "false") {
+		alert("추천인 확인을 진행해주세요.");
+		return;
+	}
 	document.register.action = "db_register.jsp";
 	document.register.target = "_self";
 	document.register.submit();
@@ -104,4 +108,17 @@ function addressCheck() {
 		return;
 	}
 	document.address.submit();
+}
+
+function referrerCheck() {
+	if(document.register.referrer.value == "") {
+		alert("추천인의 닉네임을 입력해주세요");
+		document.register.referrer.focus();
+		return;
+	} else {
+		var gsWin = window.open("about:blank", "winName");
+		document.register.action = "db_referrer_check.jsp";
+		document.register.target = "winName";
+		document.register.submit();
+	}
 }

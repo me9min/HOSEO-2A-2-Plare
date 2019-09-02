@@ -65,6 +65,7 @@
 	<div class="row uniform">
 		<input type="hidden" name="email_check" id="email_check" value="false" />
 		<input type="hidden" name="nickname_check" id="nickname_check" value="false" />
+		<input type="hidden" name="referrer_check" id="referrer_check" value="false" />
 		<div class="8u 12u$(xsmall)">
 			<input type="text" name="email" id="email" maxlength="40" value="" placeholder="* 이메일" />
 		</div>
@@ -212,7 +213,7 @@
 			<input type="text" name="referrer" id="referrer" maxlength="20" value="" placeholder="추천인 닉네임" />
 		</div>
 		<div>
-			<a href="#" class="button alt">확인</a>
+			<a href="#" class="button alt" onclick="referrerCheck()">확인</a>
 		</div>
 		
 	</div>

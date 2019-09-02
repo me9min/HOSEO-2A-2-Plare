@@ -349,7 +349,6 @@ public class Member {
 
 			rs.next();
 			String password_sql = rs.getString("password");
-			System.out.println(password_sql);
 			
 			if(password_sql.equals(password)) {
 				check = true;

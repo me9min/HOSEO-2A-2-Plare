@@ -10,42 +10,17 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	</head>
 	<body>
-
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="./">plare.cf <span>host by BSM</span></a></div>
+				<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
 				<a href="#menu">메뉴</a>
 			</header>
-
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="./">홈</a></li>
-					<li><a href="./guide">게임소개/가이드</a></li>
-					<li><a href="./rank">랭크</a></li>
-					<li><a href="./shop">상점</a></li>
-					<li><a href="./list">게시판</a></li>
-<%
-	String email = (String)session.getAttribute("email");
-	if(email == null) {
-%>
-					<li><a href="./member/login">로그인/회원가입</a></li>
-<%
-	} else {
-%>
-					<li><a href="./member">내정보</a></li>
-					<li><a href="./member/logout">로그아웃</a></li>
-<%
-	}
-%>
-					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
-				</ul>
-			</nav>
+<%@ include file="/assets/include/menu_index.jsp" %>
 
 		<!-- Banner -->
 			<section class="banner full">
 				<article>
-					<img src="images/no_room_in_hell_2.jpg" alt="" />
+					<img src="assets/images/no_room_in_hell_2.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<h2>ㅎㅇ</h2>
@@ -53,7 +28,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/gasstation.jpg" alt="" />
+					<img src="assets/images/gasstation.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<h2>새로운맵!</h2>
@@ -61,7 +36,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="images/m4.jpg"  alt="" />
+					<img src="assets/images/m4.jpg"  alt="" />
 					<div class="inner">
 						<header>
 							<h2>새로운무기!</h2>

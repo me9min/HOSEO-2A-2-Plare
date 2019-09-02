@@ -4,37 +4,14 @@
 <html>
 	<head>
 		<title>요소 예제</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="./assets/css/main.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	</head>
-	<body class="subpage">
-
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="./">plare.cf <span>host by BSM</span></a></div>
-				<a href="#menu">메뉴</a>
-			</header>
-
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="./">홈</a></li>
-					<li><a href="./guide">게임소개/가이드</a></li>
-					<li><a href="./rank">랭크</a></li>
-					<li><a href="./shop">상점</a></li>
-					<li><a href="./list">게시판</a></li>
-					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
-				</ul>
-			</nav>
+<%@ include file="/assets/include/menu.jsp" %>
 
 		<!-- One -->
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>템플릿 요소 예제</p>
-						<h2>Elements</h2>
+						<p>Elements</p>
+						<h2>템플릿 요소 예제</h2>
 					</header>
 				</div>
 			</section>

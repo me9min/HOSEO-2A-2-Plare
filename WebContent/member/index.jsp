@@ -1,49 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String email = (String)session.getAttribute("email");
-	if(email == null) {
-%>
-<script>
-	alert('로그인이필요합니다');
-    window.location.replace('./login');
-</script>
-<%
-	}
-%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>프로필</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<style type="text/css">
 			.px-200{font-size: 200px;}
 		</style>
-	</head>
-	<body class="subpage">
-
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
-				<a href="#menu">메뉴</a>
-			</header>
-
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="../">홈</a></li>
-					<li><a href="../guide">게임소개/가이드</a></li>
-					<li><a href="../rank">랭크</a></li>
-					<li><a href="../shop">상점</a></li>
-					<li><a href="../list">게시판</a></li>
-					<li><a href="../member">내정보</a></li>
-					<li><a href="./logout">로그아웃</a></li>
-					<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
-				</ul>
-			</nav>
+<%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/menu_member.jsp" %>
 
 		<!-- Main -->
 			<section id="one" class="wrapper style2">
@@ -51,7 +16,7 @@
 					<div class="grid-style">
 
 						<div>
-							<div class="box" onclick="window.location.replace('./edit/password_check.jsp');">
+							<div class="box" onclick="window.location.replace('edit/password_check.jsp');">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-pencil px-200"></span>

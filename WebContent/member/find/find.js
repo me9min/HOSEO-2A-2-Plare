@@ -13,6 +13,11 @@ function emailFindCheck() {
 }
 
 function passwordFindCheck() {
+	if(document.password_find.email.value == "") {
+		alert("이메일을 입력해주세요");
+		document.password_find.email.focus();
+		return;
+	} 
 	if(document.password_find.phone.value == "") {
 		alert("전화번호를 입력하세요.");
 		document.password_find.phone.focus();

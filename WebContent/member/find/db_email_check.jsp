@@ -37,7 +37,7 @@
 						<div class="content">
 							<header class="align-center">
 								<p>더 많은 기능이용</p>
-								<h2>닉네임 중복 확인</h2>
+								<h2>이메일 확인</h2>
 							</header>
 	<center>
 	<div class="row uniform">

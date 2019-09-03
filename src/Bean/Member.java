@@ -1,7 +1,10 @@
 package Bean;
 
+import java.util.*;
 import java.sql.*;
 import java.text.*;
+import javax.sql.*;
+import javax.naming.*;
 import Bean.MemberBean;
 
 public class Member {
@@ -17,6 +20,12 @@ public class Member {
 		} catch(Exception e) {
 			System.out.println("Fail to load JDBC DRIVER");
 		}
+	}
+	
+	private Connection getConnection() throws Exception {
+		Context initCtx = new InitialContext();
+		DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/web");
+		return ds.getConnection();
 	}
 	
 	public MemberBean login(MemberBean member) {
@@ -63,7 +72,7 @@ public class Member {
 		
 	}
 	
-	public void register(MemberBean member) {
+	public void register(MemberBean member) throws Exception {
 		// 회원가입 메소드
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -406,12 +415,13 @@ public class Member {
 			rs.close();
 			pstmt.close();
 			
-			pstmt = conn.prepareStatement("select sido,sigungu,roadname,building1,building2,dongname,buildingname from zipcode where buildingcode=? limit 1");
+			pstmt = conn.prepareStatement("select zipcode,sido,sigungu,roadname,building1,building2,dongname,buildingname from zipcode where buildingcode=? limit 1");
 			pstmt.setString(1, address);
 			
 			rs = pstmt.executeQuery();
 			
 			rs.next();
+			String zipcode = rs.getString("zipcode");
 			String sido = rs.getString("sido");
 			String sigungu = rs.getString("sigungu");
 			String roadname = rs.getString("roadname");
@@ -431,6 +441,7 @@ public class Member {
 			String address_result_road = sido+" "+sigungu+" "+roadname+" "+building1s+bar+building2s+"("+dongname+", "+buildingname+")";
 			address_result_road = address_result_road.trim().replaceAll(" +"," ");
 			memberBean.setAddress_road(address_result_road);
+			memberBean.setZipcode(zipcode);
 			
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();

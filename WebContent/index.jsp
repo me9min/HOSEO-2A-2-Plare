@@ -20,10 +20,9 @@
 		<!-- Banner -->
 			<section class="banner full">
 				<article>
-					<img src="assets/images/no_room_in_hell_2.jpg" alt="" />
+					<img src="assets/images/main.jpg" alt="" />
 					<div class="inner">
 						<header>
-							<h2>ㅎㅇ</h2>
 						</header>
 					</div>
 				</article>

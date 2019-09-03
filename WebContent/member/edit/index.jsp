@@ -30,6 +30,8 @@
 	if(address_road == null) {address_road = "";}
 	String address_detail = member_sql.getAddress_detail();
 	if(address_detail == null) {address_detail = "";}
+	String zipcode = member_sql.getZipcode();
+	if(zipcode == null) {zipcode = "";}
 	String address = member_sql.getAddress();
 	if(address == null) {address = "";}
 	
@@ -199,7 +201,10 @@
 		<div class="1u 12u$(xsmall) hidden">
 			<input type="hidden" name="address" id="address" value="<%=address %>" readonly />
 		</div>
-		<div class="12u$ 12u$(xsmall)">
+		<div class="6u 12u$(xsmall)">
+			<input type="text" name="zipcode" id="zipcode" value="<%=zipcode %>" placeholder="우편번호" readonly />
+		</div>
+		<div class="6u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />
 		</div>
 		<div class="12u$ 12u$(xsmall)">
@@ -218,28 +223,6 @@
 			</div>
 			</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-				<a href="https://templated.co/hielo">TEMPLATED by Hielo</a>
-				<div class="copyright">
-					&copy; Untitled. All rights reserved.
-				</div>
-			</footer>
+<%@ include file="/assets/include/foot.jsp" %>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../../assets/js/skel.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
-
-	</body>
 </html>

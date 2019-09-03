@@ -16,6 +16,7 @@ public class MemberBean {
 	private String referrer;
 	
 	private String address_road;
+	private String zipcode;
 	
 	public String getEmail() {
 		return email;
@@ -100,5 +101,12 @@ public class MemberBean {
 	}
 	public void setAddress_road(String address_road) {
 		this.address_road = address_road;
+	}
+	
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 }

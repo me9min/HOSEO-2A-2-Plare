@@ -366,26 +366,26 @@
 								<h3>Image</h3>
 
 								<h4>Fit</h4>
-								<span class="image fit"><img src="images/pic01.jpg" alt="" /></span>
+								<span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span>
 								<div class="box alt">
 									<div class="row 50% uniform">
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u$"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u$"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
 										<!-- Break -->
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u$"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u$"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
 										<!-- Break -->
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										<div class="4u$"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
+										<div class="4u$"><span class="image fit"><img src="/assets/images/pic01.jpg" alt="" /></span></div>
 									</div>
 								</div>
 
 								<h4>Left &amp; Right</h4>
-								<p><span class="image left"><img src="images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
-								<p><span class="image right"><img src="images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
+								<p><span class="image left"><img src="/assets/images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
+								<p><span class="image right"><img src="/assets/images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
 
 							<!-- Box -->
 								<h3>Box</h3>
@@ -411,28 +411,6 @@ print 'It took ' + i + ' iterations to sort the deck.';
 
 			</div>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-				<a href="https://templated.co/hielo">TEMPLATED by Hielo</a>
-				<div class="copyright">
-					&copy; Untitled. All rights reserved.
-				</div>
-			</footer>
+<%@ include file="/assets/include/foot.jsp" %>
 
-		<!-- Scripts -->
-			<script src="./assets/js/jquery.min.js"></script>
-			<script src="./assets/js/jquery.scrollex.min.js"></script>
-			<script src="./assets/js/skel.min.js"></script>
-			<script src="./assets/js/util.js"></script>
-			<script src="./assets/js/main.js"></script>
-
-	</body>
 </html>

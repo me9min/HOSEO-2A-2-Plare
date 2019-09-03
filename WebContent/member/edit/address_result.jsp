@@ -7,9 +7,10 @@
 	<meta charset="UTF-8">
 	<title>주소 검색</title>
 	<script>
-		function autoInput(address_road,address) {
-			window.opener.edit.address_road.value = address_road;
-			window.opener.edit.address.value = address;
+		function autoInput(address_road,zipcode,address) {
+			window.opener.register.address_road.value = address_road;
+			window.opener.register.zipcode.value = zipcode
+			window.opener.register.address.value = address;
 			window.close();
 		}
 	</script>
@@ -110,7 +111,7 @@
 %>
 		<tr>
 			<td>
-				<a onclick="autoInput('<%=address_result_road%>','<%=buildingcode%>')"><%=address_result_road%></a>
+				<a onclick="autoInput('<%=address_result_road%>','<%=zipcode%>','<%=buildingcode%>')"><%=address_result_road%></a>
 			</td>
 			<td>
 				<%=address_result_jibun%>

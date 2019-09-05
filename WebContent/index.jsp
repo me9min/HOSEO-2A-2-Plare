@@ -11,10 +11,10 @@
 	</head>
 	<body>
 		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
-				<a href="#menu">메뉴</a>
-			</header>
+		<header id="header" class="alt">
+			<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
+			<a href="#menu">메뉴</a>
+		</header>
 <%@ include file="/assets/include/menu_index.jsp" %>
 
 		<!-- Banner -->

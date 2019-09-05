@@ -8,9 +8,9 @@
 	<title>주소 검색</title>
 	<script>
 		function autoInput(address_road,zipcode,address) {
-			window.opener.register.address_road.value = address_road;
-			window.opener.register.zipcode.value = zipcode
-			window.opener.register.address.value = address;
+			window.opener.edit.address_road.value = address_road;
+			window.opener.edit.zipcode.value = zipcode
+			window.opener.edit.address.value = address;
 			window.close();
 		}
 	</script>

@@ -13,16 +13,10 @@
 	</head>
 	<body>
 
-		<!-- Header -->
-<!-- 		<header id="header" class="alt"> -->
-<!-- 			<div class="logo"><a href="#">plare.cf <span>host by BSM</span></a></div> -->
-<!-- 			<a href="#menu">메뉴</a> -->
-<!-- 		</header> -->
-
-
 <header id="header" class="navbar navbar-inverse">
+	<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
+	
 	<div class="container-fluid">
-		<a href="#">plare.cf <span>host by BSM</span></a>
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
@@ -37,7 +31,7 @@
 			</li>
 			
 			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">게임소개
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="#">공지</a></li>
@@ -57,8 +51,9 @@
 			
 		</ul>
 	</div>
+	
+	<a href="#menu">메뉴</a>
 </header>
-
 
 <%@ include file="/assets/include/menu_index.jsp" %>
 

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>�Խ���</title>	
+	<title>게시판</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -20,55 +20,52 @@
 
 </head>
 <body>
-
 	<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>�Խñ��� �ø��� Ŀ�´�Ƽ�Դϴ�</p>
-						<h2>�Խ���</h2>
+						<p>게시글을 올리는 커뮤니티입니다</p>
+						<h2>게시판</h2>
 					</header>
 				</div>
 			</section>
 	<div id="main" class="container" >
-	<form  method="post" name="writeform" 
-      action="writePro.jsp" onsubmit="return writeSave()">
-		<center><h3>�����Խ���</h3></center><br>
+		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>
-				<td align="center" style="vertical-align: middle">����</td>
-				<td>����</td>
+				<td align="center" style="vertical-align: middle">제목</td>
+				<td>제목</td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">�ۼ���</td>
-				<td>�ۼ���</td>
+				<td align="center" style="vertical-align: middle">작성자</td>
+				<td>작성자</td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">�ۼ���</td>
+				<td align="center" style="vertical-align: middle">작성일</td>
 				<td>2019-09-16</td>
 			</tr>
 			<tr>
-				<td height="300px" align="center" style="vertical-align: middle">����</td>
-				<td height="300px">����</td>
+				<td height="300px" align="center" style="vertical-align: middle">내용</td>
+				<td height="300px">내용</td>
 			</tr>
 			<tr id="border" style="background-color:#ffffff;">
+				<td colspan="2" align="center"><button id="button">추천하기</button></td>
+			</tr>
+			<tr style="border-bottom:hidden;">
 				<td></td>
-				<td align="center"><button id="button">��õ�ϱ�</button></td>
+				<td align="right">조회수 추천수 댓글수</td>
+			</tr>
+		</table>
+		<table bgcolor="#eeeeee">
+			<tr>
+				<td align="center" style="vertical-align: middle">계정닉네임</td>
+				<td height="100px" style="vertical-align: middle"><input type="text" style="width:100%;height:100px;"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td align="right">��ȸ�� ��õ�� ��ۼ�</td>
+				<td colspan="2" align="right" style="vertical-align: middle"><button>댓글등록</button></td>
 			</tr>
 		</table>
 		</div>
-		</form>
-		<table bgcolor="#eeeeee">
-			<tr>
-				<td align="center" style="vertical-align: middle">�����г���</td>
-				<td style="vertical-align: middle"><input type="text" style="width:300px; hiehgt:50px"></td>
-				<td> <button>��۵��</button></td>
-			</tr>
-		</table>
 	</div>
 
 <%@ include file="/assets/include/foot.jsp" %>

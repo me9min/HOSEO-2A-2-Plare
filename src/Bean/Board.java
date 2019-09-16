@@ -35,6 +35,34 @@ public class Board {
 		return ds.getConnection();
 	}
 	
+	public String getNickname(String email) {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String nickname = "";
+		String sql = "";
+
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			
+        	sql = "select nickname from member where email = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+            
+            rs.next();
+            nickname = rs.getString("nickname");
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+        return nickname;
+	}
+	
 	public void insertArticle(BoardBean article, String category) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;

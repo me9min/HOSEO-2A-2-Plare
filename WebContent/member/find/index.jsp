@@ -44,7 +44,7 @@
 			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
 		</div>
 		<div class="4u 12u$(xsmall)">
-			<input type="button" class="button alt" value="&nbsp;&nbsp;이메일 찾기&nbsp;&nbsp;" onclick="emailFindCheck()" />
+			<input type="button" class="button special"value="&nbsp;&nbsp;이메일 찾기&nbsp;&nbsp;" onclick="emailFindCheck()" />
 		</div><br>
 		<div class="8u 12u$(xsmall)" align="right"></div>
 		</div><br><br>
@@ -92,7 +92,7 @@
 			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
 		</div>
 		<div class="4u 12u$(xsmall)">
-			<input type="button" class="button alt" value="비밀번호 찾기" onclick="passwordFindCheck()">
+			<input type="button" class="button special" value="비밀번호 찾기" onclick="passwordFindCheck()">
 		</div><br>
 		<div class="8u 12u$(xsmall)" align="right">
 			  <div id="cattery" style="visibility:hidden;">내용임</div>

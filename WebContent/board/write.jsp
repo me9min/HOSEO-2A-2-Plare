@@ -53,18 +53,12 @@
 			</tr>
 			<tr id="border" style="background-color:#ffffff;">
 				<td></td> 
-				<td align="right">조회수 추천수 댓글수</td>
+				<td align="right"><input type="button" value="글쓰기" OnClick=""></td>
 			</tr>
 		</table>
 		</div>
 		</form>
-		<table bgcolor="#eeeeee">
-			<tr>
-				<td align="center" style="vertical-align: middle">계정닉네임</td>
-				<td style="vertical-align: middle"><input type="text" style="width:300px; hiehgt:50px"></td>
-				<td> <button>댓글등록</button></td>
-			</tr>
-		</table>
+
 	</div>
 
 <%@ include file="/assets/include/foot.jsp" %>

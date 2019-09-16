@@ -44,7 +44,7 @@
 				<td>2019-09-16</td>
 			</tr>
 			<tr>
-				<td height="300px" align="center" style="vertical-align: middle"></td>
+				<td height="300px" align="center" style="vertical-align: middle">내용</td>
 				<td height="300px"><input type="text" id="inputtext" style="background-color:transparent;"></td>
 			</tr>
 			<tr id="border" style="background-color:#ffffff;">

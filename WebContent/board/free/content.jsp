@@ -59,7 +59,7 @@
 		<table bgcolor="#eeeeee">
 			<tr>
 				<td align="center" style="vertical-align: middle">계정닉네임</td>
-				<td height="100px" style="vertical-align: middle"><input type="text" style="width:100%;height:100px;"></td>
+				<td height="100px" style="vertical-align: middle"><textarea style="width:100%;height:100px;"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right" style="vertical-align: middle"><button>댓글등록</button></td>

@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>자유게시판</title>	
+	<title>공지게시판</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -29,7 +29,7 @@
 				</div>
 			</section>
 	<div id="main" class="container" >
-		<center><h3>자유게시판</h3></center><br>
+		<center><h3>문의/신고게시판</h3></center><br>
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>
@@ -45,19 +45,12 @@
 				<td>2019-09-16</td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">마지막 수정일</td>
-				<td>2019-09-16</td>
-			</tr>
-			<tr>
 				<td height="300px" align="center" style="vertical-align: middle">내용</td>
 				<td height="300px">내용</td>
 			</tr>
-			<tr id="border" style="background-color:#ffffff;">
-				<td colspan="2" align="center"><button id="button">추천하기</button></td>
-			</tr>
-			<tr style="border-bottom:hidden;">
+			<tr style="border-bottom:hidden;background-color:#ffffff">
 				<td></td>
-				<td align="right" style="background-color:#ffffff;">조회수 추천수 댓글수</td>
+				<td align="right">조회수 댓글수</td>
 			</tr>
 		</table>
 		<table bgcolor="#eeeeee">

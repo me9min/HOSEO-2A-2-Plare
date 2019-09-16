@@ -8,7 +8,7 @@
 		<li><a href="/guide">게임소개/가이드</a></li>
 		<li><a href="/rank">랭크</a></li>
 		<li><a href="/shop">상점</a></li>
-		<li><a href="/board">게시판</a></li>
+		<li><a href="/board/free">게시판</a></li>
 <%
 	request.setCharacterEncoding("utf-8");
 	

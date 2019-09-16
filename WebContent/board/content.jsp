@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>ê²Œì‹œíŒ</title>	
+	<title>°Ô½ÃÆÇ</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -24,45 +24,49 @@
 	<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>ê²Œì‹œê¸€ì„ ì˜¬ë¦¬ëŠ” ì»¤ë®¤ë‹ˆí‹°ìž…ë‹ˆë‹¤</p>
-						<h2>ê²Œì‹œíŒ</h2>
+						<p>°Ô½Ã±ÛÀ» ¿Ã¸®´Â Ä¿¹Â´ÏÆ¼ÀÔ´Ï´Ù</p>
+						<h2>°Ô½ÃÆÇ</h2>
 					</header>
 				</div>
 			</section>
 	<div id="main" class="container" >
 	<form  method="post" name="writeform" 
       action="writePro.jsp" onsubmit="return writeSave()">
-		<center><h3>ìžìœ ê²Œì‹œíŒ</h3></center><br>
+		<center><h3>ÀÚÀ¯°Ô½ÃÆÇ</h3></center><br>
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>
-				<td align="center" style="vertical-align: middle">ì œëª©</td>
-				<td><input type="text" name="ì œëª©" style="background-color:transparent;"></td>
+				<td align="center" style="vertical-align: middle">Á¦¸ñ</td>
+				<td>Á¦¸ñ</td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">ìž‘ì„±ìž</td>
-				<td ><input type="text" name="ìž‘ì„±ìž" style="background-color:transparent;"></td>
+				<td align="center" style="vertical-align: middle">ÀÛ¼ºÀÚ</td>
+				<td>ÀÛ¼ºÀÚ</td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">ìž‘ì„±ì¼</td>
+				<td align="center" style="vertical-align: middle">ÀÛ¼ºÀÏ</td>
 				<td>2019-09-16</td>
 			</tr>
 			<tr>
-				<td height="300px" align="center" style="vertical-align: middle">ë‚´ìš©</td>
-				<td height="300px"><input type="text" id="inputtext" style="background-color:transparent;"></td>
+				<td height="300px" align="center" style="vertical-align: middle">³»¿ë</td>
+				<td height="300px">³»¿ë</td>
 			</tr>
 			<tr id="border" style="background-color:#ffffff;">
-				<td></td> 
-				<td align="right">ì¡°íšŒìˆ˜ ì¶”ì²œìˆ˜ ëŒ“ê¸€ìˆ˜</td>
+				<td></td>
+				<td align="center"><button id="button">ÃßÃµÇÏ±â</button></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="right">Á¶È¸¼ö ÃßÃµ¼ö ´ñ±Û¼ö</td>
 			</tr>
 		</table>
 		</div>
 		</form>
 		<table bgcolor="#eeeeee">
 			<tr>
-				<td align="center" style="vertical-align: middle">ê³„ì •ë‹‰ë„¤ìž„</td>
+				<td align="center" style="vertical-align: middle">°èÁ¤´Ð³×ÀÓ</td>
 				<td style="vertical-align: middle"><input type="text" style="width:300px; hiehgt:50px"></td>
-				<td> <button>ëŒ“ê¸€ë“±ë¡</button></td>
+				<td> <button>´ñ±Ûµî·Ï</button></td>
 			</tr>
 		</table>
 	</div>

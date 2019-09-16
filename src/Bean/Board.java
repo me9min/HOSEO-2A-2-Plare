@@ -66,27 +66,25 @@ public class Board {
 	public void insertArticle(BoardBean article, String category) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		String sql="";
 
         try {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
-            if(category == "free") {
-	            sql = "insert into board_free(writer,ip,reg_date,title,content) "
-	            		+ "values(?,?,now(),?,?)";
+            if(category.equals("free")) {
+	            sql = "insert into ? (writer,ip,reg_date,title,content) values(?,?,now(),?,?)";
 	
 	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, article.getWriter());
-	            pstmt.setString(2, article.getIp());
-	            pstmt.setString(3, article.getTitle());
-				pstmt.setString(4, article.getContent());
+	            pstmt.setString(1, "board_free");
+	            pstmt.setString(2, article.getWriter());
+	            pstmt.setString(3, article.getIp());
+	            pstmt.setString(4, article.getTitle());
+				pstmt.setString(5, article.getContent());
 				
 	            pstmt.executeUpdate();
-            } else if (category == "motd") {
-            	sql = "insert into board_motd(writer,reg_date,title,content) "
-	            		+ "values(?,now(),?,?)";
+            } else if (category.equals("motd")) {
+            	sql = "insert into board_motd (writer,reg_date,title,content) values(?,now(),?,?)";
 	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
@@ -94,13 +92,12 @@ public class Board {
 				pstmt.setString(3, article.getContent());
 				
 	            pstmt.executeUpdate();
-            } else if (category == "issue") {
+            } else if (category.equals("issue")) {
             	
             }
         } catch(Exception ex) {
             ex.printStackTrace();
         } finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
             if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
             if (conn != null) try { conn.close(); } catch(SQLException ex) {}
         }
@@ -116,13 +113,14 @@ public class Board {
        try {
     	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
            
-           pstmt = conn.prepareStatement("select count(*) from board_?");
-           pstmt.setString(1, category);
-           rs = pstmt.executeQuery();
-
-           if (rs.next()) {
-              x = rs.getInt(1);
-			}
+    	   if(category.equals("free")) {
+	           pstmt = conn.prepareStatement("select count(*) from board_free");
+	           rs = pstmt.executeQuery();
+	
+	           if (rs.next()) {
+	              x = rs.getInt(1);
+				}
+    	   }
        } catch(Exception ex) {
            ex.printStackTrace();
        } finally {
@@ -141,7 +139,7 @@ public class Board {
        try {
     	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
            
-           if(category == "free") {
+           if(category.equals("free")) {
         	   pstmt = conn.prepareStatement(
        	           	"select * from board_free order by num desc");
    	           rs = pstmt.executeQuery();
@@ -163,7 +161,7 @@ public class Board {
    	                 articleList.add(article);
    				    }while(rs.next());
    				}
-           } else if(category == "motd") {
+           } else if(category.equals("motd")) {
         	   pstmt = conn.prepareStatement(
           	           	"select * from board_motd order by num desc");
       	           rs = pstmt.executeQuery();
@@ -182,7 +180,7 @@ public class Board {
       	                 articleList.add(article);
       				    }while(rs.next());
       				}
-           } else if(category == "issue") {
+           } else if(category.equals("issue")) {
 	       
            }
        } catch(Exception ex) {
@@ -204,7 +202,7 @@ public class Board {
         try {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
             
-            if(category == "free") {
+            if(category.equals("free")) {
 	            sql="update board_free set title=?,content=?,edit_date=?"
 			     + "where num=?";
 	            pstmt = conn.prepareStatement(sql);
@@ -214,7 +212,7 @@ public class Board {
 	            pstmt.setDate(3, article.getEdit_date());
 	            pstmt.setInt(4, article.getNum());
 	            pstmt.executeUpdate();
-            } else if(category == "motd") {
+            } else if(category.equals("motd")) {
             	sql="update board_motd set title=?,content=?"
    			     + "where num=?";
    	            pstmt = conn.prepareStatement(sql);
@@ -223,7 +221,7 @@ public class Board {
    	            pstmt.setString(2, article.getContent());
    	            pstmt.setInt(3, article.getNum());
    	            pstmt.executeUpdate();
-            } else if(category == "issue") {
+            } else if(category.equals("issue")) {
             	
             }
         } catch(Exception ex) {
@@ -244,19 +242,19 @@ public class Board {
         try {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
             
-            if(category == "free") {
+            if(category.equals("free")) {
 	            sql="delete from board_free where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
 	            pstmt.setInt(1, article.getNum());
 	            pstmt.executeUpdate();
-            } else if(category == "motd") {
+            } else if(category.equals("motd")) {
             	sql="delete from board_motd where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
 	            pstmt.setInt(1, article.getNum());
 	            pstmt.executeUpdate();
-            } else if(category == "issue") {
+            } else if(category.equals("issue")) {
             	sql="delete from board_issue where num=?";
 	            pstmt = conn.prepareStatement(sql);
 

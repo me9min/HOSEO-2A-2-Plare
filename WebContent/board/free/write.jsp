@@ -86,7 +86,7 @@
 			</form>
 			<tr id="border" style="background-color:#ffffff;">
 				<td></td> 
-				<td align="right"><input type="button" value="글쓰기" class="button special" onClick="writeCheck()"></td>
+				<td align="right"><input type="submit" value="글쓰기" class="button special" onClick=""></td>
 			</tr>
 		</table>
 		</div>

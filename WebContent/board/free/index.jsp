@@ -86,7 +86,10 @@
 			<tbody>
 				<tr onclick="JavaScript:location.href('content.jsp?num=<%=article.getNum() %>')">
 					<td><%=article.getNum() %></td>
-					<td><%=article.getWriter() %></td>
+					<%
+						String nickname = board.getNickname(article.getWriter());
+					%>
+					<td><%=nickname %></td>
 					<td><%=article.getTitle() %></td>
 					<td><%=article.getReg_date() %></td>
 					<td><%=article.getRead_count() %></td>
@@ -100,7 +103,7 @@
 				<tr>
 					<td colspan="5">
 					<center>
-						<%
+<%
     if (count > 0) {
         int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 		int startPage =1;

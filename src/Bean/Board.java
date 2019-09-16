@@ -194,7 +194,68 @@ public class Board {
 		return articleList;
    }
 	
-	public void updateArticle(BoardBean article, String category) throws Exception {
+	public BoardBean getArticle(String category, int num) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        BoardBean article = null;
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+            
+            if(category.equals("free")) {
+                pstmt = conn.prepareStatement(
+                	"update board_free set read_count = read_count + 1 where num = ?");
+    			pstmt.setInt(1, num);
+    			pstmt.executeUpdate();
+
+                pstmt = conn.prepareStatement("select * from board_free where num = ?");
+                pstmt.setInt(1, num);
+                rs = pstmt.executeQuery();
+                
+                if(rs.next()) {
+	                article = new BoardBean();
+	            	article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setRead_count(rs.getInt("read_count"));
+					article.setUp_count(rs.getInt("up_count"));
+					article.setIp(rs.getString("ip"));
+					article.setReg_date(rs.getDate("reg_date"));
+					article.setEdit_date(rs.getDate("edit_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content"));
+                }
+            } else if(category.equals("motd")) {
+            	pstmt = conn.prepareStatement("update board_motd set read_count = read_count + 1 where num = ?");
+        		pstmt.setInt(1, num);
+        		pstmt.executeUpdate();
+
+                pstmt = conn.prepareStatement("select * from board_motd where num = ?");
+                pstmt.setInt(1, num);
+                rs = pstmt.executeQuery();
+                    
+                if (rs.next()) {
+                	article = new BoardBean();
+                   	article.setNum(rs.getInt("num"));
+    				article.setWriter(rs.getString("writer"));
+    				article.setRead_count(rs.getInt("read_count"));
+    				article.setReg_date(rs.getDate("reg_date"));
+    				article.setTitle(rs.getString("title"));
+    				article.setContent(rs.getString("content")); 
+        		}
+            } else if(category.equals("issue")) {
+            	
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+		return article;
+    }
+	
+	public void updateArticle(String category, BoardBean article) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs= null;
@@ -204,14 +265,12 @@ public class Board {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
             
             if(category.equals("free")) {
-	            sql="update board_free set title=?,content=?,edit_date=?"
-			     + "where num=?";
+	            sql="update board_free set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
 	
 	            pstmt.setString(1, article.getTitle());
 	            pstmt.setString(2, article.getContent());
-	            pstmt.setDate(3, article.getEdit_date());
-	            pstmt.setInt(4, article.getNum());
+	            pstmt.setInt(3, article.getNum());
 	            pstmt.executeUpdate();
             } else if(category.equals("motd")) {
             	sql="update board_motd set title=?,content=?"
@@ -270,4 +329,24 @@ public class Board {
             if (conn != null) try { conn.close(); } catch(SQLException ex) {}
         }
     }
+	
+	public void up(int num) {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        String sql="";
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+            
+        	sql = "update board_free set up_count = up_count + 1 where num = ?";
+        	pstmt = conn.prepareStatement(sql);
+        	pstmt.setInt(1, num);
+        	pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+	}
 }

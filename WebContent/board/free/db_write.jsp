@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
-<%@ page import = "java.sql.Timestamp" %>
 <%@ page import = "java.sql.Date" %>
 
 <% 

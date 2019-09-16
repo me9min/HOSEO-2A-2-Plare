@@ -37,6 +37,10 @@
 <html>
 	<head>
 		<title>자유 게시판</title>
+		<style>
+			td {color: black; background-color: #ffffff;}
+			tr:nth-child(2n+1) {background-color: rgba(255, 255, 255, 0.075);}
+		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
@@ -85,13 +89,37 @@
 		  String nickname = board.getNickname(article.getWriter());
 %>
 			<tbody>
-				<tr onclick="JavaScript:location.href('content.jsp?num=<%=article.getNum() %>')">
-					<td width="10%"><%=article.getNum() %></td>
-					<td width="50%"><%=article.getTitle() %></td>
-					<td><%=nickname %></td>
-					<td><%=article.getReg_date() %></td>
-					<td><%=article.getRead_count() %></td>
-					<td><%=article.getUp_count() %></td>
+				<tr>
+					<td width="10%">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=article.getNum() %>
+						</a>
+					</td>
+					<td width="50%">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=article.getTitle() %>
+						</a>
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=nickname %>
+						</a>
+					</td>						
+					<td>
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=article.getReg_date() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=article.getRead_count() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+							<%=article.getUp_count() %>
+						</a>				
+					</td>
 				</tr>
 			</tbody>
 <% 		}

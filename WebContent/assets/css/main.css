@@ -2246,7 +2246,7 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #8a4680;
+			border-color: #ff0000;
 			box-shadow: 0 0 0 1px #8a4680;
 		}
 
@@ -2267,8 +2267,8 @@
 
 	input[type="checkbox"]:checked + label:before,
 	input[type="radio"]:checked + label:before {
-		background-color: #8a4680;
-		border-color: #8a4680;
+		background-color: #ff0000;
+		border-color: #ff0000;
 		color: #ffffff;
 	}
 

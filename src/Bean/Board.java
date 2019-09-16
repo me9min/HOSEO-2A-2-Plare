@@ -140,7 +140,9 @@ public class Board {
            
            if(category.equals("free")) {
         	   pstmt = conn.prepareStatement(
-       	           	"select * from board_free order by num desc");
+       	           	"select * from board_free order by num desc limit ?, ?");
+        	   pstmt.setInt(1, start-1);
+        	   pstmt.setInt(2, end);
    	           rs = pstmt.executeQuery();
    	
    	           if (rs.next()) {

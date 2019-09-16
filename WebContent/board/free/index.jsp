@@ -7,7 +7,7 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 5;
+    int pageSize = 10;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -71,9 +71,9 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
+					<th width="10%">번호</th>
+					<th width="50%">제목</th>
 					<th>작성자</th>
-					<th>제목</th>
 					<th>작성일자</th>
 					<th>조회수</th>
 					<th>추천수</th>
@@ -82,15 +82,13 @@
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
 		  BoardBean article = articleList.get(i);
+		  String nickname = board.getNickname(article.getWriter());
 %>
 			<tbody>
 				<tr onclick="JavaScript:location.href('content.jsp?num=<%=article.getNum() %>')">
-					<td><%=article.getNum() %></td>
-					<%
-						String nickname = board.getNickname(article.getWriter());
-					%>
+					<td width="10%"><%=article.getNum() %></td>
+					<td width="50%"><%=article.getTitle() %></td>
 					<td><%=nickname %></td>
-					<td><%=article.getTitle() %></td>
 					<td><%=article.getReg_date() %></td>
 					<td><%=article.getRead_count() %></td>
 					<td><%=article.getUp_count() %></td>
@@ -101,24 +99,24 @@
 %>
 			<tfoot>
 				<tr>
-					<td colspan="5">
+					<td colspan="6">
 					<center>
 <%
     if (count > 0) {
         int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		int startPage =1;
+		int startPage = 1;
 		
-		if(currentPage % 10 != 0)
-           startPage = (int)(currentPage/10)*10 + 1;
+		if(currentPage % 5 != 0)
+           startPage = (int)(currentPage/5)*5 + 1;
 		else
-           startPage = ((int)(currentPage/10)-1)*10 + 1;
+           startPage = ((int)(currentPage/5)-1)*5 + 1;
 
-		int pageBlock = 10;
+		int pageBlock = 5;
         int endPage = startPage + pageBlock - 1;
         if (endPage > pageCount) endPage = pageCount;
         
-        if (startPage > 10) { %>
-        	<a href="index.jsp?pageNum=<%= startPage - 10 %>">&lt;</a>
+        if (startPage > 5) { %>
+        	<a href="index.jsp?pageNum=<%= startPage - 5 %>">&lt;</a>
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
@@ -126,7 +124,7 @@
 <%      }
         
         if (endPage < pageCount) {  %>
-   	     	<a href="index.jsp?pageNum=<%= startPage + 10 %>">&gt;</a>
+   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>">&gt;</a>
 <%
         }
     }

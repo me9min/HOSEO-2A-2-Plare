@@ -74,27 +74,24 @@ public class Board {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
             if(category == "free") {
-	            sql = "insert into board_free(read_count,up_count,writer,ip,reg_date,edit_date,title,content) "
-	            		+ "values(0,0,?,?,?,?,?,?)";
+	            sql = "insert into board_free(writer,ip,reg_date,title,content) "
+	            		+ "values(?,?,now(),?,?)";
 	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
 	            pstmt.setString(2, article.getIp());
-	            pstmt.setDate(3, article.getReg_date());
-				pstmt.setDate(4, article.getEdit_date());
-	            pstmt.setString(5, article.getTitle());
-				pstmt.setString(6, article.getContent());
+	            pstmt.setString(3, article.getTitle());
+				pstmt.setString(4, article.getContent());
 				
 	            pstmt.executeUpdate();
             } else if (category == "motd") {
-            	sql = "insert into board_motd(read_count,writer,reg_date,title,content) "
-	            		+ "values(0,?,?,?,?)";
+            	sql = "insert into board_motd(writer,reg_date,title,content) "
+	            		+ "values(?,now(),?,?)";
 	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
-	            pstmt.setDate(2, article.getReg_date());
-	            pstmt.setString(3, article.getTitle());
-				pstmt.setString(4, article.getContent());
+	            pstmt.setString(2, article.getTitle());
+				pstmt.setString(3, article.getContent());
 				
 	            pstmt.executeUpdate();
             } else if (category == "issue") {

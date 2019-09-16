@@ -36,7 +36,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>자유 게시판</title>
+		<title>문의/신고 게시판</title>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
@@ -56,7 +56,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>자유 게시판</h2>
+								<h2>문의/신고 게시판</h2>
 							</header>
 
 	<div class="table-wrapper">

@@ -36,8 +36,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="#">공지</a></li>
 					<li><a href="#">자유 게시판</a></li>
-					<li><a href="#">신고 게시판</a></li>
-					<li><a href="#">버그/건의 게시판</a></li>
+					<li><a href="#">문의/신고 게시판</a></li>
 				</ul>
 			</li>
 			

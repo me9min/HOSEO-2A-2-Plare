@@ -1,5 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Board" %>
+<%@ page import = "Bean.BoardBean" %>
+<%@ page import = "java.util.List" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
+
+<%!
+    int pageSize = 5;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+%>
+
+<%
+	String category = "free";
+    String pageNum = request.getParameter("pageNum");
+
+    if (pageNum == null) {
+        pageNum = "1";
+    }
+
+    int currentPage = Integer.parseInt(pageNum);
+    int startRow = (currentPage - 1) * pageSize + 1;
+    int endRow = currentPage * pageSize;
+    int count = 0;
+    List<BoardBean> articleList = null; 
+    
+    Board board = Board.getInstance();
+    count = board.getArticleCount(category);
+    
+    if (count > 0) {
+        articleList = board.getArticles(category, startRow, pageSize);
+    }
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -18,8 +50,15 @@
 
 <div id="main" class="container">
 	<div class="table-wrapper">
-		<a href="daumeditor/editor.html" class="button alt pull-right">글쓰기</a>
+		<a href="write.jsp" class="button alt pull-right">글쓰기</a>
 		<caption>자유게시판</caption>
+<% if(count == 0) { %>
+		<table>
+			<tr>
+				<td><center>게시글이 존재하지 않습니다.</center></td>
+			</tr>
+		</table>
+<% } else { %>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -28,46 +67,58 @@
 					<th>제목</th>
 					<th>작성일자</th>
 					<th>조회수</th>
+					<th>추천수</th>
 				</tr>
 			</thead>
+<%  
+		for (int i = 0 ; i < articleList.size() ; i++) {
+		  BoardBean article = articleList.get(i);
+%>
 			<tbody>
-				<tr>
-					<td>4</td>
-					<td>admin</td>
-					<td>[블로그] 스토리보드 member(+내정보)</td>
-					<td>2019/8/13</td>
-					<td>3</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>admin</td>
-					<td>[블로그] 스토리보드 member</td>
-					<td>2019/8/12</td>
-					<td>3</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>admin</td>
-					<td>[블로그] 스토리보드 메인(index)</td>
-					<td>2019/8/7</td>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>admin</td>
-					<td>[블로그] 홈페이지 디자인 견적</td>
-					<td>2019/7/30</td>
-					<td>0</td>
+				<tr onclick="JavaScript:location.href('content.jsp?num=<%=article.getNum() %>')">
+					<td><%=article.getNum() %></td>
+					<td><%=article.getWriter() %></td>
+					<td><%=article.getTitle() %></td>
+					<td><%=article.getReg_date() %></td>
+					<td><%=article.getRead_count() %></td>
+					<td><%=article.getUp_count() %></td>
 				</tr>
 			</tbody>
+<% 		}
+	}
+%>
 			<tfoot>
 				<tr>
 					<td colspan="5">
 					<center>
-						<ul class="actions">
-							<li><a href="#" class="button alt">1</a></li>
-							<li><a href="#" class="button alt">2</a></li>
-						</ul>
+						<%
+    if (count > 0) {
+        int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		int startPage =1;
+		
+		if(currentPage % 10 != 0)
+           startPage = (int)(currentPage/10)*10 + 1;
+		else
+           startPage = ((int)(currentPage/10)-1)*10 + 1;
+
+		int pageBlock = 10;
+        int endPage = startPage + pageBlock - 1;
+        if (endPage > pageCount) endPage = pageCount;
+        
+        if (startPage > 10) { %>
+        	<a href="index.jsp?pageNum=<%= startPage - 10 %>">&lt;</a>
+<%      }
+        
+        for (int i = startPage ; i <= endPage ; i++) {  %>
+        	<a href="index.jsp?pageNum=<%= i %>">[<%= i %>]</a>
+<%      }
+        
+        if (endPage < pageCount) {  %>
+   	     	<a href="index.jsp?pageNum=<%= startPage + 10 %>">&gt;</a>
+<%
+        }
+    }
+%>
 					</center>
 					</td>
 				</tr>

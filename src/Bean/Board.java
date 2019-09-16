@@ -14,6 +14,12 @@ public class Board {
 	private String db_id = "web";
 	private String db_pwd = "web";
 	
+	private static Board instance = new Board();
+    //.jsp페이지에서 DB연동빈인 BoardDBBean클래스의 메소드에 접근시 필요
+    public static Board getInstance() {
+        return instance;
+    }
+	
 	public Board() {
 		// JDBC 드라이버 연결
 		try {
@@ -90,7 +96,7 @@ public class Board {
            rs = pstmt.executeQuery();
 
            if (rs.next()) {
-              x= rs.getInt(1);
+              x = rs.getInt(1);
 			}
        } catch(Exception ex) {
            ex.printStackTrace();

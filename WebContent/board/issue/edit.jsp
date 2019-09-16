@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>문의게시판</title>	
+<title>게시판</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -28,7 +28,7 @@
 				</div>
 			</section>
 	<div id="main" class="container" >
-		<center><h3>문의/신고게시판</h3></center><br>
+		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>

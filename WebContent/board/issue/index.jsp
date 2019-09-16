@@ -36,7 +36,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>문의/신고 게시판</title>
+		<title>자유 게시판</title>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
@@ -56,7 +56,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>문의/신고 게시판</h2>
+								<h2>자유 게시판</h2>
 							</header>
 
 	<div class="table-wrapper">
@@ -86,7 +86,10 @@
 			<tbody>
 				<tr onclick="JavaScript:location.href('content.jsp?num=<%=article.getNum() %>')">
 					<td><%=article.getNum() %></td>
-					<td><%=article.getWriter() %></td>
+					<%
+						String nickname = board.getNickname(article.getWriter());
+					%>
+					<td><%=nickname %></td>
 					<td><%=article.getTitle() %></td>
 					<td><%=article.getReg_date() %></td>
 					<td><%=article.getRead_count() %></td>
@@ -100,7 +103,7 @@
 				<tr>
 					<td colspan="5">
 					<center>
-						<%
+<%
     if (count > 0) {
         int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 		int startPage =1;

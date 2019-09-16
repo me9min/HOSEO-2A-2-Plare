@@ -63,7 +63,7 @@ public class Board {
         return nickname;
 	}
 	
-	public void insertArticle(BoardBean article, String category) throws Exception {
+	public void insertArticle(BoardBean article, String category) {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -73,14 +73,13 @@ public class Board {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
             if(category.equals("free")) {
-	            sql = "insert into ? (writer,ip,reg_date,title,content) values(?,?,now(),?,?)";
+	            sql = "insert into board_free (writer,ip,reg_date,title,content) values(?,?,now(),?,?)";
 	
 	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, "board_free");
-	            pstmt.setString(2, article.getWriter());
-	            pstmt.setString(3, article.getIp());
-	            pstmt.setString(4, article.getTitle());
-				pstmt.setString(5, article.getContent());
+	            pstmt.setString(1, article.getWriter());
+	            pstmt.setString(2, article.getIp());
+	            pstmt.setString(3, article.getTitle());
+				pstmt.setString(4, article.getContent());
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("motd")) {

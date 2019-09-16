@@ -15,20 +15,10 @@
 </jsp:useBean>
 
 <%
-	String ip = null;
-	if (null != request.getRemoteAddr()) {
-		ip = request.getRemoteAddr();
-		if (null != request.getRemoteHost()) {
-			ip = request.getRemoteHost();
-			if (null != request.getHeader("x-forwarded-for")) {
-				ip = request.getHeader("x-forwarded-for");
-			}
-		}
-	}
-	article.setIp(ip);
+	article.setIp(request.getRemoteAddr());
 
     Board board = Board.getInstance();
-    board.insertArticle(article, "free");
+    board.insertArticle(article, "issue"); 
 
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("./");
 %>

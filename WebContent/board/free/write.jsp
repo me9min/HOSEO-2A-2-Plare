@@ -6,17 +6,6 @@
     
 <%
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
-	String ip = null;
-	if (null != request.getRemoteAddr()) {
-		ip = request.getRemoteAddr();
-		if (null != request.getRemoteHost()) {
-			ip = request.getRemoteHost();
-			if (null != request.getHeader("x-forwarded-for")) {
-				ip = request.getHeader("x-forwarded-for");
-			}
-		}
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -64,7 +53,6 @@
 			</section>
 	<div id="main" class="container" >
 	<form method="post" name="write" action="db_write.jsp">
-		<input type="hidden" name="ip" id="ip" value="<%=ip %>" readonly />
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>

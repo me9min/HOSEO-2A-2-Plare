@@ -12,8 +12,9 @@
 %>
 
 <%
-	String category = "free";
+	String category = "motd";
     String pageNum = request.getParameter("pageNum");
+	String admin = "admin@plare.cf";
 
     if (pageNum == null) {
         pageNum = "1";
@@ -36,20 +37,25 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>자유 게시판</title>
+		<title>공지사항</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
 			a:visited {color: black; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
+<%
+	if(email == null) {
+		email = "";
+	}
+%>
 
 		<!-- One -->
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>게시글을 올리는 커뮤니티입니다</p>
-						<h2>게시판</h2>
+						<p>안내사항이나 이벤트를 확인할 수 있습니다</p>
+						<h2>공지사항</h2>
 					</header>
 				</div>
 			</section>
@@ -60,12 +66,17 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>자유 게시판</h2>
+								<h2>공지사항</h2>
 							</header>
 
 	<div class="table-wrapper">
+<%
+	if(email.equals(admin)) {
+%>
 		<a href="write.jsp" class="button alt pull-right">글쓰기</a>
-<% if(count == 0) { %>
+<% 
+	}
+	if(count == 0) { %>
 		<table>
 			<tr>
 				<td><center>게시글이 존재하지 않습니다.</center></td>
@@ -80,7 +91,6 @@
 					<th>작성자</th>
 					<th>작성일자</th>
 					<th>조회수</th>
-					<th>추천수</th>
 				</tr>
 			</thead>
 <%  
@@ -114,11 +124,6 @@
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
 							<%=article.getRead_count() %>
 						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
-							<%=article.getUp_count() %>
-						</a>				
 					</td>
 				</tr>
 			</tbody>

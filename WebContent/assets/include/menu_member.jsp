@@ -21,7 +21,9 @@
 		<li><a href="/guide">게임소개/가이드</a></li>
 		<li><a href="/rank">랭크</a></li>
 		<li><a href="/shop">상점</a></li>
-		<li><a href="/board/free">게시판</a></li>
+		<li><a href="/board/free">자유게시판</a></li>
+		<li><a href="/board/motd">공지사항</a></li>
+		<li><a href="/board/issue">문의게시판</a></li>
 <%
 	if(email == null) {
 %>

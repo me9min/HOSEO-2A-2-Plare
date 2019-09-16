@@ -119,6 +119,15 @@ public class Board {
 	           if (rs.next()) {
 	              x = rs.getInt(1);
 				}
+    	   } else if(category.equals("motd")) {
+    		   pstmt = conn.prepareStatement("select count(*) from board_motd");
+	           rs = pstmt.executeQuery();
+	
+	           if (rs.next()) {
+	              x = rs.getInt(1);
+				}
+    	   } else if(category.equals("issue")) {
+    		   
     	   }
        } catch(Exception ex) {
            ex.printStackTrace();
@@ -164,23 +173,25 @@ public class Board {
    				}
            } else if(category.equals("motd")) {
         	   pstmt = conn.prepareStatement(
-          	           	"select * from board_motd order by num desc");
-      	           rs = pstmt.executeQuery();
+          	           	"select * from board_motd order by num desc limit ?, ?");
+        	   pstmt.setInt(1, start-1);
+        	   pstmt.setInt(2, end);
+      	       rs = pstmt.executeQuery();
       	
-      	           if (rs.next()) {
-      	               articleList = new ArrayList<BoardBean>(end);
-      	               do{
-      	                 BoardBean article= new BoardBean();
-      					  article.setNum(rs.getInt("num"));
-      					  article.setWriter(rs.getString("writer"));
-      					  article.setRead_count(rs.getInt("read_count"));
-      					  article.setReg_date(rs.getDate("reg_date"));
-      					  article.setTitle(rs.getString("title"));
-      					  article.setContent(rs.getString("content"));
-      					  
-      	                 articleList.add(article);
-      				    }while(rs.next());
-      				}
+  	           if (rs.next()) {
+  	               articleList = new ArrayList<BoardBean>(end);
+  	               do{
+  	                 BoardBean article= new BoardBean();
+  					  article.setNum(rs.getInt("num"));
+  					  article.setWriter(rs.getString("writer"));
+  					  article.setRead_count(rs.getInt("read_count"));
+  					  article.setReg_date(rs.getDate("reg_date"));
+  					  article.setTitle(rs.getString("title"));
+  					  article.setContent(rs.getString("content"));
+  					  
+  	                 articleList.add(article);
+  				    }while(rs.next());
+  				}
            } else if(category.equals("issue")) {
 	       
            }
@@ -273,8 +284,7 @@ public class Board {
 	            pstmt.setInt(3, article.getNum());
 	            pstmt.executeUpdate();
             } else if(category.equals("motd")) {
-            	sql="update board_motd set title=?,content=?"
-   			     + "where num=?";
+            	sql="update board_motd set title=?,content=? where num=?";
    	            pstmt = conn.prepareStatement(sql);
    	
    	            pstmt.setString(1, article.getTitle());
@@ -293,7 +303,7 @@ public class Board {
         }
     }
 	
-	public void deleteArticle(BoardBean article, String category) throws Exception {
+	public void deleteArticle(String category, int num) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs= null;
@@ -306,19 +316,19 @@ public class Board {
 	            sql="delete from board_free where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
-	            pstmt.setInt(1, article.getNum());
+	            pstmt.setInt(1, num);
 	            pstmt.executeUpdate();
             } else if(category.equals("motd")) {
             	sql="delete from board_motd where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
-	            pstmt.setInt(1, article.getNum());
+	            pstmt.setInt(1, num);
 	            pstmt.executeUpdate();
             } else if(category.equals("issue")) {
             	sql="delete from board_issue where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
-	            pstmt.setInt(1, article.getNum());
+	            pstmt.setInt(1, num);
 	            pstmt.executeUpdate();
             }
         } catch(Exception ex) {

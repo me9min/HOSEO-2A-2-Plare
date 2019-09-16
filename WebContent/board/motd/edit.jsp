@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>자유 게시판</title>	
+<title>공지사항</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -31,7 +31,7 @@
 
    	try{
    		Board board = Board.getInstance(); 
-      	BoardBean article = board.getArticle("free", num);
+      	BoardBean article = board.getArticle("motd", num);
       	String nickname = board.getNickname(article.getWriter());
       	String edit_date = "";
         if(article.getEdit_date() != null) {
@@ -41,13 +41,13 @@
 	<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>게시글을 올리는 커뮤니티입니다</p>
-						<h2>게시판</h2>
+						<p>안내사항이나 이벤트를 확인할 수 있습니다</p>
+						<h2>공지사항</h2>
 					</header>
 				</div>
 			</section>
 	<div id="main" class="container" >
-		<center><h3>자유게시판</h3></center><br>
+		<center><h3>공지사항</h3></center><br>
 		<div class="table-wrapper">
 		<form method="post" action="db_edit.jsp" name="edit">
 		<input type="hidden" name="num" id="num" value="<%=num %>">

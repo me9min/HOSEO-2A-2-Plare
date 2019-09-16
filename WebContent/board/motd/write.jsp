@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>자유 게시판</title>	
+	<title>공지사항</title>	
 	<style>
 		#inputtext{
 		height:300px;
@@ -47,7 +47,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>게시글을 올리는 커뮤니티입니다</p>
-						<h2>게시판</h2>
+						<h2>공지사항</h2>
 					</header>
 				</div>
 			</section>

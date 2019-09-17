@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
-<%@ page import = "java.sql.Timestamp" %>
 <%@ page import = "java.sql.Date" %>
 
 <% 
@@ -15,10 +14,20 @@
 </jsp:useBean>
 
 <%
-	article.setIp(request.getRemoteAddr());
+	String ip = null;
+	if (null != request.getRemoteAddr()) {
+		ip = request.getRemoteAddr();
+		if (null != request.getRemoteHost()) {
+			ip = request.getRemoteHost();
+			if (null != request.getHeader("x-forwarded-for")) {
+				ip = request.getHeader("x-forwarded-for");
+			}
+		}
+	}
+	article.setIp(ip);
 
     Board board = Board.getInstance();
-    board.insertArticle(article, "issue"); 
+    board.insertArticle(article, "free");
 
-    response.sendRedirect("./");
+    response.sendRedirect("index.jsp");
 %>

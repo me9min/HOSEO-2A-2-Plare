@@ -64,7 +64,7 @@ function inputCheck()
 		alert("닉네임 중복 확인을 진행해주세요.");
 		return;
 	}
-	if(referrer_check.value == "false") {
+	if(referrer.value != "" && referrer_check.value == "false") {
 		alert("추천인 확인을 진행해주세요.");
 		return;
 	}

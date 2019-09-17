@@ -92,7 +92,16 @@ public class Board {
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("issue")) {
+            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep) values(?,?,now(),?,?,?)";
             	
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, article.getWriter());
+	            pstmt.setString(2, article.getIp());
+	            pstmt.setString(3, article.getTitle());
+				pstmt.setString(4, article.getContent());
+				pstmt.setInt(4, article.getNum_rep());
+				
+	            pstmt.executeUpdate();
             }
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -127,7 +136,12 @@ public class Board {
 	              x = rs.getInt(1);
 				}
     	   } else if(category.equals("issue")) {
-    		   
+    		   pstmt = conn.prepareStatement("select count(*) from board_issue");
+	           rs = pstmt.executeQuery();
+	
+	           if (rs.next()) {
+	              x = rs.getInt(1);
+				}
     	   }
        } catch(Exception ex) {
            ex.printStackTrace();
@@ -193,7 +207,30 @@ public class Board {
   				    }while(rs.next());
   				}
            } else if(category.equals("issue")) {
-	       
+        	   pstmt = conn.prepareStatement(
+         	           	"select * from board_issue order by num desc limit ?, ?");
+        	   pstmt.setInt(1, start-1);
+        	   pstmt.setInt(2, end);
+     	       rs = pstmt.executeQuery();
+     	
+ 	           if (rs.next()) {
+ 	               articleList = new ArrayList<BoardBean>(end);
+ 	               do{
+ 	                 BoardBean article= new BoardBean();
+ 					  article.setNum(rs.getInt("num"));
+   					  article.setNum_rep(rs.getInt("num_rep"));
+   					  article.setWriter(rs.getString("writer"));
+ 					  article.setRead_count(rs.getInt("read_count"));
+ 					  article.setUp_count(rs.getInt("up_count"));
+ 					  article.setIp(rs.getString("ip"));
+ 					  article.setReg_date(rs.getDate("reg_date"));
+ 					  article.setEdit_date(rs.getDate("edit_date"));
+ 					  article.setTitle(rs.getString("title"));
+ 					  article.setContent(rs.getString("content"));
+ 					  
+ 					  articleList.add(article);
+ 				    }while(rs.next());
+ 				}
            }
        } catch(Exception ex) {
            ex.printStackTrace();

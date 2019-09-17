@@ -40,7 +40,8 @@
 		<title>공지사항</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
-			a:visited {color: black; text-decoration: none;}
+			#link {color: black; text-decoration: none;}
+			#link:visited {color: black; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -55,7 +56,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>안내사항이나 이벤트를 확인할 수 있습니다</p>
-						<h2>공지사항</h2>
+						<h2>게시판</h2>
 					</header>
 				</div>
 			</section>
@@ -73,7 +74,7 @@
 <%
 	if(email.equals(admin)) {
 %>
-		<a href="write.jsp" class="button alt pull-right">글쓰기</a>
+		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br>
 <% 
 	}
 	if(count == 0) { %>
@@ -101,27 +102,27 @@
 			<tbody>
 				<tr>
 					<td width="10%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getNum() %>
 						</a>
 					</td>
 					<td width="50%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=nickname %>
 						</a>
 					</td>						
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getReg_date() %>
 						</a>		
 					</td>
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getRead_count() %>
 						</a>		
 					</td>
@@ -149,15 +150,15 @@
         if (endPage > pageCount) endPage = pageCount;
         
         if (startPage > 5) { %>
-        	<a href="index.jsp?pageNum=<%= startPage - 5 %>">&lt;</a>
+        	<a href="index.jsp?pageNum=<%= startPage - 5 %>" id="link">&lt;</a>
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="index.jsp?pageNum=<%= i %>">[<%= i %>]</a>
+        	<a href="index.jsp?pageNum=<%= i %>" id="link">[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>
-   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>">&gt;</a>
+   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>" id="link">&gt;</a>
 <%
         }
     }

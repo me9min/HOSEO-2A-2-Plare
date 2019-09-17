@@ -4,9 +4,9 @@
 	session.invalidate();
 	
 	String referer = request.getHeader("REFERER");
-	if(referer != null) {
+	/* if(referer != null) {
 		response.sendRedirect(referer);
 		return;
-	}
+	} */
 	response.sendRedirect("/member/login");
 %>

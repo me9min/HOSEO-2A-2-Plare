@@ -5,11 +5,13 @@ function inputCheck()
 	var nickname = document.register.nickname;
 	var password = document.register.password;
 	var passwordc = document.register.passwordc;
+	var referrer = document.register.referrer;
 	var email_check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	var check_number = password.value.search(/[0-9]/g);
 	var check_english = password.value.search(/[a-z]/ig);
 	var email_check = document.register.email_check;
 	var nickname_check = document.register.nickname_check;
+	var referrer_check = document.register.referrer_check;
 	
 	if(document.register.email.value==""){
 		alert("아이디를 입력해주세요");

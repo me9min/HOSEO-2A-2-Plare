@@ -17,8 +17,9 @@
 		#border{
 		border-top:none;
 		}
-		#button{
-		align:center;
+		#gap{
+		background-color:red;
+		width:10px;
 		}
 		table {
 		border-collapse:collapse;
@@ -104,8 +105,15 @@
 <%
    } catch(Exception e) {}
 %>
-		<table bgcolor="#eeeeee">
-			<tr>
+		<table>
+			<tr style="background-color:#ffffff;border-bottom:hidden;" >
+				<td align="left" style="vertical-align: middle"><div id="gap">gap</div>닉네임</td>
+				<td></td>
+			</tr>
+			<tr style="background-color:#ffffff">
+				<td colspan="2" style="vertical-align: middle">댓글 내용</td>
+			</tr>
+			<tr style="background-color:#ffffff">
 				<td align="center" style="vertical-align: middle">계정닉네임</td>
 				<td height="100px" style="vertical-align: middle"><textarea style="width:100%;height:100px;"></textarea></td>
 			</tr>

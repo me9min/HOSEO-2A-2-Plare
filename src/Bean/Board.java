@@ -242,6 +242,69 @@ public class Board {
 		return articleList;
    }
 	
+	public BoardBean getLatestMotd() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        BoardBean article = null;
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+
+            pstmt = conn.prepareStatement("select * from board_motd where reg_date = (select max(reg_date) from board_motd)");
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                article = new BoardBean();
+            	article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setRead_count(rs.getInt("read_count"));
+				article.setReg_date(rs.getDate("reg_date"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+		return article;
+    }
+	
+	public BoardBean getBestArticle() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        BoardBean article = null;
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+
+            pstmt = conn.prepareStatement("select * from board_free where up_count = (select max(up_count) from board_free )");
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                article = new BoardBean();
+            	article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setRead_count(rs.getInt("read_count"));
+				article.setUp_count(rs.getInt("up_count"));
+				article.setIp(rs.getString("ip"));
+				article.setReg_date(rs.getDate("reg_date"));
+				article.setEdit_date(rs.getDate("edit_date"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+		return article;
+    }
+	
 	public BoardBean getArticle(String category, int num) {
         Connection conn = null;
         PreparedStatement pstmt = null;

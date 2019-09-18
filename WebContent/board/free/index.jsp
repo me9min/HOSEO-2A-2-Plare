@@ -7,7 +7,7 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 10;
+    int pageSize = 8;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -27,6 +27,11 @@
     
     Board board = Board.getInstance();
     count = board.getArticleCount(category);
+    BoardBean motd = board.getLatestMotd();
+    BoardBean best = board.getBestArticle();
+    String nickname_motd = board.getNickname(motd.getWriter());
+    String nickname_best = board.getNickname(best.getWriter());
+    
     
     if (count > 0) {
         articleList = board.getArticles(category, startRow, pageSize);
@@ -84,12 +89,76 @@
 					<th>추천수</th>
 				</tr>
 			</thead>
+			<tbody>
+				<tr>
+					<td width="10%">
+						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							공지
+						</a>
+					</td>
+					<td width="50%">
+						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=motd.getTitle() %>
+						</a>
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=nickname_motd %>
+						</a>
+					</td>						
+					<td>
+						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=motd.getReg_date() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=motd.getRead_count() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							&nbsp;
+						</a>				
+					</td>
+				</tr>
+				<tr>
+					<td width="10%">
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							인기
+						</a>
+					</td>
+					<td width="50%">
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=best.getTitle() %>
+						</a>
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=nickname_best %>
+						</a>
+					</td>						
+					<td>
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=best.getReg_date() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=best.getRead_count() %>
+						</a>		
+					</td>
+					<td>
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=best.getUp_count() %>
+						</a>				
+					</td>
+				</tr>
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
 		  BoardBean article = articleList.get(i);
 		  String nickname = board.getNickname(article.getWriter());
 %>
-			<tbody>
 				<tr>
 					<td width="10%">
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">

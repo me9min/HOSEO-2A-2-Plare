@@ -396,4 +396,116 @@ public class Board {
             if (conn != null) try { conn.close(); } catch(SQLException ex) {}
         }
 	}
+	
+	public List<BoardBean> getComments(int num_board) throws Exception {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<BoardBean> articleList=null;
+	    try {
+	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+	    	pstmt = conn.prepareStatement(
+   	           	"select * from board_free_com where num_board = ? order by num desc");
+	    	pstmt.setInt(1, num_board);
+	        rs = pstmt.executeQuery();
+	
+	        if (rs.next()) {
+	        	articleList = new ArrayList<BoardBean>();
+	            do{
+	            	BoardBean article= new BoardBean();
+	            	article.setNum(rs.getInt("num"));
+	            	article.setNum_rep(rs.getInt("num_rep"));
+	            	article.setWriter(rs.getString("writer"));
+	            	article.setIp(rs.getString("ip"));
+	            	article.setReg_date(rs.getDate("reg_date"));
+	            	article.setContent(rs.getString("content"));
+	            	article.setNum_board(rs.getInt("num_board"));
+					  
+	                articleList.add(article);
+				}while(rs.next());
+	        }
+	    } catch(Exception ex) {
+	    	ex.printStackTrace();
+	    } finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }
+		return articleList;
+	}
+	
+	public void insertComment(BoardBean comment) {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+
+		String sql="";
+
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			
+            sql = "insert into board_free_com (num_rep,writer,ip,reg_date,content,num_board) values(?,?,?,now(),?,?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, comment.getNum_rep());
+            pstmt.setString(2, comment.getWriter());
+            pstmt.setString(3, comment.getIp());
+			pstmt.setString(4, comment.getContent());
+			pstmt.setInt(5, comment.getNum_board());
+				
+	        pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+	}
+	
+	public void updateComment(int num, String content) {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+
+		String sql="";
+		
+		try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			
+            sql = "update board_free_com set content = ? where num = ?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, content);
+            pstmt.setInt(2, num);
+				
+	        pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+	}
+	
+	public void deleteComment(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="";
+		
+		try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			
+            sql = "delete from board_free where num = ?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, num);
+				
+	        pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+	}
 }

@@ -13,6 +13,7 @@ public class BoardBean {
 	private Date edit_date;
 	private String title;
 	private String content;
+	private int num_board;
 	
 	public int getNum() {
 		return num;
@@ -73,5 +74,11 @@ public class BoardBean {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getNum_board() {
+		return num_board;
+	}
+	public void setNum_board(int num_board) {
+		this.num_board = num_board;
 	}
 }

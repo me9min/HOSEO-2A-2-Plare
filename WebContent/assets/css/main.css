@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
 
 /*
 	Hielo by TEMPLATED
@@ -11,8 +10,6 @@
 
 /* Reset */
 
-	html {background-color: #F2F2F2;}
-
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
@@ -20,7 +17,6 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
-		font-family: 'Poppins', sans-serif;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -1638,7 +1634,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: 'Poppins', sans-serif;
+		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 1.65;
@@ -1738,15 +1734,15 @@
 	code {
 		border-radius: 2px;
 		border: solid 1px;
-		font-family: 'Poppins', sans-serif;
+		font-family: "Courier New", monospace;
 		font-size: 0.9rem;
 		margin: 0 0.25rem;
 		padding: 0.25rem 0.65rem;
 	}
-/*
+
 	pre {
 		-webkit-overflow-scrolling: touch;
-		font-family: 'Poppins', sans-serif;
+		font-family: "Courier New", monospace;
 		font-size: 0.9rem;
 		margin: 0 0 2rem 0;
 	}
@@ -1758,7 +1754,6 @@
 			overflow-x: auto;
 		}
 
-*/
 	hr {
 		border: 0;
 		border-bottom: solid 1px;
@@ -2043,7 +2038,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #ff0000;
+			background-color: #8a4680;
 			color: #ffffff !important;
 		}
 
@@ -2052,7 +2047,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #960000;
+				background-color: #9b4f90;
 			}
 
 			input[type="submit"].special:active,
@@ -2060,7 +2055,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #960000;
+				background-color: #793d70;
 			}
 
 /* Form */
@@ -2113,7 +2108,7 @@
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'Poppins', sans-serif;
+			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -2177,7 +2172,7 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: 'Poppins', sans-serif;
+				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
@@ -2249,8 +2244,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #ff0000;
-			box-shadow: 0 0 0 1px #ff0000;
+			border-color: #ee1111;
+			box-shadow: 0 0 0 1px #8a4680;
 		}
 
 	.select-wrapper:before {
@@ -2270,15 +2265,15 @@
 
 	input[type="checkbox"]:checked + label:before,
 	input[type="radio"]:checked + label:before {
-		background-color: #ff0000;
-		border-color: #ff0000;
+		background-color: #8a4680;
+		border-color: #ee1111;
 		color: #ffffff;
 	}
 
 	input[type="checkbox"]:focus + label:before,
 	input[type="radio"]:focus + label:before {
-		border-color: #ff0000;
-		box-shadow: 0 0 0 1px #ff0000;
+		border-color: #ee1111;
+		box-shadow: 0 0 0 1px #8a4680;
 	}
 
 	::-webkit-input-placeholder {
@@ -2312,7 +2307,7 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'Poppins', sans-serif;
+			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -2684,8 +2679,6 @@
 			margin: 0 auto;
 			width: 80rem;
 		}
-		
-		/* 테스트 */
 
 		.wrapper.style1 {
 			background-color: #8a4680;
@@ -2811,8 +2804,8 @@
 				.wrapper.style1 input[type="email"]:focus,
 				.wrapper.style1 select:focus,
 				.wrapper.style1 textarea:focus {
-					border-color: #ff0000;
-					box-shadow: 0 0 0 1px #ff0000;
+					border-color: #ffffff;
+					box-shadow: 0 0 0 1px #ffffff;
 				}
 
 			.wrapper.style1 .select-wrapper:before {
@@ -2834,7 +2827,7 @@
 			.wrapper.style1 input[type="radio"]:checked + label:before {
 				background-color: #ffffff;
 				border-color: #ffffff;
-				color: #ff0000;
+				color: #8a4680;
 			}
 
 			.wrapper.style1 input[type="checkbox"]:focus + label:before,
@@ -2981,7 +2974,7 @@
 				.wrapper.style2 input[type="button"].special,
 				.wrapper.style2 button.special,
 				.wrapper.style2 .button.special {
-					background-color: #ff0000;
+					background-color: #8a4680;
 					color: #ffffff !important;
 				}
 
@@ -2990,7 +2983,7 @@
 					.wrapper.style2 input[type="button"].special:hover,
 					.wrapper.style2 button.special:hover,
 					.wrapper.style2 .button.special:hover {
-						background-color: #960000;
+						background-color: #9b4f90;
 					}
 
 					.wrapper.style2 input[type="submit"].special:active,
@@ -2998,7 +2991,7 @@
 					.wrapper.style2 input[type="button"].special:active,
 					.wrapper.style2 button.special:active,
 					.wrapper.style2 .button.special:active {
-						background-color: #960000;
+						background-color: #793d70;
 					}
 
 			.wrapper.style2 label {
@@ -3019,8 +3012,8 @@
 				.wrapper.style2 input[type="email"]:focus,
 				.wrapper.style2 select:focus,
 				.wrapper.style2 textarea:focus {
-					border-color: #ff0000;
-					box-shadow: 0 0 0 1px #ff0000;
+					border-color: #ee1111;
+					box-shadow: 0 0 0 1px #8a4680;
 				}
 
 			.wrapper.style2 .select-wrapper:before {
@@ -3040,15 +3033,15 @@
 
 			.wrapper.style2 input[type="checkbox"]:checked + label:before,
 			.wrapper.style2 input[type="radio"]:checked + label:before {
-				background-color: #ff0000;
-				border-color: #ff0000;
+				background-color: #8a4680;
+				border-color: #ee1111;
 				color: #ffffff;
 			}
 
 			.wrapper.style2 input[type="checkbox"]:focus + label:before,
 			.wrapper.style2 input[type="radio"]:focus + label:before {
-				border-color: #ff0000;
-				box-shadow: 0 0 0 1px #ff0000;
+				border-color: #ee1111;
+				box-shadow: 0 0 0 1px #8a4680;
 			}
 
 			.wrapper.style2 ::-webkit-input-placeholder {
@@ -3106,7 +3099,7 @@
 		.wrapper.style3 {
 			background-color: #000;
 			color: #bfbfbf;
-			background-image: url(/assets/images/bg.jpg);
+			background-image: url(../../images/bg.jpg);
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;
@@ -3210,7 +3203,7 @@
 				.wrapper.style3 input[type="button"].special,
 				.wrapper.style3 button.special,
 				.wrapper.style3 .button.special {
-					background-color: #ff0000;
+					background-color: #8a4680;
 					color: #ffffff !important;
 				}
 
@@ -3219,7 +3212,7 @@
 					.wrapper.style3 input[type="button"].special:hover,
 					.wrapper.style3 button.special:hover,
 					.wrapper.style3 .button.special:hover {
-						background-color: #960000;
+						background-color: #9b4f90;
 					}
 
 					.wrapper.style3 input[type="submit"].special:active,
@@ -3227,7 +3220,7 @@
 					.wrapper.style3 input[type="button"].special:active,
 					.wrapper.style3 button.special:active,
 					.wrapper.style3 .button.special:active {
-						background-color: #960000;
+						background-color: #793d70;
 					}
 
 			.wrapper.style3 label {
@@ -3248,8 +3241,8 @@
 				.wrapper.style3 input[type="email"]:focus,
 				.wrapper.style3 select:focus,
 				.wrapper.style3 textarea:focus {
-					border-color: #ff0000;
-					box-shadow: 0 0 0 1px #ff0000;
+					border-color: #ee1111;
+					box-shadow: 0 0 0 1px #8a4680;
 				}
 
 			.wrapper.style3 .select-wrapper:before {
@@ -3269,15 +3262,15 @@
 
 			.wrapper.style3 input[type="checkbox"]:checked + label:before,
 			.wrapper.style3 input[type="radio"]:checked + label:before {
-				background-color: #ff0000;
-				border-color: #8a4680;
+				background-color: #8a4680;
+				border-color: #ee1111;
 				color: #ffffff;
 			}
 
 			.wrapper.style3 input[type="checkbox"]:focus + label:before,
 			.wrapper.style3 input[type="radio"]:focus + label:before {
-				border-color: #ff0000;
-				box-shadow: 0 0 0 1px #ff0000;
+				border-color: #ee1111;
+				box-shadow: 0 0 0 1px #8a4680;
 			}
 
 			.wrapper.style3 ::-webkit-input-placeholder {
@@ -3445,8 +3438,6 @@
 			padding: 2rem;
 			width: calc(50% + 2rem);
 		}
-		
-		/* 테스트 */
 
 		.grid-style > :nth-child(-n + 2) {
 			padding-top: 0;
@@ -3782,7 +3773,7 @@
 					content: "";
 					-moz-osx-font-smoothing: grayscale;
 					-webkit-font-smoothing: antialiased;
-					font-family: 'Poppins', sans-serif;
+					font-family: FontAwesome;
 					font-style: normal;
 					font-weight: normal;
 					text-transform: none !important;
@@ -3963,7 +3954,7 @@
 			#menu .close:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: 'Poppins', sans-serif;
+				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;

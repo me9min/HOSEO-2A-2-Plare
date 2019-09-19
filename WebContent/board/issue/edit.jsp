@@ -31,7 +31,7 @@
 
    	try{
    		Board board = Board.getInstance(); 
-      	BoardBean article = board.getArticle("free", num);
+      	BoardBean article = board.getArticle("issue", num);
       	String nickname = board.getNickname(article.getWriter());
       	String edit_date = "";
         if(article.getEdit_date() != null) {

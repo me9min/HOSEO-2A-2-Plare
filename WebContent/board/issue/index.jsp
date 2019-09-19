@@ -36,10 +36,13 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>자유 게시판</title>
+		<title>문의 게시판</title>
 		<style>
-			td {color: black; background-color: #ffffff;}
+			//td {background-color: #fff;}
+			#list:hover {background-color: #fff;}
+			
 			#link {color: black; text-decoration: none;}
+			#link:hover {color: red; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
@@ -61,7 +64,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>자유 게시판</h2>
+								<h2>문의 게시판</h2>
 							</header>
 
 	<div class="table-wrapper">
@@ -90,34 +93,34 @@
 		  String nickname = board.getNickname(article.getWriter());
 %>
 			<tbody>
-				<tr>
+				<tr id="list">
 					<td width="10%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getNum() %>
 						</a>
 					</td>
 					<td width="50%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=nickname %>
 						</a>
 					</td>						
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getReg_date() %>
 						</a>		
 					</td>
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getRead_count() %>
 						</a>		
 					</td>
 					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getUp_count() %>
 						</a>				
 					</td>

@@ -32,8 +32,6 @@
 	email = (String)session.getAttribute("email");
 
 	int num = Integer.parseInt(request.getParameter("num"));
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
-	String pageNum = request.getParameter("pageNum");
 	
    	SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd");
@@ -58,7 +56,7 @@
 	<div id="main" class="container" >
 		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">
-		<a href="index.jsp" class="button alt pull-right">글목록</a>
+		<a class="button alt pull-right" onClick="history.back()">글목록</a>
 		<table class="table">
 			<tr>
 				<td align="center" width="20%" style="vertical-align: middle">제목</td>
@@ -93,7 +91,7 @@
 	}
 %>
 			<tr id="border" style="background-color:#ffffff;">
-				<td colspan="2" align="center"><button id="button" onclick="location.href('db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>')">추천하기</button></td>
+				<td colspan="2" align="center"><button id="button" onclick="location.href('db_up.jsp?num=<%=num %>')">추천하기</button></td>
 			</tr>
 			<tr style="border-bottom:hidden;">
 				<td colspan="2" align="right" style="background-color:#ffffff;">

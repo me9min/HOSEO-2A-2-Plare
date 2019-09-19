@@ -11,7 +11,7 @@
 	article.setTitle(request.getParameter("title"));
 	article.setContent(request.getParameter("content"));
 	
-	board.updateArticle("free", article);
+	board.updateArticle("issue", article);
 %>
 <script>
 	alert("게시글 수정이 완료되었습니다.");

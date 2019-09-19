@@ -27,7 +27,7 @@
 	article.setIp(ip);
 
     Board board = Board.getInstance();
-    board.insertArticle(article, "free");
+    board.insertArticle(article, "issue");
 
     response.sendRedirect("index.jsp");
 %>

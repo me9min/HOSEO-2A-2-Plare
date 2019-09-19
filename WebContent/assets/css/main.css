@@ -20,7 +20,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
-		font-family: 'Nanum Gothic', sans-serif;
+		font-family: 'Poppins', sans-serif;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -1638,7 +1638,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: 'Nanum Gothic', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 1.65;
@@ -1738,7 +1738,7 @@
 	code {
 		border-radius: 2px;
 		border: solid 1px;
-		font-family: 'Nanum Gothic', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		font-size: 0.9rem;
 		margin: 0 0.25rem;
 		padding: 0.25rem 0.65rem;
@@ -1746,7 +1746,7 @@
 /*
 	pre {
 		-webkit-overflow-scrolling: touch;
-		font-family: 'Nanum Gothic', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		font-size: 0.9rem;
 		margin: 0 0 2rem 0;
 	}
@@ -2113,7 +2113,7 @@
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'Nanum Gothic', sans-serif;
+			font-family: 'Poppins', sans-serif;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -2177,7 +2177,7 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: 'Nanum Gothic', sans-serif;
+				font-family: 'Poppins', sans-serif;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
@@ -2312,7 +2312,7 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'Nanum Gothic', sans-serif;
+			font-family: 'Poppins', sans-serif;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -3778,7 +3778,7 @@
 					content: "";
 					-moz-osx-font-smoothing: grayscale;
 					-webkit-font-smoothing: antialiased;
-					font-family: 'Nanum Gothic', sans-serif;
+					font-family: 'Poppins', sans-serif;
 					font-style: normal;
 					font-weight: normal;
 					text-transform: none !important;
@@ -3959,7 +3959,7 @@
 			#menu .close:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: 'Nanum Gothic', sans-serif;
+				font-family: 'Poppins', sans-serif;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;

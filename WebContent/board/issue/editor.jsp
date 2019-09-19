@@ -1,12 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>]
+<%@ page import = "java.sql.Timestamp" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
+<jsp:useBean id="board" class="Bean.Board"/>
+
+<%@ include file="/assets/include/logout_check.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>글쓰기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="/assets/daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
+	<script src="/assets/daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
+	<script language="JavaScript" src="write.js"></script>
+<%@ include file="/assets/include/menu_member.jsp" %>
+
+<%
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String nickname = board.getNickname(email);
+%>
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>게시글을 올리는 커뮤니티입니다</p>
+						<h2>게시판</h2>
+					</header>
+				</div>
+			</section>
+			
+		<!-- main -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<div class="12u 12u$(xsmall)">
+<%
+	String ip = null;
+	if (null != request.getRemoteAddr()) {
+		ip = request.getRemoteAddr();
+		if (null != request.getRemoteHost()) {
+			ip = request.getRemoteHost();
+			if (null != request.getHeader("x-forwarded-for")) {
+				ip = request.getHeader("x-forwarded-for");
+			}
+		}
+	}
+%>
+현재접속 아이피 : <%=ip %>
+<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" accept-charset="utf-8">
+<input type="text" name="title" id="title" value="" placeholder="제목" />
+								</div>
+							</header>
+
 <div class="body">
-	<!-- 에디터 시작 -->
-	<!--
-		@decsription
-		등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
-	-->
-	<form name="tx_editor_form" id="tx_editor_form" action="http://posttestserver.com/post.php" method="post" accept-charset="utf-8">
 		<!-- 에디터 컨테이너 시작 -->
 		<div id="tx_trex_container" class="tx-editor-container">
 			<!-- 사이드바 -->
@@ -609,3 +658,14 @@
 </script>
 <div><button onclick='loadContent()'>SAMPLE - load contents to editor</button></div>
 <!-- End: Loading Contents -->
+
+<div><button onclick='boardCheck()'>글쓰기</button></div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<%@ include file="/assets/include/foot.jsp" %>
+
+</html>

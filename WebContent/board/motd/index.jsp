@@ -40,6 +40,7 @@
 		<title>공지사항</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
+			#thead {text-align: center; background-color: black; color: white;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 		</style>
@@ -87,11 +88,11 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th width="10%">번호</th>
-					<th width="50%">제목</th>
-					<th>작성자</th>
-					<th>작성일자</th>
-					<th>조회수</th>
+					<td width="10%" id="thead">번호</td>
+					<td width="50%" id="thead">제목</td>
+					<td id="thead">작성자</td>
+					<td id="thead">작성일자</td>
+					<td id="thead">조회수</td>
 				</tr>
 			</thead>
 <%  

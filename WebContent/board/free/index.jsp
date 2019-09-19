@@ -44,6 +44,9 @@
 		<title>자유 게시판</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
+			#thead {text-align: center; background-color: black; color: white;}
+			#motd {font-weight: bold;}
+			#best {font-weight: bold;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 		</style>
@@ -81,74 +84,74 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th width="10%">번호</th>
-					<th width="50%">제목</th>
-					<th>작성자</th>
-					<th>작성일자</th>
-					<th>조회수</th>
-					<th>추천수</th>
+					<td width="10%" id="thead">번호</td>
+					<td width="50%" id="thead">제목</td>
+					<td id="thead">작성자</td>
+					<td id="thead">작성일자</td>
+					<td id="thead">조회수</td>
+					<td id="thead">추천수</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td width="10%">
-						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td width="10%" id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							공지
 						</a>
 					</td>
-					<td width="50%">
-						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td width="50%" id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=motd.getTitle() %>
 						</a>
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=nickname_motd %>
 						</a>
 					</td>						
-					<td>
-						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=motd.getReg_date() %>
 						</a>		
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=motd.getRead_count() %>
 						</a>		
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+					<td id="motd">
+						<a href="../motd/content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							&nbsp;
 						</a>				
 					</td>
 				</tr>
 				<tr>
-					<td width="10%">
+					<td width="10%" id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							인기
 						</a>
 					</td>
-					<td width="50%">
+					<td width="50%" id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getTitle() %>
 						</a>
 					</td>
-					<td>
+					<td id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=nickname_best %>
 						</a>
 					</td>						
-					<td>
+					<td id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getReg_date() %>
 						</a>		
 					</td>
-					<td>
+					<td id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getRead_count() %>
 						</a>		
 					</td>
-					<td>
+					<td id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getUp_count() %>
 						</a>				
@@ -159,7 +162,7 @@
 		  BoardBean article = articleList.get(i);
 		  String nickname = board.getNickname(article.getWriter());
 %>
-				<tr>
+				<tr id="tbody">
 					<td width="10%">
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getNum() %>

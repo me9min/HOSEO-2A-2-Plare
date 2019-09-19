@@ -43,6 +43,7 @@
 			#thead {text-align: center; background-color: black; color: white;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: #ff0000; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -102,31 +103,15 @@
 %>
 			<tbody>
 				<tr>
-					<td width="10%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getNum() %>
-						</a>
-					</td>
+					<td width="10%"><%=article.getNum() %></td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=nickname %>
-						</a>
-					</td>						
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getReg_date() %>
-						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getRead_count() %>
-						</a>		
-					</td>
+					<td><%=nickname %></td>				
+					<td><%=article.getReg_date() %></td>
+					<td><%=article.getRead_count() %></td>
 				</tr>
 			</tbody>
 <% 		}

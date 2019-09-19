@@ -49,6 +49,7 @@
 			#best {font-weight: bold;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: red; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -94,68 +95,29 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td width="10%" id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							공지
-						</a>
-					</td>
+					<td width="10%" id="motd">공지</td>
 					<td width="50%" id="motd">
 						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=motd.getTitle() %>
 						</a>
 					</td>
-					<td id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=nickname_motd %>
-						</a>
-					</td>						
-					<td id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=motd.getReg_date() %>
-						</a>		
+					<td id="motd"><%=nickname_motd %></td>						
+					<td id="motd"><%=motd.getReg_date() %></td>
+					<td id="motd"><%=motd.getRead_count() %>	
 					</td>
-					<td id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=motd.getRead_count() %>
-						</a>		
-					</td>
-					<td id="motd">
-						<a href="../motd/content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							&nbsp;
-						</a>				
-					</td>
+					<td id="motd">&nbsp;</td>
 				</tr>
 				<tr>
-					<td width="10%" id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							인기
-						</a>
-					</td>
+					<td width="10%" id="best">인기</td>
 					<td width="50%" id="best">
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getTitle() %>
 						</a>
 					</td>
-					<td id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=nickname_best %>
-						</a>
-					</td>						
-					<td id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=best.getReg_date() %>
-						</a>		
-					</td>
-					<td id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=best.getRead_count() %>
-						</a>		
-					</td>
-					<td id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=best.getUp_count() %>
-						</a>				
-					</td>
+					<td id="best"><%=nickname_best %></td>						
+					<td id="best"><%=best.getReg_date() %></td>
+					<td id="best"><%=best.getRead_count() %></td>
+					<td id="best"><%=best.getUp_count() %></td>
 				</tr>
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
@@ -163,36 +125,16 @@
 		  String nickname = board.getNickname(article.getWriter());
 %>
 				<tr id="tbody">
-					<td width="10%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getNum() %>
-						</a>
-					</td>
+					<td width="10%"><%=article.getNum() %></td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=nickname %>
-						</a>
-					</td>						
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getReg_date() %>
-						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getRead_count() %>
-						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
-							<%=article.getUp_count() %>
-						</a>				
-					</td>
+					<td><%=nickname %></td>						
+					<td><%=article.getReg_date() %></td>
+					<td><%=article.getRead_count() %></td>
+					<td><%=article.getUp_count() %></td>
 				</tr>
 			</tbody>
 <% 		}

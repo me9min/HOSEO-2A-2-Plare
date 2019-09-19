@@ -7,7 +7,7 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 10;
+    int pageSize = 8;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -27,6 +27,11 @@
     
     Board board = Board.getInstance();
     count = board.getArticleCount(category);
+    BoardBean motd = board.getLatestMotd();
+    BoardBean best = board.getBestArticle();
+    String nickname_motd = board.getNickname(motd.getWriter());
+    String nickname_best = board.getNickname(best.getWriter());
+    
     
     if (count > 0) {
         articleList = board.getArticles(category, startRow, pageSize);
@@ -36,14 +41,15 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>문의 게시판</title>
+		<title>자유 게시판</title>
 		<style>
-			//td {background-color: #fff;}
-			#list:hover {background-color: #fff;}
-			
+			td {color: black; background-color: #ffffff;}
+			#thead {text-align: center; background-color: black; color: white;}
+			#motd {font-weight: bold;}
+			#best {font-weight: bold;}
 			#link {color: black; text-decoration: none;}
-			#link:hover {color: red; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: red; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -64,11 +70,11 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>문의 게시판</h2>
+								<h2>자유 게시판</h2>
 							</header>
 
 	<div class="table-wrapper">
-		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br>
+		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br><br>
 <% if(count == 0) { %>
 		<table>
 			<tr>
@@ -79,51 +85,56 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th width="10%">번호</th>
-					<th width="50%">제목</th>
-					<th>작성자</th>
-					<th>작성일자</th>
-					<th>조회수</th>
-					<th>추천수</th>
+					<td width="10%" id="thead">번호</td>
+					<td width="50%" id="thead">제목</td>
+					<td id="thead">작성자</td>
+					<td id="thead">작성일자</td>
+					<td id="thead">조회수</td>
+					<td id="thead">추천수</td>
 				</tr>
 			</thead>
+			<tbody>
+				<tr>
+					<td width="10%" id="motd">공지</td>
+					<td width="50%" id="motd">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=motd.getTitle() %>
+						</a>
+					</td>
+					<td id="motd"><%=nickname_motd %></td>						
+					<td id="motd"><%=motd.getReg_date() %></td>
+					<td id="motd"><%=motd.getRead_count() %>	
+					</td>
+					<td id="motd">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="10%" id="best">인기</td>
+					<td width="50%" id="best">
+						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+							<%=best.getTitle() %>
+						</a>
+					</td>
+					<td id="best"><%=nickname_best %></td>						
+					<td id="best"><%=best.getReg_date() %></td>
+					<td id="best"><%=best.getRead_count() %></td>
+					<td id="best"><%=best.getUp_count() %></td>
+				</tr>
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
 		  BoardBean article = articleList.get(i);
 		  String nickname = board.getNickname(article.getWriter());
 %>
-			<tbody>
-				<tr id="list">
-					<td width="10%">
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
-							<%=article.getNum() %>
-						</a>
-					</td>
+				<tr id="tbody">
+					<td width="10%"><%=article.getNum() %></td>
 					<td width="50%">
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
-							<%=nickname %>
-						</a>
-					</td>						
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
-							<%=article.getReg_date() %>
-						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
-							<%=article.getRead_count() %>
-						</a>		
-					</td>
-					<td>
-						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
-							<%=article.getUp_count() %>
-						</a>				
-					</td>
+					<td><%=nickname %></td>						
+					<td><%=article.getReg_date() %></td>
+					<td><%=article.getRead_count() %></td>
+					<td><%=article.getUp_count() %></td>
 				</tr>
 			</tbody>
 <% 		}
@@ -152,7 +163,7 @@
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="index.jsp?pageNum=<%= i %>" id="link">[<%= i %>]</a>
+        	<a href="index.jsp?pageNum=<%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>

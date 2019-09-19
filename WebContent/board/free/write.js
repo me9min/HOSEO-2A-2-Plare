@@ -13,3 +13,12 @@ function boardCheck() {
 	}
 	document.board.submit();
 }
+
+function commentCheck() {
+	if(document.comment_board.content.value == "") {
+		alert("댓글 내용을 입력해주세요.");
+		document.comment_board.content.focus();
+		return;
+	}
+	document.comment_board.submit();
+}

@@ -469,7 +469,7 @@ public class Board {
 	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 	           
 	    	pstmt = conn.prepareStatement(
-   	           	"select * from board_free_com where num_board = ? order by num desc");
+   	           	"select * from board_free_com where num_board = ? order by num");
 	    	pstmt.setInt(1, num_board);
 	        rs = pstmt.executeQuery();
 	

@@ -8,9 +8,9 @@
 	String email = (String)session.getAttribute("email");
 %>
 
-<jsp:useBean id="article" scope="page" class="Bean.BoardBean">
-   <jsp:setProperty name="article" property="*"/>
-   <jsp:setProperty name="article" property="writer" value="<%=email %>"/>
+<jsp:useBean id="comment" scope="page" class="Bean.BoardBean">
+   <jsp:setProperty name="comment" property="*"/>
+   <jsp:setProperty name="comment" property="writer" value="<%=email %>"/>
 </jsp:useBean>
 
 <%
@@ -24,19 +24,20 @@
 			}
 		}
 	}
-	article.setIp(ip);
+	comment.setIp(ip);
 						
 	try {
 	    Board board = Board.getInstance();
-	    board.insertArticle(article, "free");
+	    board.insertComment(comment);
 %>
-		<script>alert('게시글이 등록되었습니다.')</script>
+	<script>alert('댓글이 등록되었습니다.')</script>
 <%
 	} catch(Exception e) {
 %>
-		<script>alert('게시글 등록에 실패했습니다.')</script>
+		<script>alert('댓글 등록에 실패했습니다.')</script>
 <%		
 	} finally {
-		response.sendRedirect("index.jsp");
+	    response.sendRedirect("content.jsp?num=" + request.getParameter("num_board") + "&pageNum=" + request.getParameter("page_num"));
 	}
+
 %>

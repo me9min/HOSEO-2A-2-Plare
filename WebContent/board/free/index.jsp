@@ -73,7 +73,7 @@
 							</header>
 
 	<div class="table-wrapper">
-		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br>
+		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br><br>
 <% if(count == 0) { %>
 		<table>
 			<tr>
@@ -221,7 +221,7 @@
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="index.jsp?pageNum=<%= i %>" id="link">[<%= i %>]</a>
+        	<a href="index.jsp?pageNum=<%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>

@@ -52,12 +52,12 @@
 				</div>
 			</section>
 	<div id="main" class="container" >
-	<form method="post" name="write" action="db_write.jsp">
+	<form method="post" name="motd" action="db_write.jsp">
 		<div class="table-wrapper">
 		<table class="table">
 			<tr>
 				<td align="center" style="vertical-align: middle">제목</td>
-				<td><input type="text" name="title" id="title" style="background-color:transparent;"></td>
+				<td><input type="text" name="title" id="title" value="" style="background-color:transparent;"></td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성자</td>
@@ -71,14 +71,13 @@
 				<td height="300px" align="center" style="vertical-align: middle">내용</td>
 				<td height="300px"><textarea name="content" id="content" style="height:300px; background-color:transparent;"></textarea></td>
 			</tr>
-			</form>
 			<tr id="border" style="background-color:#ffffff;">
 				<td></td> 
-				<td align="right"><input type="submit" value="글쓰기" class="button special" onClick=""></td>
+				<td align="right"><input type="button" value="글쓰기" class="button special" onClick="motdCheck()"></td>
 			</tr>
 		</table>
 		</div>
-
+	</form>
 	</div>
 
 <%@ include file="/assets/include/foot.jsp" %>

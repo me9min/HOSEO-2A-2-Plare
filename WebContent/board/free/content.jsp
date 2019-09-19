@@ -17,32 +17,42 @@
 		#border{
 		border-top:none;
 		}
-		#gap{
-		background-color:red;
-		width:10px;
-		}
 		table {
 		border-collapse:collapse;
 		}
+		#link {color: black; text-decoration: none;}
+		#link:visited {color: black; text-decoration: none;}
 	</style>
+	<script language="JavaScript" src="write.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
 </head>
 <body>
 <%
+	String blank = "&nbsp;&nbsp;&nbsp;&nbsp;";
+
 	email = (String)session.getAttribute("email");
+	Board board = Board.getInstance(); 
+	String nickname = board.getNickname(email);
 
 	int num = Integer.parseInt(request.getParameter("num"));
 	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
 	String pageNum = request.getParameter("pageNum");
 	
+    List<BoardBean> commentList = null;
+    commentList = board.getComments(num);
+    int commentCount = 0;
+    if(commentList != null) {
+    	commentCount = commentList.size();
+    }
+	
    	SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd");
+   	
 
    try{
-      Board board = Board.getInstance(); 
       BoardBean article = board.getArticle("free", num);
-      String nickname = board.getNickname(article.getWriter());
+      String nickname_writer = board.getNickname(article.getWriter());
       String edit_date = "";
       if(article.getEdit_date() != null) {
     	  edit_date = sdf.format(article.getEdit_date());
@@ -59,7 +69,7 @@
 	<div id="main" class="container" >
 		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">
-		<a href="index.jsp" class="button alt pull-right">글목록</a>
+		<a href="index.jsp" class="button alt pull-right">글목록</a><br><br>
 		<table class="table">
 			<tr>
 				<td align="center" width="20%" style="vertical-align: middle">제목</td>
@@ -67,7 +77,7 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성자</td>
-				<td><%=nickname %></td>
+				<td><%=nickname_writer %></td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성일</td>
@@ -94,33 +104,78 @@
 	}
 %>
 			<tr id="border" style="background-color:#ffffff;">
-				<td colspan="2" align="center"><button id="button" onclick="location.href('db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>')">추천하기</button></td>
+				<td colspan="2" align="center">
+					<button id="button" class="button special" onclick="location.href('db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>')">추천하기</button>
+				</td>
 			</tr>
 			<tr style="border-bottom:hidden;">
 				<td colspan="2" align="right" style="background-color:#ffffff;">
-					조회수 <%=article.getRead_count() %> 추천수 <%=article.getUp_count() %> 댓글수 0
+					조회수 <%=article.getRead_count() %> 추천수 <%=article.getUp_count() %> 댓글수 <%=commentCount %>
 				</td>
 			</tr>
 		</table>
 <%
    } catch(Exception e) {}
+   
+   if (commentList == null) {
 %>
+		<p style="text-align:center; border-top:1px solid rgba(144, 144, 144, 0.25); padding:10px;">댓글이 존재하지 않습니다.</p>
+<%
+   } else {
+%>	
 		<table>
+<%
+	   for (int i = 0 ; i < commentList.size() ; i++) {
+			  BoardBean comment = commentList.get(i);
+			  nickname = board.getNickname(comment.getWriter());
+%>
 			<tr style="background-color:#ffffff;border-bottom:hidden;" >
-				<td align="left" style="vertical-align: middle"><div id="gap">gap</div>닉네임</td>
-				<td></td>
+				<td colspan="2" align="left" style="vertical-align:middle;">
+					<p style="display:inline; font-weight:bold;"><%=nickname %></p>
+					<p style="display:inline; font-size:10px; color:gray"><%=sdf.format(comment.getReg_date()) %></p>
+				</td>
 			</tr>
 			<tr style="background-color:#ffffff">
-				<td colspan="2" style="vertical-align: middle">댓글 내용</td>
+				<td style="vertical-align: middle"><%=blank %><%=blank %><%=comment.getContent() %></td>
+				<td style="text-align:right;">
+<%
+			if(email.equals(comment.getWriter())) {
+%>
+					<a href="db_comment_update.jsp?num=<%=comment.getNum()%>" id="link">수정</a>
+					<a href="db_comment_delete.jsp?num=<%=comment.getNum()%>" id="link">삭제</a>
+<%
+			}
+%>
+					<a href="" id="link">답글</a>
+				</td>
 			</tr>
+<%
+	   	}
+%>
+		</table>
+<%
+   	}
+	if(email != null) {
+%>
+		<form method="post" name="comment_board" action="db_write_comment.jsp">
+		<input type="hidden" name="num_board" value="<%=num %>">
+		<input type="hidden" name="page_num" value="<%=pageNum %>">
+		
+		<table>
 			<tr style="background-color:#ffffff">
-				<td align="center" style="vertical-align: middle">계정닉네임</td>
-				<td height="100px" style="vertical-align: middle"><textarea style="width:100%;height:100px;"></textarea></td>
+				<td align="center" style="vertical-align: middle"><%=nickname %></td>
+				<td height="100px" style="vertical-align: middle">
+					<textarea name="content" id="content" style="width:100%;height:100px;"></textarea>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right" style="vertical-align: middle"><button>댓글등록</button></td>
+				<td colspan="2" align="right" style="vertical-align: middle">
+					<input type="button" class="button special" value="댓글등록" onclick="commentCheck()">
+				</td>
 			</tr>
 		</table>
+		</form>
+<%} %>
 		</div>
 	</div>
 

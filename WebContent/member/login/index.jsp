@@ -17,7 +17,6 @@
 					</header>
 				</div>
 			</section>
-			
 		<!-- main -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">
@@ -37,7 +36,7 @@
 		<div class="12u$ 12u$(xsmall)">
 			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 		</div>
-
+		
 	</div>
 </form>
 <ul class="actions">
@@ -51,5 +50,4 @@
 			</section>
 
 <%@ include file="/assets/include/foot.jsp" %>
-
 </html>

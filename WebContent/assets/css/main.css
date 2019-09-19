@@ -2043,7 +2043,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #8a4680;
+			background-color: #ff0000;
 			color: #ffffff !important;
 		}
 
@@ -2052,7 +2052,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #9b4f90;
+				background-color: #960000;
 			}
 
 			input[type="submit"].special:active,
@@ -2060,7 +2060,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #793d70;
+				background-color: #960000;
 			}
 
 /* Form */
@@ -2684,6 +2684,8 @@
 			margin: 0 auto;
 			width: 80rem;
 		}
+		
+		/* 테스트 */
 
 		.wrapper.style1 {
 			background-color: #8a4680;
@@ -2979,7 +2981,7 @@
 				.wrapper.style2 input[type="button"].special,
 				.wrapper.style2 button.special,
 				.wrapper.style2 .button.special {
-					background-color: #8a4680;
+					background-color: #ff0000;
 					color: #ffffff !important;
 				}
 
@@ -2988,7 +2990,7 @@
 					.wrapper.style2 input[type="button"].special:hover,
 					.wrapper.style2 button.special:hover,
 					.wrapper.style2 .button.special:hover {
-						background-color: #9b4f90;
+						background-color: #960000;
 					}
 
 					.wrapper.style2 input[type="submit"].special:active,
@@ -2996,7 +2998,7 @@
 					.wrapper.style2 input[type="button"].special:active,
 					.wrapper.style2 button.special:active,
 					.wrapper.style2 .button.special:active {
-						background-color: #793d70;
+						background-color: #960000;
 					}
 
 			.wrapper.style2 label {
@@ -3208,7 +3210,7 @@
 				.wrapper.style3 input[type="button"].special,
 				.wrapper.style3 button.special,
 				.wrapper.style3 .button.special {
-					background-color: #8a4680;
+					background-color: #ff0000;
 					color: #ffffff !important;
 				}
 
@@ -3217,7 +3219,7 @@
 					.wrapper.style3 input[type="button"].special:hover,
 					.wrapper.style3 button.special:hover,
 					.wrapper.style3 .button.special:hover {
-						background-color: #9b4f90;
+						background-color: #960000;
 					}
 
 					.wrapper.style3 input[type="submit"].special:active,
@@ -3225,7 +3227,7 @@
 					.wrapper.style3 input[type="button"].special:active,
 					.wrapper.style3 button.special:active,
 					.wrapper.style3 .button.special:active {
-						background-color: #793d70;
+						background-color: #960000;
 					}
 
 			.wrapper.style3 label {
@@ -3443,6 +3445,8 @@
 			padding: 2rem;
 			width: calc(50% + 2rem);
 		}
+		
+		/* 테스트 */
 
 		.grid-style > :nth-child(-n + 2) {
 			padding-top: 0;

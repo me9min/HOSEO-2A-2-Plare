@@ -63,6 +63,21 @@
 								</div>
 							</div>
 						</div>
+						
+						<div>
+							<div class="box">
+								<div class="content">
+									<header class="align-center">
+										<p>글 작성자</p>
+										<h2>글 제목</h2>
+									</header>
+									<p>글 내용</p>
+									<footer class="align-center">
+										<a href="#" class="button alt">더 보기</a>
+									</footer>
+								</div>
+							</div>
+						</div>
 
 						<div>
 							<div class="box">

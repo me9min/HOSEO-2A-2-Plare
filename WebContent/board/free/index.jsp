@@ -102,7 +102,7 @@
 						</a>
 					</td>
 					<td id="motd"><%=nickname_motd %></td>						
-					<td id="motd"><%=motd.getReg_date() %></td>
+					<td id="motd"><%=sdf.format(motd.getReg_date()) %></td>
 					<td id="motd"><%=motd.getRead_count() %>	
 					</td>
 					<td id="motd">&nbsp;</td>
@@ -113,9 +113,10 @@
 						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=best.getTitle() %>
 						</a>
+						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(best.getNum()) %>]</p>
 					</td>
 					<td id="best"><%=nickname_best %></td>						
-					<td id="best"><%=best.getReg_date() %></td>
+					<td id="best"><%=sdf.format(best.getReg_date()) %></td>
 					<td id="best"><%=best.getRead_count() %></td>
 					<td id="best"><%=best.getUp_count() %></td>
 				</tr>
@@ -130,9 +131,10 @@
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
+						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(article.getNum()) %>]</p>
 					</td>
 					<td><%=nickname %></td>						
-					<td><%=article.getReg_date() %></td>
+					<td><%=sdf.format(article.getReg_date()) %></td>
 					<td><%=article.getRead_count() %></td>
 					<td><%=article.getUp_count() %></td>
 				</tr>

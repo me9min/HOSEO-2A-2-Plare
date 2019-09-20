@@ -1,9 +1,7 @@
 package Bean;
 
 import java.util.*;
-import java.sql.Date;
 import java.sql.*;
-import java.text.*;
 import javax.sql.*;
 import javax.naming.*;
 import Bean.BoardBean;
@@ -177,8 +175,8 @@ public class Board {
    					  article.setRead_count(rs.getInt("read_count"));
    					  article.setUp_count(rs.getInt("up_count"));
    					  article.setIp(rs.getString("ip"));
-   					  article.setReg_date(rs.getDate("reg_date"));
-   					  article.setEdit_date(rs.getDate("edit_date"));
+   					  article.setReg_date(rs.getTimestamp("reg_date"));
+   					  article.setEdit_date(rs.getTimestamp("edit_date"));
    					  article.setTitle(rs.getString("title"));
    					  article.setContent(rs.getString("content"));
    					  
@@ -199,7 +197,7 @@ public class Board {
   					  article.setNum(rs.getInt("num"));
   					  article.setWriter(rs.getString("writer"));
   					  article.setRead_count(rs.getInt("read_count"));
-  					  article.setReg_date(rs.getDate("reg_date"));
+  					  article.setReg_date(rs.getTimestamp("reg_date"));
   					  article.setTitle(rs.getString("title"));
   					  article.setContent(rs.getString("content"));
   					  
@@ -223,8 +221,8 @@ public class Board {
  					  article.setRead_count(rs.getInt("read_count"));
  					  article.setUp_count(rs.getInt("up_count"));
  					  article.setIp(rs.getString("ip"));
- 					  article.setReg_date(rs.getDate("reg_date"));
- 					  article.setEdit_date(rs.getDate("edit_date"));
+ 					  article.setReg_date(rs.getTimestamp("reg_date"));
+ 					  article.setEdit_date(rs.getTimestamp("edit_date"));
  					  article.setTitle(rs.getString("title"));
  					  article.setContent(rs.getString("content"));
  					  
@@ -258,7 +256,7 @@ public class Board {
             	article.setNum(rs.getInt("num"));
 				article.setWriter(rs.getString("writer"));
 				article.setRead_count(rs.getInt("read_count"));
-				article.setReg_date(rs.getDate("reg_date"));
+				article.setReg_date(rs.getTimestamp("reg_date"));
 				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
             }
@@ -290,8 +288,8 @@ public class Board {
 				article.setRead_count(rs.getInt("read_count"));
 				article.setUp_count(rs.getInt("up_count"));
 				article.setIp(rs.getString("ip"));
-				article.setReg_date(rs.getDate("reg_date"));
-				article.setEdit_date(rs.getDate("edit_date"));
+				article.setReg_date(rs.getTimestamp("reg_date"));
+				article.setEdit_date(rs.getTimestamp("edit_date"));
 				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
             }
@@ -330,8 +328,8 @@ public class Board {
 					article.setRead_count(rs.getInt("read_count"));
 					article.setUp_count(rs.getInt("up_count"));
 					article.setIp(rs.getString("ip"));
-					article.setReg_date(rs.getDate("reg_date"));
-					article.setEdit_date(rs.getDate("edit_date"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setEdit_date(rs.getTimestamp("edit_date"));
 					article.setTitle(rs.getString("title"));
 					article.setContent(rs.getString("content"));
                 }
@@ -349,7 +347,7 @@ public class Board {
                    	article.setNum(rs.getInt("num"));
     				article.setWriter(rs.getString("writer"));
     				article.setRead_count(rs.getInt("read_count"));
-    				article.setReg_date(rs.getDate("reg_date"));
+    				article.setReg_date(rs.getTimestamp("reg_date"));
     				article.setTitle(rs.getString("title"));
     				article.setContent(rs.getString("content")); 
         		}
@@ -460,6 +458,33 @@ public class Board {
         }
 	}
 	
+	public int getCommentCount(int num) throws Exception {
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+
+	       int x = 0;
+
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+	           pstmt = conn.prepareStatement("select count(*) from board_free_com where num_board = ?");
+	           pstmt.setInt(1, num);
+	           rs = pstmt.executeQuery();
+	
+	           if (rs.next()) {
+	              x = rs.getInt(1);
+				}
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return x;
+	   }
+	
 	public List<BoardBean> getComments(int num_board) throws Exception {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
@@ -481,7 +506,7 @@ public class Board {
 	            	article.setNum_rep(rs.getInt("num_rep"));
 	            	article.setWriter(rs.getString("writer"));
 	            	article.setIp(rs.getString("ip"));
-	            	article.setReg_date(rs.getDate("reg_date"));
+	            	article.setReg_date(rs.getTimestamp("reg_date"));
 	            	article.setContent(rs.getString("content"));
 	            	article.setNum_board(rs.getInt("num_board"));
 					  

@@ -22,3 +22,39 @@ function commentCheck() {
 	}
 	document.comment_board.submit();
 }
+
+function updateShow(i, j) {
+	var update1 = "update" + i;
+	var update2 = "update" + j;
+	var reply1 = "reply" + i;
+	var reply2 = "reply" + j;
+	
+	document.getElementById(reply1).style.display = "none";
+	document.getElementById(reply2).style.display = "none";
+	
+	if(document.getElementById(update1).style.display === "none") {
+		document.getElementById(update1).style.display = "table-row";
+		document.getElementById(update2).style.display = "table-row";
+	} else {
+		document.getElementById(update1).style.display = "none";
+		document.getElementById(update2).style.display = "none";
+	}
+}
+
+function replyShow(i, j) {
+	var update1 = "update" + i;
+	var update2 = "update" + j;
+	var reply1 = "reply" + i;
+	var reply2 = "reply" + j;
+	
+	document.getElementById(update1).style.display = "none";
+	document.getElementById(update2).style.display = "none";
+	
+	if(document.getElementById(reply1).style.display === "none") {
+		document.getElementById(reply1).style.display = "table-row";
+		document.getElementById(reply2).style.display = "table-row";
+	} else {
+		document.getElementById(reply1).style.display = "none";
+		document.getElementById(reply2).style.display = "none";
+	}
+}

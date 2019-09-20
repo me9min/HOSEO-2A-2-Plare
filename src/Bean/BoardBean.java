@@ -9,8 +9,8 @@ public class BoardBean {
 	private int up_count;
 	private String writer;
 	private String ip;
-	private Date reg_date;
-	private Date edit_date;
+	private Timestamp reg_date;
+	private Timestamp edit_date;
 	private String title;
 	private String content;
 	private int num_board;
@@ -51,16 +51,16 @@ public class BoardBean {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public Date getReg_date() {
+	public Timestamp getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
-	public Date getEdit_date() {
+	public Timestamp getEdit_date() {
 		return edit_date;
 	}
-	public void setEdit_date(Date edit_date) {
+	public void setEdit_date(Timestamp edit_date) {
 		this.edit_date = edit_date;
 	}
 	public String getTitle() {

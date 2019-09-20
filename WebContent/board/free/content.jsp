@@ -108,7 +108,7 @@
 %>
 			<tr id="border" style="background-color:#ffffff;">
 				<td colspan="2" align="center">
-					<input type="button" value="추천하기" class="button alt" onclick="location.href('db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>')">
+					<a href="db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>" class="button alt" >추천하기</a>
 				</td>
 			</tr>
 			<tr style="border-bottom:hidden;">
@@ -175,14 +175,14 @@
 				</td>
 			</tr>
 			<tr id="reply<%=count*2-1 %>" style="display:none; background-color:#ffffff">
-				<td id="blank">&nbsp;</td>
-				<td align="center" style="vertical-align: middle"><%=nickname %></td>
+				<td width="5%">&nbsp;</td>
+				<td width="15%" align="center" style="vertical-align: middle"><%=nickname %></td>
 				<td height="100px" style="vertical-align: middle">
-				<form method="post" name="reply_hidden">
-					<input type="hidden" name="count1" value="<%=count*2-1 %>">
-					<input type="hidden" name="count2" value="<%=count*2 %>">
-					<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;"></textarea>
-				</form>
+					<form method="post" name="reply_hidden">
+						<input type="hidden" name="count1" value="<%=count*2-1 %>">
+						<input type="hidden" name="count2" value="<%=count*2 %>">
+						<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;"></textarea>
+					</form>
 				</td>
 			</tr>
 			<tr id="reply<%=count*2 %>" style="display:none;">

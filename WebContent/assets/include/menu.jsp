@@ -16,7 +16,7 @@
 <!-- Header -->
 <header id="header">
 	<div class="logo"><a href="/">plare.cf <span>host by BSM</span></a></div>
-	<a href="#menu"><span class="glyphicon glyphicon-menu-hamburger"></span>메뉴</a>
+	<a href="#menu">메뉴</a>
 </header>
 
 <!-- Nav -->

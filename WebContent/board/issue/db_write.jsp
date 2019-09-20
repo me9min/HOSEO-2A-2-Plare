@@ -6,14 +6,11 @@
 <% 
 	request.setCharacterEncoding("utf-8");
 	String email = (String)session.getAttribute("email");
-	String title = (String)request.getParameter("title");
-	String content = (String)request.getParameter("content");
 %>
 
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
 	<jsp:setProperty name="article" property="*"/>
 	<jsp:setProperty name="article" property="writer" value="<%=email %>"/>
-	<jsp:setProperty name="article" property="content" value="<%=content %>"/>
 </jsp:useBean>
 
 <%
@@ -32,9 +29,5 @@
 	Board board = Board.getInstance();
 	board.insertArticle(article, "free");
 
-	//response.sendRedirect("./");
+	response.sendRedirect("./");
 %>
-(<%=title %>)<br>
-(<%=content %>)<br>
-(<%=ip %>)<br>
-(<%=email %>)

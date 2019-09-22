@@ -12,5 +12,5 @@
 %>
 <script>
 	alert("게시글을 추천했습니다.");
-	location.href("content.jsp?num=<%=num%>&pageNum=<%=currentPage%>");
+	window.location = 'content.jsp?num=<%=num%>&pageNum=<%=currentPage%>';
 </script>

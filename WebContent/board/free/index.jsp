@@ -52,8 +52,8 @@
 			#link:hover {color: red; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
+		
 <%@ include file="/assets/include/menu.jsp" %>
-
 		<!-- One -->
 			<section id="One" class="wrapper style3">
 				<div class="inner">
@@ -187,5 +187,5 @@
 			</section>
 
 <%@ include file="/assets/include/foot.jsp" %>
-
+</body>
 </html>

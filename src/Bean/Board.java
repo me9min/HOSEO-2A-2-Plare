@@ -90,14 +90,16 @@ public class Board {
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("issue")) {
-            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep) values(?,?,now(),?,?,?)";
+            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep,file_url,file_name) values(?,?,now(),?,?,?,?,?)";
             	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
 	            pstmt.setString(2, article.getIp());
 	            pstmt.setString(3, article.getTitle());
 				pstmt.setString(4, article.getContent());
-				pstmt.setInt(4, article.getNum_rep());
+				pstmt.setInt(5, 0);
+				pstmt.setString(6, article.getFile_url());
+				pstmt.setString(7, article.getFile_name());
 				
 	            pstmt.executeUpdate();
             }
@@ -225,6 +227,8 @@ public class Board {
  					  article.setEdit_date(rs.getTimestamp("edit_date"));
  					  article.setTitle(rs.getString("title"));
  					  article.setContent(rs.getString("content"));
+ 					  article.setFile_url(rs.getString("file_url"));
+ 					  article.setFile_name(rs.getString("file_name"));
  					  
  					  articleList.add(article);
  				    }while(rs.next());
@@ -352,7 +356,28 @@ public class Board {
     				article.setContent(rs.getString("content")); 
         		}
             } else if(category.equals("issue")) {
-            	
+            	pstmt = conn.prepareStatement("update board_issue set read_count = read_count + 1 where num = ?");
+    			pstmt.setInt(1, num);
+    			pstmt.executeUpdate();
+
+                pstmt = conn.prepareStatement("select * from board_issue where num = ?");
+                pstmt.setInt(1, num);
+                rs = pstmt.executeQuery();
+                
+                if(rs.next()) {
+	                article = new BoardBean();
+	            	article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setRead_count(rs.getInt("read_count"));
+					article.setUp_count(rs.getInt("up_count"));
+					article.setIp(rs.getString("ip"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setEdit_date(rs.getTimestamp("edit_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content"));
+					article.setFile_url(rs.getString("file_url"));
+					article.setFile_name(rs.getString("file_name"));
+                }
             }
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -364,7 +389,7 @@ public class Board {
 		return article;
     }
 	
-	public void updateArticle(String category, BoardBean article) throws Exception {
+	public void updateArticle(BoardBean article, String category) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs= null;
@@ -390,7 +415,13 @@ public class Board {
    	            pstmt.setInt(3, article.getNum());
    	            pstmt.executeUpdate();
             } else if(category.equals("issue")) {
-            	
+            	sql="update board_issue set title=?,content=?,edit_date=now() where num=?";
+	            pstmt = conn.prepareStatement(sql);
+	
+	            pstmt.setString(1, article.getTitle());
+	            pstmt.setString(2, article.getContent());
+	            pstmt.setInt(3, article.getNum());
+	            pstmt.executeUpdate();
             }
         } catch(Exception ex) {
             ex.printStackTrace();

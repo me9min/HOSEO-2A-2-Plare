@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "java.sql.Date" %>
+
 <%
 	request.setCharacterEncoding("utf-8");
 	int num = Integer.parseInt(request.getParameter("num"));
+	String nums = request.getParameter("num");
 %>
 
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
@@ -14,7 +16,7 @@
 
 <%
 	Board board = Board.getInstance();
-	board.insertArticle(article, "free");
-
-	response.sendRedirect("./content.jsp?num="+num);
+	board.updateArticle(article, "issue");
+	
+	response.sendRedirect("./");
 %>

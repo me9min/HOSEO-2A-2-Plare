@@ -50,7 +50,7 @@
 %>
 debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Timestamp(System.currentTimeMillis())) %>
 								<div class="12u 12u$(xsmall)">
-									<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" accept-charset="utf-8">
+									<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 									<input type="text" name="title" id="title" value="" placeholder="제목" />
 								</div>
 							</header>
@@ -75,8 +75,9 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 						</li>
 						<!-- 이미지 첨부 버튼 끝 -->
 						<li class="tx-list">
-							<div unselectable="on" id="tx_file" class="tx-file tx-btn-trans">
-								<a href="javascript:;" title="파일" class="tx-text">파일</a>
+							<div>
+<!-- 								<a href="javascript:;" title="파일" class="tx-text">파일</a> -->
+								<input type="file" name="fileName1">
 							</div>
 						</li>
 						<li class="tx-list">

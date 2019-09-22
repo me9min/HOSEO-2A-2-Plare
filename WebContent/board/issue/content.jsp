@@ -35,8 +35,6 @@
 	String nickname = board.getNickname(email);
 
 	int num = Integer.parseInt(request.getParameter("num"));
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
-	String pageNum = request.getParameter("pageNum");
 	
     List<BoardBean> commentList = null;
     commentList = board.getComments(num);
@@ -50,7 +48,7 @@
    	
 
    try{
-      BoardBean article = board.getArticle("free", num);
+      BoardBean article = board.getArticle("issue", num);
       String nickname_writer = board.getNickname(article.getWriter());
       String edit_date = "";
       if(article.getEdit_date() != null) {
@@ -80,7 +78,7 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성자</td>
-				<td><%=nickname_writer %></td>
+				<td><%=nickname_writer %>(<%=article.getIp() %>)</td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성일</td>
@@ -93,6 +91,10 @@
 			<tr>
 				<td align="center" style="vertical-align: middle">내용</td>
 				<td><%=article.getContent() %></td>
+			</tr>
+			<tr>
+				<td align="center" style="vertical-align: middle">파일다운로드</td>
+				<td><a id="downA" href="#"><%=article.getFile_name() %></a></td>
 			</tr>
 <%
 	if(email.equals(article.getWriter())) {
@@ -108,7 +110,7 @@
 %>
 			<tr id="border" style="background-color:#ffffff;">
 				<td colspan="2" align="center">
-					<a href="db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>" class="button alt" >추천하기</a>
+					<a href="db_up.jsp?num=<%=num %>" class="button alt" >추천하기</a>
 				</td>
 			</tr>
 			<tr style="border-bottom:hidden;">
@@ -165,7 +167,7 @@
 				<form method="post" name="update_hidden">
 					<input type="hidden" name="count1" value="<%=count*2-1 %>">
 					<input type="hidden" name="count2" value="<%=count*2 %>">
-					<textarea name="content_update" id="content_update" style="width:100%;height:100px;"><%=comment.getContent() %></textarea>
+					<textarea name="content_update" id="content_update" style="width:100%;height:100px;resize: none;"><%=comment.getContent() %></textarea>
 				</form>
 				</td>
 			</tr>
@@ -181,13 +183,13 @@
 					<form method="post" name="reply_hidden">
 						<input type="hidden" name="count1" value="<%=count*2-1 %>">
 						<input type="hidden" name="count2" value="<%=count*2 %>">
-						<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;"></textarea>
+						<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;resize: none;"></textarea>
 					</form>
 				</td>
 			</tr>
 			<tr id="reply<%=count*2 %>" style="display:none;">
 				<td colspan="3" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="답글등록" onclick="replyCheck()">
+					<a class="button alt" onclick="replyCheck()">답글등록</a>
 				</td>
 			</tr>
 <%
@@ -201,18 +203,17 @@
 %>
 		<form method="post" name="comment_board" action="db_write_comment.jsp">
 		<input type="hidden" name="num_board" value="<%=num %>">
-		<input type="hidden" name="page_num" value="<%=pageNum %>">
 		
 		<table>
 			<tr style="background-color:#ffffff">
 				<td align="center" style="width:15%; vertical-align: middle"><%=nickname %></td>
 				<td height="100px" style="vertical-align: middle">
-					<textarea name="content" id="content" style="width:100%;height:100px;"></textarea>
+					<textarea name="content" id="content" style="width:100%;height:100px;resize: none;"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="댓글등록" onclick="commentCheck()">
+					<a class="button alt" onclick="commentCheck()">댓글등록</a>
 				</td>
 			</tr>
 		</table>
@@ -225,3 +226,16 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+	// 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
+	// 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
+	document.getElementById("downA").addEventListener("click", function(event) {
+		event.preventDefault();// a 태그의 기본 동작을 막음
+		event.stopPropagation();// 이벤트의 전파를 막음
+		// fileName1을 utf-8로 인코딩한다.
+		var fName = encodeURIComponent("<%=article.getFile_url() %>");
+		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
+		window.location.href ="fileDown1.jsp?file_name="+fName;
+	});
+</script>

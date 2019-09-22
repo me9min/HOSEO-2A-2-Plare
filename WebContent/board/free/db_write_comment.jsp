@@ -37,7 +37,7 @@
 		<script>alert('댓글 등록에 실패했습니다.')</script>
 <%		
 	} finally {
-	    response.sendRedirect("content.jsp?num=" + request.getParameter("num_board") + "&pageNum=" + request.getParameter("page_num"));
+	    response.sendRedirect("content.jsp?num=" + request.getParameter("num_board"));
 	}
 
 %>

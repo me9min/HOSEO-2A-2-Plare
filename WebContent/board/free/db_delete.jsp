@@ -12,5 +12,5 @@
 %>
 <script>
 	alert("게시글 삭제가 완료되었습니다.");
-	window.location = 'index.jsp';
+	window.location = './';
 </script>

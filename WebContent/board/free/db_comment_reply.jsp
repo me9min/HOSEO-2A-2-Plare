@@ -8,7 +8,6 @@
 	
 	int num = Integer.parseInt(request.getParameter("num"));
 	String content = request.getParameter("content");
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
 	int commentNum = Integer.parseInt(request.getParameter("commentNum"));
 
 	String email = (String)session.getAttribute("email");
@@ -44,7 +43,7 @@
 <%
 	} finally {
 %>
-	window.location = 'content.jsp?num=<%=num%>&pageNum=<%=currentPage%>';
+	window.location = 'content.jsp?num=<%=num%>';
 </script>
 <%
 	}

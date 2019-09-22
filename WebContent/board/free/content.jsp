@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>자유 게시판</title>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">	
 	<style>
 		#inputtext{
@@ -39,8 +38,6 @@
 	String nickname = board.getNickname(email);
 
 	int num = Integer.parseInt(request.getParameter("num"));
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
-	String pageNum = request.getParameter("pageNum");
 	
     List<BoardBean> commentList = null;
     commentList = board.getComments(num);
@@ -61,6 +58,9 @@
     	  edit_date = sdf.format(article.getEdit_date());
       }
 %>
+<head>
+<title><%=article.getTitle() %></title>
+</head>
 	<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
@@ -72,7 +72,7 @@
 	<div id="main" class="container" >
 		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">
-		<a href="index.jsp" class="button alt pull-right">글목록</a><br><br>
+		<a href="./" class="button alt pull-right">글목록</a><br><br>
 		<table class="table">
 			<tr>
 				<td align="center" width="20%" style="vertical-align: middle">제목</td>
@@ -108,7 +108,7 @@
 %>
 			<tr id="border" style="background-color:#ffffff;">
 				<td colspan="2" align="center">
-					<a href="db_up.jsp?num=<%=num %>&pageNum=<%=currentPage %>" class="button alt" >추천하기</a>
+					<a href="db_up.jsp?num=<%=num %>" class="button alt" >추천하기</a>
 				</td>
 			</tr>
 			<tr style="border-bottom:hidden;">
@@ -152,7 +152,7 @@
 			if(email.equals(comment.getWriter())) {
 %>
 					<p style="display:inline;" id="link" onclick="updateShow(<%=count %>)">수정</p>
-					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=comment.getNum()%>&num=<%=num%>&pageNum=<%=currentPage%>'">삭제</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=comment.getNum()%>&num=<%=num%>'">삭제</p>
 <%
 			}
 %>
@@ -164,9 +164,8 @@
 				<td colspan="3" height="100px" style="vertical-align: middle">
 				<form method="post" name="commentUpdate" action="db_comment_update.jsp">
 					<input type="hidden" name="num" value="<%=num %>">
-					<input type="hidden" name="pageNum" value="<%=currentPage %>">
 					<input type="hidden" name="commentNum" value="<%=comment.getNum() %>">
-					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"><%=comment.getContent() %></textarea>
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;resize: none;"><%=comment.getContent() %></textarea>
 					<input type="submit" class="button alt" value="댓글수정">
 				</form>
 				</td>
@@ -177,9 +176,8 @@
 				<td colspan="2" height="100px" style="vertical-align: middle">
 				<form method="post" name="reply_hidden" action="db_comment_reply.jsp">
 					<input type="hidden" name="num" value="<%=num %>">
-					<input type="hidden" name="pageNum" value="<%=currentPage %>">
 					<input type="hidden" name="commentNum" value="<%=comment.getNum() %>">
-					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"></textarea>
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;resize: none;"></textarea>
 					<input type="submit" class="button alt" value="답글등록">
 				</form>
 				</td>
@@ -210,7 +208,7 @@
 %>
 					&nbsp;
 					<p style="display:inline;" id="link" onclick="updateReplyShow(<%=count %>)">수정</p>
-					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=reply.getNum()%>&num=<%=num%>&pageNum=<%=currentPage%>'">삭제</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=reply.getNum()%>&num=<%=num%>'">삭제</p>
 <%
 			}
 %>
@@ -222,9 +220,8 @@
 				<td colspan="2" height="100px" style="vertical-align: middle">
 				<form method="post" name="commentUpdate" action="db_comment_update.jsp">
 					<input type="hidden" name="num" value="<%=num %>">
-					<input type="hidden" name="pageNum" value="<%=currentPage %>">
 					<input type="hidden" name="commentNum" value="<%=reply.getNum() %>">
-					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"><%=reply.getContent() %></textarea>
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;resize: none;"><%=reply.getContent() %></textarea>
 					<input type="submit" class="button alt" value="댓글수정">
 				</form>
 				</td>
@@ -242,18 +239,17 @@
 %>
 		<form method="post" name="comment_board" action="db_write_comment.jsp">
 		<input type="hidden" name="num_board" value="<%=num %>">
-		<input type="hidden" name="page_num" value="<%=pageNum %>">
 		
 		<table>
 			<tr style="background-color:#ffffff">
 				<td align="center" style="width:15%; vertical-align: middle"><%=nickname %></td>
 				<td height="100px" style="vertical-align: middle">
-					<textarea name="content" id="content" style="width:100%;height:100px;"></textarea>
+					<textarea name="content" id="content" style="width:100%;height:100px;resize: none;"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="댓글등록" onclick="commentCheck()">
+					<a class="button alt" onclick="commentCheck()">댓글등록</a>
 				</td>
 			</tr>
 		</table>

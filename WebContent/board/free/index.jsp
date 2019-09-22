@@ -30,7 +30,6 @@
     String nickname_motd = board.getNickname(motd.getWriter());
     String nickname_best = board.getNickname(best.getWriter());
     
-    
     if (count > 0) {
         articleList = board.getArticles(category, startRow, pageSize);
     }
@@ -95,7 +94,7 @@
 				<tr>
 					<td width="10%" id="motd" align="center">공지</td>
 					<td width="50%" id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="../motd/content.jsp?num=<%=motd.getNum()%>" id="link">
 							<%=motd.getTitle() %>
 						</a>
 					</td>
@@ -108,7 +107,7 @@
 				<tr>
 					<td width="10%" id="best" align="center">인기</td>
 					<td width="50%" id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=best.getNum()%>" id="link">
 							<%=best.getTitle() %>
 						</a>
 						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(best.getNum()) %>]</p>
@@ -126,7 +125,7 @@
 				<tr id="tbody">
 					<td width="10%" align="center"><%=article.getNum() %></td>
 					<td width="50%">
-						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
+						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(article.getNum()) %>]</p>

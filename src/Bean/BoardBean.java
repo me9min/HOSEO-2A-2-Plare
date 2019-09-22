@@ -14,6 +14,8 @@ public class BoardBean {
 	private String title;
 	private String content;
 	private int num_board;
+	private String file_url;
+	private String file_name;
 	
 	public int getNum() {
 		return num;
@@ -80,5 +82,17 @@ public class BoardBean {
 	}
 	public void setNum_board(int num_board) {
 		this.num_board = num_board;
+	}
+	public String getFile_url() {
+		return file_url;
+	}
+	public void setFile_url(String file_url) {
+		this.file_url = file_url;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 }

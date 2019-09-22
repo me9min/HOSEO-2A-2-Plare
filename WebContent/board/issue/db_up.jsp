@@ -6,11 +6,10 @@
 	Board board = Board.getInstance();
 	
 	int num = Integer.parseInt(request.getParameter("num"));
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
 	
 	board.up(num);
 %>
 <script>
 	alert("게시글을 추천했습니다.");
-	window.location = 'content.jsp?num=<%=num%>&pageNum=<%=currentPage%>';
+	window.location = 'content.jsp?num=<%=num%>';
 </script>

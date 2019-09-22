@@ -48,7 +48,7 @@
 		}
 	}
 %>
-debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Timestamp(System.currentTimeMillis())) %>
+<%-- debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Timestamp(System.currentTimeMillis())) %> --%>
 								<div class="12u 12u$(xsmall)">
 									<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" accept-charset="utf-8">
 									<input type="text" name="title" id="title" value="" placeholder="제목" />
@@ -608,7 +608,7 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 </script>
 <div class="12u 12u$(xsmall)">
 	<button class="button special" onclick='saveContent()'>글쓰기</button>
-	<a class="button special" href="./">글목록</a>
+	<a class="button alt" href="./">글목록</a>
 </div>
 <!-- End: Saving Contents -->
 

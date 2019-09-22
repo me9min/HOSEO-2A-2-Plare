@@ -62,7 +62,7 @@
 	<div id="main" class="container" >
 		<center><h3>공지사항</h3></center><br>
 		<div class="table-wrapper">
-		<a href="index.jsp" class="button alt pull-right">글목록</a>
+		<a href="index.jsp" class="button alt pull-right">글목록</a><br><br>
 		<table class="table">
 			<tr>
 				<td align="center" width="20%" style="vertical-align: middle">제목</td>

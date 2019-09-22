@@ -103,15 +103,15 @@
 %>
 			<tbody>
 				<tr>
-					<td width="10%"><%=article.getNum() %></td>
+					<td width="10%" align="center"><%=article.getNum() %></td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>" id="link">
 							<%=article.getTitle() %>
 						</a>
 					</td>
-					<td><%=nickname %></td>				
-					<td><%=article.getReg_date() %></td>
-					<td><%=article.getRead_count() %></td>
+					<td align="center"><%=nickname %></td>
+					<td align="center"><%=sdf.format(article.getReg_date()) %></td>
+					<td align="center"><%=article.getRead_count() %></td>
 				</tr>
 			</tbody>
 <% 		}

@@ -494,8 +494,46 @@ public class Board {
 	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 	           
 	    	pstmt = conn.prepareStatement(
-   	           	"select * from board_free_com where num_board = ? order by num");
+   	           	"select * from board_free_com where num_board = ? and num_rep = 0 order by num");
 	    	pstmt.setInt(1, num_board);
+	        rs = pstmt.executeQuery();
+	
+	        if (rs.next()) {
+	        	articleList = new ArrayList<BoardBean>();
+	            do{
+	            	BoardBean article= new BoardBean();
+	            	article.setNum(rs.getInt("num"));
+	            	article.setNum_rep(rs.getInt("num_rep"));
+	            	article.setWriter(rs.getString("writer"));
+	            	article.setIp(rs.getString("ip"));
+	            	article.setReg_date(rs.getTimestamp("reg_date"));
+	            	article.setContent(rs.getString("content"));
+	            	article.setNum_board(rs.getInt("num_board"));
+					  
+	                articleList.add(article);
+				}while(rs.next());
+	        }
+	    } catch(Exception ex) {
+	    	ex.printStackTrace();
+	    } finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }
+		return articleList;
+	}
+	
+	public List<BoardBean> getReplys(int num_rep) throws Exception {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<BoardBean> articleList=null;
+	    try {
+	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+	    	pstmt = conn.prepareStatement(
+   	           	"select * from board_free_com where num_rep = ? order by num");
+	    	pstmt.setInt(1, num_rep);
 	        rs = pstmt.executeQuery();
 	
 	        if (rs.next()) {
@@ -583,7 +621,7 @@ public class Board {
 		try {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
-            sql = "delete from board_free where num = ?";
+            sql = "delete from board_free_com where num = ?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, num);

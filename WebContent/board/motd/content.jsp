@@ -85,8 +85,8 @@
 %>
 			<tr style="background-color:#ffffff; border:hidden;">
 				<td colspan="2" align="right">
-					<button id="button" onclick="location.href('edit.jsp?num=<%=article.getNum() %>')">수정</button> 
-					<button id="button" onclick="location.href('db_delete.jsp?num=<%=article.getNum() %>')">삭제</button>
+					<button id="button" onclick="window.location='edit.jsp?num=<%=article.getNum() %>'">수정</button> 
+					<button id="button" onclick="window.location='db_delete.jsp?num=<%=article.getNum() %>'">삭제</button>
 				</td>
 			</tr>
 <%

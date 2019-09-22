@@ -99,8 +99,8 @@
 %>
 			<tr style="background-color:#ffffff; border:hidden;">
 				<td colspan="2" align="right">
-					<button id="button" onclick="location.href('edit.jsp?num=<%=article.getNum() %>')" class="button alt">수정</button> 
-					<button id="button" onclick="location.href('db_delete.jsp?num=<%=article.getNum() %>')" class="button alt">삭제</button>
+					<a href="edit.jsp?num=<%=article.getNum() %>" class="button alt">수정</a> 
+					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a> 
 				</td>
 			</tr>
 <%
@@ -129,68 +129,109 @@
 		<table>
 <%
 		int count = 1;
-	   	for (int i = 0 ; i < commentList.size() ; i++) {
+	   	for (int i = 0; i < commentList.size(); i++) {
 			  BoardBean comment = commentList.get(i);
 			  String nicknameComment = board.getNickname(comment.getWriter());
+			  
+			  List<BoardBean> replyList = null;
+			  replyList = board.getReplys(comment.getNum());
 %>
 			<tr style="background-color:#ffffff;border-bottom:hidden;" >			
-				<td colspan="3" style="vertical-align:middle;">
+				<td colspan="4" style="vertical-align:middle;">
 					<p style="display:inline; font-weight:bold;"><%=nicknameComment %></p>
 					<p style="display:inline; font-size:10px; color:gray"><%=sdf.format(comment.getReg_date()) %></p>
 				</td>
 			</tr>
 			<tr style="background-color:#ffffff">
 				<td id="blank">&nbsp;</td>
-				<td style="vertical-align: middle">
+				<td colspan="2" style="vertical-align: middle">
 					<pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif; padding:0px;"><%=comment.getContent() %></pre>
 				</td>
 				<td style="text-align:right; vertical-align:bottom;">
 <%
 			if(email.equals(comment.getWriter())) {
 %>
-<%-- 				<a href="db_comment_update.jsp?num=<%=comment.getNum()%>" id="link">수정</a>
-					<a href="db_comment_delete.jsp?num=<%=comment.getNum()%>" id="link">삭제</a> 
---%>
-					<p style="display:inline;" id="link" onclick="updateShow(<%=count*2-1 %>, <%=count*2 %>)">수정</p>
-					<p style="display:inline;" id="link" onclick="">삭제</p>
+					<p style="display:inline;" id="link" onclick="updateShow(<%=count %>)">수정</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=comment.getNum()%>&num=<%=num%>&pageNum=<%=currentPage%>'">삭제</p>
 <%
 			}
 %>
-					<p style="display:inline;" id="link" onclick="replyShow(<%=count*2-1 %>, <%=count*2 %>)">답글</p>
+					<p style="display:inline;" id="link" onclick="replyShow(<%=count %>)">답글</p>
 				</td>
 			</tr>
-			<tr id="update<%=count*2-1 %>" style="display:none; background-color:#ffffff">
+			<tr id="update<%=count %>" style="display:none; background-color:#ffffff">
 				<td align="center" style="vertical-align: middle"><%=nickname %></td>
-				<td colspan="2" height="100px" style="vertical-align: middle">
-				<form method="post" name="update_hidden">
-					<input type="hidden" name="count1" value="<%=count*2-1 %>">
-					<input type="hidden" name="count2" value="<%=count*2 %>">
-					<textarea name="content_update" id="content_update" style="width:100%;height:100px;"><%=comment.getContent() %></textarea>
+				<td colspan="3" height="100px" style="vertical-align: middle">
+				<form method="post" name="commentUpdate" action="db_comment_update.jsp">
+					<input type="hidden" name="num" value="<%=num %>">
+					<input type="hidden" name="pageNum" value="<%=currentPage %>">
+					<input type="hidden" name="commentNum" value="<%=comment.getNum() %>">
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"><%=comment.getContent() %></textarea>
+					<input type="submit" class="button alt" value="댓글수정">
 				</form>
 				</td>
 			</tr>
-			<tr id="update<%=count*2 %>" style="display:none;">
-				<td colspan="3" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="댓글수정" onclick="updateCheck()">
-				</td>
-			</tr>
-			<tr id="reply<%=count*2-1 %>" style="display:none; background-color:#ffffff">
+			<tr id="reply<%=count %>" style="display:none; background-color:#ffffff">
 				<td width="5%">&nbsp;</td>
 				<td width="15%" align="center" style="vertical-align: middle"><%=nickname %></td>
-				<td height="100px" style="vertical-align: middle">
-					<form method="post" name="reply_hidden">
-						<input type="hidden" name="count1" value="<%=count*2-1 %>">
-						<input type="hidden" name="count2" value="<%=count*2 %>">
-						<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;"></textarea>
-					</form>
+				<td colspan="2" height="100px" style="vertical-align: middle">
+				<form method="post" name="reply_hidden" action="db_comment_reply.jsp">
+					<input type="hidden" name="num" value="<%=num %>">
+					<input type="hidden" name="pageNum" value="<%=currentPage %>">
+					<input type="hidden" name="commentNum" value="<%=comment.getNum() %>">
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"></textarea>
+					<input type="submit" class="button alt" value="답글등록">
+				</form>
 				</td>
 			</tr>
-			<tr id="reply<%=count*2 %>" style="display:none;">
-				<td colspan="3" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="답글등록" onclick="replyCheck()">
+			</tr>
+<%
+			if(replyList != null) {
+				for (int j = 0; j < replyList.size(); j++) {
+				  BoardBean reply = replyList.get(j);
+				  String nicknameReply = board.getNickname(reply.getWriter());
+%>
+			<tr style="background-color:#ffffff;border-bottom:hidden;" >
+				<td id="blank">&nbsp;</td>			
+				<td colspan="3" style="vertical-align:middle;">
+					<p style="display:inline; font-weight:bold;"><%=nicknameReply %></p>
+					<p style="display:inline; font-size:10px; color:gray"><%=sdf.format(reply.getReg_date()) %></p>
+				</td>
+			</tr>
+			<tr style="background-color:#ffffff">
+				<td id="blank">&nbsp;</td>
+				<td id="blank">&nbsp;</td>
+				<td style="vertical-align: middle">
+					<pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif; padding:0px;"><%=reply.getContent() %></pre>
+				</td>
+				<td style="text-align:right; vertical-align:bottom;">
+<%
+			if(email.equals(reply.getWriter())) {
+%>
+					&nbsp;
+					<p style="display:inline;" id="link" onclick="updateReplyShow(<%=count %>)">수정</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=reply.getNum()%>&num=<%=num%>&pageNum=<%=currentPage%>'">삭제</p>
+<%
+			}
+%>
+				</td>
+			</tr>
+			<tr id="updateReply<%=count %>" style="display:none; background-color:#ffffff">
+				<td id="blank">&nbsp;</td>
+				<td align="center" style="vertical-align: middle"><%=nicknameReply %></td>
+				<td colspan="2" height="100px" style="vertical-align: middle">
+				<form method="post" name="commentUpdate" action="db_comment_update.jsp">
+					<input type="hidden" name="num" value="<%=num %>">
+					<input type="hidden" name="pageNum" value="<%=currentPage %>">
+					<input type="hidden" name="commentNum" value="<%=reply.getNum() %>">
+					<textarea name="content" id="content" style="display:inline;width:90%;height:100px;"><%=reply.getContent() %></textarea>
+					<input type="submit" class="button alt" value="댓글수정">
+				</form>
 				</td>
 			</tr>
 <%
+				}
+			}
 			count++;
 	   	}
 %>

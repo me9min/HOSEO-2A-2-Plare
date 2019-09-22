@@ -14,11 +14,9 @@
 <%
 	String category = "free";
     String pageNum = request.getParameter("pageNum");
-
     if (pageNum == null) {
         pageNum = "1";
     }
-
     int currentPage = Integer.parseInt(pageNum);
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;
@@ -52,8 +50,8 @@
 			#link:hover {color: red; text-decoration: none;}
 		</style>
 		<script language="JavaScript" src="login.js"></script>
-		
 <%@ include file="/assets/include/menu.jsp" %>
+
 		<!-- One -->
 			<section id="One" class="wrapper style3">
 				<div class="inner">
@@ -155,7 +153,6 @@
            startPage = (int)(currentPage/5)*5 + 1;
 		else
            startPage = ((int)(currentPage/5)-1)*5 + 1;
-
 		int pageBlock = 5;
         int endPage = startPage + pageBlock - 1;
         if (endPage > pageCount) endPage = pageCount;
@@ -187,5 +184,5 @@
 			</section>
 
 <%@ include file="/assets/include/foot.jsp" %>
-</body>
+
 </html>

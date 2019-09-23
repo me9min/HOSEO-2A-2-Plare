@@ -11,7 +11,7 @@
 	article.setTitle(request.getParameter("title"));
 	article.setContent(request.getParameter("content"));
 	
-	board.updateArticle("motd", article);
+	board.updateArticle(article, "motd");
 %>
 <script>
 	alert("게시글 수정이 완료되었습니다.");

@@ -36,8 +36,6 @@
 	String admin = "admin@plare.cf";
 
 	int num = Integer.parseInt(request.getParameter("num"));
-	int currentPage = Integer.parseInt(request.getParameter("pageNum"));
-	String pageNum = request.getParameter("pageNum");
 	
    	SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd");

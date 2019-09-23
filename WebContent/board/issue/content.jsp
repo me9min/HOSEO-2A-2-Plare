@@ -112,7 +112,7 @@
 <%
 	} else if(email.equals(admin)) {
 %>
-				<a href="write_reply.jsp" class="button special">답글</a>
+					<a href="write.jsp?num=<%=request.getParameter("num") %>" class="button special">답글쓰기</a>
 <% 
 	}
 %>

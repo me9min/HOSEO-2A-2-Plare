@@ -90,14 +90,15 @@ public class Board {
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("issue")) {
-            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep,attach_image,attach_image_name,attach_file,attach_file_name) values(?,?,now(),?,?,?,?,?,?,?)";
+            	sql = "insert into board_issue (writer,ip,num_rep,reg_date,title,content,attach_image,attach_image_name,attach_file,attach_file_name) values(?,?,?,now(),?,?,?,?,?,?)";
             	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
 	            pstmt.setString(2, article.getIp());
-	            pstmt.setString(3, article.getTitle());
-				pstmt.setString(4, article.getContent());
-				pstmt.setInt(5, article.getNum_rep());
+	            pstmt.setInt(3, article.getNum_rep());
+	            
+	            pstmt.setString(4, article.getTitle());
+				pstmt.setString(5, article.getContent());
 				pstmt.setString(6, article.getAttach_image());
 				pstmt.setString(7, article.getAttach_image_name());
 				pstmt.setString(8, article.getAttach_file());

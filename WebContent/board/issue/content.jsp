@@ -36,13 +36,6 @@
 
 	int num = Integer.parseInt(request.getParameter("num"));
 	
-    List<BoardBean> commentList = null;
-    commentList = board.getComments(num);
-    int commentCount = 0;
-    if(commentList != null) {
-    	commentCount = commentList.size();
-    }
-	
    	SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd hh:mm");
    	
@@ -57,6 +50,18 @@
 %>
 <head>
 <title><%=article.getTitle() %></title>
+<script type="text/javascript">
+	// 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
+	// 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
+	document.getElementById("downA").addEventListener("click", function(event) {
+		event.preventDefault();// a 태그의 기본 동작을 막음
+		event.stopPropagation();// 이벤트의 전파를 막음
+		// fileName1을 utf-8로 인코딩한다.
+		var fName = encodeURIComponent("<%=article.getFile_url() %>");
+		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
+		window.location ="fileDown.jsp?file_name="+fName;
+	});
+</script>
 </head>
 <body>
 
@@ -78,7 +83,7 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성자</td>
-				<td><%=nickname_writer %>(<%=article.getIp() %>)</td>
+				<td><%=nickname_writer %></td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성일</td>
@@ -89,8 +94,8 @@
 				<td><%=edit_date %></td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">내용</td>
-				<td><%=article.getContent() %></td>
+				<td height="300px" align="center" style="vertical-align: middle">내용</td>
+				<td height="300px"><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">파일다운로드</td>
@@ -115,110 +120,13 @@
 			</tr>
 			<tr style="border-bottom:hidden;">
 				<td colspan="2" align="right" style="background-color:#ffffff;">
-					조회수 <%=article.getRead_count() %> 추천수 <%=article.getUp_count() %> 댓글수 <%=commentCount %>
+					조회수 <%=article.getRead_count() %> 추천수 <%=article.getUp_count() %>
 				</td>
 			</tr>
 		</table>
 <%
    } catch(Exception e) {}
-   
-   if (commentList == null) {
 %>
-		<p style="text-align:center; border-top:1px solid rgba(144, 144, 144, 0.25); padding:10px;">댓글이 존재하지 않습니다.</p>
-<%
-   } else {
-%>
-		<table>
-<%
-		int count = 1;
-	   	for (int i = 0 ; i < commentList.size() ; i++) {
-			  BoardBean comment = commentList.get(i);
-			  String nicknameComment = board.getNickname(comment.getWriter());
-%>
-			<tr style="background-color:#ffffff;border-bottom:hidden;" >			
-				<td colspan="3" style="vertical-align:middle;">
-					<p style="display:inline; font-weight:bold;"><%=nicknameComment %></p>
-					<p style="display:inline; font-size:10px; color:gray"><%=sdf.format(comment.getReg_date()) %></p>
-				</td>
-			</tr>
-			<tr style="background-color:#ffffff">
-				<td id="blank">&nbsp;</td>
-				<td style="vertical-align: middle">
-					<pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif; padding:0px;"><%=comment.getContent() %></pre>
-				</td>
-				<td style="text-align:right; vertical-align:bottom;">
-<%
-			if(email.equals(comment.getWriter())) {
-%>
-<%-- 				<a href="db_comment_update.jsp?num=<%=comment.getNum()%>" id="link">수정</a>
-					<a href="db_comment_delete.jsp?num=<%=comment.getNum()%>" id="link">삭제</a> 
---%>
-					<p style="display:inline;" id="link" onclick="updateShow(<%=count*2-1 %>, <%=count*2 %>)">수정</p>
-					<p style="display:inline;" id="link" onclick="">삭제</p>
-<%
-			}
-%>
-					<p style="display:inline;" id="link" onclick="replyShow(<%=count*2-1 %>, <%=count*2 %>)">답글</p>
-				</td>
-			</tr>
-			<tr id="update<%=count*2-1 %>" style="display:none; background-color:#ffffff">
-				<td align="center" style="vertical-align: middle"><%=nickname %></td>
-				<td colspan="2" height="100px" style="vertical-align: middle">
-				<form method="post" name="update_hidden">
-					<input type="hidden" name="count1" value="<%=count*2-1 %>">
-					<input type="hidden" name="count2" value="<%=count*2 %>">
-					<textarea name="content_update" id="content_update" style="width:100%;height:100px;resize: none;"><%=comment.getContent() %></textarea>
-				</form>
-				</td>
-			</tr>
-			<tr id="update<%=count*2 %>" style="display:none;">
-				<td colspan="3" align="right" style="vertical-align: middle">
-					<input type="button" class="button alt" value="댓글수정" onclick="updateCheck()">
-				</td>
-			</tr>
-			<tr id="reply<%=count*2-1 %>" style="display:none; background-color:#ffffff">
-				<td width="5%">&nbsp;</td>
-				<td width="15%" align="center" style="vertical-align: middle"><%=nickname %></td>
-				<td height="100px" style="vertical-align: middle">
-					<form method="post" name="reply_hidden">
-						<input type="hidden" name="count1" value="<%=count*2-1 %>">
-						<input type="hidden" name="count2" value="<%=count*2 %>">
-						<textarea name="content_reply" id="content_reply" style="width:100%;height:100px;resize: none;"></textarea>
-					</form>
-				</td>
-			</tr>
-			<tr id="reply<%=count*2 %>" style="display:none;">
-				<td colspan="3" align="right" style="vertical-align: middle">
-					<a class="button alt" onclick="replyCheck()">답글등록</a>
-				</td>
-			</tr>
-<%
-			count++;
-	   	}
-%>
-		</table>
-<%
-   	}
-	if(email != null) {
-%>
-		<form method="post" name="comment_board" action="db_write_comment.jsp">
-		<input type="hidden" name="num_board" value="<%=num %>">
-		
-		<table>
-			<tr style="background-color:#ffffff">
-				<td align="center" style="width:15%; vertical-align: middle"><%=nickname %></td>
-				<td height="100px" style="vertical-align: middle">
-					<textarea name="content" id="content" style="width:100%;height:100px;resize: none;"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right" style="vertical-align: middle">
-					<a class="button alt" onclick="commentCheck()">댓글등록</a>
-				</td>
-			</tr>
-		</table>
-		</form>
-<%} %>
 		</div>
 	</div>
 
@@ -226,16 +134,3 @@
 
 </body>
 </html>
-
-<script type="text/javascript">
-	// 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
-	// 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
-	document.getElementById("downA").addEventListener("click", function(event) {
-		event.preventDefault();// a 태그의 기본 동작을 막음
-		event.stopPropagation();// 이벤트의 전파를 막음
-		// fileName1을 utf-8로 인코딩한다.
-		var fName = encodeURIComponent("<%=article.getFile_url() %>");
-		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
-		window.location.href ="fileDown1.jsp?file_name="+fName;
-	});
-</script>

@@ -95,29 +95,30 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td width="10%" id="motd">공지</td>
+					<td width="10%" id="motd" align="center">공지</td>
 					<td width="50%" id="motd">
 						<a href="../motd/content.jsp?num=<%=motd.getNum()%>" id="link">
 							<%=motd.getTitle() %>
 						</a>
 					</td>
-					<td id="motd"><%=nickname_motd %></td>						
-					<td id="motd"><%=motd.getReg_date() %></td>
-					<td id="motd"><%=motd.getRead_count() %>	
+					<td id="motd" align="center"><%=nickname_motd %></td>						
+					<td id="motd" align="center"><%=sdf.format(motd.getReg_date()) %></td>
+					<td id="motd" align="center"><%=motd.getRead_count() %>	
 					</td>
-					<td id="motd">&nbsp;</td>
+					<td id="motd" align="center">&nbsp;</td>
 				</tr>
 				<tr>
-					<td width="10%" id="best">인기</td>
+					<td width="10%" id="best" align="center">인기</td>
 					<td width="50%" id="best">
-						<a href="content.jsp?num=<%=best.getNum()%>" id="link">
+						<a href="../free/content.jsp?num=<%=best.getNum()%>" id="link">
 							<%=best.getTitle() %>
 						</a>
+						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(best.getNum()) %>]</p>
 					</td>
-					<td id="best"><%=nickname_best %></td>						
-					<td id="best"><%=best.getReg_date() %></td>
-					<td id="best"><%=best.getRead_count() %></td>
-					<td id="best"><%=best.getUp_count() %></td>
+					<td id="best" align="center"><%=nickname_best %></td>						
+					<td id="best" align="center"><%=sdf.format(best.getReg_date()) %></td>
+					<td id="best" align="center"><%=best.getRead_count() %></td>
+					<td id="best" align="center"><%=best.getUp_count() %></td>
 				</tr>
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
@@ -125,16 +126,17 @@
 		  String nickname = board.getNickname(article.getWriter());
 %>
 				<tr id="tbody">
-					<td width="10%"><%=article.getNum() %></td>
+					<td width="10%" align="center"><%=article.getNum() %></td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=article.getNum()%>" id="link">
 							<%=article.getTitle() %>
 						</a>
+						<p style="color:#bfbfbf; display:inline;"></p>
 					</td>
-					<td><%=nickname %></td>						
-					<td><%=article.getReg_date() %></td>
-					<td><%=article.getRead_count() %></td>
-					<td><%=article.getUp_count() %></td>
+					<td align="center"><%=nickname %></td>						
+					<td align="center"><%=sdf.format(article.getReg_date()) %></td>
+					<td align="center"><%=article.getRead_count() %></td>
+					<td align="center"><%=article.getUp_count() %></td>
 				</tr>
 			</tbody>
 <% 		}

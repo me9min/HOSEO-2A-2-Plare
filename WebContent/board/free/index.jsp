@@ -38,7 +38,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>자유 게시판</title>
+		<title>문의 게시판</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
 			#thead {text-align: center; background-color: black; color: white;}
@@ -67,7 +67,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>자유 게시판</h2>
+								<h2>문의 게시판</h2>
 							</header>
 
 	<div class="table-wrapper">

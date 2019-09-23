@@ -10,18 +10,53 @@
 // <![CDATA[
 	
 	function done() {
-		if (typeof(execAttach) == 'undefined') { //Virtual Function
-	        return;
-	    }
-		
-		var _mockdata = {
-			'attachurl': 'http://cfile297.uf.daum.net/attach/207C8C1B4AA4F5DC01A644',
-			'filemime': 'image/gif',
-			'filename': 'editor_bi.gif',
-			'filesize': 640
-		};
-		execAttach(_mockdata);
-		closeWindow();
+
+		// 기본설정
+		var objTarget = $('form[name=imageForm]');
+		var strFile = objTarget.find('[name=file]').val();
+
+		// 체크
+		if(!strFile) {
+			alert('파일을 선택하세요.');
+			return;
+		}
+
+		// 데이터 전달
+		objTarget.ajaxForm({
+			beforeSubmit :	function() {
+			},
+			success		 :  function(data) {
+				data =  $.parseJSON(data);
+				if(data['__STATE__'] == "SUCCESS") {
+				
+					// 기본 설정
+					var objData = data['__DATA__'];
+					var filename = objData['filename'];
+					var filesize = objData['filesize'];
+					var attachurl = objData['attachurl'];
+					var filemime = objData['filemime'];
+					
+					var _mockdata = {
+						'attachurl': attachurl,
+						'filemime': filemime,
+						'filename': filename,
+						'filesize': filesize
+					};
+
+					execAttach(_mockdata);
+					
+					closeWindow();
+
+				} else {
+					var strMsg = data['__MSG__'];
+					if(!strMsg) { strMsg = data; }
+					alert(strMsg);
+				}
+		   }
+		}); 
+
+		objTarget.submit();
+
 	}
 
 	function initUploader(){
@@ -43,13 +78,15 @@
 		<h1>파일 첨부</h1>
 	</div>	
 	<div class="body">
-		<dl class="alert">
-		    <dt>파일 첨부 확인</dt>
-		    <dd>
-		    	확인을 누르시면 임시 데이터가 파일첨부 됩니다.<br /> 
-				인터페이스는 소스를 확인해주세요.
-			</dd>
-		</dl>
+		<form name="imageForm" method="post" enctype="multipart/form-data" action="/board/issue/write.jsp">
+			<input type="hidden" name="menuType" value="daumeditor">
+			<input type="hidden" name="mode" value="json">
+			<input type="hidden" name="act" value="fileUpload">
+			<dl class="alert">
+				<dt>파일 첨부 확인</dt>
+				<dd><input type="file" name="file"></dd>
+			</dl>
+		</form>
 	</div>
 	<div class="footer">
 		<p><a href="#" onclick="closeWindow();" title="닫기" class="close">닫기</a></p>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -89,8 +91,8 @@
 		<input type="hidden" name="mode" value="json"/>
 		<input type="hidden" name="act" value="imageUpload"/>
 			<dl class="alert">
-			    <dt>사진 첨부 확인</dt>
-			    <dd><input type="file" name="file"/></dd>
+				<dt>사진 첨부 확인</dt>
+				<dd><input type="file" name="file"/></dd>
 			</dl>
 		</form>
 	</div>

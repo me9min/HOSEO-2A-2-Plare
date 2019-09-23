@@ -1,15 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Daum에디터 - 이미지 첨부</title> 
-<script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="../../css/popup.css" type="text/css"  charset="utf-8"/>
+<title>Daum에디터 - 파일 첨부</title> 
+<script src="/assets/daumeditor/js/popup.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/assets/daumeditor/css/popup.css" type="text/css"  charset="utf-8"/>
 <script type="text/javascript">
 // <![CDATA[
-
+	
 	function done() {
-		
+
 		// 기본설정
 		var objTarget = $('form[name=imageForm]');
 		var strFile = objTarget.find('[name=file]').val();
@@ -32,22 +35,16 @@
 					var objData = data['__DATA__'];
 					var filename = objData['filename'];
 					var filesize = objData['filesize'];
-					var imagealign = objData['imagealign'];
-					var imageurl = objData['imageurl'];
-					var originalurl = objData['originalurl'];
-					var thumburl = objData['thumburl'];
-
+					var attachurl = objData['attachurl'];
+					var filemime = objData['filemime'];
+					
 					var _mockdata = {
-						'imageurl': imageurl,
+						'attachurl': attachurl,
+						'filemime': filemime,
 						'filename': filename,
-						'filesize': filesize,
-						'imagealign': imagealign,
-						'originalurl': originalurl,
-						'thumburl': thumburl
+						'filesize': filesize
 					};
 
-					alert(_mockdata['imageurl']);
-					
 					execAttach(_mockdata);
 					
 					closeWindow();
@@ -63,7 +60,7 @@
 		objTarget.submit();
 
 	}
-	
+
 	function initUploader(){
 	    var _opener = PopupUtil.getOpener();
 	    if (!_opener) {
@@ -71,26 +68,25 @@
 	        return;
 	    }
 	    
-	    var _attacher = getAttacher('image', _opener);
+	    var _attacher = getAttacher('file', _opener);
 	    registerAction(_attacher);
 	}
-
-// ]]>
+	
 </script>
 </head>
 <body onload="initUploader();">
 <div class="wrapper">
 	<div class="header">
-		<h1>사진 첨부</h1>
+		<h1>파일 첨부</h1>
 	</div>	
 	<div class="body">
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="/board/issue/write.jsp">
-		<input type="hidden" name="menuType" value="daumeditor"/>
-		<input type="hidden" name="mode" value="json"/>
-		<input type="hidden" name="act" value="imageUpload"/>
+		<form name="imageForm" method="post" enctype="multipart/form-data" action="write.jsp">
+			<input type="hidden" name="menuType" value="daumeditor">
+			<input type="hidden" name="mode" value="json">
+			<input type="hidden" name="act" value="fileUpload">
 			<dl class="alert">
-			    <dt>사진 첨부 확인</dt>
-			    <dd><input type="file" name="file"/></dd>
+				<dt>파일 첨부 확인</dt>
+				<dd><input type="file" name="file"></dd>
 			</dl>
 		</form>
 	</div>

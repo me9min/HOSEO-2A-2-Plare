@@ -1,22 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
- 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>파일 다운로드 페이지</title>
+<title>파일 다운로드</title>
 </head>
  
 <%
     // a태그의 href로 fileDown1.jsp?file_name="<%=fileName1 을 통해 전달한
     // 중복 방지 처리한 파일명 값을 가져온다.
-    String fileName = request.getParameter("file_name");
+    String fileName = request.getParameter("file_url");
      
     // 업로드한 폴더의 위치와 업로드 폴더의 이름을 알아야 한다.
-    String savePath ="uploadFile";// WebContent/uploadFile
+    String savePath ="upload";// WebContent/uploadFile
     // 위의 폴더는 상대경로이고 절대경로 기준의 진짜 경로를 구해와야한다.
     String sDownPath = request.getRealPath(savePath);
      

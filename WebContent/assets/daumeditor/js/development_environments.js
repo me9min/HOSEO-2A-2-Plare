@@ -70,4 +70,6 @@
             setTimeout(arguments.callee, 500);
         }
     }
+
+    EditorJSLoader.ready(addEditorEnvIndicator);
 })();

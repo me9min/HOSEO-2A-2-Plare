@@ -75,9 +75,8 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 						</li>
 						<!-- 이미지 첨부 버튼 끝 -->
 						<li class="tx-list">
-							<div>
-<!-- 								<a href="javascript:;" title="파일" class="tx-text">파일</a> -->
-								<input type="file" name="fileName1">
+							<div unselectable="on" id="tx_file" class="tx-file tx-btn-trans">
+								<a href="javascript:;" title="파일" class="tx-text">파일</a>
 							</div>
 						</li>
 						<li class="tx-list">

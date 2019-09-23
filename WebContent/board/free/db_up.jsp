@@ -7,7 +7,7 @@
 	
 	int num = Integer.parseInt(request.getParameter("num"));
 	
-	board.up(num);
+	board.up("free", num);
 %>
 <script>
 	alert("게시글을 추천했습니다.");

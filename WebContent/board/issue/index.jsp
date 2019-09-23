@@ -13,6 +13,7 @@
 
 <%
 	String category = "issue";
+	String blank = "&nbsp;&nbsp;&nbsp;&nbsp;";
     String pageNum = request.getParameter("pageNum");
 
     if (pageNum == null) {
@@ -24,16 +25,14 @@
     int endRow = currentPage * pageSize;
     int count = 0;
     List<BoardBean> articleList = null; 
+    List<BoardBean> bestList = null;
+    BoardBean reply = null;
     
     Board board = Board.getInstance();
     count = board.getArticleCount(category);
-    BoardBean motd = board.getLatestMotd();
-    BoardBean best = board.getBestArticle();
-    String nickname_motd = board.getNickname(motd.getWriter());
-    String nickname_best = board.getNickname(best.getWriter());
-    
     
     if (count > 0) {
+    	bestList = board.getBestIssues();
         articleList = board.getArticles(category, startRow, pageSize);
     }
 %>
@@ -45,8 +44,8 @@
 		<style>
 			td {color: black; background-color: #ffffff;}
 			#thead {text-align: center; background-color: black; color: white;}
-			#motd {font-weight: bold;}
 			#best {font-weight: bold;}
+			#blank {text-align: right; width: 5%;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: red; text-decoration: none;}
@@ -90,40 +89,36 @@
 					<td id="thead">작성자</td>
 					<td id="thead">작성일자</td>
 					<td id="thead">조회수</td>
-					<td id="thead">추천수</td>
+					<td id="thead">공감수</td>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td width="10%" id="motd" align="center">공지</td>
-					<td width="50%" id="motd">
-						<a href="../motd/content.jsp?num=<%=motd.getNum()%>" id="link">
-							<%=motd.getTitle() %>
-						</a>
-					</td>
-					<td id="motd" align="center"><%=nickname_motd %></td>						
-					<td id="motd" align="center"><%=sdf.format(motd.getReg_date()) %></td>
-					<td id="motd" align="center"><%=motd.getRead_count() %>	
-					</td>
-					<td id="motd" align="center">&nbsp;</td>
-				</tr>
+			<tbody>		
+<%   
+	    for (int i = 0 ; i < bestList.size() ; i++) {
+	        BoardBean best = bestList.get(i);
+			String nickname_best = board.getNickname(best.getWriter());
+%>		
 				<tr>
 					<td width="10%" id="best" align="center">인기</td>
 					<td width="50%" id="best">
-						<a href="../free/content.jsp?num=<%=best.getNum()%>" id="link">
+						<a href="content.jsp?num=<%=best.getNum()%>" id="link">
 							<%=best.getTitle() %>
 						</a>
-						<p style="color:#bfbfbf; display:inline;">[<%=board.getCommentCount(best.getNum()) %>]</p>
 					</td>
 					<td id="best" align="center"><%=nickname_best %></td>						
 					<td id="best" align="center"><%=sdf.format(best.getReg_date()) %></td>
-					<td id="best" align="center"><%=best.getRead_count() %></td>
+					<td id="best" align="center"><%=best.getRead_count() %>	
+					</td>
 					<td id="best" align="center"><%=best.getUp_count() %></td>
 				</tr>
-<%  
+<%
+	    }
+
 		for (int i = 0 ; i < articleList.size() ; i++) {
 		  BoardBean article = articleList.get(i);
 		  String nickname = board.getNickname(article.getWriter());
+		  
+		  reply = board.getIssueReply(article.getNum());
 %>
 				<tr id="tbody">
 					<td width="10%" align="center"><%=article.getNum() %></td>
@@ -138,10 +133,29 @@
 					<td align="center"><%=article.getRead_count() %></td>
 					<td align="center"><%=article.getUp_count() %></td>
 				</tr>
-			</tbody>
-<% 		}
+<%
+			if(reply != null) {
+			  String nickname_reply = board.getNickname(reply.getWriter());
+%>
+				<tr id="tbody">
+					<td width="10%" align="center">&nbsp;</td>
+					<td width="50%">
+						<a href="content.jsp?num=<%=reply.getNum()%>" id="link">
+							<%=blank %><%=reply.getTitle() %>
+						</a>
+						<p style="color:#bfbfbf; display:inline;"></p>
+					</td>
+					<td align="center"><%=nickname_reply %></td>						
+					<td align="center"><%=sdf.format(reply.getReg_date()) %></td>
+					<td align="center"><%=reply.getRead_count() %></td>
+					<td align="center"><%=reply.getUp_count() %></td>
+				</tr>
+<% 			
+			}
+		}
 	}
 %>
+			</tbody>
 			<tfoot>
 				<tr>
 					<td colspan="6">

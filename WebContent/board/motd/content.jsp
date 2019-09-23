@@ -38,7 +38,7 @@
 	int num = Integer.parseInt(request.getParameter("num"));
 	
    	SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd");
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
    try{
       Board board = Board.getInstance(); 

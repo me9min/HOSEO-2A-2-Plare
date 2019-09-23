@@ -7,9 +7,9 @@
 	
 	int num = Integer.parseInt(request.getParameter("num"));
 	
-	board.up(num);
+	board.up("issue", num);
 %>
 <script>
-	alert("게시글을  공감했습니다.");
+	alert("게시글을 공감했습니다.");
 	window.location = 'content.jsp?num=<%=num%>';
 </script>

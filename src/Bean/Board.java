@@ -210,7 +210,7 @@ public class Board {
   				}
            } else if(category.equals("issue")) {
         	   pstmt = conn.prepareStatement(
-         	           	"select * from board_issue order by num desc limit ?, ?");
+         	           	"select * from board_issue where num_rep = 0 order by num desc limit ?, ?");
         	   pstmt.setInt(1, start-1);
         	   pstmt.setInt(2, end);
      	       rs = pstmt.executeQuery();
@@ -310,6 +310,50 @@ public class Board {
         }
 		return article;
     }
+	
+	public List<BoardBean> getBestIssues() throws Exception {
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+	       List<BoardBean> articleList=null;
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+        	   pstmt = conn.prepareStatement(
+         	           	"select * from board_issue order by up_count desc limit 2");
+     	       rs = pstmt.executeQuery();
+     	
+ 	           if (rs.next()) {
+ 	               articleList = new ArrayList<BoardBean>(2);
+ 	               do{
+ 	                 BoardBean article= new BoardBean();
+ 					  article.setNum(rs.getInt("num"));
+   					  article.setNum_rep(rs.getInt("num_rep"));
+   					  article.setWriter(rs.getString("writer"));
+ 					  article.setRead_count(rs.getInt("read_count"));
+ 					  article.setUp_count(rs.getInt("up_count"));
+ 					  article.setIp(rs.getString("ip"));
+ 					  article.setReg_date(rs.getTimestamp("reg_date"));
+ 					  article.setEdit_date(rs.getTimestamp("edit_date"));
+ 					  article.setTitle(rs.getString("title"));
+ 					  article.setContent(rs.getString("content"));
+ 					  article.setAttach_image(rs.getString("attach_image"));
+ 					  article.setAttach_image_name(rs.getString("attach_image_name"));
+ 					  article.setAttach_file(rs.getString("attach_file"));
+ 					  article.setAttach_file_name(rs.getString("attach_file_name"));
+ 					  
+ 					  articleList.add(article);
+ 				    }while(rs.next());
+ 				}
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return articleList;
+	   }
 	
 	public BoardBean getArticle(String category, int num) {
         Connection conn = null;
@@ -475,7 +519,45 @@ public class Board {
         }
     }
 	
-	public void up(int num) {
+	public BoardBean getIssueReply(int num) throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        BoardBean article = null;
+        try {
+        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+
+            pstmt = conn.prepareStatement("select * from board_issue where num_rep = ?");
+            pstmt.setInt(1, num);
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                article = new BoardBean();
+            	article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setRead_count(rs.getInt("read_count"));
+				article.setUp_count(rs.getInt("up_count"));
+				article.setIp(rs.getString("ip"));
+				article.setReg_date(rs.getTimestamp("reg_date"));
+				article.setEdit_date(rs.getTimestamp("edit_date"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+				article.setAttach_image(rs.getString("attach_image"));
+				article.setAttach_image_name(rs.getString("attach_image_name"));
+				article.setAttach_file(rs.getString("attach_file"));
+				article.setAttach_file_name(rs.getString("attach_file_name"));
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+		return article;
+    }
+	
+	public void up(String category, int num) {
 		Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -483,10 +565,17 @@ public class Board {
         try {
         	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
             
-        	sql = "update board_free set up_count = up_count + 1 where num = ?";
-        	pstmt = conn.prepareStatement(sql);
-        	pstmt.setInt(1, num);
-        	pstmt.executeUpdate();
+        	if(category.equals("free")) {
+	        	sql = "update board_free set up_count = up_count + 1 where num = ?";
+	        	pstmt = conn.prepareStatement(sql);
+	        	pstmt.setInt(1, num);
+	        	pstmt.executeUpdate();
+        	} else if(category.equals("issue")) {
+        		sql = "update board_issue set up_count = up_count + 1 where num = ?";
+	        	pstmt = conn.prepareStatement(sql);
+	        	pstmt.setInt(1, num);
+	        	pstmt.executeUpdate();
+        	}
         } catch(Exception ex) {
             ex.printStackTrace();
         } finally {

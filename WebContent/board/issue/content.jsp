@@ -33,11 +33,12 @@
 	}
 	Board board = Board.getInstance(); 
 	String nickname = board.getNickname(email);
+	String admin = "admin@plare.cf";
 
 	int num = Integer.parseInt(request.getParameter("num"));
 	
    	SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");
    	
 
    try{
@@ -101,18 +102,22 @@
 				<td align="center" style="vertical-align: middle">파일다운로드</td>
 				<td><a id="downA" href="#"><%=article.getAttach_file_name() %></a></td>
 			</tr>
+			<tr style="background-color:#ffffff; border:hidden;">
+				<td colspan="2" align="right">
 <%
 	if(email.equals(article.getWriter())) {
 %>
-			<tr style="background-color:#ffffff; border:hidden;">
-				<td colspan="2" align="right">
-					<a href="edit.jsp?num=<%=article.getNum() %>" class="button special">수정</a>
+					<a href="edit.jsp?num=<%=article.getNum() %>" class="button alt">수정</a>
 					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
-				</td>
-			</tr>
 <%
+	} else if(email.equals(admin)) {
+%>
+				<a href="write_reply.jsp" class="button special">답글</a>
+<% 
 	}
 %>
+				</td>
+			</tr>
 			<tr id="border" style="background-color:#ffffff;">
 				<td colspan="2" align="center">
 					<a href="db_up.jsp?num=<%=num %>" class="button alt" >공감</a>

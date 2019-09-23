@@ -47,7 +47,7 @@
     }
 	
    	SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");
    	
 
    try{

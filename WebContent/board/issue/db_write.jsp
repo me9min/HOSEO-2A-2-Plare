@@ -10,11 +10,17 @@
 <% 
 	request.setCharacterEncoding("utf-8");
 	String email = (String)session.getAttribute("email");
+	String num = request.getParameter("num");
+	String attach_image = request.getParameter("attach_image");
+	String attach_file = request.getParameter("attach_file");
 %>
 
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
 	<jsp:setProperty name="article" property="*"/>
 	<jsp:setProperty name="article" property="writer" value="<%=email %>"/>
+	<jsp:setProperty name="article" property="num_rep" value="<%=num %>"/>
+	<jsp:setProperty name="article" property="num_rep" value="<%=num %>"/>
+	<jsp:setProperty name="article" property="num_rep" value="<%=num %>"/>
 </jsp:useBean>
 
 <%

@@ -10,6 +10,6 @@
 	board.up(num);
 %>
 <script>
-	alert("게시글을 추천했습니다.");
+	alert("게시글을  공감했습니다.");
 	window.location = 'content.jsp?num=<%=num%>';
 </script>

@@ -57,9 +57,9 @@
 		event.preventDefault();// a 태그의 기본 동작을 막음
 		event.stopPropagation();// 이벤트의 전파를 막음
 		// fileName1을 utf-8로 인코딩한다.
-		var fName = encodeURIComponent("<%=article.getFile_url() %>");
+		var attach_file = encodeURIComponent("<%=article.getAttach_file() %>");
 		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
-		window.location ="fileDown.jsp?file_name="+fName;
+		window.location ="fileDown.jsp?attach_file="+attach_file;
 	});
 </script>
 </head>
@@ -99,7 +99,7 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">파일다운로드</td>
-				<td><a id="downA" href="#"><%=article.getFile_name() %></a></td>
+				<td><a id="downA" href="#"><%=article.getAttach_file_name() %></a></td>
 			</tr>
 <%
 	if(email.equals(article.getWriter())) {
@@ -115,12 +115,12 @@
 %>
 			<tr id="border" style="background-color:#ffffff;">
 				<td colspan="2" align="center">
-					<a href="db_up.jsp?num=<%=num %>" class="button alt" >추천하기</a>
+					<a href="db_up.jsp?num=<%=num %>" class="button alt" >공감</a>
 				</td>
 			</tr>
 			<tr style="border-bottom:hidden;">
 				<td colspan="2" align="right" style="background-color:#ffffff;">
-					조회수 <%=article.getRead_count() %> 추천수 <%=article.getUp_count() %>
+					조회수 <%=article.getRead_count() %> 공감수 <%=article.getUp_count() %>
 				</td>
 			</tr>
 		</table>

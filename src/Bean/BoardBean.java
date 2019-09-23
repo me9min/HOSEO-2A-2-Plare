@@ -14,8 +14,10 @@ public class BoardBean {
 	private String title;
 	private String content;
 	private int num_board;
-	private String file_url;
-	private String file_name;
+	private String attach_image;
+	private String attach_image_name;
+	private String attach_file;
+	private String attach_file_name;
 	
 	public int getNum() {
 		return num;
@@ -83,16 +85,28 @@ public class BoardBean {
 	public void setNum_board(int num_board) {
 		this.num_board = num_board;
 	}
-	public String getFile_url() {
-		return file_url;
+	public String getAttach_image() {
+		return attach_image;
 	}
-	public void setFile_url(String file_url) {
-		this.file_url = file_url;
+	public void setAttach_image(String attach_image) {
+		this.attach_image = attach_image;
 	}
-	public String getFile_name() {
-		return file_name;
+	public String getAttach_image_name() {
+		return attach_image_name;
 	}
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
+	public void setAttach_image_name(String attach_image_name) {
+		this.attach_image_name = attach_image_name;
+	}
+	public String getAttach_file() {
+		return attach_file;
+	}
+	public void setAttach_file(String attach_file) {
+		this.attach_file = attach_file;
+	}
+	public String getAttach_file_name() {
+		return attach_file_name;
+	}
+	public void setAttach_file_name(String attach_file_name) {
+		this.attach_file_name = attach_file_name;
 	}
 }

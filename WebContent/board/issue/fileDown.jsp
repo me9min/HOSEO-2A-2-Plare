@@ -10,21 +10,21 @@
 </head>
  
 <%
-    // a태그의 href로 fileDown1.jsp?file_name="<%=fileName1 을 통해 전달한
+    // a태그의 href로 fileDown.jsp?file_name="<%=attach_file 을 통해 전달한
     // 중복 방지 처리한 파일명 값을 가져온다.
-    String fileName = request.getParameter("file_url");
+    String attach_file = request.getParameter("attach_file");
      
     // 업로드한 폴더의 위치와 업로드 폴더의 이름을 알아야 한다.
-    String savePath ="upload";// WebContent/uploadFile
+    String savePath ="/upload";// WebContent/uploadFile
     // 위의 폴더는 상대경로이고 절대경로 기준의 진짜 경로를 구해와야한다.
     String sDownPath = request.getRealPath(savePath);
      
     System.out.println("다운로드 폴더 절대 경로 위치 : " + sDownPath);
-    System.out.println("fileName1 : " + fileName);
+    System.out.println("attach_file : " + attach_file);
      
     // 저장되어 있는 폴더경로/저장된 파일명 으로 풀 path를 만들어준다.
         // 자바에서는 \를 표시하기 위해서는 \를 한번 더 붙여주기 때문에 \\로 해준다.
-    String sFilePath = sDownPath +"\\" + fileName;// ex)c:\\uploadPath\\image.jpg
+    String sFilePath = sDownPath +"\\" + attach_file;// ex)c:\\uploadPath\\image.jpg
     System.out.println("sFilePath : " + sFilePath);
     // 풀 path에 대한걸 파일 객체로 인식시킨다.
     File outputFile =new File(sFilePath);
@@ -52,14 +52,14 @@
     // 파일 mime 타입으로 지정해 준다.
      
     // 업로드 파일의 제목이 깨질 수 있으므로 인코딩을 해준다.
-    String sEncoding =new String(fileName.getBytes("euc-kr"),"8859_1");
+    String sEncoding =new String(attach_file.getBytes("euc-kr"),"8859_1");
     //String B = "utf-8";
     //String sEncoding = URLEncoder.encode(A,B);
      
     // 기타 내용을 헤더에 올려야 한다.
     // 기타 내용을 보고 브라우저에서 다운로드 시 화면에 출력시켜 준다.
     String AA ="Content-Disposition";
-    String BB ="attachment;filename="+sEncoding;
+    String BB ="attachment;attach_file="+sEncoding;
     response.setHeader(AA,BB);
      
     // 브라우저에 쓰기

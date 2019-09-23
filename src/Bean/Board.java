@@ -90,16 +90,18 @@ public class Board {
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("issue")) {
-            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep,file_url,file_name) values(?,?,now(),?,?,?,?,?)";
+            	sql = "insert into board_issue (writer,ip,reg_date,title,content,num_rep,attach_image,attach_image_name,attach_file,attach_file_name) values(?,?,now(),?,?,?,?,?,?,?)";
             	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
 	            pstmt.setString(2, article.getIp());
 	            pstmt.setString(3, article.getTitle());
 				pstmt.setString(4, article.getContent());
-				pstmt.setInt(5, 0);
-				pstmt.setString(6, article.getFile_url());
-				pstmt.setString(7, article.getFile_name());
+				pstmt.setInt(5, article.getNum_rep());
+				pstmt.setString(6, article.getAttach_image());
+				pstmt.setString(7, article.getAttach_image_name());
+				pstmt.setString(8, article.getAttach_file());
+				pstmt.setString(9, article.getAttach_file_name());
 				
 	            pstmt.executeUpdate();
             }
@@ -227,8 +229,10 @@ public class Board {
  					  article.setEdit_date(rs.getTimestamp("edit_date"));
  					  article.setTitle(rs.getString("title"));
  					  article.setContent(rs.getString("content"));
- 					  article.setFile_url(rs.getString("file_url"));
- 					  article.setFile_name(rs.getString("file_name"));
+ 					  article.setAttach_image(rs.getString("attach_image"));
+ 					  article.setAttach_image_name(rs.getString("attach_image_name"));
+ 					  article.setAttach_file(rs.getString("attach_file"));
+ 					  article.setAttach_file_name(rs.getString("attach_file_name"));
  					  
  					  articleList.add(article);
  				    }while(rs.next());
@@ -375,8 +379,10 @@ public class Board {
 					article.setEdit_date(rs.getTimestamp("edit_date"));
 					article.setTitle(rs.getString("title"));
 					article.setContent(rs.getString("content"));
-					article.setFile_url(rs.getString("file_url"));
-					article.setFile_name(rs.getString("file_name"));
+					article.setAttach_image(rs.getString("attach_image"));
+					article.setAttach_image_name(rs.getString("attach_image_name"));
+					article.setAttach_file(rs.getString("attach_file"));
+					article.setAttach_file_name(rs.getString("attach_file_name"));
                 }
             }
         } catch(Exception ex) {

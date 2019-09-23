@@ -4,7 +4,6 @@
 <!-- Nav -->
 <nav id="menu">
 	<ul class="links">
-		<li><a href="/">홈</a></li>
 		<li><a href="/guide">게임소개/가이드</a></li>
 		<li><a href="/rank">랭크</a></li>
 		<li><a href="/shop">상점</a></li>
@@ -26,6 +25,5 @@
 <%
 	}
 %>
-		<li><a href="http://bigstar131.myds.me/sb">소스밴 <span class="glyphicon glyphicon-new-window"></span></a></li>
 	</ul>
 </nav>

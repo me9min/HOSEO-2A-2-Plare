@@ -21,17 +21,30 @@
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;
     int count = 0;
-    List<BoardBean> articleList = null; 
-    
+	List<BoardBean> articleList = null;	    
     Board board = Board.getInstance();
-    count = board.getArticleCount(category);
+    
     BoardBean motd = board.getLatestMotd();
     BoardBean best = board.getBestArticle();
     String nickname_motd = board.getNickname(motd.getWriter());
     String nickname_best = board.getNickname(best.getWriter());
     
-    if (count > 0) {
-        articleList = board.getArticles(category, startRow, pageSize);
+    String condition = request.getParameter("condition");
+	String q = request.getParameter("q");
+    if (condition != null) {
+	    count = board.getSearchCount(category, condition, q);
+    	System.out.println(category + condition + q);
+	    
+	    if (count > 0) {
+	    	System.out.println(startRow);
+	        articleList = board.getSearchResults(category, startRow, pageSize, condition, q);
+	    }
+    } else {
+	    count = board.getArticleCount(category);
+	    
+	    if (count > 0) {
+	        articleList = board.getArticles(category, startRow, pageSize);
+	    }
     }
 %>
 
@@ -42,6 +55,8 @@
 		<style>
 			td {color: black; background-color: #ffffff;}
 			#thead {text-align: center; background-color: black; color: white;}
+			#condition {display: inline; width: 100px;}
+			#q {display: inline; width: 300px;}
 			#motd {font-weight: bold;}
 			#best {font-weight: bold;}
 			#link {color: black; text-decoration: none;}
@@ -69,9 +84,8 @@
 							<header class="align-center">
 								<h2>자유 게시판</h2>
 							</header>
-
 	<div class="table-wrapper">
-		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br><br>
+		<a href="write.jsp" class="button special pull-right" style="display:inline;">글쓰기</a><br><br>
 <% if(count == 0) { %>
 		<table>
 			<tr>
@@ -156,21 +170,41 @@
         int endPage = startPage + pageBlock - 1;
         if (endPage > pageCount) endPage = pageCount;
         
-        if (startPage > 5) { %>
-        	<a href="index.jsp?pageNum=<%= startPage - 5 %>" id="link">&lt;</a>
+        String href = "index.jsp?pageNum=";
+        
+    	if(condition != null) {
+    		href = "index.jsp?condition=" + condition + "&q=" + q + "&pageNum=";
+    	}
+        if (startPage > 5) { 
+%>
+        	<a href="<%=href %><%= startPage - 5 %>" id="link">&lt;</a>
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="index.jsp?pageNum=<%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
+        	<a href="<%=href %><%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>
-   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>" id="link">&gt;</a>
+   	     	<a href="<%=href %><%= startPage + 5 %>" id="link">&gt;</a>
 <%
         }
     }
 %>
 					</center>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align:center; border:none;">
+					<form method="get" name="search" action="index.jsp">
+						<select name="condition" id="condition">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="writer">작성자</option>
+							<option value="all">제목+내용</option>
+						</select>
+						<input type="text" name="q" id="q"> 
+						<input type="submit" value="검색" class="button alt">
+					</form>
 					</td>
 				</tr>
 			</tfoot>

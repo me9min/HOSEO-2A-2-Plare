@@ -2,11 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "java.sql.Date" %>
-<%@ page import = "java.io.File"%>
-<%@ page import = "java.util.*"%>
-<%@ page import = "java.text.SimpleDateFormat" %>
-<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@ page import = "com.oreilly.servlet.MultipartRequest"%>
 
 <% 
 	request.setCharacterEncoding("utf-8");
@@ -15,16 +10,23 @@
 		email = "";
 	}
 	String admin = "admin@plare.cf";
-	int num = 0;
+	int reply_num = 0;
+	String title = request.getParameter("title");
 	
 	if(email.equals(admin)) {
-		num = Integer.parseInt(request.getParameter("reply_num"));
+		try {
+			reply_num = Integer.parseInt(request.getParameter("reply_num"));
+			title = "[답변] "+title;
+		} catch(Exception e) {
+			reply_num = 0;
+		}
 	}
 %>
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
-   <jsp:setProperty name="article" property="*"/>
-   <jsp:setProperty name="article" property="writer" value="<%=email %>"/>
-   <jsp:setProperty name="article" property="num_rep" value="<%=num %>"/>
+	<jsp:setProperty name="article" property="*"/>
+	<jsp:setProperty name="article" property="writer" value="<%=email %>"/>
+	<jsp:setProperty name="article" property="title" value="<%=title %>"/>
+	<jsp:setProperty name="article" property="num_rep" value="<%=reply_num %>"/>
 </jsp:useBean>
 <%
 		String ip = null;

@@ -23,6 +23,18 @@
 		#link:visited {color: black; text-decoration: none;}
 		#link:hover {color: red; text-decoration: none;}
 		#blank {text-align: right; width: 5%;}
+		#scrollBlind {
+			width:230px;
+			height:100%;
+			overflow-y:scroll;
+		}
+		#scrollBlindView {
+			width:200px;
+			height:260px;
+			position: absolute;
+			border:0;
+			overflow: hidden;
+		}
 	</style>
 	<script language="JavaScript" src="write.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -57,7 +69,7 @@
 	document.getElementById("downA").addEventListener("click", function(event) {
 		event.preventDefault();// a 태그의 기본 동작을 막음
 		event.stopPropagation();// 이벤트의 전파를 막음
-		// fileName1을 utf-8로 인코딩한다.
+		// 파일명을 utf-8로 인코딩한다.
 		var attach_file = encodeURIComponent("<%=article.getAttach_file() %>");
 		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
 		window.location ="fileDown.jsp?attach_file="+attach_file;
@@ -95,13 +107,19 @@
 				<td><%=edit_date %></td>
 			</tr>
 			<tr>
-				<td height="300px" align="center" style="vertical-align: middle">내용</td>
-				<td height="300px"><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
+				<td align="center" style="vertical-align: middle">내용</td>
+				<td><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
 			</tr>
+<%
+	if(article.getAttach_file_name() != null) {
+%>
 			<tr>
 				<td align="center" style="vertical-align: middle">파일다운로드</td>
 				<td><a id="downA" href="#"><%=article.getAttach_file_name() %></a></td>
 			</tr>
+<%
+	}
+%>
 			<tr style="background-color:#ffffff; border:hidden;">
 				<td colspan="2" align="right">
 <%
@@ -110,9 +128,10 @@
 					<a href="edit.jsp?num=<%=article.getNum() %>" class="button alt">수정</a>
 					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
 <%
-	} else if(email.equals(admin)) {
+	}
+	if(email.equals(admin)) {
 %>
-					<a href="write.jsp?num=<%=request.getParameter("num") %>" class="button special">답글쓰기</a>
+					<a href="write.jsp?num=<%=request.getParameter("num") %>" class="button special">답변쓰기</a>
 <% 
 	}
 %>

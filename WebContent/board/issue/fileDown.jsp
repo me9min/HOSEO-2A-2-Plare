@@ -1,30 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="java.io.FileInputStream"%>
-<%@page import="java.io.File"%>
+<%@page import="java.io.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>파일 다운로드</title>
+<title>파일 다운로드 페이지</title>
 </head>
  
 <%
-    // a태그의 href로 fileDown.jsp?file_name="<%=attach_file 을 통해 전달한
-    // 중복 방지 처리한 파일명 값을 가져온다.
-    String attach_file = request.getParameter("attach_file");
+    // a태그의 href로 fileDown.jsp?file_name="<%=file 을통해 전달한 중복 방지 처리한 파일명 값을 가져온다.
+    String fileName = request.getParameter("attach_file");
      
-    // 업로드한 폴더의 위치와 업로드 폴더의 이름을 알아야 한다.
-    String savePath ="/upload";// WebContent/uploadFile
     // 위의 폴더는 상대경로이고 절대경로 기준의 진짜 경로를 구해와야한다.
-    String sDownPath = request.getRealPath(savePath);
+    String sDownPath = request.getRealPath("upload");
      
+    // 디버그용 출력
     System.out.println("다운로드 폴더 절대 경로 위치 : " + sDownPath);
-    System.out.println("attach_file : " + attach_file);
+    System.out.println("fileName : " + fileName);
      
     // 저장되어 있는 폴더경로/저장된 파일명 으로 풀 path를 만들어준다.
         // 자바에서는 \를 표시하기 위해서는 \를 한번 더 붙여주기 때문에 \\로 해준다.
-    String sFilePath = sDownPath +"\\" + attach_file;// ex)c:\\uploadPath\\image.jpg
+    String sFilePath = sDownPath +"\\" + fileName;// ex)c:\\uploadPath\\image.jpg
     System.out.println("sFilePath : " + sFilePath);
     // 풀 path에 대한걸 파일 객체로 인식시킨다.
     File outputFile =new File(sFilePath);
@@ -52,14 +50,14 @@
     // 파일 mime 타입으로 지정해 준다.
      
     // 업로드 파일의 제목이 깨질 수 있으므로 인코딩을 해준다.
-    String sEncoding =new String(attach_file.getBytes("euc-kr"),"8859_1");
+    String sEncoding =new String(fileName.getBytes("euc-kr"),"8859_1");
     //String B = "utf-8";
     //String sEncoding = URLEncoder.encode(A,B);
      
     // 기타 내용을 헤더에 올려야 한다.
-    // 기타 내용을 보고 브라우저에서 다운로드 시 화면에 출력시켜 준다.
+    // 기타 내용을 보고 브라우저에서 다운로드 시 화면에 출력시켜 준다 디버그용
     String AA ="Content-Disposition";
-    String BB ="attachment;attach_file="+sEncoding;
+    String BB ="attachment;filename="+sEncoding;
     response.setHeader(AA,BB);
      
     // 브라우저에 쓰기

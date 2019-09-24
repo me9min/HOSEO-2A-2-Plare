@@ -50,8 +50,8 @@
 %>
 debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Timestamp(System.currentTimeMillis())) %>
 								<div class="12u 12u$(xsmall)">
-									<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-									<input type="text" name="reply_num" value="<%=request.getParameter("num") %>">
+									<form name="tx_editor_form" id="tx_editor_form" action="db_write.jsp" method="post" accept-charset="utf-8">
+									<input type="hidden" name="reply_num" value="<%=request.getParameter("num") %>">
 									<input type="text" name="title" id="title" value="" placeholder="제목" />
 								</div>
 							</header>
@@ -71,13 +71,13 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 						-->
 						<li class="tx-list">
 							<div unselectable="on" id="tx_image" class="tx-image tx-btn-trans">
-								<a href="javascript:;" title="사진" class="tx-text">사진</a>
+								<a href="image_upload.jsp" title="사진" class="tx-text" target="_blank">사진</a>
 							</div>
 						</li>
 						<!-- 이미지 첨부 버튼 끝 -->
 						<li class="tx-list">
 							<div unselectable="on" id="tx_file" class="tx-file tx-btn-trans">
-								<a href="javascript:;" title="파일" class="tx-text">파일</a>
+								<a href="file_upload.jsp" title="파일" class="tx-text" target="_blank">파일</a>
 							</div>
 						</li>
 						<li class="tx-list">

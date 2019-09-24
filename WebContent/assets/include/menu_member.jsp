@@ -24,7 +24,7 @@
 	<ul id="dropmenu">
 <%
 request.setCharacterEncoding("utf-8");
-String email = (String)session.getAttribute("email");
+email = (String)session.getAttribute("email");
 if(email == null) {
 %>
 	<li><a href="/member/find">아이디/비밀번호찾기</a></li>
@@ -40,8 +40,8 @@ if(email == null) {
 	</ul></li>
 		<li><a href="#">게시판</a>
 		<ul id="dropmenu">
-			<li><a href="board/free">공지사항</a></li>
-			<li><a href="/board/motd">자유게시판</a></li>
+			<li><a href="/board/motd">공지사항</a></li>
+			<li><a href="/board/free">자유게시판</a></li>
 			<li><a href="/board/issue">문의/신고게시판</a></li>
 		</ul></li>
 			<li><a href="/shop">상점</a></li>

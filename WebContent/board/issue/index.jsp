@@ -73,7 +73,7 @@
 							</header>
 
 	<div class="table-wrapper">
-		<a href="write.jsp" class="button alt pull-right">글쓰기</a><br><br>
+		<a href="write.jsp" class="button special pull-right">글쓰기</a><br><br>
 <% if(count == 0) { %>
 		<table>
 			<tr>

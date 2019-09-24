@@ -115,52 +115,154 @@ public class Board {
     }
 	
 	public int getArticleCount(String category) throws Exception {
-       Connection conn = null;
-       PreparedStatement pstmt = null;
-       ResultSet rs = null;
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
 
-       int x = 0;
+	       int x = 0;
 
-       try {
-    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-           
-    	   if(category.equals("free")) {
-	           pstmt = conn.prepareStatement("select count(*) from board_free");
-	           rs = pstmt.executeQuery();
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+	    	   if(category.equals("free")) {
+		           pstmt = conn.prepareStatement("select count(*) from board_free");
+		           rs = pstmt.executeQuery();
+		
+		           if (rs.next()) {
+		              x = rs.getInt(1);
+					}
+	    	   } else if(category.equals("motd")) {
+	    		   pstmt = conn.prepareStatement("select count(*) from board_motd");
+		           rs = pstmt.executeQuery();
+		
+		           if (rs.next()) {
+		              x = rs.getInt(1);
+					}
+	    	   } else if(category.equals("issue")) {
+	    		   pstmt = conn.prepareStatement("select count(*) from board_issue");
+		           rs = pstmt.executeQuery();
+		
+		           if (rs.next()) {
+		              x = rs.getInt(1);
+					}
+	    	   }
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return x;
+	   }
 	
+	public int getSearchCount(String category, String condition, String content) throws Exception {
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+
+	       int x = 0;
+	       
+	       String writer_email = null;
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	    	   
+	    	   if(category.equals("free")) {
+	    		   if(condition.equals("all")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_free where title like ? or content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		    		   pstmt.setString(2, "%" + content + "%");
+		    		   rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("title")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_free where title like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("content")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_free where content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		    		   
+		    		   pstmt = conn.prepareStatement("select count(*) from board_free where writer like ?");
+		    		   pstmt.setString(1, "%" + writer_email + "%");
+		               rs = pstmt.executeQuery();
+		    	   }
+	    	   } else if(category.equals("motd")) {
+	    		   if(condition.equals("all")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_motd where title like ? or content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		    		   pstmt.setString(2, "%" + content + "%");
+		    		   rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("title")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_motd where title like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("content")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_motd where content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		    		   
+		    		   pstmt = conn.prepareStatement("select count(*) from board_motd where writer like ?");
+		    		   pstmt.setString(1, "%" + writer_email + "%");
+		               rs = pstmt.executeQuery();
+		    	   }
+	    	   } else if(category.equals("issue")) {
+	    		   if(condition.equals("all")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_issue where title like ? or content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		    		   pstmt.setString(2, "%" + content + "%");
+		    		   rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("title")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_issue where title like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("content")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_issue where content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		    		   
+		    		   pstmt = conn.prepareStatement("select count(*) from board_issue where writer like ?");
+		    		   pstmt.setString(1, "%" + writer_email + "%");
+		               rs = pstmt.executeQuery();
+		    	   }
+	    	   }
+	    	   
 	           if (rs.next()) {
 	              x = rs.getInt(1);
 				}
-    	   } else if(category.equals("motd")) {
-    		   pstmt = conn.prepareStatement("select count(*) from board_motd");
-	           rs = pstmt.executeQuery();
-	
-	           if (rs.next()) {
-	              x = rs.getInt(1);
-				}
-    	   } else if(category.equals("issue")) {
-    		   pstmt = conn.prepareStatement("select count(*) from board_issue");
-	           rs = pstmt.executeQuery();
-	
-	           if (rs.next()) {
-	              x = rs.getInt(1);
-				}
-    	   }
-       } catch(Exception ex) {
-           ex.printStackTrace();
-       } finally {
-           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-       }
-		return x;
-   }
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return x;
+		}
 	
 	public List<BoardBean> getArticles(String category, int start, int end) throws Exception {
        Connection conn = null;
        PreparedStatement pstmt = null;
        ResultSet rs = null;
        List<BoardBean> articleList=null;
+       
        try {
     	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
            
@@ -248,6 +350,194 @@ public class Board {
        }
 		return articleList;
    }
+	
+	public List<BoardBean> getSearchResults(String category, int start, int end, String condition, String content) throws Exception {
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+	       List<BoardBean> articleList=null;
+	       
+	       String writer_email = null;
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	    	   
+	           if(category.equals("free")) {
+	        	   if(condition.equals("all")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_free where title like ? or content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setString(2, "%" + content + "%");
+		        	   pstmt.setInt(3, start-1);
+		        	   pstmt.setInt(4, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("title")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_free where title like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("content")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_free where content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		           
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_free where writer like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + writer_email + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   }
+	   	
+	   	           if (rs.next()) {
+	   	               articleList = new ArrayList<BoardBean>(end);
+	   	               do{
+	   	                 BoardBean article= new BoardBean();
+	   					  article.setNum(rs.getInt("num"));
+	   					  article.setWriter(rs.getString("writer"));
+	   					  article.setRead_count(rs.getInt("read_count"));
+	   					  article.setUp_count(rs.getInt("up_count"));
+	   					  article.setIp(rs.getString("ip"));
+	   					  article.setReg_date(rs.getTimestamp("reg_date"));
+	   					  article.setEdit_date(rs.getTimestamp("edit_date"));
+	   					  article.setTitle(rs.getString("title"));
+	   					  article.setContent(rs.getString("content"));
+	   					  
+	   	                 articleList.add(article);
+	   				    }while(rs.next());
+	   				}
+	           } else if(category.equals("motd")) {
+	        	   if(condition.equals("all")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_motd where title like ? or content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setString(2, "%" + content + "%");
+		        	   pstmt.setInt(3, start-1);
+		        	   pstmt.setInt(4, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("title")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_motd where title like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("content")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_motd where content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		           
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_motd where writer like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + writer_email + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   }
+	      	
+	  	           if (rs.next()) {
+	  	               articleList = new ArrayList<BoardBean>(end);
+	  	               do{
+	  	                 BoardBean article= new BoardBean();
+	  					  article.setNum(rs.getInt("num"));
+	  					  article.setWriter(rs.getString("writer"));
+	  					  article.setRead_count(rs.getInt("read_count"));
+	  					  article.setReg_date(rs.getTimestamp("reg_date"));
+	  					  article.setTitle(rs.getString("title"));
+	  					  article.setContent(rs.getString("content"));
+	  					  
+	  	                 articleList.add(article);
+	  				    }while(rs.next());
+	  				}
+	           } else if(category.equals("issue")) {
+	        	   if(condition.equals("all")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_issue where title like ? or content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setString(2, "%" + content + "%");
+		        	   pstmt.setInt(3, start-1);
+		        	   pstmt.setInt(4, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("title")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_issue where title like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("content")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_issue where content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		           
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_issue where writer like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + writer_email + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   }
+	     	
+	 	           if (rs.next()) {
+	 	               articleList = new ArrayList<BoardBean>(end);
+	 	               do{
+	 	                 BoardBean article= new BoardBean();
+	 					  article.setNum(rs.getInt("num"));
+	   					  article.setNum_rep(rs.getInt("num_rep"));
+	   					  article.setWriter(rs.getString("writer"));
+	 					  article.setRead_count(rs.getInt("read_count"));
+	 					  article.setUp_count(rs.getInt("up_count"));
+	 					  article.setIp(rs.getString("ip"));
+	 					  article.setReg_date(rs.getTimestamp("reg_date"));
+	 					  article.setEdit_date(rs.getTimestamp("edit_date"));
+	 					  article.setTitle(rs.getString("title"));
+	 					  article.setContent(rs.getString("content"));
+	 					  article.setAttach_image(rs.getString("attach_image"));
+	 					  article.setAttach_image_name(rs.getString("attach_image_name"));
+	 					  article.setAttach_file(rs.getString("attach_file"));
+	 					  article.setAttach_file_name(rs.getString("attach_file_name"));
+	 					  
+	 					  articleList.add(article);
+	 				    }while(rs.next());
+	 				}
+	           }
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return articleList;
+	   }
 	
 	public BoardBean getLatestMotd() {
 		Connection conn = null;

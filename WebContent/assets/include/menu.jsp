@@ -39,8 +39,8 @@ if(email == null) {
 	</ul></li>
 		<li><a href="#">게시판</a>
 		<ul id="dropmenu">
-			<li><a href="board/free">공지사항</a></li>
-			<li><a href="/board/motd">자유게시판</a></li>
+			<li><a href="/board/motd">공지사항</a></li>
+			<li><a href="/board/free">자유게시판</a></li>
 			<li><a href="/board/issue">문의/신고게시판</a></li>
 		</ul></li>
 			<li><a href="/shop">상점</a></li>

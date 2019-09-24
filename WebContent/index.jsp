@@ -5,17 +5,7 @@
 	<head>
 		<title>plare.cf</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="./assets/css/main.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	</head>
-	<body>
-		<!-- Header -->
-		<header id="header" class="alt">
-			<div class="logo"><a href="/">plare</a></div>
-			<a href="#menu">메뉴</a>
-		</header>
-<%@ include file="/assets/include/menu_index.jsp" %>
+<%@ include file="/assets/include/menu.jsp" %>
 
 		<!-- Banner -->
 			<section class="banner full">

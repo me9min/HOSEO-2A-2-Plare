@@ -31,6 +31,7 @@ var settings = {
 		xlarge:	'(max-width: 1680px)',
 		large:	'(max-width: 1280px)',
 		medium:	'(max-width: 980px)',
+		smallm:	'(max-width: 840px)',
 		small:	'(max-width: 736px)',
 		xsmall:	'(max-width: 480px)'
 	});

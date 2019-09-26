@@ -7,7 +7,7 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 8;
+    int pageSize = 10;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 

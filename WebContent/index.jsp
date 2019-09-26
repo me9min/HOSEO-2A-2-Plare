@@ -38,37 +38,11 @@
 			<section id="one" class="wrapper style2">
 				<div class="inner">
 					<div class="grid-style">
-
-						<div>
-							<div class="box">
-								<div class="content">
-									<header class="align-center">
-										<p>글 작성자</p>
-										<h2>글 제목</h2>
-									</header>
-									<p>글 내용</p>
-									<footer class="align-center">
-										<a href="#" class="button alt">더 보기</a>
-									</footer>
-								</div>
-							</div>
-						</div>
-						
-						<div>
-							<div class="box">
-								<div class="content">
-									<header class="align-center">
-										<p>글 작성자</p>
-										<h2>글 제목</h2>
-									</header>
-									<p>글 내용</p>
-									<footer class="align-center">
-										<a href="#" class="button alt">더 보기</a>
-									</footer>
-								</div>
-							</div>
-						</div>
-
+<%
+	int i = 0;
+	while(i<10) {
+		i++;
+%>
 						<div>
 							<div class="box">
 								<div class="image fit">
@@ -79,14 +53,16 @@
 										<p>admin</p>
 										<h2>글 테스트</h2>
 									</header>
-									<p>테스트 ㄻㄴXZC)d)ㄱ롭*&(0(ㄱㅎㅈI%$#Tsㅇㅎgj3oqdo3oIVbㄷerwt#$!^&%&94of42Fㅁ37134ㄹㅇdsfoiitdsb)4</p>
+									<p>테스트인데요</p>
 									<footer class="align-center">
 										<a href="#" class="button alt">더 보기</a>
 									</footer>
 								</div>
 							</div>
 						</div>
-
+<%
+	}
+%>
 					</div>
 				</div>
 			</section>

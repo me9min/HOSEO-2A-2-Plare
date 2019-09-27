@@ -36,7 +36,6 @@
     	System.out.println(category + condition + q);
 	    
 	    if (count > 0) {
-	    	System.out.println(startRow);
 	        articleList = board.getSearchResults(category, startRow, pageSize, condition, q);
 	    }
     } else {

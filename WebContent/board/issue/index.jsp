@@ -31,9 +31,23 @@
     Board board = Board.getInstance();
     count = board.getArticleCount(category);
     
-    if (count > 0) {
-    	bestList = board.getBestIssues();
-        articleList = board.getArticles(category, startRow, pageSize);
+    String condition = request.getParameter("condition");
+	String q = request.getParameter("q");
+    if (condition != null) {
+	    count = board.getSearchCount(category, condition, q);
+    	System.out.println(category + condition + q);
+	    
+	    if (count > 0) {
+	    	bestList = board.getBestIssues();
+	        articleList = board.getSearchResults(category, startRow, pageSize, condition, q);
+	    }
+    } else {
+	    count = board.getArticleCount(category);
+	    
+	    if (count > 0) {
+	    	bestList = board.getBestIssues();
+	        articleList = board.getArticles(category, startRow, pageSize);
+	    }
     }
 %>
 
@@ -44,6 +58,8 @@
 		<style>
 			td {color: black; background-color: #ffffff;}
 			#thead {text-align: center; background-color: black; color: white;}
+			#condition {display: inline; width: 100px;}
+			#q {display: inline; width: 300px;}
 			#best {font-weight: bold;}
 			#blank {text-align: right; width: 5%;}
 			#link {color: black; text-decoration: none;}
@@ -189,6 +205,20 @@
     }
 %>
 					</center>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align:center; border:none;">
+					<form method="get" name="search" action="index.jsp">
+						<select name="condition" id="condition">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="writer">작성자</option>
+							<option value="all">제목+내용</option>
+						</select>
+						<input type="text" name="q" id="q"> 
+						<input type="submit" value="검색" class="button alt">
+					</form>
 					</td>
 				</tr>
 			</tfoot>

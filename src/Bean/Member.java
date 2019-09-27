@@ -238,7 +238,7 @@ public class Member {
 		}
 	}
 	
-	public String find_email(String phone) {
+	public String find_email(String nickname) {
 		// 이메일 찾기 메소드
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -248,10 +248,10 @@ public class Member {
 		try {
 			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
-			String sql = "select email from member where phone=?";
+			String sql = "select email from member where nickname=?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, phone);
+			pstmt.setString(1, nickname);
 			
 			rs = pstmt.executeQuery();
 			
@@ -272,7 +272,7 @@ public class Member {
 		return email;
 	}
 	
-	public String find_password(String email, String phone) {
+	public String find_password(String email, String code) {
 		// 비밀번호 찾기 메소드
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -282,11 +282,11 @@ public class Member {
 		try {
 			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
-			String sql = "select password from member where email=? and phone=?";
+			String sql = "select password from member where email=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
-			pstmt.setString(2, phone);
+			pstmt.setString(2, code);
 			
 			rs = pstmt.executeQuery();
 			

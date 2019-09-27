@@ -182,7 +182,6 @@
 				</form>
 				</td>
 			</tr>
-			</tr>
 <%
 			if(replyList != null) {
 				for (int j = 0; j < replyList.size(); j++) {
@@ -235,7 +234,7 @@
 		</table>
 <%
    	}
-	if(email != null) {
+	if(email != "") {
 %>
 		<form method="post" name="comment_board" action="db_write_comment.jsp">
 		<input type="hidden" name="num_board" value="<%=num %>">

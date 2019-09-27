@@ -5,9 +5,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String phone = request.getParameter("phone");
+	String nickname = request.getParameter("nickname");
 	
-	String email = member.find_email(phone);
+	String email = member.find_email(nickname);
 %>
 <!DOCTYPE HTML>
 <html>

@@ -26,8 +26,8 @@ request.setCharacterEncoding("utf-8");
 String email = (String)session.getAttribute("email");
 if(email == null) {
 %>
-	<li><a href="/member/find">아이디/비밀번호찾기</a></li>
 	<li><a href="/member/login">로그인/회원가입</a></li>
+	<li><a href="/member/find">아이디/비밀번호찾기</a></li>
 <%
 } else {
 %>

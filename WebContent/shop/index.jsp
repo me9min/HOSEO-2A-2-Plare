@@ -16,21 +16,80 @@
 				</div>
 			</section>
 
-		<!-- Two -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>부제</p>
-								<h2>제목</h2>
+								<h3>스킨</h3><br>
 							</header>
-							<p>내용</p>
+							<div class="row">
+							  <div class="col-md-4">
+							  <a href="#">
+							  <img src="/assets/images/test2.jpg" width="210px" height="210px">
+							  <p align="right">이름</p>
+							  <p align="right">가격</p>
+							  </a></div>
+							  <div class="col-md-4">
+								<a href="#">
+								<img src="/assets/images/test2.jpg" width="210px" height="210px">
+								<p align="right">이름</p>
+								<p align="right">가격</p>
+							  </a></div>
+							  <div class="col-md-4">
+								<a href="#">
+								<img src="/assets/images/test2.jpg" width="210px" height="210px">
+								<p align="right">이름</p>
+								<p align="right">가격</p>
+							  </a></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-4">
+							  <a href="#">
+							  <img src="/assets/images/test2.jpg" width="210px" height="210px">
+							  <p align="right">이름</p>
+							  <p align="right">가격</p>
+							  </a></div>
+							  <div class="col-md-4">
+								<a href="#">
+								<img src="/assets/images/test2.jpg" width="210px" height="210px">
+								<p align="right">이름</p>
+								<p align="right">가격</p>
+							  </a></div>
+							  <div class="col-md-4">
+								<a href="#">
+								<img src="/assets/images/test2.jpg" width="210px" height="210px">
+								<p align="right">이름</p>
+								<p align="right">가격</p>
+							  </a></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 
+
+		<!-- Two 
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<h3>스킨</h3>
+							</header>
+							<div class="row">
+							  <div class="col-md-4">
+							  <div>
+							  <img src="#" widht="300px" height="300px" >
+							  </div></div>
+							  <div class="col-md-4">.col-md-4</div>
+							  <div class="col-md-4">.col-md-4</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+-->
 <%@ include file="/assets/include/foot.jsp" %>
 
 </html>

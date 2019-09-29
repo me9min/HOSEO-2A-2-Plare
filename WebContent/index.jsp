@@ -9,6 +9,7 @@
 
 		<!-- Banner -->
 			<section class="banner full">
+			<!--  -->
 				<article>
 					<img src="assets/images/main.jpg" alt="" />
 					<div class="inner">
@@ -34,70 +35,49 @@
 				</article>
 			</section>
 
-		<!-- One -->
-			<section id="one" class="wrapper style2">
-				<div class="inner">
-					<div class="grid-style">
-<%
-	int i = 0;
-	while(i<10) {
-		i++;
-%>
-						<div>
-							<div class="box">
-								<div class="image fit">
-									<img src="assets/images/pic03.jpg" alt="" />
-								</div>
-								<div class="content">
-									<header class="align-center">
-										<p>admin</p>
-										<h2>글 테스트</h2>
-									</header>
-									<p>테스트인데요</p>
-									<footer class="align-center">
-										<a href="#" class="button alt">더 보기</a>
-									</footer>
-								</div>
-							</div>
-						</div>
-<%
-	}
-%>
-					</div>
-				</div>
-			</section>
+<section id="one" class="wrapper style2">
+	<div class="inner">
 
-		<!-- Three -->
-			<section id="three" class="wrapper style2">
-				<div class="inner">
-					<header class="align-center">
-						<p class="special">게임 스샷들</p>
-						<h2>사진관</h2>
-					</header>
-					<div class="gallery">
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="assets/images/pic01.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="assets/images/pic02.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="assets/images/pic03.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="assets/images/pic04.jpg" alt="" /></a>
-							</div>
-						</div>
-					</div>
+			<div class="row">
+			  <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				공지
 				</div>
-			</section>
+			  </div></div>
+			    <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				인기글
+				</div>
+			  </div></div>
+			    <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				이벤트
+				</div>
+			  </div></div>
+			</div>
+			<div class="row">
+			  <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				공지
+				</div>
+			  </div></div>
+			  <div class="col-md-8">
+			  <div style="background-color:#ffffff; width:510px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
+				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
+				<img src="/assets/images/test2.jpg" width="230px" height="230px">
+				</div>
+				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
+				인기글
+				</div>
+				</div></div>
+			  </div></div>
+
+		</div></section>
+		
 
 <%@ include file="/assets/include/foot.jsp" %>
 

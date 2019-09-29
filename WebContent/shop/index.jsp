@@ -26,41 +26,41 @@
 							<div class="row">
 							  <div class="col-md-4">
 							  <a href="#">
-							  <img src="/assets/images/test2.jpg" width="210px" height="210px">
-							  <p align="right">이름</p>
-							  <p align="right">가격</p>
+							  <img src="/assets/images/test2.jpg" width="220px" height="220px">
+							  <p align="center">이름</p>
+							  <p align="center">가격</p>
 							  </a></div>
 							  <div class="col-md-4">
 								<a href="#">
-								<img src="/assets/images/test2.jpg" width="210px" height="210px">
-								<p align="right">이름</p>
-								<p align="right">가격</p>
+								<img src="/assets/images/test2.jpg" width="220px" height="220px">
+								<p align="center">이름</p>
+								<p align="center">가격</p>
 							  </a></div>
 							  <div class="col-md-4">
 								<a href="#">
-								<img src="/assets/images/test2.jpg" width="210px" height="210px">
-								<p align="right">이름</p>
-								<p align="right">가격</p>
+								<img src="/assets/images/test2.jpg" width="220px" height="220px">
+								<p align="center">이름</p>
+								<p align="center">가격</p>
 							  </a></div>
 							</div>
 							<div class="row">
 							  <div class="col-md-4">
 							  <a href="#">
-							  <img src="/assets/images/test2.jpg" width="210px" height="210px">
-							  <p align="right">이름</p>
-							  <p align="right">가격</p>
+							  <img src="/assets/images/test2.jpg" width="220px" height="220px">
+							  <p align="center">이름</p>
+							  <p align="center">가격</p>
 							  </a></div>
 							  <div class="col-md-4">
 								<a href="#">
-								<img src="/assets/images/test2.jpg" width="210px" height="210px">
-								<p align="right">이름</p>
-								<p align="right">가격</p>
+								<img src="/assets/images/test2.jpg" width="220px" height="220px">
+								<p align="center">이름</p>
+								<p align="center">가격</p>
 							  </a></div>
 							  <div class="col-md-4">
 								<a href="#">
-								<img src="/assets/images/test2.jpg" width="210px" height="210px">
-								<p align="right">이름</p>
-								<p align="right">가격</p>
+								<img src="/assets/images/test2.jpg" width="220px" height="220px">
+								<p align="center">이름</p>
+								<p align="center">가격</p>
 							  </a></div>
 							</div>
 						</div>

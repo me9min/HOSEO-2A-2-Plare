@@ -8,7 +8,7 @@
 	String email = request.getParameter("email");
 	String phone = request.getParameter("phone");
 	
-	String password = member.find_password(email, phone);
+	String password = member.find_password(email);
 %>
 <!DOCTYPE HTML>
 <html>

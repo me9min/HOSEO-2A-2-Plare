@@ -28,7 +28,7 @@
 								<h2>비밀번호확인</h2>
 							</header>
 <center><p>본인 확인을 위해 비밀번호를 입력해주세요.</p></center>
-<form method="post" action="./db_check.jsp" name="check">
+<form method="post" action="./db_check.jsp" name="check" onsubmit="return passwordCheck()">
 	<div class="row uniform">
 		<div class="12u 12u$(xsmall)">
 			<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
@@ -36,7 +36,7 @@
 	</div>
 </form>
 <ul class="actions">
-	<li><input type="button" class="button special" value="확인" onclick="passwordCheck()"></li>
+	<li><input type="submit" class="button special" value="확인"></li>
 </ul>
 			</div>
 			</div>

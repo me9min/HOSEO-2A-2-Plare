@@ -54,7 +54,7 @@
 				<header class="align-center">
 					<h2>비밀번호 찾기</h2>		
 				</header>
-<form method="post" action="db_password_find.jsp" name="password_find">
+<form method="post" action="db_password_find.jsp" name="password_find" onsubmit="return passwordFindCheck()">
 	<input type="hidden" name="email_check" id="email_check" value="false" /> 
 	<div class="row uniform"><br>
 		<div class="3u 12u$(xsmall)" align="right">
@@ -73,7 +73,7 @@
 			<input type="text" name="code" id="code" value="" placeholder="인증번호 입력" />
 		</div>
 		<div class="4u 12u$(xsmall)">
-			<input type="button" class="button special" value="비밀번호 찾기" onclick="passwordFindCheck()">
+			<input type="submit" class="button special" value="비밀번호 찾기">
 		</div><br>
 		<div class="8u 12u$(xsmall)" align="right">
 			  <div id="cattery" style="visibility:hidden;">내용임</div>

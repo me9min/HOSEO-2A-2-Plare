@@ -84,9 +84,9 @@ function passwordCheck() {
 	if(document.check.password.value == "") {
 		alert("비밀번호를 입력해주세요.");
 		document.check.password.focus();
-		return;
+		return false;
 	}
-	document.check.submit();
+	return true;
 }
 
 function addressCheck() {

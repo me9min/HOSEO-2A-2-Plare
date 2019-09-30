@@ -10,9 +10,6 @@
 	boolean check = member.password_check(email, password);
 	
 	if(check == false) {
-		System.out.println("false");
-		System.out.println(email);
-		System.out.println(password);
 %>
 	<script>
 		alert("비밀번호가 틀렸습니다. 다시 시도해주세요.");

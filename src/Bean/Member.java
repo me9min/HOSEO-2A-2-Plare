@@ -272,7 +272,7 @@ public class Member {
 		return email;
 	}
 	
-	public String find_password(String email, String code) {
+	public String find_password(String email) {
 		// 비밀번호 찾기 메소드
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -286,7 +286,6 @@ public class Member {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
-			pstmt.setString(2, code);
 			
 			rs = pstmt.executeQuery();
 			

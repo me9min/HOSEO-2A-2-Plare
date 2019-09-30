@@ -26,7 +26,7 @@
 								<p>더 많은 기능이용</p>
 								<h2>로그인</h2>
 							</header>
-<form method="post" action="db_login.jsp" name="login">
+<form method="post" action="db_login.jsp" name="login" onsubmit="return loginCheck()">
   <div class="row">
     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
     <div class="col-md-6">
@@ -65,17 +65,17 @@
 		</div>
 		
 	</div> -->
-</form>
 <ul class="actions">
     <div class="row uniform">
    		<div class="3u 12u$(xsmall)" style="visibility:hidden;">
 			빈공간
 		</div>
-		<li><input type="button" value="로그인" class="button special" onclick="loginCheck()"></li>
+		<li><input type="submit" value="로그인" class="button special"></li>
 		<li><a href="../find" class="button alt">아이디/비밀번호 찾기</a></li>
 		<li><a href="../register" class="button alt">회원가입</a></li>
     </div>
 </ul>
+</form>
 						</div>
 					</div>
 				</div>

@@ -211,13 +211,13 @@
 			<input type="text" value="<%=referrer %>" placeholder="추천인" disabled />
 		</div>
 		
-	</div>
-</form>
+	</div><br>
 <ul class="actions">
-	<li><a class="button special" onclick="inputCheck()">수정</a></li>
+	<li><input type="button" class="button special" value="수정" onclick="return inputCheck()"></li>
 	<li><a href="../logout" class="button alt">로그아웃</a></li>
 	<li><a href="./db_delete.jsp" class="button alt">회원탈퇴</a></li>
 </ul>
+</form>
 			</div>
 			</div>
 			</div>

@@ -4,6 +4,9 @@ import java.util.*;
 import java.sql.*;
 import java.text.*;
 import javax.sql.*;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.*;
 import Bean.MemberBean;
 
@@ -453,6 +456,144 @@ public class Member {
 				try{rs.close();}catch(SQLException sqle){}
 		}
 		return memberBean;
+	}
+	
+	public StringBuffer emailCode(String email) {
+		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
+		String host = "smtp.naver.com";
+        String user = "plare2019_2a02"; //자신의 네이버 계정
+        String password = "int=hell";//자신의 네이버 패스워드
+        
+        //SMTP 서버 정보를 설정한다.
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", 465);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        
+        //인증 번호 생성기
+        StringBuffer temp =new StringBuffer();
+        Random rnd = new Random();
+        for(int i=0;i<5;i++)
+        {
+            int rIndex = rnd.nextInt(3);
+            switch (rIndex) {
+            case 0:
+                // a-z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+                break;
+            case 1:
+                // A-Z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+                break;
+            case 2:
+                // 0-9
+                temp.append((rnd.nextInt(10)));
+                break;
+            }
+        }
+        String AuthenticationKey = temp.toString();
+        System.out.println(AuthenticationKey);
+        
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user,password);
+            }
+        });
+        
+        //email 전송
+        try {
+            MimeMessage msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(user, "Plare"));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            
+            //메일 제목
+            msg.setSubject("Plare 비밀번호 찾기 인증 메일입니다.");
+            //메일 내용
+            msg.setText("인증 번호는 " + temp + " 입니다.");
+            
+            Transport.send(msg);
+            System.out.println("인증 번호 이메일 전송");
+            
+        }catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
+        
+        return temp;
+	}
+	
+	public void tempPassword(String email) {
+		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
+		String host = "smtp.naver.com";
+        String user = "plare2019_2a02"; //자신의 네이버 계정
+        String password = "int=hell";//자신의 네이버 패스워드
+        
+        //SMTP 서버 정보를 설정한다.
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", 465);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        
+        //인증 번호 생성기
+        StringBuffer temp =new StringBuffer();
+        Random rnd = new Random();
+        for(int i=0;i<10;i++)
+        {
+            int rIndex = rnd.nextInt(3);
+            switch (rIndex) {
+            case 0:
+                // a-z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+                break;
+            case 1:
+                // A-Z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+                break;
+            case 2:
+                // 0-9
+                temp.append((rnd.nextInt(10)));
+                break;
+            }
+        }
+        String AuthenticationKey = temp.toString();
+        System.out.println(AuthenticationKey);
+        
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user,password);
+            }
+        });
+        
+        //email 전송
+        try {
+            MimeMessage msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(user, "Plare"));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            
+            //메일 제목
+            msg.setSubject("Plare 임시 비밀번호 발급 이메일입니다.");
+            //메일 내용
+            msg.setText("임시 비밀번호는 " + temp + " 입니다. 해당 비밀번호를 사용하여 로그인해주세요.");
+            
+            Transport.send(msg);
+            System.out.println("임시 비밀번호 이메일 전송");
+            
+            Connection conn = null;
+    		PreparedStatement pstmt = null;
+    		
+    		conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			
+			String sql = "update member set password=? where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, temp.toString());
+			pstmt.setString(2, email);
+			
+			pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
 	}
 	
 	/* 사용하지않으나 참고용으로 남겨둠

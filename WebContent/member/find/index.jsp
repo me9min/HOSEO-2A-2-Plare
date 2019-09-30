@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/assets/include/logout_check.jsp" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	String email_entered = request.getParameter("email");
+	if(email_entered == null) {
+		email_entered = "";
+	}
+	String code_created = request.getParameter("code_created");
+	if(code_created == null) {
+		code_created = "";
+	}
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -56,15 +68,16 @@
 				</header>
 <form method="post" action="db_password_find.jsp" name="password_find" onsubmit="return passwordFindCheck()">
 	<input type="hidden" name="email_check" id="email_check" value="false" /> 
+	<input type="hidden" name="code_created" id="code_created" value="<%=code_created %>" />
 	<div class="row uniform"><br>
 		<div class="3u 12u$(xsmall)" align="right">
 			  이메일
 		</div>
 		<div class="5u 12u$(xsmall)">
-			<input type="text" name="email" id="email" value="" placeholder="이메일을 입력하시오" />
+			<input type="text" name="email" id="email" value="<%=email_entered %>" placeholder="이메일을 입력하시오" />
 		</div>
 		<div class="4u 12u$(xsmall)">
-			<input type="button" class="button alt" value="인증번호 전송" />
+			<input type="button" class="button alt" value="인증번호 전송" onclick="emailCheck()" />
 		</div><br>
 		<div class="3u 12u$(xsmall)" align="right">
 			  인증번호

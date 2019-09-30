@@ -100,7 +100,6 @@ function nicknameCheck() {
 		document.register.nickname.focus();
 		return;
 	} else {
-		var gsWin = window.open("about:blank", "winName");
 		document.register.action = "db_nickname_check.jsp";
 		document.register.target = "winName";
 		document.register.submit();
@@ -124,7 +123,6 @@ function referrerCheck() {
 		document.register.referrer.focus();
 		return;
 	} else {
-		var gsWin = window.open("about:blank", "winName");
 		document.register.action = "db_referrer_check.jsp";
 		document.register.target = "winName";
 		document.register.submit();

@@ -6,7 +6,8 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	String email = request.getParameter("email");
-	String phone = request.getParameter("phone");
+	String code = request.getParameter("code");
+	String code_created = request.getParameter("code_created");
 	
 	String password = member.find_password(email);
 %>
@@ -63,20 +64,22 @@
 		<div class="12u 12u$(xsmall)">
 		<center>
 <%
-		if(password == null) {
+		if(!code.equals(code_created)) {
 %>
-			<p>해당되는 회원 정보가 없습니다. 다시 시도해주세요.</p>
+			<p>틀린 값입니다. 다시 시도해주세요.</p>
 		</center>
 		</div>
 		<div class="12u 12u$(xsmall)">
 		<center>
-			<a href="password_find.jsp" class="button alt">돌아가기</a>
+			<a href="./" class="button alt">돌아가기</a>
 		</center>
 		</div>
 <%
 		} else {
+			member.tempPassword(email);
+			
 %>
-			<p>회원님의 비밀번호는 <%=password %>입니다.</p>
+			<p>회원님의 이메일로 임시 비밀번호가 발급되었습니다.</p>
 		</center>
 		</div>
 		<div class="12u 12u$(xsmall)">

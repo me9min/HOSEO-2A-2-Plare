@@ -27,7 +27,21 @@
 								<h2>로그인</h2>
 							</header>
 <form method="post" action="db_login.jsp" name="login">
-	<div class="row uniform">
+  <div class="row">
+    <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+    <div class="col-md-6">
+     <input type="text" name="email" id="email" value="" placeholder="아이디/이메일" />
+    </div>
+    <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+   </div><br>
+   <div class="row">
+    <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+    <div class="col-md-6">
+     <input type="password" name="password" id="password" value="" placeholder="비밀번호" />
+    </div>
+    <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+  </div>
+	<!-- <div class="row uniform">
 	<br>
 		<div class="3u 12u$(xsmall)" style="visibility:hidden;">
 			빈공간
@@ -50,7 +64,7 @@
 			빈공간
 		</div>
 		
-	</div>
+	</div> -->
 </form>
 <ul class="actions">
     <div class="row uniform">

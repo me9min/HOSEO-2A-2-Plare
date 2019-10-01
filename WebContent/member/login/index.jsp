@@ -11,14 +11,14 @@
 <%@ include file="/assets/include/member_top.jsp" %>
 
 		<!-- main -->
-			<section id="two" class="wrapper style2">
-				<div class="inner">
-					<div class="box">
-						<div class="content">
-						  <div style="padding:122px 0px;">
-							<header class="align-center">
-								<h2>로그인</h2>
-							</header>
+	<section id="two" class="wrapper style2">
+		<div class="inner">
+			<div class="box">
+				<div class="content">
+					<header class="align-center">
+						<h2>로그인</h2>
+					</header>
+
 <form method="post" action="db_login.jsp" name="login" onsubmit="return loginCheck()">
   <div class="row">
     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
@@ -69,34 +69,21 @@
 </div>
 <div class="row uniform">
 	<div class="4u 12u$(xsmall)  style="visibility:hidden;"></div>
-	<a id="custom-login-btn" href="javascript:loginWithKakao()">
-		<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
-	</a>
+	<c:if test="${userId eq null}">
+		<a href="https://kauth.kakao.com/oauth/authorize
+			?client_id=f4b335bfa37a8ce098ed450312b37a35
+			&redirect_uri=http://amel.zz.am/member/login/kakao_login.jsp
+			&response_type=code">
+			<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
+		</a>
+    </c:if>
 </div>
-</form>		</div>
-						</div>
-					</div>
+</form>
 				</div>
-			</section>
+			</div>
+		</div>
+	</section>
 
 <%@ include file="/assets/include/foot.jsp" %>
 
 </html>
-
-<!-- 카카오  로그인 -->
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript">
-	// 사용할 앱의 JavaScript 키를 설정해 주세요.
-	Kakao.init('772d3b056b1e4184132da022b5921c51');
-	// 카카오 로그인 버튼을 생성합니다.
-	function loginWithKakao() {
-		Kakao.Auth.login({
-			success: function(authObj) {
-				alert(JSON.stringify(authObj));
-			},
-			fail: function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-	};
-</script>

@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>카카오로그인테스트</title>
 </head>
 <body>
-
+    <c:if test="${userId ne null}">
+        <h1>로그인 성공입니다</h1>
+    </c:if>
 </body>
 </html>

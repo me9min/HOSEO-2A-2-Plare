@@ -50,4 +50,3 @@ if(email == null) {
 		<li><a href="/guide">게임소개</a></li>
 	</ul>
 </div>
-</body>

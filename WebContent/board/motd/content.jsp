@@ -49,14 +49,8 @@
     	  edit_date = sdf.format(article.getEdit_date());
       }
 %>
-	<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>안내사항이나 이벤트를 확인할 수 있습니다</p>
-						<h2>공지사항</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/board_top.jsp" %>
+
 	<div id="main" class="container" >
 		<center><h3>공지사항</h3></center><br>
 		<div class="table-wrapper">

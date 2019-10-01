@@ -66,7 +66,7 @@
 				</div>
 			  </div></div>
 			  <div class="col-md-8">
-			  <div style="background-color:#ffffff; width:510px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
+			  <div style="background-color:#ffffff; width:528px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
 				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
 				<img src="/assets/images/test2.jpg" width="230px" height="230px">
 				</div>

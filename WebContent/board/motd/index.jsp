@@ -68,15 +68,7 @@
 	}
 %>
 
-		<!-- One -->
-			<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>안내사항이나 이벤트를 확인할 수 있습니다</p>
-						<h2>게시판</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/board_top.jsp" %>
 			
 		<!-- main -->
 			<section id="two" class="wrapper style2">

@@ -16,17 +16,17 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>더 많은 기능이용</p>
+								<p>구주소, 도로명 주소 모드 사용이 가능합니다.</p>
 								<h2>우편번호 검색</h2>
 							</header>
 <form method="post" action="address_result.jsp" name="address">
 	<div class="row uniform">
-
-		<div class="10u 12u$(xsmall)">
+	<br>	
+		<div class="3u 12u$(xsmall)" style="visibility:hidden;"> 빈공간</div>
+		<div class="6u 12u$(xsmall)">
 			<input type="text" name="address_find" id="address_find" value="" placeholder="주소를 입력하세요." maxlength="50"/>
 		</div>
-
-		<div class="2u$ 12u$(xsmall)">
+		<div class="3u$ 12u$(xsmall)">
 			<input type="button" value="검색" class="button alt" onclick="addressCheck()">
 		</div>
 

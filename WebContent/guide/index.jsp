@@ -6,15 +6,7 @@
 		<title>가이드</title>
 <%@ include file="/assets/include/menu.jsp" %>
 
-		<!-- One -->
-			<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>어떤게임인지와 플레이방법을 알수있습니다</p>
-						<h2>게임소개/가이드</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/guide_top.jsp" %>
 
 		<!-- Two -->
 			<section id="two" class="wrapper style2">

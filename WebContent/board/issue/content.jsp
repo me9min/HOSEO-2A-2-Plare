@@ -73,14 +73,7 @@
 	<script language="JavaScript" src="write.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
-	<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>게시글을 올리는 커뮤니티입니다</p>
-						<h2>게시판</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/board_top.jsp" %>
 	<div id="main" class="container" >
 		<div class="table-wrapper">
 		<a href="./" class="button alt pull-right">글목록</a><br><br>

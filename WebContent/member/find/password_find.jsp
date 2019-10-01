@@ -8,15 +8,7 @@
 		<script type="text/javascript" src="find.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
-		<!-- One -->
-			<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>아이디(이메일) 또는 비밀번호 찾기</p>
-						<h2>아이디/비밀번호 찾기</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/member_top.jsp" %>
 			
 		<!-- main -->
 			<section id="two" class="wrapper style2">

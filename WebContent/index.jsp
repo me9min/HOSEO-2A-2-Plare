@@ -1,8 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<%@ page import = "Bean.Board" %>
+<%@ page import = "Bean.BoardBean" %>
+<%@ page import = "java.util.List" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
+<%! SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
+<%
+	Board board = Board.getInstance();
+	List<BoardBean> issueList = board.getBestIssues();
+	List<BoardBean> motdList = board.getLatestMotds();
+	BoardBean free = board.getBestArticle();
+	String nickname_free = board.getNickname(free.getWriter());
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<style>
+			#tb {table-layout:fixed; width:100%; height:100%;}
+			#title {font-weight:bold; font-size:16px; color:black; text-align:center;}
+			#content {color:black; background-color:white; overflow:hidden;}
+			#content p{margin:0;}
+		</style>
 		<title>plare.cf</title>
 		<meta charset="utf-8" />
 <%@ include file="/assets/include/menu.jsp" %>
@@ -39,44 +58,76 @@
 	<div class="inner">
 
 			<div class="row">
+				<b style="font-size:20px;">최근 공지사항</b><br><br>
+<%
+	for(int i=0; i<motdList.size(); i++) {
+		BoardBean motd = motdList.get(i);
+%>
 			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				공지
+				<div style="margin:10px;">
+					<table id="tb">
+					<thead>
+						<tr>
+							<td id="title"><%=motd.getTitle() %></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:none;">
+							<td id="content"><%=motd.getContent() %></td>
+						</tr>
+					</tbody>
+					</table>
 				</div>
 			  </div></div>
-			    <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				인기글
-				</div>
-			  </div></div>
-			    <div class="col-md-4">
+<%
+	}
+%>
+			</div><br><br>
+			
+			<div class="row">
+				<b style="font-size:20px;">이벤트</b><br><br>
+			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;text-align:center;line-height:220px">
 				이벤트
 				</div>
 			  </div></div>
-			</div>
-			<div class="row">
-			  <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				공지
-				</div>
-			  </div></div>
 			  <div class="col-md-8">
-			  <div style="background-color:#ffffff; width:528px;height:250px;border:1px solid black;margin:0px 15px 15px 15px;">
+			  <div style="background-color:#ffffff; width:528px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
 				<img src="/assets/images/test2.jpg" width="230px" height="230px">
 				</div>
 				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
-				인기글
+				광고
 				</div>
 				</div></div>
-			  </div></div>
+			  </div><br><br>
 
-		</div></section>
+			<div class="row">
+				<b style="font-size:20px;">인기글</b><br><br>
+			  <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				자유인기글
+				</div>
+			  </div></div>
+			    <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				문의인기글
+				</div>
+			  </div></div>
+			    <div class="col-md-4">
+			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+				<div style="margin:10px;text-align:center;line-height:220px">
+				문의인기글
+				</div>
+			  </div></div>
+			</div>		  
+	</div>
+			  
+</section>
 		
 
 <%@ include file="/assets/include/foot.jsp" %>

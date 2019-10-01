@@ -81,17 +81,18 @@ function emailCheck() {
 	if(document.register.email.value == "") {
 		alert("이메일을 입력해주세요");
 		document.register.email.focus();
-		return false;
+		return;
 	}
 	if(document.register.email.value.match(check_email) == null) {
 		alert("올바른 이메일을 입력해주세요.");
 		email.value = "";
 		email.focus();
-		return false;
+		return;
 	}
+	var gsWin = window.open("about:blank", "winName");
 	document.register.action = "db_email_check.jsp";
 	document.register.target = "winName";
-	return true;
+	document.register.submit();
 }
 
 function nicknameCheck() {
@@ -99,11 +100,11 @@ function nicknameCheck() {
 		alert("닉네임을 입력해주세요");
 		document.register.nickname.focus();
 		return;
-	} else {
-		document.register.action = "db_nickname_check.jsp";
-		document.register.target = "winName";
-		document.register.submit();
 	}
+	var gsWin = window.open("about:blank", "winName");
+	document.register.action = "db_nickname_check.jsp";
+	document.register.target = "winName";
+	document.register.submit();
 }
 
 function addressCheck() {
@@ -122,9 +123,9 @@ function referrerCheck() {
 		alert("추천인의 닉네임을 입력해주세요");
 		document.register.referrer.focus();
 		return;
-	} else {
-		document.register.action = "db_referrer_check.jsp";
-		document.register.target = "winName";
-		document.register.submit();
-	}
+	} 
+	var gsWin = window.open("about:blank", "winName");
+	document.register.action = "db_referrer_check.jsp";
+	document.register.target = "winName";
+	document.register.submit();
 }

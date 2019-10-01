@@ -19,7 +19,7 @@
 	<div class="body">
 		<dl class="alert">
 			<dt>파일 첨부 확인</dt>
-			<form name="file_upload" method="post" enctype="multipart/form-data" action="db_file_upload.jsp" onsubmit="done();">
+			<form name="file_upload" method="post" enctype="multipart/form-data" action="db_file_upload.jsp" onsubmit="done()">
 			<dd><input type="file" name="uploadFile"></dd>
 			</form>
 		</dl>

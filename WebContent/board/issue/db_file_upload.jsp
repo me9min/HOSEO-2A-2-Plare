@@ -68,11 +68,6 @@ try{
          out.println("<br>");
       }
    }
-}catch(IOException ioe){
-	System.out.println(ioe);
-}catch(Exception ex){
-	System.out.println(ex);
-}finally{
 %>
 <script type="text/javascript">
 	window.onload = function () {
@@ -82,5 +77,9 @@ try{
 	}
 </script>
 <%
-}
+}catch(IOException ioe){
+	System.out.println(ioe);
+}catch(Exception ex){
+	System.out.println(ex);
+}finally{}
 %>

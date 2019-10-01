@@ -152,7 +152,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=issue.getTitle() %></a>
+								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=issue.getContent() %></a>
 							</td>
 						</tr>
 					</tbody>

@@ -9,16 +9,8 @@
 		<script language="JavaScript" src="register.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
-		<!-- One -->
-			<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>더 많은 기능이용</p>
-						<h2>회원가입</h2>
-					</header>
-				</div>
-			</section>
-			
+
+<%@ include file="/assets/include/member_top.jsp" %>			
 		<!-- main -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">

@@ -8,22 +8,15 @@
 		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
-		<!-- One -->
-			<section id="One" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>더 많은 기능이용</p>
-						<h2>로그인</h2>
-					</header>
-				</div>
-			</section>
+<%@ include file="/assets/include/member_top.jsp" %>
+
 		<!-- main -->
 			<section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
 						<div class="content">
+						  <div style="padding:122px 0px;">
 							<header class="align-center">
-								<p>더 많은 기능이용</p>
 								<h2>로그인</h2>
 							</header>
 <form method="post" action="db_login.jsp" name="login" onsubmit="return loginCheck()">
@@ -80,7 +73,7 @@
 		<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
 	</a>
 </div>
-</form>
+</form>		</div>
 						</div>
 					</div>
 				</div>

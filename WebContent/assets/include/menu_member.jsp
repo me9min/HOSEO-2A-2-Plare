@@ -16,38 +16,35 @@
 
 <body>
 
-	<div id="menubox">
+<div id="menubox">
 	<a href="/"><img src="/assets/images/PlareLogo.jpg" width="88px" height="42px" id="plare_logo"></a>
 	<ul id="menuul">
-	<li><a class="menuLink" href="#">회원서비스</a>
-	<ul id="dropmenu">
+		<li><a class="menuLink" href="#">회원서비스</a>
+			<ul id="dropmenu">
 <%
-request.setCharacterEncoding("utf-8");
-email = (String)session.getAttribute("email");
 if(email == null) {
 %>
-	<li><a href="/member/find">아이디/비밀번호찾기</a></li>
-	<li><a href="/member/login">로그인/회원가입</a></li>
+				<li><a href="/member/login">로그인/회원가입</a></li>
+				<li><a href="/member/find">아이디/비밀번호찾기</a></li>
 <%
 } else {
 %>
-	<li><a href="/member/logout">로그아웃</a></li>
-	<li><a href="/member">내정보</a></li>
+				<li><a href="/member/logout">로그아웃</a></li>
+				<li><a href="/member">내정보</a></li>
 <%
 }
 %>
-	</ul></li>
+			</ul>
+		</li>
 		<li><a href="#">게시판</a>
-		<ul id="dropmenu">
-			<li><a href="/board/motd">공지사항</a></li>
-			<li><a href="/board/free">자유게시판</a></li>
-			<li><a href="/board/issue">문의/신고게시판</a></li>
-		</ul></li>
-			<li><a href="/shop">상점</a></li>
-			<li><a href="/rank">랭크</a></li>
-			<li><a href="/guide">게임소개</a></li>
+			<ul id="dropmenu">
+				<li><a href="/board/motd">공지사항</a></li>
+				<li><a href="/board/free">자유게시판</a></li>
+				<li><a href="/board/issue">문의/신고게시판</a></li>
+			</ul>
+		</li>
+		<li><a href="/shop">상점</a></li>
+		<li><a href="/rank">랭크</a></li>
+		<li><a href="/guide">게임소개</a></li>
 	</ul>
-	</div>
-	</body>
-	
-<body class="subclass">
+</div>

@@ -144,5 +144,4 @@
 
 <%@ include file="/assets/include/foot.jsp" %>
 
-</body>
 </html>

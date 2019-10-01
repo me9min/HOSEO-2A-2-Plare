@@ -25,8 +25,6 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>더 많은 기능이용</p>
-								<h2>회원가입</h2>
 							</header>
 <p>*은 필수항목입니다</p>
 <form method="post" action="db_register.jsp" name="register">

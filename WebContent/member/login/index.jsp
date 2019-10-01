@@ -65,16 +65,21 @@
 		</div>
 		
 	</div> -->
-<ul class="actions">
-    <div class="row uniform">
-   		<div class="3u 12u$(xsmall)" style="visibility:hidden;">
-			빈공간
-		</div>
+
+<div class="row uniform">
+	<div class="3u 12u$(xsmall)  style="visibility:hidden;"></div>
+    <ul class="actions">
 		<li><input type="submit" value="로그인" class="button special"></li>
 		<li><a href="../find" class="button alt">아이디/비밀번호 찾기</a></li>
 		<li><a href="../register" class="button alt">회원가입</a></li>
-    </div>
-</ul>
+	</ul>
+</div>
+<div class="row uniform">
+	<div class="4u 12u$(xsmall)  style="visibility:hidden;"></div>
+	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+		<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
+	</a>
+</div>
 </form>
 						</div>
 					</div>
@@ -82,4 +87,23 @@
 			</section>
 
 <%@ include file="/assets/include/foot.jsp" %>
+
 </html>
+
+<!-- 카카오  로그인 -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('772d3b056b1e4184132da022b5921c51');
+	// 카카오 로그인 버튼을 생성합니다.
+	function loginWithKakao() {
+		Kakao.Auth.login({
+			success: function(authObj) {
+				alert(JSON.stringify(authObj));
+			},
+			fail: function(err) {
+				alert(JSON.stringify(err));
+			}
+		});
+	};
+</script>

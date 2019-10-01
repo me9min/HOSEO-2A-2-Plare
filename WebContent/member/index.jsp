@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/assets/include/login_check.jsp" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -7,7 +8,6 @@
 		<style type="text/css">
 			.px-200{font-size: 200px;}
 		</style>
-<%@ include file="/assets/include/login_check.jsp" %>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
 		<!-- Main -->

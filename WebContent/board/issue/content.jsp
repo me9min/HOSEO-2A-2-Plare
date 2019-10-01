@@ -5,10 +5,32 @@
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%
+	String email = (String)session.getAttribute("email");
+	if(email == null) {
+		email = "";
+	}
+	Board board = Board.getInstance(); 
+	String nickname = board.getNickname(email);
+	String admin = "admin@plare.cf";
+	
+	int num = Integer.parseInt(request.getParameter("num"));
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	try{
+		BoardBean article = board.getArticle("issue", num);
+		String nickname_writer = board.getNickname(article.getWriter());
+		String edit_date = "";
+		if(article.getEdit_date() != null) {
+			edit_date = sdf.format(article.getEdit_date());
+		}
+%>
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<title><%=article.getTitle() %></title>
 	<style>
 		#inputtext{
 		height:300px;
@@ -36,47 +58,20 @@
 			overflow: hidden;
 		}
 	</style>
+	<script>
+		// 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
+		// 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
+		document.getElementById("downA").addEventListener("click", function(event) {
+			event.preventDefault();// a 태그의 기본 동작을 막음
+			event.stopPropagation();// 이벤트의 전파를 막음
+			// 파일명을 utf-8로 인코딩한다.
+			var attach_file = encodeURIComponent("<%=article.getAttach_file()%>");
+			// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
+			window.location ="fileDown.jsp?attach_file="+attach_file;
+		});
+	</script>
 	<script language="JavaScript" src="write.js"></script>
-<%@ include file="/assets/include/menu.jsp" %>
-<%
-	email = (String)session.getAttribute("email");
-	if(email == null) {
-		email = "";
-	}
-	Board board = Board.getInstance(); 
-	String nickname = board.getNickname(email);
-	String admin = "admin@plare.cf";
-
-	int num = Integer.parseInt(request.getParameter("num"));
-	
-   	SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
-   	
-
-   try{
-      BoardBean article = board.getArticle("issue", num);
-      String nickname_writer = board.getNickname(article.getWriter());
-      String edit_date = "";
-      if(article.getEdit_date() != null) {
-    	  edit_date = sdf.format(article.getEdit_date());
-      }
-%>
-<head>
-<title><%=article.getTitle() %></title>
-<script type="text/javascript">
-	// 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
-	// 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
-	document.getElementById("downA").addEventListener("click", function(event) {
-		event.preventDefault();// a 태그의 기본 동작을 막음
-		event.stopPropagation();// 이벤트의 전파를 막음
-		// 파일명을 utf-8로 인코딩한다.
-		var attach_file = encodeURIComponent("<%=article.getAttach_file() %>");
-		// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
-		window.location ="fileDown.jsp?attach_file="+attach_file;
-	});
-</script>
-</head>
-<body>
+<%@ include file="/assets/include/menu_member.jsp" %>
 
 	<section id="One" class="wrapper style3">
 				<div class="inner">
@@ -149,7 +144,7 @@
 			</tr>
 		</table>
 <%
-   } catch(Exception e) {}
+	} catch(Exception e) {} finally {}
 %>
 		</div>
 	</div>

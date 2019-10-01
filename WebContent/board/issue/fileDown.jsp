@@ -14,7 +14,7 @@
     String fileName = request.getParameter("attach_file");
      
     // 위의 폴더는 상대경로이고 절대경로 기준의 진짜 경로를 구해와야한다.
-    String sDownPath = request.getRealPath("upload");
+    String sDownPath = request.getRealPath("/upload");
      
     // 디버그용 출력
     System.out.println("다운로드 폴더 절대 경로 위치 : " + sDownPath);

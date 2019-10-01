@@ -21,6 +21,9 @@
 			#title {font-weight:bold; font-size:16px; color:black; text-align:center;}
 			#content {color:black; background-color:white; overflow:hidden;}
 			#content p{margin:0;}
+			#link {color: black; text-decoration: none;}
+			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: red; text-decoration: none;}
 		</style>
 		<title>plare.cf</title>
 		<meta charset="utf-8" />
@@ -69,12 +72,16 @@
 					<table id="tb">
 					<thead>
 						<tr>
-							<td id="title"><%=motd.getTitle() %></td>
+							<td id="title">
+								<a href="./board/motd/content.jsp?num=<%=motd.getNum()%>" id="link"><%=motd.getTitle() %></a>
+							</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr style="border-bottom:none;">
-							<td id="content"><%=motd.getContent() %></td>
+							<td id="content">
+								<a href="./board/motd/content.jsp?num=<%=motd.getNum()%>" id="link"><%=motd.getContent() %></a>
+							</td>
 						</tr>
 					</tbody>
 					</table>
@@ -108,23 +115,53 @@
 				<b style="font-size:20px;">인기글</b><br><br>
 			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				자유인기글
+				<div style="margin:10px;">
+					<table id="tb">
+					<thead>
+						<tr>
+							<td id="title">
+								<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=free.getTitle() %></a>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:none;">
+							<td id="content">
+								<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=free.getContent() %></a>
+							</td>
+						</tr>
+					</tbody>
+					</table>
 				</div>
 			  </div></div>
-			    <div class="col-md-4">
+			    <%
+	for(int i=0; i<issueList.size(); i++) {
+		BoardBean issue = issueList.get(i);
+%>
+			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				문의인기글
+				<div style="margin:10px;">
+					<table id="tb">
+					<thead>
+						<tr>
+							<td id="title">
+								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=issue.getTitle() %></a>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:none;">
+							<td id="content">
+								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=issue.getTitle() %></a>
+							</td>
+						</tr>
+					</tbody>
+					</table>
 				</div>
 			  </div></div>
-			    <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				문의인기글
-				</div>
-			  </div></div>
-			</div>		  
+<%
+	}
+%> 
 	</div>
 			  
 </section>

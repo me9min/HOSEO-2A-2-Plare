@@ -9,8 +9,7 @@
 			.px-200{font-size: 200px;}
 		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
-
-		<!-- Main -->
+<%@ include file="/assets/include/member_top.jsp" %>
 			<section id="one" class="wrapper style2">
 				<div class="inner">
 					<div class="grid-style">

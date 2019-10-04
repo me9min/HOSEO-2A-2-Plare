@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "shop.shop" %>
+<%@ include file="/assets/include/login_check.jsp" %>
 <%
-	
+	shop sh = new shop();
+	int point = sh.getPoint(email);
 %>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>상점</title>
-<%@ include file="/assets/include/menu.jsp" %>
+<%@ include file="/assets/include/menu_member.jsp" %>
 
 <%@ include file="/assets/include/shop_top.jsp" %>
 
@@ -17,7 +19,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h4><%= %></h4>
+								<h4>내포인트 : <%=point %></h4>
 								<h3>스킨</h3><br>
 							</header>
 							<div class="row">

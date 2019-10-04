@@ -8,21 +8,21 @@ import Bean.Database;
 
 public class shop {
 	
-	public String getPoint(String email) {
+	public int getPoint(String email) {
 		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String point = "";
-		String sql = "";
+		int point = 0;
 
         try {
-        	sql = "call store_selectPoint()";
+        	String sql = "call store_selectPoint(?)";
             pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
             rs = pstmt.executeQuery();
             
             rs.next();
-            point = rs.getString("credit");
+            point = rs.getInt("credits");
         } catch(Exception ex) {
             ex.printStackTrace();
         } finally {

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "shop.shop" %>
+<%
+	
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -13,6 +17,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
+								<h4><%= %></h4>
 								<h3>스킨</h3><br>
 							</header>
 							<div class="row">

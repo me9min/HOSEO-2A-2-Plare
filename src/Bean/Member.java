@@ -9,37 +9,23 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.*;
 import Bean.MemberBean;
+import Bean.Database;
 
 public class Member {
-	private String jdbc_driver = "com.mysql.jdbc.Driver";
-	private String jdbc_url = "jdbc:mysql://plare.cf:3306/web";
-	private String db_id = "web";
-	private String db_pwd = "web";
-	
-	public Member() {
-		// JDBC 드라이버 연결
-		try {
-			Class.forName(jdbc_driver);
-		} catch(Exception e) {
-			System.out.println("Fail to load JDBC DRIVER");
-		}
-	}
-	
-	private Connection getConnection() throws Exception {
-		Context initCtx = new InitialContext();
-		DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/web");
-		return ds.getConnection();
-	}
+	private static Member instance = new Member();
+    //.jsp페이지에서 DB연동빈인 MemberBean클래스의 메소드에 접근시 필요
+    public static Member getInstance() {
+        return instance;
+    }
 	
 	public MemberBean login(MemberBean member) {
 		// 로그인 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
+		MemberBean memberBean = new MemberBean();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MemberBean memberBean = new MemberBean();
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			String sql = "select email,nickname,nickname_latest_changed,phone,address,address_detail,referrer from member where email=? and password=?";
 			// 파라미터 값으로 넘어온 이메일과 비밀번호에 해당되는 유저의 모든 정보를 불러오는 sql문
 			
@@ -77,14 +63,11 @@ public class Member {
 	
 	public void register(MemberBean member) throws Exception {
 		// 회원가입 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String referrer_email = null;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			if(member.getReferrer() != "") {
 				referrer_email = search_referrer(member.getReferrer());
 			}
@@ -119,14 +102,12 @@ public class Member {
 	public String search_referrer(String referrer_nickname) {
 		// 추천인의 정보를 저장하는 메소드
 		// 닉네임은 변경 가능하기 때문에 닉네임에 대응하는 이메일을 검색하여 DB에 저장
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String referrer_email = null;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String sql = "select email from member where nickname=?";
 			// 입력된 닉네임에 대응하는 이메일을 검색
 			
@@ -151,14 +132,12 @@ public class Member {
 	
 	public boolean email_double_check(String email) {
 		// 이메일 중복 확인 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		boolean check = false;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String sql = "select * from member where email=?";
 			// 입력된 이메일과 똑같은 이메일을 사용하는 회원이 존재하는지 검색
 			
@@ -185,14 +164,12 @@ public class Member {
 	
 	public boolean nickname_double_check(String nickname) {
 		// 닉네임 중복 확인 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		boolean check = false;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String sql = "select * from member where nickname=?";
 			// 입력된 닉네임과 똑같은 닉네임을 사용하는 회원이 존재하는지 검색
 			
@@ -219,12 +196,10 @@ public class Member {
 	
 	public void delete_member(String email) {
 		// 회원탈퇴 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-		
 			String sql = "delete from member where email=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -243,14 +218,12 @@ public class Member {
 	
 	public String find_email(String nickname) {
 		// 이메일 찾기 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String email = null;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String sql = "select email from member where nickname=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -277,14 +250,12 @@ public class Member {
 	
 	public String find_password(String email) {
 		// 비밀번호 찾기 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String password = null;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String sql = "select password from member where email=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -311,12 +282,10 @@ public class Member {
 	
 	public void change_info(MemberBean member, String email) {
 		// 회원 정보 수정 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
 			String birthday = member.getBirthday_year()+"-"+member.getBirthday_month()+"-"+member.getBirthday_day();
 			
 			String sql = "update member set password=?, nickname=?, phone=?, birthday=?, address=?, address_detail=? where email=?";
@@ -343,14 +312,12 @@ public class Member {
 	
 	public boolean password_check(String email, String password) {
 		// 회원 정보 수정 시 비밀번호가 맞는지 확인하는 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		boolean check = false;
 
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-
 			String sql = "select password from member where email=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -380,13 +347,12 @@ public class Member {
 	
 	public MemberBean load_info(String email) {
 		// 정보수정시 정보로드 메소드
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		MemberBean memberBean = new MemberBean();
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			String sql = "select nickname,nickname_latest_changed,birthday,phone,address,address_detail,referrer from member where email=?";
 			// 파라미터 값으로 넘어온 이메일과 비밀번호에 해당되는 유저의 모든 정보를 불러오는 sql문
 			
@@ -516,7 +482,7 @@ public class Member {
             System.out.println("인증 번호 이메일 전송");
             
         }catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
+            e.printStackTrace();
         }
         
         return temp;
@@ -525,8 +491,8 @@ public class Member {
 	public void tempPassword(String email) {
 		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
 		String host = "smtp.naver.com";
-        String user = "plare2019_2a02"; //자신의 네이버 계정
-        String password = "int=hell";//자신의 네이버 패스워드
+		String user = "plare2019_2a02"; //자신의 네이버 계정
+		String password = "int=hell";//자신의 네이버 패스워드
         
         //SMTP 서버 정보를 설정한다.
         Properties props = new Properties();
@@ -579,10 +545,8 @@ public class Member {
             Transport.send(msg);
             System.out.println("임시 비밀번호 이메일 전송");
             
-            Connection conn = null;
+            Connection conn = Database.connect();
     		PreparedStatement pstmt = null;
-    		
-    		conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
 			
 			String sql = "update member set password=? where email=?";
 			
@@ -592,21 +556,21 @@ public class Member {
 			
 			pstmt.executeUpdate();
         }catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
+            e.printStackTrace();
         }
 	}
 	
 	/* 사용하지않으나 참고용으로 남겨둠
 	public String[][] search_address(String address_find) {
 		// 주소검색 메소드
-		Connection conn = null;
+		connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String address_results[][] = null;
 		int i = 0;
 		
 		try {
-			conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+			conn = DriverManager.getconnection(jdbc_url, db_id, db_pwd);
 			
 			String sql = "select zipcode,sido,sigungu,roadname,building1,building2,dongname,buildingname,jibun1,jibun2,roadname_en,sigungu_en,sido_en"+
 			" from zipcode"+

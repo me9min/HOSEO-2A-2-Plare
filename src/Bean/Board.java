@@ -5,36 +5,17 @@ import java.sql.*;
 import javax.sql.*;
 import javax.naming.*;
 import Bean.BoardBean;
+import Bean.Database;
 
 public class Board {
-	private String jdbc_driver = "com.mysql.jdbc.Driver";
-	private String jdbc_url = "jdbc:mysql://plare.cf:3306/web";
-	private String db_id = "web";
-	private String db_pwd = "web";
-	
 	private static Board instance = new Board();
-    //.jsp페이지에서 DB연동빈인 BoardDBBean클래스의 메소드에 접근시 필요
+    //.jsp페이지에서 DB연동빈인 BoardBean클래스의 메소드에 접근시 필요
     public static Board getInstance() {
         return instance;
     }
 	
-	public Board() {
-		// JDBC 드라이버 연결
-		try {
-			Class.forName(jdbc_driver);
-		} catch(Exception e) {
-			System.out.println("Fail to load JDBC DRIVER");
-		}
-	}
-	
-	private Connection getConnection() throws Exception {
-		Context initCtx = new InitialContext();
-		DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/web");
-		return ds.getConnection();
-	}
-	
 	public String getNickname(String email) {
-		Connection conn = null;
+		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -42,8 +23,6 @@ public class Board {
 		String sql = "";
 
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
         	sql = "select nickname from member where email = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
@@ -62,14 +41,12 @@ public class Board {
 	}
 	
 	public void insertArticle(BoardBean article, String category) {
-        Connection conn = null;
+        Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
 		String sql="";
 
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
             if(category.equals("free")) {
 	            sql = "insert into board_free (writer,ip,reg_date,title,content) values(?,?,now(),?,?)";
 	
@@ -115,15 +92,13 @@ public class Board {
     }
 	
 	public int getArticleCount(String category) throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 
 	       int x = 0;
 
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
 	    	   if(category.equals("free")) {
 		           pstmt = conn.prepareStatement("select count(*) from board_free");
 		           rs = pstmt.executeQuery();
@@ -157,7 +132,7 @@ public class Board {
 	   }
 	
 	public int getSearchCount(String category, String condition, String content) throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 
@@ -165,8 +140,6 @@ public class Board {
 	       
 	       String writer_email = null;
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	    	   
 	    	   if(category.equals("free")) {
 	    		   if(condition.equals("all")) {
 		    		   pstmt = conn.prepareStatement("select count(*) from board_free where title like ? or content like ?");
@@ -258,14 +231,12 @@ public class Board {
 		}
 	
 	public List<BoardBean> getArticles(String category, int start, int end) throws Exception {
-       Connection conn = null;
+       Connection conn = Database.connect();
        PreparedStatement pstmt = null;
        ResultSet rs = null;
        List<BoardBean> articleList=null;
        
        try {
-    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-           
            if(category.equals("free")) {
         	   pstmt = conn.prepareStatement(
        	           	"select * from board_free order by num desc limit ?, ?");
@@ -352,15 +323,13 @@ public class Board {
    }
 	
 	public List<BoardBean> getSearchResults(String category, int start, int end, String condition, String content) throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 	       List<BoardBean> articleList=null;
 	       
 	       String writer_email = null;
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	    	   
 	           if(category.equals("free")) {
 	        	   if(condition.equals("all")) {
 	        		   pstmt = conn.prepareStatement(
@@ -540,13 +509,11 @@ public class Board {
 	   }
 	
 	public BoardBean getLatestMotd() {
-		Connection conn = null;
+		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         BoardBean article = null;
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-
             pstmt = conn.prepareStatement("select * from board_motd where reg_date = (select max(reg_date) from board_motd)");
             rs = pstmt.executeQuery();
             
@@ -570,13 +537,11 @@ public class Board {
     }
 	
 	public List<BoardBean> getLatestMotds() {
-		Connection conn = null;
+		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
         List<BoardBean> articleList=null;
 	    try {
-	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
 	 	   	pstmt = conn.prepareStatement(
 	  	           	"select * from board_motd order by reg_date desc limit 3");
 	 	   	rs = pstmt.executeQuery();
@@ -605,13 +570,11 @@ public class Board {
 	    }
 		
 		public BoardBean getBestArticle() {
-			Connection conn = null;
+			Connection conn = Database.connect();
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;
 	        BoardBean article = null;
 	        try {
-	        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	
 	            pstmt = conn.prepareStatement("select * from board_free where up_count = (select max(up_count) from board_free )");
 	            rs = pstmt.executeQuery();
 	            
@@ -638,13 +601,11 @@ public class Board {
     }
 		
 	public List<BoardBean> getBestArticles() throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 	       List<BoardBean> articleList=null;
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
         	   pstmt = conn.prepareStatement(
          	           	"select * from board_free order by up_count desc limit 4");
      	       rs = pstmt.executeQuery();
@@ -678,13 +639,11 @@ public class Board {
 	   }
 	
 	public List<BoardBean> getBestIssues() throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 	       List<BoardBean> articleList=null;
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
         	   pstmt = conn.prepareStatement(
          	           	"select * from board_issue order by up_count desc limit 2");
      	       rs = pstmt.executeQuery();
@@ -722,13 +681,11 @@ public class Board {
 	   }
 	
 	public BoardBean getArticle(String category, int num) {
-        Connection conn = null;
+        Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         BoardBean article = null;
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-            
             if(category.equals("free")) {
                 pstmt = conn.prepareStatement(
                 	"update board_free set read_count = read_count + 1 where num = ?");
@@ -806,14 +763,12 @@ public class Board {
     }
 	
 	public void updateArticle(BoardBean article, String category) throws Exception {
-        Connection conn = null;
+        Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs= null;
 
         String sql="";
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-            
             if(category.equals("free")) {
 	            sql="update board_free set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
@@ -849,14 +804,12 @@ public class Board {
     }
 	
 	public void deleteArticle(String category, int num) throws Exception {
-        Connection conn = null;
+        Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs= null;
 
         String sql="";
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-            
             if(category.equals("free")) {
 	            sql="delete from board_free where num=?";
 	            pstmt = conn.prepareStatement(sql);
@@ -886,13 +839,11 @@ public class Board {
     }
 	
 	public BoardBean getIssueReply(int num) throws Exception {
-        Connection conn = null;
+        Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         BoardBean article = null;
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-
             pstmt = conn.prepareStatement("select * from board_issue where num_rep = ?");
             pstmt.setInt(1, num);
             rs = pstmt.executeQuery();
@@ -924,13 +875,11 @@ public class Board {
     }
 	
 	public void up(String category, int num) {
-		Connection conn = null;
+		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
         String sql="";
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-            
         	if(category.equals("free")) {
 	        	sql = "update board_free set up_count = up_count + 1 where num = ?";
 	        	pstmt = conn.prepareStatement(sql);
@@ -951,15 +900,13 @@ public class Board {
 	}
 	
 	public int getCommentCount(int num) throws Exception {
-	       Connection conn = null;
+	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
 
 	       int x = 0;
 
 	       try {
-	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
 	           pstmt = conn.prepareStatement("select count(*) from board_free_com where num_board = ?");
 	           pstmt.setInt(1, num);
 	           rs = pstmt.executeQuery();
@@ -978,13 +925,11 @@ public class Board {
 	   }
 	
 	public List<BoardBean> getComments(int num_board) throws Exception {
-		Connection conn = null;
+		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<BoardBean> articleList=null;
 	    try {
-	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
 	    	pstmt = conn.prepareStatement(
    	           	"select * from board_free_com where num_board = ? and num_rep = 0 order by num");
 	    	pstmt.setInt(1, num_board);
@@ -1016,13 +961,11 @@ public class Board {
 	}
 	
 	public List<BoardBean> getReplys(int num_rep) throws Exception {
-		Connection conn = null;
+		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<BoardBean> articleList=null;
 	    try {
-	    	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-	           
 	    	pstmt = conn.prepareStatement(
    	           	"select * from board_free_com where num_rep = ? order by num");
 	    	pstmt.setInt(1, num_rep);
@@ -1054,14 +997,12 @@ public class Board {
 	}
 	
 	public void insertComment(BoardBean comment) {
-		Connection conn = null;
+		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
 		String sql="";
 
         try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
             sql = "insert into board_free_com (num_rep,writer,ip,reg_date,content,num_board) values(?,?,?,now(),?,?)";
 
             pstmt = conn.prepareStatement(sql);
@@ -1081,14 +1022,12 @@ public class Board {
 	}
 	
 	public void updateComment(int num, String content) {
-		Connection conn = null;
+		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
 		String sql="";
 		
 		try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
             sql = "update board_free_com set content = ? where num = ?";
 
             pstmt = conn.prepareStatement(sql);
@@ -1105,14 +1044,12 @@ public class Board {
 	}
 	
 	public void deleteComment(int num) {
-		Connection conn = null;
+		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		
 		String sql="";
 		
 		try {
-        	conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
-			
             sql = "delete from board_free_com where num = ?";
 
             pstmt = conn.prepareStatement(sql);

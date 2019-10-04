@@ -10,7 +10,7 @@
 
 <%@ include file="/assets/include/member_top.jsp" %>
 
-		<!-- main -->
+	<!-- main -->
 	<section id="two" class="wrapper style2">
 		<div class="inner">
 			<div class="box">
@@ -69,6 +69,7 @@
 </div>
 <div class="row uniform">
 	<div class="4u 12u$(xsmall)  style="visibility:hidden;"></div>
+	<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
 	<c:if test="${userId eq null}">
 		<a href="https://kauth.kakao.com/oauth/authorize
 			?client_id=f4b335bfa37a8ce098ed450312b37a35
@@ -76,7 +77,7 @@
 			&response_type=code">
 			<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
 		</a>
-    </c:if>
+	</c:if>
 </div>
 </form>
 				</div>

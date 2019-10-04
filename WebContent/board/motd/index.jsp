@@ -7,7 +7,7 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 10;
+    int pageSize = 15;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -60,7 +60,6 @@
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: #ff0000; text-decoration: none;}
 		</style>
-		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 <%
 	if(email == null) {

@@ -66,7 +66,6 @@
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: red; text-decoration: none;}
 		</style>
-		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
 		<%@ include file="/assets/include/board_top.jsp" %>

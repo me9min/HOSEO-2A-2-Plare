@@ -636,6 +636,46 @@ public class Board {
 	        }
 			return article;
     }
+		
+	public List<BoardBean> getBestArticles() throws Exception {
+	       Connection conn = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+	       List<BoardBean> articleList=null;
+	       try {
+	    	   conn = DriverManager.getConnection(jdbc_url, db_id, db_pwd);
+	           
+        	   pstmt = conn.prepareStatement(
+         	           	"select * from board_free order by up_count desc limit 4");
+     	       rs = pstmt.executeQuery();
+     	
+ 	           if (rs.next()) {
+ 	               articleList = new ArrayList<BoardBean>(2);
+ 	               do{
+ 	                BoardBean article= new BoardBean();
+ 	                
+	            	article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setRead_count(rs.getInt("read_count"));
+					article.setUp_count(rs.getInt("up_count"));
+					article.setIp(rs.getString("ip"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setEdit_date(rs.getTimestamp("edit_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content"));
+ 					
+					articleList.add(article);
+ 				    }while(rs.next());
+ 				}
+	       } catch(Exception ex) {
+	           ex.printStackTrace();
+	       } finally {
+	           if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	           if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	           if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	       }
+			return articleList;
+	   }
 	
 	public List<BoardBean> getBestIssues() throws Exception {
 	       Connection conn = null;

@@ -25,9 +25,8 @@
     Board board = Board.getInstance();
     
     BoardBean motd = board.getLatestMotd();
-    BoardBean best = board.getBestArticle();
+    List<BoardBean >bestList = board.getBestArticles();
     String nickname_motd = board.getNickname(motd.getWriter());
-    String nickname_best = board.getNickname(best.getWriter());
     
     String condition = request.getParameter("condition");
 	String q = request.getParameter("q");
@@ -62,7 +61,6 @@
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: red; text-decoration: none;}
 		</style>
-		<script language="JavaScript" src="login.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 
 		<%@ include file="/assets/include/board_top.jsp" %>
@@ -109,6 +107,11 @@
 					</td>
 					<td id="motd" align="center">&nbsp;</td>
 				</tr>
+<%
+		for(int i = 0; i < bestList.size(); i++) {
+			BoardBean best = bestList.get(i);
+		    String nickname_best = board.getNickname(best.getWriter());
+%>
 				<tr>
 					<td width="10%" id="best" align="center">인기</td>
 					<td width="50%" id="best">
@@ -123,6 +126,8 @@
 					<td id="best" align="center"><%=best.getUp_count() %></td>
 				</tr>
 <%  
+		}
+
 		for (int i = 0 ; i < articleList.size() ; i++) {
 		  BoardBean article = articleList.get(i);
 		  String nickname = board.getNickname(article.getWriter());

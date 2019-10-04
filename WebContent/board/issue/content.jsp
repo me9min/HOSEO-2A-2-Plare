@@ -95,8 +95,8 @@
 				<td><%=edit_date %></td>
 			</tr>
 			<tr>
-				<td align="center" style="vertical-align: middle">내용</td>
-				<td><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
+				<td height="300px" align="center" style="vertical-align: middle">내용</td>
+				<td height="300px"><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
 			</tr>
 <%
 	if(article.getAttach_file_name() != null) {

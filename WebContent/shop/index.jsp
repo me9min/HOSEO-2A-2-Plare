@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "shop.shop" %>
+<%@ page import = "Shop.Shop" %>
 <%@ include file="/assets/include/login_check.jsp" %>
 <%
-	shop sh = new shop();
+	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 %>
 <!DOCTYPE HTML>

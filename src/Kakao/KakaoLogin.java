@@ -1,17 +1,13 @@
-package kakao;
+package Kakao;
 import java.io.*;
 import java.net.*;
 import javax.net.ssl.HttpsURLConnection;
 
-public class kakaoLogin {
+public class KakaoLogin {
 	private final String USER_AGENT = "Mozilla/5.0";
+	private final String targetUrl = "https://kauth.kakao.com/oauth/token";
 	
-	String targetUrl = "https://kauth.kakao.com/oauth/token";
-	String parameters = "code";
-	
-	kakaoLogin.kakaoHttpPost(targetUrl, parameters);
-	
-	private void kakaoHttpPost(String targetUrl, String parameters) throws Exception {
+	public String kakaoHttpPost(String parameters) throws Exception {
 		URL url = new URL(targetUrl);
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		
@@ -34,7 +30,6 @@ public class kakaoLogin {
 		}
 		in.close();
 		
-		System.out.println("HTTP 응답 코드 : " + responseCode);
-		System.out.println("HTTP body : " + response.toString());
+		return ("HTTP 응답 코드 : " + responseCode + "<br>HTTP body : " + response.toString());
 	}
 }

@@ -772,7 +772,7 @@ public class Board {
             if(category.equals("free")) {
 	            sql="update board_free set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
-	
+	            
 	            pstmt.setString(1, article.getTitle());
 	            pstmt.setString(2, article.getContent());
 	            pstmt.setInt(3, article.getNum());
@@ -780,7 +780,7 @@ public class Board {
             } else if(category.equals("motd")) {
             	sql="update board_motd set title=?,content=? where num=?";
    	            pstmt = conn.prepareStatement(sql);
-   	
+   	            
    	            pstmt.setString(1, article.getTitle());
    	            pstmt.setString(2, article.getContent());
    	            pstmt.setInt(3, article.getNum());
@@ -788,7 +788,7 @@ public class Board {
             } else if(category.equals("issue")) {
             	sql="update board_issue set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
-	
+	            
 	            pstmt.setString(1, article.getTitle());
 	            pstmt.setString(2, article.getContent());
 	            pstmt.setInt(3, article.getNum());

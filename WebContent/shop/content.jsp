@@ -10,6 +10,10 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">	
 	<style>
+		#shop_button{
+		width:150px;
+		height:50px;
+		}
 		#inputtext{
 		height:300px;
 		}
@@ -44,11 +48,17 @@
 							</div>
 						</div>
 							<div class="col-md-4">
-							  <div style="border: 1px solid #ff0000; padding:15px;">
-							  	<h3>스킨이름</h3>
+							  <div style="border: 1px solid #ff0000; padding:15px;text-align:center;">
+							  	<h4>마마마마마마마마마마마마마마</h4>
 							  	<hr>
-							  	<h4><img src="/assets/images/PointLogo.png" width="30px" height="30px;"> 3,000</h4>
-							  	<input type="button" value="장바구니 담기">
+							  	<div style="ling-height:23px;">
+							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> 3,000</h4>
+							  	</div>
+							  	
+							  	<br>
+							  	<input type="button" value="장바구니 담기" id="shop_button">
+							  	<br><br>
+							  	<input type="button" value="바로구매"  id="shop_button">
 							  	
 							  </div>
 							</div>

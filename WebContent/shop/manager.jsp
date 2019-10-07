@@ -4,12 +4,12 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>프로필</title>
+		<title>상점 관리자 메뉴</title>
 		<style type="text/css">
 			.px-200{font-size: 200px;}
 		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
-<%@ include file="/assets/include/member_top.jsp" %>
+<%@ include file="/assets/include/shop_top.jsp" %>
 			<section id="one" class="wrapper style2">
 				<div class="inner">
 					<div class="grid-style">
@@ -28,10 +28,10 @@
 						</div>
 
 						<div>
-							<div class="box" onclick="window.location.replace('wallet/');">
+							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-credit-card px-200"></span>
+										<span class="glyphicon glyphicon-usd px-200"></span>
 									</header>
 									<footer class="align-center">
 										<h3>내 지갑</h3>
@@ -44,10 +44,10 @@
 							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-shopping-cart px-200"></span>
+										<span class="glyphicon glyphicon-credit-card px-200"></span>
 									</header>
 									<footer class="align-center">
-										<h3>장바구니</h3>
+										<h3>결제</h3>
 									</footer>
 								</div>
 							</div>

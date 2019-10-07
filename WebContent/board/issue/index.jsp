@@ -14,11 +14,11 @@
 <%
 	String category = "issue";
 	String blank = "&nbsp;&nbsp;&nbsp;&nbsp;";
-    String pageNum = request.getParameter("pageNum");
-
-    if (pageNum == null) {
-        pageNum = "1";
-    }
+	String pageNum = request.getParameter("pageNum");
+	
+	if (pageNum == null) {
+		pageNum = "1";
+	}
 
     int currentPage = Integer.parseInt(pageNum);
     int startRow = (currentPage - 1) * pageSize + 1;
@@ -148,11 +148,11 @@
 					<td width="10%" align="center">&nbsp;</td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=reply.getNum()%>" id="link">
-							<%=blank %><%=reply.getTitle() %>
+							<%=blank %><%="<span style='color:rgb(255,0,0);'>[답변]</span> "+reply.getTitle() %>
 						</a>
 						<p style="color:#bfbfbf; display:inline;"></p>
 					</td>
-					<td align="center"><%=nickname_reply %></td>						
+					<td align="center"><%=nickname_reply %></td>
 					<td align="center"><%=sdf.format(reply.getReg_date()) %></td>
 					<td align="center"><%=reply.getRead_count() %></td>
 					<td align="center"><%=reply.getUp_count() %></td>

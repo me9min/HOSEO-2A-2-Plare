@@ -1,20 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
-<%@ page import = "Bean.BoardBean" %>
-<% 
-	request.setCharacterEncoding("UTF-8");
-	Board board = Board.getInstance();
-	BoardBean article = new BoardBean();
-	int num = Integer.parseInt(request.getParameter("num"));
+<%@ page import = "java.sql.Date" %>
+
+<%
+	request.setCharacterEncoding("utf-8");
+	String email = (String)session.getAttribute("email");
 	
-	article.setNum(num);
-	article.setTitle(request.getParameter("title"));
-	article.setContent(request.getParameter("content"));
+	String nums = (String)request.getParameter("num");
+	int num = Integer.parseInt(nums);
 	
-	board.updateArticle(article, "free");
+	if(email != null) {
+%>
+<jsp:useBean id="article" scope="page" class="Bean.BoardBean">
+	<jsp:setProperty name="article" property="*"/>
+	<jsp:setProperty name="article" property="num" value="<%=num %>"/>
+</jsp:useBean>
+<%
+		Board board = Board.getInstance();
+		board.updateArticle(article, "free");
 %>
 <script>
 	alert("게시글 수정이 완료되었습니다.");
-	window.location = './content.jsp?num=<%=num %>';
+	window.location = './content.jsp?num=<%=nums %>';
 </script>
+<%
+	} else {
+%>
+<script>
+	if(confirm("로그인이 필요합니다 로그인 하시겠습니까?") == true) {
+		location.replace('/member/login');
+	}
+	else {
+		history.back();
+	}
+</script>
+<%
+	}
+%>

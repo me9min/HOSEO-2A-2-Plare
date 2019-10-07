@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="/assets/daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
 	<script src="/assets/daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
 	<script language="JavaScript" src="write.js"></script>
+	<script>
+		var edit_content_val = "";
+	</script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
 <%
@@ -49,6 +52,11 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 							</header>
 
 <%@ include file="/assets/daumeditor/editor.jsp" %>
+
+<div class="12u 12u$(xsmall)">
+	<button class="button special" onclick='saveContent()'>등록</button>
+	<a class="button alt" href="./">글목록</a>
+</div>
 
 					</div>
 				</div>

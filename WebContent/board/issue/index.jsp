@@ -13,7 +13,7 @@
 
 <%
 	String category = "issue";
-	String blank = "&nbsp;&nbsp;&nbsp;&nbsp;";
+	String blank = "┕&nbsp;";
     String pageNum = request.getParameter("pageNum");
 
     if (pageNum == null) {

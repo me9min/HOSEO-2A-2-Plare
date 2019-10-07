@@ -22,7 +22,7 @@
 		#link {color: black; text-decoration: none;}
 		#link:visited {color: black; text-decoration: none;}
 		#link:hover {color: red; text-decoration: none;}
-		#blank {text-align: right; width: 5%;}
+		#blank {text-align: right; width: 5%; word-break:break-all;}
 	</style>
 	<script language="JavaScript" src="write.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
@@ -165,9 +165,8 @@
 				</td>
 			</tr>
 			<tr id="reply<%=count %>" style="display:none; background-color:#ffffff">
-				<td width="5%">&nbsp;</td>
-				<td width="15%" align="center" style="vertical-align: middle"><%=nickname %></td>
-				<td colspan="2" height="100px" style="vertical-align: middle">
+				<td align="center" style="vertical-align: middle"><%=nickname %></td>
+				<td colspan=3" height="100px" style="vertical-align: middle">
 				<form method="post" name="reply_hidden" action="db_comment_reply.jsp">
 					<input type="hidden" name="num" value="<%=num %>">
 					<input type="hidden" name="commentNum" value="<%=comment.getNum() %>">
@@ -183,7 +182,7 @@
 				  String nicknameReply = board.getNickname(reply.getWriter());
 %>
 			<tr style="background-color:#ffffff;border-bottom:hidden;" >
-				<td id="blank">&nbsp;</td>			
+				<td id="blank">┕</td>
 				<td colspan="3" style="vertical-align:middle;">
 					<p style="display:inline; font-weight:bold;"><%=nicknameReply %></p>
 					<p style="display:inline; font-size:10px; color:gray"><%=sdf.format(reply.getReg_date()) %></p>
@@ -191,7 +190,7 @@
 			</tr>
 			<tr style="background-color:#ffffff">
 				<td id="blank">&nbsp;</td>
-				<td id="blank">&nbsp;</td>
+				<td id="blank" nowrap>&nbsp;</td>
 				<td style="vertical-align: middle">
 					<pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif; padding:0px;"><%=reply.getContent() %></pre>
 				</td>
@@ -208,9 +207,8 @@
 				</td>
 			</tr>
 			<tr id="updateReply<%=count %>" style="display:none; background-color:#ffffff">
-				<td id="blank">&nbsp;</td>
 				<td align="center" style="vertical-align: middle"><%=nicknameReply %></td>
-				<td colspan="2" height="100px" style="vertical-align: middle">
+				<td colspan="3" height="100px" style="vertical-align: middle">
 				<form method="post" name="commentUpdate" action="db_comment_update.jsp">
 					<input type="hidden" name="num" value="<%=num %>">
 					<input type="hidden" name="commentNum" value="<%=reply.getNum() %>">

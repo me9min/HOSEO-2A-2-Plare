@@ -114,7 +114,7 @@ public class Board {
 		              x = rs.getInt(1);
 					}
 	    	   } else if(category.equals("issue")) {
-	    		   pstmt = conn.prepareStatement("select count(*) from board_issue");
+	    		   pstmt = conn.prepareStatement("select count(*) from board_issue where num_rep = 0");
 		           rs = pstmt.executeQuery();
 		
 		           if (rs.next()) {

@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8");%>
+	pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 10;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	int pageSize = 10;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	String category = "issue";
 	String blank = "┕&nbsp;";
-    String pageNum = request.getParameter("pageNum");
+	String pageNum = request.getParameter("pageNum");
 
     if (pageNum == null) {
         pageNum = "1";
@@ -148,7 +148,7 @@
 					<td width="10%" align="center">&nbsp;</td>
 					<td width="50%">
 						<a href="content.jsp?num=<%=reply.getNum()%>" id="link">
-							<%=blank %><%="<span style='color:rgb(255,0,0);'>[답변]</span> "+reply.getTitle() %>
+							<%=blank+"<span style='color:rgb(255,0,0);'>[답변]</span> "+reply.getTitle()%>
 						</a>
 						<p style="color:#bfbfbf; display:inline;"></p>
 					</td>

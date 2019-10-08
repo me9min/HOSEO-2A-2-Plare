@@ -10,13 +10,15 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.*;
 import Bean.MemberBean;
 import Bean.Database;
+import com.RemoveTag;
 
 public class Member {
 	private static Member instance = new Member();
-    //.jsp페이지에서 DB연동빈인 MemberBean클래스의 메소드에 접근시 필요
-    public static Member getInstance() {
-        return instance;
-    }
+	//.jsp페이지에서 DB연동빈인 MemberBean클래스의 메소드에 접근시 필요
+	public static Member getInstance() {
+		return instance;
+	}
+	RemoveTag rt = new RemoveTag();
 	
 	public MemberBean login(MemberBean member) {
 		// 로그인 메소드
@@ -80,7 +82,7 @@ public class Member {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getEmail());
 			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getNickname());
+			pstmt.setString(3, rt.removeHtmlTag(member.getNickname()));
 			pstmt.setString(4, birthday);
 			pstmt.setString(5, member.getPhone());
 			pstmt.setString(6, member.getAddress());
@@ -280,7 +282,7 @@ public class Member {
 		return password;
 	}
 	
-	public void change_info(MemberBean member, String email) {
+	public void change_info(MemberBean member, String email) throws Exception {
 		// 회원 정보 수정 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
@@ -292,7 +294,7 @@ public class Member {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getNickname());
+			pstmt.setString(2, rt.removeHtmlTag(member.getNickname()));
 			pstmt.setString(3, member.getPhone());
 			pstmt.setString(4, birthday);
 			pstmt.setString(5, member.getAddress());

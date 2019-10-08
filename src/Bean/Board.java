@@ -3,20 +3,24 @@ package Bean;
 import java.util.*;
 import java.sql.*;
 import javax.sql.*;
+
+import com.RemoveTag;
+
 import javax.naming.*;
 import Bean.BoardBean;
 import Bean.Database;
 
 public class Board {
 	private static Board instance = new Board();
-    //.jsp페이지에서 DB연동빈인 BoardBean클래스의 메소드에 접근시 필요
-    public static Board getInstance() {
-        return instance;
-    }
+	//.jsp페이지에서 DB연동빈인 BoardBean클래스의 메소드에 접근시 필요
+	public static Board getInstance() {
+		return instance;
+	}
+	RemoveTag rt = new RemoveTag();
 	
 	public String getNickname(String email) {
 		Connection conn = Database.connect();
-        PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		String nickname = "";
@@ -53,7 +57,7 @@ public class Board {
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
 	            pstmt.setString(2, article.getIp());
-	            pstmt.setString(3, article.getTitle());
+	            pstmt.setString(3, rt.removeHtmlTag(article.getTitle()));
 				pstmt.setString(4, article.getContent());
 				
 	            pstmt.executeUpdate();
@@ -62,7 +66,7 @@ public class Board {
 	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
-	            pstmt.setString(2, article.getTitle());
+	            pstmt.setString(2, rt.removeHtmlTag(article.getTitle()));
 				pstmt.setString(3, article.getContent());
 				
 	            pstmt.executeUpdate();
@@ -74,7 +78,7 @@ public class Board {
 	            pstmt.setString(2, article.getIp());
 	            pstmt.setInt(3, article.getNum_rep());
 	            
-	            pstmt.setString(4, article.getTitle());
+	            pstmt.setString(4, rt.removeHtmlTag(article.getTitle()));
 				pstmt.setString(5, article.getContent());
 				pstmt.setString(6, article.getAttach_image());
 				pstmt.setString(7, article.getAttach_image_name());
@@ -774,7 +778,7 @@ public class Board {
 	            sql="update board_free set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
 	            
-	            pstmt.setString(1, article.getTitle());
+	            pstmt.setString(1, rt.removeHtmlTag(article.getTitle()));
 	            pstmt.setString(2, article.getContent());
 	            pstmt.setInt(3, article.getNum());
 	            pstmt.executeUpdate();
@@ -782,7 +786,7 @@ public class Board {
             	sql="update board_motd set title=?,content=? where num=?";
    	            pstmt = conn.prepareStatement(sql);
    	            
-   	            pstmt.setString(1, article.getTitle());
+   	            pstmt.setString(1, rt.removeHtmlTag(article.getTitle()));
    	            pstmt.setString(2, article.getContent());
    	            pstmt.setInt(3, article.getNum());
    	            pstmt.executeUpdate();
@@ -790,7 +794,7 @@ public class Board {
             	sql="update board_issue set title=?,content=?,edit_date=now() where num=?";
 	            pstmt = conn.prepareStatement(sql);
 	            
-	            pstmt.setString(1, article.getTitle());
+	            pstmt.setString(1, rt.removeHtmlTag(article.getTitle()));
 	            pstmt.setString(2, article.getContent());
 	            pstmt.setInt(3, article.getNum());
 	            pstmt.executeUpdate();

@@ -5,6 +5,15 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<style>
+			#register_text{
+				margin:auto;
+				line-height:28px;
+				text-align:right;
+				height:28px;
+				color:#000000;
+			}
+		</style>
 		<title>내정보수정</title>
 		<script language="JavaScript" src="edit.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
@@ -49,30 +58,55 @@
 							<header class="align-center">
 								<h2>내정보수정</h2>
 							</header>
-<p>*은 필수항목입니다</p>
+
 <form method="post" action="db_edit.jsp" name="edit">
 	<div class="row uniform">
 		<input type="hidden" name="nickname_check" id="nickname_check" value="false" />
-		<div class="12u 12u$(xsmall)">
+		
+		<div class ="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+		<div class="6u 12u$(xsmall)">
+			<p>*은 필수항목입니다</p>
+		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+		
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">* 이메일</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
 			<input type="text" value="<%=email %>" disabled />
 		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		
-		<div class="12u 12u$(xsmall)">
-			<input type="password" name="password" id="password" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">* 비밀번호</div>
 		</div>
-		
-		<div class="12u$ 12u$(xsmall)">
-			<input type="password" name="passwordc" id="passwordc" value="" placeholder="* 비밀번호 확인" />
+		<div class="6u 12u$(xsmall)">
+			<input type="password" name="password" id="password" maxlength="20" value="" placeholder="* 비밀번호  4~20자, 영어와 숫자 반드시 포함" />
 		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">* 비밀번호확인</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
+			<input type="password" name="passwordc" id="passwordc" maxlength="20" value="" placeholder="* 비밀번호 확인" />
+		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		
-		<div class="8u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">* 닉네임</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
+			<input type="text" name="nickname" id="nickname" maxlength="20" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
 		</div>
 		<div>
 			<a href="#" class="button alt" onclick="nicknameCheck()">닉네임 변경</a>
 		</div>
 		
-		<div class="4u 12u$(small)"><center>
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">생년월일</div>
+		</div>
+		<div class="2u 12u$(small)">
 			<select name="birthday_year">
 				<option value="<%=birthday_year %>" selected><%=birthday_year %>년</option>
 				<option value="2019">2019년</option>
@@ -125,8 +159,8 @@
 				<option value="1972">1972년</option>
 				<option value="1971">1971년</option>
 				<option value="1970">1970년</option>
-			</select></center></div>
-			<div class="4u 12u$(small)">
+			</select></div>
+			<div class="2u 12u$(small)">
 			<select name="birthday_month">
 				<option value="<%=birthday_month %>" selected><%=birthday_month %>월</option>
 				<option value="01">1월</option>
@@ -142,7 +176,7 @@
 				<option value="11">11월</option>
 				<option value="12">12월</option>
 			</select></div>
-			<div class="4u 12u$(small)">
+			<div class="2u 12u$(small)">
 			<select name="birthday_day">
 				<option value="<%=birthday_day %>" selected><%=birthday_day %>일</option>
 				<option value="01">1일</option>
@@ -178,36 +212,61 @@
 				<option value="31">31일</option>
 			</select>
 		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		
-		<div class="12u$ 12u$(xsmall)">
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">휴대폰번호</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
 			<input type="text" name="phone" id="phone" value="<%=phone %>" placeholder="휴대전화번호" />
 		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		
-		<div class="8u 12u$(xsmall)">
-			<input type="text" name="address_road" id="address_road" value="<%=address_road %>" placeholder="주소" readonly />
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">우편번호</div>
 		</div>
+		<div class="6u 12u$(xsmall)">
+			<input type="text" name="zipcode" id="zipcode" value="<%=zipcode %>" placeholder="우편번호" readonly />
+		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+		
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">도로명주소</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
+			<input type="text" name="address_road" id="address_road" value="<%=address_road %>" placeholder="주소" readonly />
+		</div>	
 		<div class="2u 12u$(xsmall)">
 			<a href="address_search.jsp" class="button alt" target="_blank">주소찾기</a>
 		</div>
 		<div class="1u 12u$(xsmall) hidden">
 			<input type="hidden" name="address" id="address" value="<%=address %>" readonly />
 		</div>
-		<div class="6u 12u$(xsmall)">
-			<input type="text" name="zipcode" id="zipcode" value="<%=zipcode %>" placeholder="우편번호" readonly />
+		
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">상세주소</div>
 		</div>
 		<div class="6u$ 12u$(xsmall)">
 			<input type="text" name="address_detail" id="address_detail" value="<%=address_detail %>" placeholder="상세주소" />
 		</div>
-		<div class="12u$ 12u$(xsmall)">
+
+		<div class="3u 12u$(xsmall)" >
+			<div id="register_text">추천인</div>
+		</div>
+		<div class="6u 12u$(xsmall)">
 			<input type="text" value="<%=referrer %>" placeholder="추천인" disabled />
 		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		
 	</div><br>
-<ul class="actions">
-	<li><input type="button" class="button special" value="수정" onclick="return inputCheck()"></li>
-	<li><a href="../logout" class="button alt">로그아웃</a></li>
-	<li><a href="./db_delete.jsp" class="button alt">회원탈퇴</a></li>
-</ul>
+  <div style="float:right;">
+  	<ul class="actions">
+		<li><input type="button" class="button special" value="수정" onclick="return inputCheck()"></li>
+		<li><a href="../logout" class="button alt">로그아웃</a></li>
+		<li><a href="./db_delete.jsp" class="button alt">회원탈퇴</a></li>
+	</ul>
+  </div>
+
 </form>
 			</div>
 			</div>

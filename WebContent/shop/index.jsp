@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
 <%@ page import = "Bean.ShopBean" %>
 <%@ page import = "java.util.List" %>
@@ -9,6 +10,8 @@
     int pageSize = 6;
 %>
 <%
+	Board board = Board.getInstance();	
+
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 	
@@ -36,6 +39,10 @@
 	<head>
 		<title>상점</title>
 		<style>
+			#info_box {
+				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
+				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
+			}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: #ff0000; text-decoration: none;}
@@ -49,7 +56,6 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h4>내포인트 : <%=point %></h4>
 								<h3>스킨</h3><br>
 							</header>
 <%
@@ -81,7 +87,7 @@
 <%
 		if(i==2) {
 %>
-							</div>
+							</div><br>
 							<div class="row">
 <%
 		}
@@ -125,8 +131,14 @@
 						</div>
 					</div>
 				</div>
+				<div id="info_box">
+					<b style="color:white;"><%=board.getNickname(email) %></b> 님<br><br>
+					보유 포인트<br>
+					<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
+					<button type="button" class="button special">충전하기</button><br><br>
+					<button type="button" class="button special">장바구니</button>
+				</div>
 			</section>
-
 
 <%@ include file="/assets/include/foot.jsp" %>
 

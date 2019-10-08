@@ -100,8 +100,8 @@ public class Member {
 	}
 	
 	public String search_referrer(String referrer_nickname) {
-		// 추천인의 정보를 저장하는 메소드
-		// 닉네임은 변경 가능하기 때문에 닉네임에 대응하는 이메일을 검색하여 DB에 저장
+		// 추천인의 정보를 불러오는 메소드
+		// 닉네임은 변경 가능하기 때문에 닉네임에 대응하는 이메일을 검색하여 DB에 저장해야하기 때문에 이 메소드를 사용함
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

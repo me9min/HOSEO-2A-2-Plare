@@ -57,7 +57,6 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 	<button class="button special" onclick='saveContent()'>등록</button>
 	<a class="button alt" href="./">글목록</a>
 </div>
-
 					</div>
 				</div>
 			</div>

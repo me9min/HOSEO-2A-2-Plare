@@ -10,6 +10,12 @@ public class ShopBean {
 	private String item_cat;
 	private String item_dec;
 	
+    private String player_id;
+	private String type;
+    private String date_of_purchase;
+    private String date_of_expiration;
+    private String price_of_purchase;
+	
 	public int getId() {
 		return id;
 	}
@@ -57,5 +63,36 @@ public class ShopBean {
 	}
 	public void setItem_dec(String item_dec) {
 		this.item_dec = item_dec;
+	}
+	
+	public String getPlayer_id() {
+		return player_id;
+	}
+	public void setPlayer_id(String player_id) {
+		this.player_id = player_id;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getDate_of_purchase() {
+		return date_of_purchase;
+	}
+	public void setDate_of_purchase(String date_of_purchase) {
+		this.date_of_purchase = date_of_purchase;
+	}
+	public String getDate_of_expiration() {
+		return date_of_expiration;
+	}
+	public void setDate_of_expiration(String date_of_expiration) {
+		this.date_of_expiration = date_of_expiration;
+	}
+	public String getPrice_of_purchase() {
+		return price_of_purchase;
+	}
+	public void setPrice_of_purchase(String price_of_purchase) {
+		this.price_of_purchase = price_of_purchase;
 	}
 }

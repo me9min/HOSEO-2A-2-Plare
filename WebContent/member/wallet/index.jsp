@@ -56,7 +56,7 @@ function request_buy(){
 <%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
 
-
+<input type="button" value="10000P구매" onclick="request_buy()"/>
 
 <%@ include file="/assets/include/foot.jsp" %>
 

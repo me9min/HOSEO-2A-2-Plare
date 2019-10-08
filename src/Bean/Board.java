@@ -697,8 +697,8 @@ public class Board {
                 rs = pstmt.executeQuery();
                 
                 if(rs.next()) {
-	                article = new BoardBean();
-	            	article.setNum(rs.getInt("num"));
+					article = new BoardBean();
+					article.setNum(rs.getInt("num"));
 					article.setWriter(rs.getString("writer"));
 					article.setRead_count(rs.getInt("read_count"));
 					article.setUp_count(rs.getInt("up_count"));
@@ -718,13 +718,13 @@ public class Board {
                 rs = pstmt.executeQuery();
                     
                 if (rs.next()) {
-                	article = new BoardBean();
-                   	article.setNum(rs.getInt("num"));
-    				article.setWriter(rs.getString("writer"));
-    				article.setRead_count(rs.getInt("read_count"));
-    				article.setReg_date(rs.getTimestamp("reg_date"));
-    				article.setTitle(rs.getString("title"));
-    				article.setContent(rs.getString("content")); 
+					article = new BoardBean();
+					article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setRead_count(rs.getInt("read_count"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content")); 
         		}
             } else if(category.equals("issue")) {
             	pstmt = conn.prepareStatement("update board_issue set read_count = read_count + 1 where num = ?");
@@ -736,8 +736,9 @@ public class Board {
                 rs = pstmt.executeQuery();
                 
                 if(rs.next()) {
-	                article = new BoardBean();
-	            	article.setNum(rs.getInt("num"));
+					article = new BoardBean();
+					article.setNum(rs.getInt("num"));
+					article.setNum_rep(rs.getInt("num_rep"));
 					article.setWriter(rs.getString("writer"));
 					article.setRead_count(rs.getInt("read_count"));
 					article.setUp_count(rs.getInt("up_count"));

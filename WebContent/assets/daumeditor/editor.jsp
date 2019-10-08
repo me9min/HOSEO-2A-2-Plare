@@ -15,13 +15,13 @@
 						-->
 						<li class="tx-list">
 							<div unselectable="on" id="tx_image" class="tx-image tx-btn-trans">
-								<a href="image_upload.jsp" title="사진" class="tx-text" target="_blank">사진</a>
+								<a href="javascript:;" title="사진" class="tx-text">사진</a>
 							</div>
 						</li>
 						<!-- 이미지 첨부 버튼 끝 -->
 						<li class="tx-list">
 							<div unselectable="on" id="tx_file" class="tx-file tx-btn-trans">
-								<a href="file_upload.jsp" title="파일" class="tx-text" target="_blank">파일</a>
+								<a href="javascript:;" title="파일" class="tx-text">파일</a>
 							</div>
 						</li>
 						<li class="tx-list">
@@ -64,7 +64,6 @@
 				@decsription
 				툴바 버튼의 그룹핑의 변경이 필요할 때는 위치(왼쪽, 가운데, 오른쪽) 에 따라 <li> 아래의 <div>의 클래스명을 변경하면 된다.
 				tx-btn-lbg: 왼쪽, tx-btn-bg: 가운데, tx-btn-rbg: 오른쪽, tx-btn-lrbg: 독립적인 그룹
-
 				드롭다운 버튼의 크기를 변경하고자 할 경우에는 넓이에 따라 <li> 아래의 <div>의 클래스명을 변경하면 된다.
 				tx-slt-70bg, tx-slt-59bg, tx-slt-42bg, tx-btn-43lrbg, tx-btn-52lrbg, tx-btn-57lrbg, tx-btn-71lrbg
 				tx-btn-48lbg, tx-btn-48rbg, tx-btn-30lrbg, tx-btn-46lrbg, tx-btn-67lrbg, tx-btn-49lbg, tx-btn-58bg, tx-btn-46bg, tx-btn-49rbg
@@ -425,6 +424,7 @@
 </div>
 <!-- 에디터 끝 -->
 <script type="text/javascript">
+Editor.modify({'content': edit_content_val});
 	var config = {
 		txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
 		txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
@@ -469,7 +469,6 @@
 			contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
 		}
 	};
-
 	EditorJSLoader.ready(function(Editor) {
 		var editor = new Editor(config);
 	});
@@ -482,7 +481,6 @@
 	function saveContent() {
 		Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
 	}
-
 	/**
 	 * Editor.save()를 호출한 경우 데이터가 유효한지 검사하기 위해 부르는 콜백함수로
 	 * 상황에 맞게 수정하여 사용한다.
@@ -493,7 +491,6 @@
 	 */
 	function validForm(editor) {
 		// Place your validation logic here
-
 		// sample : validate that content exists
 		var validator = new Trex.Validator();
 		var content = editor.getContent();
@@ -501,10 +498,8 @@
 			alert('내용을 입력하세요');
 			return false;
 		}
-
 		return true;
 	}
-
 	/**
 	 * Editor.save()를 호출한 경우 validForm callback 이 수행된 이후
 	 * 실제 form submit을 위해 form 필드를 생성, 변경하기 위해 부르는 콜백함수로
@@ -517,13 +512,11 @@
         var i, input;
         var form = editor.getForm();
         var content = editor.getContent();
-
         // 본문 내용을 필드를 생성하여 값을 할당하는 부분
         var textarea = document.createElement('textarea');
         textarea.name = 'content';
         textarea.value = content;
         form.createField(textarea);
-
         /* 아래의 코드는 첨부된 데이터를 필드를 생성하여 값을 할당하는 부분으로 상황에 맞게 수정하여 사용한다.
          첨부된 데이터 중에 주어진 종류(image,file..)에 해당하는 것만 배열로 넘겨준다. */
         var images = editor.getAttachments('image');
@@ -539,7 +532,6 @@
                 form.createField(input);
             }
         }
-
         var files = editor.getAttachments('file');
         for (i = 0; i < files.length; i++) {
             input = document.createElement('input');
@@ -551,8 +543,3 @@
         return true;
 	}
 </script>
-<div class="12u 12u$(xsmall)">
-	<button class="button special" onclick='saveContent()'>글쓰기</button>
-	<a class="button alt" href="./">글목록</a>
-</div>
-<!-- End: Saving Contents -->

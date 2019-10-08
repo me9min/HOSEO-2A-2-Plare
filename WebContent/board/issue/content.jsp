@@ -80,7 +80,15 @@
 		<table class="table">
 			<tr>
 				<td align="center" width="20%" style="vertical-align: middle">제목</td>
-				<td><%=article.getTitle() %></td>
+<%
+	int num_rep = article.getNum_rep();
+	String reply_tag = "";
+	
+	if(num_rep != 0) {
+		reply_tag = "<span style='color:rgb(255,0,0);'>[답변]</span> ";
+	}
+%>
+				<td><%=reply_tag+article.getTitle() %></td>
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">작성자</td>
@@ -117,7 +125,7 @@
 					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
 <%
 	}
-	if(email.equals(admin)) {
+	if(email.equals(admin) && num_rep == 0) {
 %>
 					<a href="write.jsp?num=<%=request.getParameter("num") %>" class="button special">답변쓰기</a>
 <% 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="Bean.Board" %>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
@@ -19,20 +20,24 @@
 <div id="menubox">
 	<a href="/"><img src="/assets/images/PlareLogo.jpg" width="88px" height="42px" id="plare_logo"></a>
 	<ul id="menuul">
-		<li><a class="menuLink" href="#">회원서비스</a>
-			<ul id="dropmenu">
 <%
 request.setCharacterEncoding("utf-8");
 String email = (String)session.getAttribute("email");
 if(email == null) {
 %>
+		<li><a class="menuLink" href="#">회원서비스</a>
+			<ul id="dropmenu">
 				<li><a href="/member/login">로그인/회원가입</a></li>
 				<li><a href="/member/find">아이디/비밀번호찾기</a></li>
 <%
 } else {
+	Board b = Board.getInstance();
+	String name = b.getNickname(email);
 %>
-				<li><a href="/member/logout">로그아웃</a></li>
+		<li><a class="menuLink" href="#"><%=name %> 님</a>
+			<ul id="dropmenu">
 				<li><a href="/member">내정보</a></li>
+				<li><a href="/member/logout">로그아웃</a></li>
 <%
 }
 %>

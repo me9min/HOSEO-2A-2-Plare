@@ -22,19 +22,19 @@
 					</header>
 
 			<form method="post" action="db_login.jsp" name="login" onsubmit="return loginCheck()">
-				  <div class="row">
-				     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
-				     <div class="col-md-6">
+				<div class="row uniform">
+				     <div class ="3u 12u$(xsmall)" style="visibility:hidden;">빈공간</div>
+				     <div class="6u 12u$(xsmall)">
 				       <input type="text" name="email" id="email" value="" placeholder="아이디/이메일" />
 				     </div>
-				     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+				     <div class="3u 12u$(xsmall)"  style="visibility:hidden;">빈공간</div>
 				  </div><br>
-				     <div class="row">
-				     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
-				     <div class="col-md-6">
+				     <div class="row uniform">
+				     <div class="3u 12u$(xsmall)"  style="visibility:hidden;">빈공간</div>
+				     <div class="6u 12u$(xsmall)">
 				       <input type="password" name="password" id="password" value="" placeholder="비밀번호" />
 				     </div>
-				     <div class="col-md-3"  style="visibility:hidden;">빈공간</div>
+				     <div class="3u 12u$(xsmall)"  style="visibility:hidden;">빈공간</div>
 				  </div>
 				<div class="row uniform">
 					<div class="3u 12u$(xsmall)  style="visibility:hidden;"></div>

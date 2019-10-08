@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
 <%@ page import = "Bean.ShopBean" %>
 <%@ page import = "java.text.NumberFormat" %>
@@ -9,6 +10,10 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">	
 	<style>
+		#info_box {
+				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
+				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
+		}
 		#shop_button{
 		width:150px;
 		height:50px;
@@ -38,6 +43,10 @@
 <%
 	int id = Integer.parseInt(request.getParameter("id"));
 
+	Board board = Board.getInstance();	
+	Shop sh = new Shop();
+	int point = sh.getPoint(email);
+
 	String admin = "admin@plare.cf";
 
 	try{
@@ -48,7 +57,8 @@
 		<div class="inner">
 			<div class="box">
 				<div class="content">
-				<a href="index.jsp" class="button alt pull-right">상품목록</a><br><br>
+				<div style="height:438px;">
+				<a href="index.jsp" class="button alt pull-right">상품목록</a><br><br><br>
 					<div class="row">
 						<div class="col-md-8">
 							<div style="width:350px; background:white; margin:0 auto;" >
@@ -66,7 +76,8 @@
 							  	<br>
 							  	<input type="button" value="장바구니 담기" id="shop_button">
 							  	<br><br>
-							  	<input type="button" value="바로구매"  id="shop_button">
+							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;">
+							  	<br><br><br>
 <%
 	if(email.equals(admin)) {
 %>
@@ -76,16 +87,20 @@
 <%
 	}
 %>
-	
 							  </div>
 							</div>
-		
-		
-		
-		
+
 					</div>
 				</div>
+				</div>
 			</div>
+		</div>
+		<div id="info_box">
+					<b style="color:white;"><%=board.getNickname(email) %></b> 님<br><br>
+					보유 포인트<br>
+					<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
+					<button type="button" class="button special">충전하기</button><br><br>
+					<button type="button" class="button special">장바구니</button>
 		</div>
 	</section>
 <%

@@ -84,6 +84,10 @@
 %>
 		<a href="write.jsp" class="button special pull-right">글쓰기</a><br><br>
 <% 
+	} else {
+%>
+		<br><br>
+<%
 	}
 	if(count == 0) { %>
 		<table>

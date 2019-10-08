@@ -19,7 +19,7 @@
 </jsp:useBean>
 <%
 		Board board = Board.getInstance();
-		board.updateArticle(article, "motd");
+		board.insertArticle(article, "motd");
 %>
 <script>
 	alert("게시글 등록이 완료되었습니다.");

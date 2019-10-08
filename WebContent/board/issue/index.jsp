@@ -13,21 +13,12 @@
 
 <%
 	String category = "issue";
-<<<<<<< HEAD
 	String blank = "┕&nbsp;";
     String pageNum = request.getParameter("pageNum");
 
     if (pageNum == null) {
         pageNum = "1";
     }
-=======
-	String blank = "&nbsp;&nbsp;&nbsp;&nbsp;";
-	String pageNum = request.getParameter("pageNum");
-	
-	if (pageNum == null) {
-		pageNum = "1";
-	}
->>>>>>> branch 'master' of https://github.com/me9min/HOSEO-2A-2-Plare
 
     int currentPage = Integer.parseInt(pageNum);
     int startRow = (currentPage - 1) * pageSize + 1;

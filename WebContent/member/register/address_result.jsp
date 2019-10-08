@@ -30,10 +30,10 @@
 							
 	<table align="center">
 		<tr>
-			<th style="font-size:14px; text-align:center; color:black;">도로명주소</th>
-			<th style="font-size:14px; text-align:center; color:black;">지번주소</th>
-			<th style="font-size:14px; text-align:center; color:black;">영어주소</th>
-			<th style="font-size:14px; text-align:center; color:black;">우편번호</th>
+			<th style="font-size:12px; text-align:center; color:black; vertical-align:middle; padding:20px;">도로명주소</th>
+			<th style="font-size:12px; text-align:center; color:black; vertical-align:middle; padding:0px;">지번주소</th>
+			<th style="font-size:12px; text-align:center; color:black; vertical-align:middle; padding:0px;">영어주소</th>
+			<th style="font-size:12px; text-align:center; color:black; vertical-align:middle; padding:0px;">우편번호</th>
 		</tr>
 <%
 	request.setCharacterEncoding("utf-8");

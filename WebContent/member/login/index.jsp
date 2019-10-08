@@ -15,7 +15,7 @@
 		<div class="inner">
 			<div class="box">
 				<div class="content">
-				  <div style="height:440px;" >
+				  <div style="height:450px;" >
 				  <div style="height:80px;visibility:hidden;"></div>
 					<header class="align-center">
 						<h2>로그인</h2>

@@ -35,6 +35,11 @@
 <html>
 	<head>
 		<title>상점</title>
+		<style>
+			#link {color: black; text-decoration: none;}
+			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: #ff0000; text-decoration: none;}
+		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
 <%@ include file="/assets/include/shop_top.jsp" %>
@@ -60,10 +65,17 @@
 		ShopBean item = itemList.get(i);
 %>
 							  <div class="col-md-4">
-								  <img src="/assets/images/test2.jpg" width="220px" height="220px"><br><br>
-								  <p align="center"><%=item.getItem_name() %></p>
-								  <p align="center" style="line-height:20px; vertical-align:middle;"><img src="/assets/images/PointLogo.png" height="16px;"> 
-								  	<%=NumberFormat.getInstance().format(item.getItem_price()) %>
+								  <img src="/assets/images/test2.jpg" width="220px" height="220px" onclick="location.href='content.jsp?id=<%=item.getId() %>'"><br><br>
+								  <p align="center">
+								  	<a href="content.jsp?id=<%=item.getId() %>" id="link">
+								  		<%=item.getItem_name() %>
+								  	</a>
+								  </p>
+								  <p align="center" style="line-height:20px; vertical-align:middle;">
+								  	<img src="/assets/images/PointLogo.png" height="16px;" onclick="location.href='content.jsp?id=<%=item.getId() %>'"> 
+								  	<a href="content.jsp?id=<%=item.getId() %>" id="link">
+								  		<%=NumberFormat.getInstance().format(item.getItem_price()) %>
+								  	</a>
 								  </p>
 							  </div>
 <%

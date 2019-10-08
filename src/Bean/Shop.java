@@ -212,64 +212,28 @@ public class Shop {
 		return itemList;
 	}
 	
-	public ShopBean getItem(String category, int num) {
+	public ShopBean getItem(int num) {
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ShopBean item = null;
 		
 		try {
-			if(category.equals("all")) {
-				pstmt = conn.prepareStatement(
-						"select * from store_menu where id = ?");
-				pstmt.setInt(1, num);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					item = new ShopBean();
-					item.setId(rs.getInt("id"));
-					item.setUnique_id(rs.getString("unique_id"));
-					item.setItem_type(rs.getString("item_type"));
-					item.setItem_name(rs.getString("item_name"));
-					item.setItem_price(rs.getInt("item_price"));
-					item.setItem_count(rs.getInt("item_count"));
-					item.setItem_cat(rs.getString("item_cat"));
-					item.setItem_dec(rs.getString("item_dec"));
-				}
-			} else if(category.equals("skin")) {
-				pstmt = conn.prepareStatement(
-						"select * from store_menu where id = ? and item_type = playerskin");
-				pstmt.setInt(1, num);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					item = new ShopBean();
-					item.setId(rs.getInt("id"));
-					item.setUnique_id(rs.getString("unique_id"));
-					item.setItem_type(rs.getString("item_type"));
-					item.setItem_name(rs.getString("item_name"));
-					item.setItem_price(rs.getInt("item_price"));
-					item.setItem_count(rs.getInt("item_count"));
-					item.setItem_cat(rs.getString("item_cat"));
-					item.setItem_dec(rs.getString("item_dec"));
-				}
-			} else if(category.equals("weapon")) {
-				pstmt = conn.prepareStatement(
-						"select * from store_menu where id = ? and item_type = weapon");
-				pstmt.setInt(1, num);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					item = new ShopBean();
-					item.setId(rs.getInt("id"));
-					item.setUnique_id(rs.getString("unique_id"));
-					item.setItem_type(rs.getString("item_type"));
-					item.setItem_name(rs.getString("item_name"));
-					item.setItem_price(rs.getInt("item_price"));
-					item.setItem_count(rs.getInt("item_count"));
-					item.setItem_cat(rs.getString("item_cat"));
-					item.setItem_dec(rs.getString("item_dec"));
-				}
+			pstmt = conn.prepareStatement(
+					"select * from store_menu where id = ?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				item = new ShopBean();
+				item.setId(rs.getInt("id"));
+				item.setUnique_id(rs.getString("unique_id"));
+				item.setItem_type(rs.getString("item_type"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_count(rs.getInt("item_count"));
+				item.setItem_cat(rs.getString("item_cat"));
+				item.setItem_dec(rs.getString("item_dec"));
 			}
 		} catch(Exception ex) {
 			ex.printStackTrace();

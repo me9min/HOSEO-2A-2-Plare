@@ -189,7 +189,7 @@
 			<div id="register_text">휴대폰번호</div>
 		</div>
 		<div class="6u 12u$(xsmall)">
-			<input type="text" name="phone" id="phone" maxlength="11" value="" placeholder="휴대전화번호" />
+			<input type="text" name="phone" id="phone" maxlength="11" value="" placeholder="숫자만 입력" />
 		</div>
 		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		

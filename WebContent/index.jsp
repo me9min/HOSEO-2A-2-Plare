@@ -18,8 +18,8 @@
 	<head>
 		<style>
 			#tb {table-layout:fixed; width:100%; height:100%;}
-			#title {font-weight:bold; font-size:16px; color:black; text-align:center;}
-			#content {color:black; background-color:white; overflow:hidden;}
+			#title {font-weight:bold; font-size:16px; color:black; text-align:center; overflow:hidden; text-overflow:ellipsis;}
+			#content {color:black; background-color:white; overflow:hidden; text-overflow:ellipsis; height:50px;}
 			#content p{margin:0;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
@@ -72,7 +72,7 @@
 					<table id="tb">
 					<thead>
 						<tr>
-							<td id="title">
+							<td id="title" >
 								<a href="./board/motd/content.jsp?num=<%=motd.getNum()%>" id="link"><%=motd.getTitle() %></a>
 							</td>
 						</tr>

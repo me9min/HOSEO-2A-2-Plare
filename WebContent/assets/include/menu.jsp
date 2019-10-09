@@ -12,6 +12,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script>
+		function logout() {
+			if (confirm("로그아웃 하시겠습니까?") == true){
+				location.href = "/member/logout";
+			} else {
+				return;
+			}
+		}
+	</script>
 
 </head>
 
@@ -36,7 +45,7 @@ if(email == null) {
 		<li><a class="menuLink" href="#"><%=b.getNickname(email) %> 님</a>
 			<ul id="dropmenu">
 				<li><a href="/member">내정보</a></li>
-				<li><a href="/member/logout">로그아웃</a></li>
+				<li><a onclick="logout()">로그아웃</a></li>
 <%
 }
 %>

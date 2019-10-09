@@ -97,7 +97,7 @@
 			<div id="register_text">* 닉네임</div>
 		</div>
 		<div class="6u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" maxlength="20" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" />
+			<input type="text" name="nickname" id="nickname" maxlength="20" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" disabled/>
 		</div>
 		<div>
 			<a href="#" class="button alt" onclick="nicknameCheck()">닉네임 변경</a>
@@ -263,7 +263,7 @@
   	<ul class="actions">
 		<li><input type="button" class="button special" value="수정" onclick="return inputCheck()"></li>
 		<li><a href="../logout" class="button alt">로그아웃</a></li>
-		<li><a href="./db_delete.jsp" class="button alt">회원탈퇴</a></li>
+		<li><a class="button alt" onclick="memberDelete()">회원탈퇴</a></li>
 	</ul>
   </div>
 

@@ -33,15 +33,14 @@
 		#blank {text-align: right; width: 5%;}
 	</style>
 	<script language="JavaScript" src="write.js"></script>
-	
 <%@ include file="/assets/include/menu.jsp" %>
-
-</head>
-<body>
-
 <%@ include file="/assets/include/shop_top.jsp" %>
 <%
-	int id = Integer.parseInt(request.getParameter("id"));
+	int id = 0;
+	String ids = request.getParameter("id");
+	if(ids != null) {
+		id = Integer.parseInt(ids);
+	}
 
 	Board board = Board.getInstance();	
 	Shop sh = new Shop();
@@ -50,8 +49,8 @@
 	String admin = "admin@plare.cf";
 
 	try{
-	    Shop shop = Shop.getInstance(); 
-	    ShopBean item = shop.getItem(id);
+		Shop shop = Shop.getInstance(); 
+		ShopBean item = shop.getItem(id);
 %>
 	<section id="two" class="wrapper style2">
 		<div class="inner">
@@ -99,13 +98,14 @@
 					<b style="color:white;"><%=board.getNickname(email) %></b> 님<br><br>
 					보유 포인트<br>
 					<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
-					<button type="button" class="button special">충전하기</button><br><br>
-					<button type="button" class="button special">장바구니</button>
+					<a class="button special" href="/member/wallet">충전하기</a><br><br>
+					<a class="button special">장바구니</a>
 		</div>
 	</section>
 <%
-   } catch(Exception e) {}
-%>		
+	} catch(Exception e) {}
+%>
+
 <%@ include file="/assets/include/foot.jsp" %>
 
 </body>

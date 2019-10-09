@@ -5,11 +5,20 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String email = (String)session.getAttribute("email");
-		
-	member.delete_member(email);
+	String pw = request.getParameter("pw");
+	if(pw == null) {
+%>
+<script>
+	alert("비밀번호를 입력하지않았습니다.");
+	history.back();
+</script>
+<%
+	}
+	
+	member.delete_member(email,pw);
 	session.invalidate();
 %>
 <script>
 	alert("회원탈퇴가 성공적으로 완료되었습니다.");
-	location.href = "../../";
+	location.href = "/";
 </script>

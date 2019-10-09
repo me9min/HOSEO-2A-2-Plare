@@ -99,3 +99,12 @@ function addressCheck() {
 	}
 	document.address.submit();
 }
+
+function memberDelete() {
+	if (confirm("정말 탈퇴 하시겠습니까?") == true){
+		var pw = prompt('비밀번호확인', '');
+		location.href = "./db_delete.jsp?pw="+pw;
+	} else {
+		return;
+	}
+}

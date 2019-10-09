@@ -196,18 +196,26 @@ public class Member {
 		return check; 
 	}
 	
-	public void delete_member(String email) {
+	public void delete_member(String email, String pw) {
 		// 회원탈퇴 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
-			String sql = "delete from member where email=?";
-			
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement("select password from member where email=?");
 			pstmt.setString(1, email);
 			
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			String cpw = rs.getString("password");
+			
+			if(pw == cpw) {
+				pstmt = conn.prepareStatement("delete from member where email=?");
+				pstmt.setString(1, email);
+				
+				pstmt.executeUpdate();
+			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {

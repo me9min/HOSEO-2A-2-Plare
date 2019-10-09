@@ -18,10 +18,9 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
+var IMP = window.IMP; // 생략가능
+IMP.init('imp35661052'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 function request_buy(){
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp35661052'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	
 	IMP.request_pay({
 		pg : 'kakao', // version 1.1.0부터 지원.
 		pay_method : 'card',

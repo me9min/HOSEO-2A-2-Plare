@@ -30,9 +30,8 @@ if(email == null) {
 <%
 } else {
 	Board b = Board.getInstance();
-	String name = b.getNickname(email);
 %>
-		<li><a class="menuLink" href="#"><%=name %> 님</a>
+		<li><a class="menuLink" href="#"><%=b.getNickname(email) %> 님</a>
 			<ul id="dropmenu">
 				<li><a href="/member">내정보</a></li>
 				<li><a href="/member/logout">로그아웃</a></li>

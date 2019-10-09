@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 
 <%!
-    int pageSize = 15;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	int pageSize = 15;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	String category = "motd";
     String pageNum = request.getParameter("pageNum");
 	String admin = "admin@plare.cf";

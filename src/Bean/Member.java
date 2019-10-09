@@ -196,11 +196,12 @@ public class Member {
 		return check; 
 	}
 	
-	public void delete_member(String email, String pw) {
+	public boolean delete_member(String email, String pw) {
 		// 회원탈퇴 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		boolean success = false;
 		
 		try {
 			pstmt = conn.prepareStatement("select password from member where email=?");
@@ -215,6 +216,8 @@ public class Member {
 				pstmt.setString(1, email);
 				
 				pstmt.executeUpdate();
+				
+				success = true;
 			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -224,6 +227,7 @@ public class Member {
 			if(conn!=null)
 				try{conn.close();}catch(SQLException sqle){}
 		}
+		return success;
 	}
 	
 	public String find_email(String nickname) {

@@ -9,7 +9,7 @@ import Bean.ShopBean;
 
 public class Shop {
 	private static Shop instance = new Shop();
-    //.jsp페이지에서 DB연동빈인 BoardBean클래스의 메소드에 접근시 필요
+    //.jsp페이지에서 DB연동빈인 ShopBean클래스의 메소드에 접근시 필요
     public static Shop getInstance() {
         return instance;
     }	

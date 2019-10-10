@@ -41,7 +41,7 @@
 						</div>
 						
 						<div>
-							<div class="box">
+							<div class="box" onclick="window.location.replace('cart/');">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-shopping-cart px-200"></span>

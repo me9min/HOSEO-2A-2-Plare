@@ -3,6 +3,8 @@
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
 <%@ page import = "Bean.ShopBean" %>
+<%@ page import = "Bean.Cart" %>
+<%@ page import = "Bean.CartBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
@@ -10,12 +12,6 @@
     int pageSize = 6;
 %>
 <%	
-
-	Shop sh = new Shop();
-	int point = sh.getPoint(email);
-	
-	String admin = "admin@plare.cf";
-	
 	String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
         pageNum = "1";
@@ -28,12 +24,14 @@
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;
     int count = 0;
-    
+
 	Board board = Board.getInstance();
-	Shop shop = Shop.getInstance();
+    Shop shop = Shop.getInstance();
+    Cart cart = Cart.getInstance();
     
 	List<ShopBean> itemList = shop.getItems(category, startRow, pageSize);
-	count = shop.getItemCount(category);
+	count = cart.getCartCount(email);
+	int point = shop.getPoint(email);
 %>
 <!DOCTYPE HTML>
 <html>
@@ -50,7 +48,7 @@
 		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
-<%@ include file="/assets/include/shop_top.jsp" %>
+<%@ include file="/assets/include/member_top.jsp" %>
 
 			<section id="two" class="wrapper style2">
 				<div class="inner">
@@ -59,13 +57,9 @@
 							<header class="align-center">
 								<h3>스킨</h3><br>
 							</header>
-<%
-	if(email.equals(admin)) {
-%>
-		<a href="write.jsp" class="button special pull-right">상품등록</a><br><br>
-<% 
-	}
-%>
+<% if(count == 0) { %>
+		<br><br><br><center>장바구니에 아이템이 존재하지 않습니다.</center><br><br><br>
+<% } else { %>
 							<div class="row">
 <%
 	for(int i=0; i<itemList.size(); i++) {
@@ -129,6 +123,9 @@
 %>
 								</div>
 							</div>
+<%
+}
+%>
 						</div>
 					</div>
 				</div>
@@ -137,7 +134,7 @@
 					보유 포인트<br>
 					<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
 					<button type="button" class="button special">충전하기</button><br><br>
-					<button type="button" class="button special" onclick="location.href='../member/cart/'">장바구니</button>
+					<button type="button" class="button special" onclick="location.href='../../shop/'">상점으로</button>
 				</div>
 			</section>
 

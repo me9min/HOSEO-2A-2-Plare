@@ -97,7 +97,7 @@
 			<div id="register_text">* 닉네임</div>
 		</div>
 		<div class="6u 12u$(xsmall)">
-			<input type="text" name="nickname" id="nickname" maxlength="20" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" disabled/>
+			<input type="text" name="nickname" id="nickname" maxlength="20" value="<%=nickname %>" placeholder="* 닉네임  20자 이하, 특수문자 가능" readonly/>
 		</div>
 		<div>
 			<a href="#" class="button alt" onclick="nicknameCheck()">닉네임 변경</a>

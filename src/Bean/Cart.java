@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cart {
 	private static Cart instance = new Cart();
@@ -35,5 +37,36 @@ public class Cart {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 		return count;	
+    }
+    
+    public List<Integer> getCartId(String email, int start, int end) {
+    	// 로그인한 사용자의 스팀 ID를 player_id로 가지고 있는 항목을 리턴하는 메소드
+    	Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Integer> idList = null;
+		
+		try {
+			pstmt = conn.prepareStatement("call cart_selectId(?, ?, ?)");
+			pstmt.setString(1, email);
+			pstmt.setInt(2, start-1);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				idList = new ArrayList<Integer>(end);
+				do {
+					Integer id = rs.getInt(1);
+					idList.add(id);
+				} while(rs.next());
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return idList;	
     }
 }

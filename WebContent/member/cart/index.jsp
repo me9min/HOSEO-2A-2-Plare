@@ -29,14 +29,15 @@
     Shop shop = Shop.getInstance();
     Cart cart = Cart.getInstance();
     
-	List<ShopBean> itemList = shop.getItems(category, startRow, pageSize);
+    List<Integer> idList = cart.getCartId(email, startRow, pageSize);
+	List<ShopBean> itemList = shop.getItems(idList);
 	count = cart.getCartCount(email);
 	int point = shop.getPoint(email);
 %>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>상점</title>
+		<title>장바구니</title>
 		<style>
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
@@ -55,7 +56,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h3>스킨</h3><br>
+								<h3>장바구니</h3><br>
 							</header>
 <% if(count == 0) { %>
 		<br><br><br><center>장바구니에 아이템이 존재하지 않습니다.</center><br><br><br>
@@ -66,15 +67,15 @@
 		ShopBean item = itemList.get(i);
 %>
 							  <div class="col-md-4">
-								  <img src="/assets/images/test2.jpg" width="220px" height="220px" onclick="location.href='content.jsp?id=<%=item.getId() %>'"><br><br>
+								  <img src="/assets/images/test2.jpg" width="220px" height="220px" onclick="location.href='../../shop/content.jsp?id=<%=item.getId() %>'"><br><br>
 								  <p align="center">
-								  	<a href="content.jsp?id=<%=item.getId() %>" id="link">
+								  	<a href="../../shop/content.jsp?id=<%=item.getId() %>" id="link">
 								  		<%=item.getItem_name() %>
 								  	</a>
 								  </p>
 								  <p align="center" style="line-height:20px; vertical-align:middle;">
-								  	<img src="/assets/images/PointLogo.png" height="16px;" onclick="location.href='content.jsp?id=<%=item.getId() %>'"> 
-								  	<a href="content.jsp?id=<%=item.getId() %>" id="link">
+								  	<img src="/assets/images/PointLogo.png" height="16px;" onclick="location.href='../../shop/content.jsp?id=<%=item.getId() %>'"> 
+								  	<a href="../../shop/content.jsp?id=<%=item.getId() %>" id="link">
 								  		<%=NumberFormat.getInstance().format(item.getItem_price()) %>
 								  	</a>
 								  </p>

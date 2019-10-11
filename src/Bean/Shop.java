@@ -212,6 +212,45 @@ public class Shop {
 		return itemList;
 	}
 	
+	public List<ShopBean> getItems(List<Integer> idList) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ShopBean> itemList = null;
+		
+		try {
+			itemList = new ArrayList<ShopBean>();
+			for(int i=0; i<idList.size(); i++) {
+				pstmt = conn.prepareStatement("select * from store_menu where id = ?");
+				pstmt.setInt(1, idList.get(i));
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					do {
+						ShopBean item = new ShopBean();
+						item.setId(rs.getInt("id"));
+						item.setUnique_id(rs.getString("unique_id"));
+						item.setItem_type(rs.getString("item_type"));
+						item.setItem_name(rs.getString("item_name"));
+						item.setItem_price(rs.getInt("item_price"));
+						item.setItem_count(rs.getInt("item_count"));
+						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_dec(rs.getString("item_dec"));
+						
+						itemList.add(item);
+					} while(rs.next());
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return itemList;
+	}
+	
 	public ShopBean getItem(int num) {
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;

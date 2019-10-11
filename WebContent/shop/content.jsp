@@ -52,6 +52,9 @@
 		Shop shop = Shop.getInstance(); 
 		ShopBean item = shop.getItem(id);
 %>
+<head>
+<title><%=item.getItem_name() %></title>
+</head>
 	<section id="two" class="wrapper style2">
 		<div class="inner">
 			<div class="box">
@@ -99,7 +102,7 @@
 					보유 포인트<br>
 					<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
 					<button type="button" class="button special">충전하기</button><br><br>
-					<button type="button" class="button special" onclick="location.href='../../shop/'">상점으로</button>
+					<button type="button" class="button special" onclick="location.href='../member/cart/'">장바구니</button>
 		</div>
 	</section>
 <%

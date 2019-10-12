@@ -33,12 +33,17 @@
 	List<ShopBean> itemList = shop.getItems(idList);
 	count = cart.getCartCount(email);
 	int point = shop.getPoint(email);
+	
+	int all = 0;
 %>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>장바구니</title>
 		<style>
+			td {color: black; background-color: #ffffff; height: 100%;}
+			#thead {text-align: center; background-color: black; color: white;}
+			#tbody {vertical-align: middle; text-align: center;}
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
 				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
@@ -47,6 +52,39 @@
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: #ff0000; text-decoration: none;}
 		</style>
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    	<script>
+			$(document).ready( function() {
+			  $('.check-all').click( function() {
+			    $('.items').prop('checked', this.checked);
+			    
+			    if (this.checked) {
+			          total = parseInt($('#all').val());
+			      } else {
+			    	  total = 0;
+			      }
+	
+			      $('#total_value').val(total);
+			      $('#total').text(total);
+			  } );
+			  
+			  $('.items').click( function(event) {
+				  var total = parseInt($('#total_value').val());
+				  var count = $(this).val();
+				  var id = "#price" + count;
+			      var price = parseInt($(id).val());
+	
+			      if (this.checked) {
+			          total += price;
+			      } else {
+			    	  total -= price;
+			      }
+	
+			      $('#total_value').val(total);
+			      $('#total').text(total);
+			  } );
+			} );
+	    </script>
 <%@ include file="/assets/include/menu_member.jsp" %>
 
 <%@ include file="/assets/include/member_top.jsp" %>
@@ -61,37 +99,54 @@
 <% if(count == 0) { %>
 		<br><br><br><center>장바구니에 아이템이 존재하지 않습니다.</center><br><br><br>
 <% } else { %>
-							<div class="row">
+							<form method="post" action="" name="cart_select">
+							<table class="table table-hover">
+							<thead>
+								<tr>
+									<td id="thead">
+										<input type="checkbox" class="check-all">
+									</td>
+									<td width="25%" id="thead">&nbsp;</td>
+									<td width="30%" id="thead">상품명</td>
+									<td id="thead">종류</td>
+									<td id="thead">가격</td>
+								</tr>
+							</thead>
+							<tbody>
 <%
-	for(int i=0; i<itemList.size(); i++) {
-		ShopBean item = itemList.get(i);
+		for(int i=0; i<itemList.size(); i++) {
+			ShopBean item = itemList.get(i);
+			String type = "";
+			if(item.getItem_type().equals("playerskin")) {
+				type = "스킨";
+			} else if(item.getItem_type().equals("weapon")) {
+				type = "무기";
+			}
+			all += item.getItem_price();
 %>
-							  <div class="col-md-4">
-								  <img src="/assets/images/test2.jpg" width="220px" height="220px" onclick="location.href='../../shop/content.jsp?id=<%=item.getId() %>'"><br><br>
-								  <p align="center">
-								  	<a href="../../shop/content.jsp?id=<%=item.getId() %>" id="link">
-								  		<%=item.getItem_name() %>
-								  	</a>
-								  </p>
-								  <p align="center" style="line-height:20px; vertical-align:middle;">
-								  	<img src="/assets/images/PointLogo.png" height="16px;" onclick="location.href='../../shop/content.jsp?id=<%=item.getId() %>'"> 
-								  	<a href="../../shop/content.jsp?id=<%=item.getId() %>" id="link">
-								  		<%=NumberFormat.getInstance().format(item.getItem_price()) %>
-								  	</a>
-								  </p>
-							  </div>
-<%
-		if(i==2) {
-%>
-							</div><br>
-							<div class="row">
+							    <tr>
+									<td id="tbody">
+										<input type="checkbox" name="checkItem" value="<%=item.getId() %>" class="items">
+										<input type="hidden" name="price<%=item.getId() %>" id="price<%=item.getId() %>" value="<%=item.getItem_price() %>">
+									</td>
+									<td id="tbody">
+										<img src="/assets/images/test2.jpg" width="100%">
+									</td>
+									<td style="font-weight:bold; vertical-align:middle;"><%=item.getItem_name() %></td>
+									<td id="tbody"><%=type %></td>
+									<td id="tbody">
+										<img src="/assets/images/PointLogo.png" height="20px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %>
+									</td>
+								</tr>
+							</tbody>
 <%
 		}
-	}
 %>
-							</div><br>
-							<div class="row">
-								<div class="align-center" style="width:100%;">
+							<tfoot>
+								<tr>
+									<td colspan="5" style="text-align:center;">
+										<input type="hidden" name="total_value" id="total_value" value="0">
+										<input type="hidden" name="all" id="all" value="<%=all %>">
 <%
     if (count > 0) {
         int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -121,12 +176,30 @@
 <%
         }
     }
-%>
-								</div>
-							</div>
-<%
 }
 %>
+									</td>
+								</tr>
+								<tr><td style="border:none;">&nbsp;</td></tr>
+								<tr style="text-align:right; font-size:24px;">
+									<td colspan="4">
+										<b>총 주문 금액</b>
+									</td>
+									<td width="20%">
+										<img src="/assets/images/PointLogo.png" height="24px;"> 
+										<b id="total" style="color:#ff0000;">0</b>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="5" style="text-align:right; border:none;">
+										<br>
+										<input type="button" value="선택삭제" class="button special" style="background-color:black;"> 
+										<input type="button" value="선택구매" class="button special">
+									</td>
+								</tr>
+							</tfoot>
+							</table>
+							</form>
 						</div>
 					</div>
 				</div>

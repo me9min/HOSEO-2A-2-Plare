@@ -69,4 +69,29 @@ public class Cart {
 		}
 		return idList;	
     }
+    
+    public int InsertCart(String email, int mid) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int error = 3;
+		
+		try {
+			String sql = "call cart_insertItem(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, mid);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			error = rs.getInt("error");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return error;	//0=성공, 1=이미구매한아이템, 2=이미장바구니에있는아이템, 3=DB연결실패
+	}
 }

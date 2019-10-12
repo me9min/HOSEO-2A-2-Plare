@@ -32,7 +32,6 @@
 		#link:hover {color: red; text-decoration: none;}
 		#blank {text-align: right; width: 5%;}
 	</style>
-	<script language="JavaScript" src="write.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 <%@ include file="/assets/include/shop_top.jsp" %>
 <%
@@ -76,7 +75,7 @@
 							  	</div>
 							  	
 							  	<br>
-							  	<input type="button" value="장바구니 담기" id="shop_button">
+							  	<input type="button" value="장바구니 담기" id="shop_button" onclick="location.href='db_cart.jsp?id=<%=item.getId() %>'">
 							  	<br><br>
 							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;">
 							  	<br><br><br>
@@ -84,8 +83,8 @@
 	if(email.equals(admin)) {
 %>
 							<br><br>
-							<button class="button special" onclick="location.href='edit.jsp?num=<%=item.getId() %>'">수정</button>
-							<button class="button special" onclick="location.href='db_delete.jsp?num=<%=item.getId() %>'">삭제</button>
+							<button class="button special" onclick="location.href='edit.jsp?id=<%=item.getId() %>'">수정</button>
+							<button class="button special" onclick="location.href='db_delete.jsp?id=<%=item.getId() %>'">삭제</button>
 <%
 	}
 %>

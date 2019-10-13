@@ -70,9 +70,13 @@
 <%
 	for(int i=0; i<itemList.size(); i++) {
 		ShopBean item = itemList.get(i);
+	    String img = "/assets/images/test2.jpg";
+		if(item.getItem_img() != null) {
+			img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
+		}
 %>
 							  <div class="col-md-4">
-								  <img src="/assets/images/test2.jpg" width="220px" height="220px" onclick="location.href='content.jsp?id=<%=item.getId() %>'"><br><br>
+								  <img src="<%=img %>" width="220px" height="220px" onclick="location.href='content.jsp?id=<%=item.getId() %>'"><br><br>
 								  <p align="center">
 								  	<a href="content.jsp?id=<%=item.getId() %>" id="link">
 								  		<%=item.getItem_name() %>

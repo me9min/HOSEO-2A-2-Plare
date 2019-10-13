@@ -129,6 +129,12 @@
 			} else if(item.getItem_type().equals("lasersight")) {
 				type = "레이저 사이트";
 			}
+			
+		    String img = "/assets/images/test2.jpg";
+			if(item.getItem_img() != null) {
+				img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
+			}
+			
 			all += item.getItem_price();
 %>
 							    <tr>
@@ -137,7 +143,7 @@
 										<input type="hidden" name="price<%=item.getId() %>" id="price<%=item.getId() %>" value="<%=item.getItem_price() %>">
 									</td>
 									<td id="tbody">
-										<img src="/assets/images/test2.jpg" width="100%">
+										<img src="<%=img %>" width="100%">
 									</td>
 									<td style="font-weight:bold; vertical-align:middle;"><%=item.getItem_name() %></td>
 									<td id="tbody"><%=type %></td>

@@ -8,6 +8,7 @@ public class ShopBean {
 	private int item_price;
 	private int item_count;
 	private String item_cat;
+	private String item_img;
 	private String item_dec;
 	
     private String player_id;
@@ -57,6 +58,12 @@ public class ShopBean {
 	}
 	public void setItem_cat(String item_cat) {
 		this.item_cat = item_cat;
+	}
+	public String getItem_img() {
+		return item_img;
+	}
+	public void setItem_img(String item_img) {
+		this.item_img = item_img;
 	}
 	public String getItem_dec() {
 		return item_dec;

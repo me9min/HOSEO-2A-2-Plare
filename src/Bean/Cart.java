@@ -94,4 +94,23 @@ public class Cart {
 		}
 		return error;	//0=성공, 1=이미구매한아이템, 2=이미장바구니에있는아이템, 3=DB연결실패
 	}
+    
+    public void DeleteCart(String email, String menu_id) {
+    	Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		int mid = Integer.parseInt(menu_id);
+		
+		try {
+			String sql = "call cart_deleteItem(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, mid);
+			pstmt.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+    }
 }

@@ -50,6 +50,11 @@
 	try{
 		Shop shop = Shop.getInstance(); 
 		ShopBean item = shop.getItem(id);
+
+	    String img = "/assets/images/test2.jpg";
+		if(item.getItem_img() != null) {
+			img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
+		}
 %>
 <head>
 <title><%=item.getItem_name() %></title>
@@ -63,7 +68,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div style="width:350px; background:white; margin:0 auto;" >
-							  <img src="/assets/images/test2.jpg" width="350px">
+							  <img src="<%=img %>" width="350px">
 							</div>
 						</div>
 							<div class="col-md-4">

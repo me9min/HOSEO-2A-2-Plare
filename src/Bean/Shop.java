@@ -150,6 +150,7 @@ public class Shop {
 						item.setItem_price(rs.getInt("item_price"));
 						item.setItem_count(rs.getInt("item_count"));
 						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
 						item.setItem_dec(rs.getString("item_dec"));
 						
 						itemList.add(item);
@@ -173,6 +174,7 @@ public class Shop {
 						item.setItem_price(rs.getInt("item_price"));
 						item.setItem_count(rs.getInt("item_count"));
 						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
 						item.setItem_dec(rs.getString("item_dec"));
 						
 						itemList.add(item);
@@ -196,6 +198,7 @@ public class Shop {
 						item.setItem_price(rs.getInt("item_price"));
 						item.setItem_count(rs.getInt("item_count"));
 						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
 						item.setItem_dec(rs.getString("item_dec"));
 						
 						itemList.add(item);
@@ -235,6 +238,7 @@ public class Shop {
 						item.setItem_price(rs.getInt("item_price"));
 						item.setItem_count(rs.getInt("item_count"));
 						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
 						item.setItem_dec(rs.getString("item_dec"));
 						
 						itemList.add(item);
@@ -272,6 +276,7 @@ public class Shop {
 				item.setItem_price(rs.getInt("item_price"));
 				item.setItem_count(rs.getInt("item_count"));
 				item.setItem_cat(rs.getString("item_cat"));
+				item.setItem_img(rs.getString("item_img"));
 				item.setItem_dec(rs.getString("item_dec"));
 			}
 		} catch(Exception ex) {

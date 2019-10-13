@@ -52,6 +52,7 @@
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: #ff0000; text-decoration: none;}
 		</style>
+		<script language="JavaScript" src="cart.js"></script>
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     	<script>
 			$(document).ready( function() {
@@ -193,7 +194,6 @@
 <%
         }
     }
-}
 %>
 									</td>
 								</tr>
@@ -210,13 +210,16 @@
 								<tr>
 									<td colspan="6" style="text-align:right; border:none;">
 										<br>
-										<input type="button" value="선택삭제" class="button special" style="background-color:black;"> 
+										<input type="button" value="선택삭제" class="button special" style="background-color:black;" onclick="deleteCheck()"> 
 										<input type="button" value="선택구매" class="button special">
 									</td>
 								</tr>
 							</tfoot>
 							</table>
 							</form>
+<%
+}
+%>
 						</div>
 					</div>
 				</div>
@@ -228,7 +231,6 @@
 					<button type="button" class="button special" onclick="location.href='../../shop/'">상점으로</button>
 				</div>
 			</section>
-
 <%@ include file="/assets/include/foot.jsp" %>
 
 </html>

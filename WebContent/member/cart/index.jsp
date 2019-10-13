@@ -103,13 +103,14 @@
 							<table class="table table-hover">
 							<thead>
 								<tr>
-									<td id="thead">
+									<td width="5%" id="thead">
 										<input type="checkbox" class="check-all">
 									</td>
 									<td width="25%" id="thead">&nbsp;</td>
 									<td width="30%" id="thead">상품명</td>
-									<td id="thead">종류</td>
-									<td id="thead">가격</td>
+									<td width="10%" id="thead">종류</td>
+									<td width="25%" id="thead">가격</td>
+									<td width="5%" id="thead">&nbsp;</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -119,8 +120,14 @@
 			String type = "";
 			if(item.getItem_type().equals("playerskin")) {
 				type = "스킨";
-			} else if(item.getItem_type().equals("weapon")) {
-				type = "무기";
+			} else if(item.getItem_type().equals("hat")) {
+				type = "모자";
+			} else if(item.getItem_type().equals("pet")) {
+				type = "펫";
+			} else if(item.getItem_type().equals("grenadeskin")) {
+				type = "수류탄";
+			} else if(item.getItem_type().equals("lasersight")) {
+				type = "레이저 사이트";
 			}
 			all += item.getItem_price();
 %>
@@ -137,6 +144,10 @@
 									<td id="tbody">
 										<img src="/assets/images/PointLogo.png" height="20px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %>
 									</td>
+									<td id="tbody">
+										<input type="button" value="X" class="button special" style="padding:0 10px;" 
+										onclick="location.href='db_delete.jsp?menu_id=<%=item.getId() %>'">
+									</td>
 								</tr>
 							</tbody>
 <%
@@ -144,7 +155,7 @@
 %>
 							<tfoot>
 								<tr>
-									<td colspan="5" style="text-align:center;">
+									<td colspan="6" style="text-align:center;">
 										<input type="hidden" name="total_value" id="total_value" value="0">
 										<input type="hidden" name="all" id="all" value="<%=all %>">
 <%
@@ -185,13 +196,13 @@
 									<td colspan="4">
 										<b>총 주문 금액</b>
 									</td>
-									<td width="20%">
+									<td colspan="2">
 										<img src="/assets/images/PointLogo.png" height="24px;"> 
 										<b id="total" style="color:#ff0000;">0</b>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="5" style="text-align:right; border:none;">
+									<td colspan="6" style="text-align:right; border:none;">
 										<br>
 										<input type="button" value="선택삭제" class="button special" style="background-color:black;"> 
 										<input type="button" value="선택구매" class="button special">

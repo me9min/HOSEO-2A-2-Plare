@@ -1,19 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
-<%@ page import = "Bean.Board" %>
-<%@ page import = "Bean.BoardBean" %>
-<%@ page import = "java.util.List" %>
-<%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "Bean.*,java.util.*,java.text.SimpleDateFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
+<jsp:useBean id="member" class="Bean.Member" />
 <%
 	String pname = "10000P 추가";
 	int price = 10000;
 	
-	String name = "장비를정지합니다";
-	String phone = "010-3165-6898";
-	String addr = "이세상 어딘가";
-	String postcode = "123-456";
+	MemberBean member_sql = member.load_info(email);
+	
+	String nickname = member_sql.getNickname();
+	if(nickname == null) {nickname = "";}
+	String phone = member_sql.getPhone();
+	if(phone == null) {phone = "";}
+	String address_road = member_sql.getAddress_road();
+	if(address_road == null) {address_road = "";}
+	String address_detail = member_sql.getAddress_detail();
+	if(address_detail == null) {address_detail = "";}
+	String zipcode = member_sql.getZipcode();
+	if(zipcode == null) {zipcode = "";}
 %>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -28,10 +34,10 @@ function request_buy(){
 		name : '<%=pname%>',
 		amount : <%=price%>,
 		buyer_email : '<%=email%>',
-		buyer_name : '<%=name%>',
+		buyer_name : '<%=nickname%>',
 		buyer_tel : '<%=phone%>',
-		buyer_addr : '<%=addr%>',
-		buyer_postcode : '<%=postcode%>',
+		buyer_addr : '<%=address_road+" "+address_detail%>',
+		buyer_postcode : '<%=zipcode%>',
 		m_redirect_url : 'http://localhost/shop/db_buy.jsp'
 	}, function(rsp) {
 		if ( rsp.success ) {

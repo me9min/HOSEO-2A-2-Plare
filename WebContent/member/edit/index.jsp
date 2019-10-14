@@ -262,12 +262,18 @@
   <div style="float:right;">
   	<ul class="actions">
 		<li><input type="button" class="button special" value="수정" onclick="return inputCheck()"></li>
-		<li><a href="../logout" class="button alt">로그아웃</a></li>
+		<li><a class="button alt" onclick="logout()">로그아웃</a></li>
 		<li><a class="button alt" onclick="memberDelete()">회원탈퇴</a></li>
 	</ul>
   </div>
-
 </form>
+<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
+<a href="https://kauth.kakao.com/oauth/authorize
+	?client_id=f4b335bfa37a8ce098ed450312b37a35
+	&redirect_uri=http://amel.kro.kr/member/login/kakao_login.jsp
+	&response_type=code">
+	<img alt="카카오연동 " src="/assets/images/kakaolink_btn_medium.png"/>
+</a>
 			</div>
 			</div>
 			</div>

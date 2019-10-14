@@ -1,5 +1,9 @@
 package Kakao;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -11,8 +15,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import com.google.gson.*;
-import com.google.gson.stream.*;
-import com.google.gson.internal.LinkedTreeMap;
+import Bean.Database;
 
 public class KakaoLogin {
 	
@@ -34,7 +37,7 @@ public class KakaoLogin {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 	    params.add(new BasicNameValuePair("grant_type", "authorization_code"));
 	    params.add(new BasicNameValuePair("client_id", "f4b335bfa37a8ce098ed450312b37a35"));
-	    params.add(new BasicNameValuePair("redirect_uri", "http://amel.zz.am/member/login/kakao_login.jsp"));
+	    params.add(new BasicNameValuePair("redirect_uri", "http://amel.kro.kr/member/login/kakao_login.jsp"));
 	    params.add(new BasicNameValuePair("code", code));
 	    post.setEntity(new UrlEncodedFormEntity(params));
 		
@@ -57,9 +60,8 @@ public class KakaoLogin {
 	public static String getProfile(String instring) throws ClientProtocolException, IOException {
 		
 		Gson gson = new Gson();
-		Map<String,String> injson = new HashMap<String,String>();
-		injson = (Map<String,String>) gson.fromJson(instring, injson.getClass());
-		
+		JsonObject injson = (JsonObject) gson.fromJson(instring, JsonObject.class);
+		 
 		//http client 생성
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		
@@ -68,7 +70,7 @@ public class KakaoLogin {
 		
 		//agent 정보 설정
 		post.addHeader("User-Agent", USER_AGENT);
-		post.addHeader("Authorization", "Bearer "+injson.get("access_token"));
+		post.addHeader("Authorization", "Bearer "+injson.get("access_token").getAsString());
 		post.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		//get 요청
@@ -85,5 +87,60 @@ public class KakaoLogin {
 		System.out.println("");
 		
 		return res;
+	}
+	
+	public void loginMemberKakao(String kakaoid) {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+	}
+	
+	public void logoutKakao(String kakaoid) {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+	}
+	
+	public void updateMemberKakao(String email, String kakaoid, String kakaoimg) {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("select kakaoid from member where email=?");
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			rs.next();
+			String member_kakaoid = rs.getString("kakaoid");
+			
+			if(true) {
+				pstmt = conn.prepareStatement("update member set kakaoid=?, kakako_profile_image=? where email=?");
+				if(member_kakaoid == null) {
+					
+					pstmt.setString(1, kakaoid);
+					pstmt.setString(2, kakaoimg);
+					pstmt.setString(3, email);
+				} else {
+					pstmt.setString(1, null);
+					pstmt.setString(2, null);
+					pstmt.setString(3, email);
+				}
+				pstmt.executeUpdate();
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+		}
 	}
 }

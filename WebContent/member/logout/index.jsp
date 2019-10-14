@@ -2,11 +2,5 @@
     pageEncoding="UTF-8"%>
 <%
 	session.invalidate();
-	
-	String referer = request.getHeader("REFERER");
-	/* if(referer != null) {
-		response.sendRedirect(referer);
-		return;
-	} */
-	response.sendRedirect("/member/login");
+	response.sendRedirect("/");
 %>

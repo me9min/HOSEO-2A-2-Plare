@@ -10,6 +10,17 @@
 
 <%@ include file="/assets/include/member_top.jsp" %>
 
+<%
+	String ref = request.getHeader("REFERER");
+	if(ref == null) {
+		ref = "";
+	}
+	String rref = request.getParameter("ref");
+	if(rref != null) {
+		ref = rref;
+	}
+%>
+
 	<!-- main -->
 	<section id="two" class="wrapper style2">
 		<div class="inner">
@@ -21,7 +32,7 @@
 						<h2>로그인</h2>
 					</header>
 
-			<form method="post" action="db_login.jsp" name="login" onsubmit="return loginCheck()">
+			<form method="post" action="db_login.jsp?ref=<%=ref%>" name="login" onsubmit="return loginCheck()">
 				<div class="row uniform">
 				     <div class ="3u 12u$(xsmall)" style="visibility:hidden;">빈공간</div>
 				     <div class="6u 12u$(xsmall)">
@@ -45,16 +56,14 @@
 					</ul>
 				</div>
 				<div class="row uniform">
-					<div class="4u 12u$(xsmall)  style="visibility:hidden;"></div>
+					<div class="4u 12u$(xsmall) style="visibility:hidden;"></div>
 					<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
-					<c:if test="${userId eq null}">
-						<a href="https://kauth.kakao.com/oauth/authorize
-							?client_id=f4b335bfa37a8ce098ed450312b37a35
-							&redirect_uri=http://amel.zz.am/member/login/kakao_login.jsp
-							&response_type=code">
-							<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
-						</a>
-					</c:if>
+					<a href="https://kauth.kakao.com/oauth/authorize
+						?client_id=f4b335bfa37a8ce098ed450312b37a35
+						&redirect_uri=http://amel.kro.kr/member/login/kakao_login.jsp
+						&response_type=code">
+						<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
+					</a>
 				</div>
 			</form>				
 					</div>

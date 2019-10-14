@@ -113,4 +113,30 @@ public class Cart {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
     }
+
+    public int buyCart(String email, String mid) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int error = 3;
+		
+		try {
+			String sql = "call cart_buyItem(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, mid);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			error = rs.getInt("error");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return error;	//0=성공, 1=포인트부족, 2=이미구매한아이템, 3=DB연결실패
+	}
+    
 }

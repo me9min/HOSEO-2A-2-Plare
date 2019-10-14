@@ -211,7 +211,7 @@
 									<td colspan="6" style="text-align:right; border:none;">
 										<br>
 										<input type="button" value="선택삭제" class="button special" style="background-color:black;" onclick="deleteCheck()"> 
-										<input type="button" value="선택구매" class="button special">
+										<input type="button" value="선택구매" class="button special" onclick="buyCheck()">
 									</td>
 								</tr>
 							</tfoot>

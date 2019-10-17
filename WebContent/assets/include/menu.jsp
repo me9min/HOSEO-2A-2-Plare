@@ -32,7 +32,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String email = (String)session.getAttribute("email");
-if(email == null) {
+if(email == null || email.length() == 0) {
 %>
 		<li><a class="menuLink" href="#">회원서비스</a>
 			<ul id="dropmenu">

@@ -10,25 +10,32 @@
 
 <%
 	String ref = request.getParameter("ref");
-	if(ref == null) {
-		ref = "";
-	}
-	MemberBean member_sql = member.login(member_form);
 	
-	if(member_sql.getEmail() == null) {
+	MemberBean member_sql = member.login(member_form);
+	String email = member_sql.getEmail();
+	
+	if(email != null) {
+		email = email.trim();
+	}
+	if(email == null || email == "") {
+		
+		if(ref == null) {
+			ref = "/";
+		} else {
+			ref = "./index.jsp?ref="+ref;
+		}
 %>
 <script>
 	alert("이메일이나 비밀번호가 올바르지 않습니다. 다시 시도해주세요.");
-	window.location = './index.jsp?ref=<%=ref%>';
+	window.location = '<%=ref%>';
 </script>
-<%		
+<%
 	} else {
-		String email = member_sql.getEmail();
-		session.setAttribute("email", email);
 		
-		if(ref == "") {
+		if(ref == null) {
 			ref = "/";
 		}
+		session.setAttribute("email", email);
 %>
 <script>
 	window.location = '<%=ref%>';

@@ -18,6 +18,10 @@ public class MemberBean {
 	private String address_road;
 	private String zipcode;
 	
+	private String steam_profile_image;
+	private String kakaoid;
+	private String kakako_profile_image;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -108,5 +112,24 @@ public class MemberBean {
 	}
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
+	}
+	
+	public String getSteam_profile_image() {
+		return steam_profile_image;
+	}
+	public void setSteam_profile_image(String steam_profile_image) {
+		this.steam_profile_image = steam_profile_image;
+	}
+	public String getKakaoid() {
+		return kakaoid;
+	}
+	public void setKakaoid(String kakaoid) {
+		this.kakaoid = kakaoid;
+	}
+	public String getKakako_profile_image() {
+		return kakako_profile_image;
+	}
+	public void setKakako_profile_image(String kakako_profile_image) {
+		this.kakako_profile_image = kakako_profile_image;
 	}
 }

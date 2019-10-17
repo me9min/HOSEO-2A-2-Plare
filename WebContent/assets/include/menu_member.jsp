@@ -30,7 +30,7 @@
 	<a href="/"><img src="/assets/images/PlareLogo.jpg" width="88px" height="42px" id="plare_logo"></a>
 	<ul id="menuul">
 <%
-if(email == null) {
+if(email == null || email.length() == 0) {
 %>
 		<li><a class="menuLink" href="#">회원서비스</a>
 			<ul id="dropmenu">

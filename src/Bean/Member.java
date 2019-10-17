@@ -391,6 +391,8 @@ public class Member {
 			memberBean.setAddress(rs.getString("address"));
 			memberBean.setAddress_detail(rs.getString("address_detail"));
 			memberBean.setReferrer(rs.getString("referrer"));
+			memberBean.setKakaoid(rs.getString("kakaoid"));
+			memberBean.setKakako_profile_image(rs.getString("kakako_profile_image"));
 			// 해당 회원의 모든 정보를 UserBean 객체에 setter로 삽입
 			String address = rs.getString("address");
 			

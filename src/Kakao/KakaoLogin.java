@@ -22,6 +22,7 @@ public class KakaoLogin {
 	private static final String USER_AGENT = "Mozila/5.0";
 	
 	public static String getToken(String code) throws ClientProtocolException, IOException {
+		
 		System.out.println("---카카오 로그인 시작---");
 		
 		//http client 생성
@@ -50,18 +51,18 @@ public class KakaoLogin {
 		
 		httpClient.close();
 		
+		Gson gson = new Gson();
+		JsonObject tokens = (JsonObject) gson.fromJson(res, JsonObject.class);
+		
 		System.out.println(res);	//디버그
 		System.out.println("getToken메소드 종료");
 		System.out.println("");
 		
-		return res;
+		return tokens.get("access_token").getAsString();
 	}
 	
-	public static String getProfile(String instring) throws ClientProtocolException, IOException {
+	public static String getProfile(String access_token) throws ClientProtocolException, IOException {
 		
-		Gson gson = new Gson();
-		JsonObject injson = (JsonObject) gson.fromJson(instring, JsonObject.class);
-		 
 		//http client 생성
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		
@@ -70,7 +71,7 @@ public class KakaoLogin {
 		
 		//agent 정보 설정
 		post.addHeader("User-Agent", USER_AGENT);
-		post.addHeader("Authorization", "Bearer "+injson.get("access_token").getAsString());
+		post.addHeader("Authorization", "Bearer "+access_token);
 		post.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		//get 요청
@@ -89,50 +90,48 @@ public class KakaoLogin {
 		return res;
 	}
 	
-	public void loginMemberKakao(String kakaoid) {
+	public void logoutKakao(String access_token) throws ClientProtocolException, IOException {
 		
-		Connection conn = Database.connect();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		//http client 생성
+		CloseableHttpClient httpClient = HttpClients.createDefault();
 		
+		//get 메서드와 URL 설정
+		HttpPost post = new HttpPost("https://kapi.kakao.com/v1/user/logout");
+		
+		//agent 정보 설정
+		post.addHeader("User-Agent", USER_AGENT);
+		post.addHeader("Authorization", "Bearer "+access_token);
+		
+		//get 요청
+		CloseableHttpResponse httpResponse = httpClient.execute(post);
+		
+		System.out.println("GET Response Status");
+		System.out.println(httpResponse.getStatusLine().getStatusCode());
+		String res = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+		
+		httpClient.close();
+		
+		System.out.println("로그아웃된"+res);	//디버그
+		System.out.println("logoutKakao메소드 종료");
+		System.out.println("");
 	}
 	
-	public void logoutKakao(String kakaoid) {
+	public String loginMemberKakao(String kakaoid) throws SQLException {
 		
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-	}
-	
-	public void updateMemberKakao(String email, String kakaoid, String kakaoimg) {
-		
-		Connection conn = Database.connect();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		String email = null;
 		
 		try {
 			
-			pstmt = conn.prepareStatement("select kakaoid from member where email=?");
-			pstmt.setString(1, email);
+			pstmt = conn.prepareStatement("select email from member where kakaoid=?");
+			pstmt.setString(1, kakaoid);
 			
 			rs = pstmt.executeQuery();
-			rs.next();
-			String member_kakaoid = rs.getString("kakaoid");
 			
-			if(true) {
-				pstmt = conn.prepareStatement("update member set kakaoid=?, kakako_profile_image=? where email=?");
-				if(member_kakaoid == null) {
-					
-					pstmt.setString(1, kakaoid);
-					pstmt.setString(2, kakaoimg);
-					pstmt.setString(3, email);
-				} else {
-					pstmt.setString(1, null);
-					pstmt.setString(2, null);
-					pstmt.setString(3, email);
-				}
-				pstmt.executeUpdate();
+			if(rs != null && rs.isBeforeFirst()) {
+				email = (String) rs.getString("email");
 			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -142,5 +141,43 @@ public class KakaoLogin {
 			if(conn!=null)
 				try{conn.close();}catch(SQLException sqle){}
 		}
+		rs.close();
+		
+		return email;
+	}
+	
+	public int updateMemberKakao(String email, String kakaoid, String kakaoimg) throws SQLException {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int res = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("call update_member_kakao(?,?,?)");
+			pstmt.setString(1, email);
+			pstmt.setString(2, kakaoid);
+			pstmt.setString(3, kakaoimg);
+			
+			rs = pstmt.executeQuery();
+			res = rs.getInt("error");
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		
+		System.out.println(email);
+		System.out.println(kakaoid);
+		System.out.println(kakaoimg);
+		System.out.println(res);
+		
+		return res;
 	}
 }

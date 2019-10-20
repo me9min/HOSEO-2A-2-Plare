@@ -576,6 +576,71 @@ public class Member {
         }
 	}
 	
+	public int getHistoryCount(String email) {
+	      // 사용자의 결제 내역이 총 몇 개인지 가져오는 메소드 
+	      Connection conn = Database.connect();
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      int count = 0;
+	      
+	      try {
+	         String sql = "call history_selectCount(?)";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, email);
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            count = rs.getInt(1);
+	         }
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	         if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	         if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }
+	      return count;   
+	}
+	
+	public List<ShopBean> getHistoryList(String email, int start, int end) {
+	      Connection conn = Database.connect();
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      List<ShopBean> historyList = null;
+	      
+	      try {
+	         pstmt = conn.prepareStatement("call history_selectHistory(?, ?, ?)");
+	         pstmt.setString(1, email);
+	         pstmt.setInt(2, start-1);
+	         pstmt.setInt(3, end);
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            historyList = new ArrayList<ShopBean>(end);
+	            do {
+	               ShopBean history = new ShopBean();
+	               history.setId(rs.getInt("id"));
+	               history.setPlayer_id(rs.getString("player_id"));
+	               history.setItem_type(rs.getString("item_type"));
+	               history.setItem_name(rs.getString("item_name"));
+	               history.setUnique_id(rs.getString("unique_id"));
+	               history.setDate_of_purchase(rs.getString("date_of_purchase"));
+	               history.setPrice_of_purchase(rs.getString("price_of_purchase"));
+	               
+	               historyList.add(history);
+	            } while(rs.next());
+	         }
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	         if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	         if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }
+	      return historyList;
+	}
+
+	
 	/* 사용하지않으나 참고용으로 남겨둠
 	public String[][] search_address(String address_find) {
 		// 주소검색 메소드

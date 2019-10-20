@@ -101,14 +101,35 @@ public class Shop {
 					count = rs.getInt(1);
 				}
 			} else if(category.equals("skin")) {
-				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type = playerskin");
+				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type='playerskin'");
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					count = rs.getInt(1);
 				}
-			} else if(category.equals("weapon")) {
-				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type = weapon");
+			} else if(category.equals("hat")) {
+				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type='hat'");
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			} else if(category.equals("pet")) {
+				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type='pet'");
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			} else if(category.equals("grenade")) {
+				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type='grenadeskin'");
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			} else if(category.equals("lasersight")) {
+				pstmt = conn.prepareStatement("select count(*) from store_menu where item_type='lasersight'");
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
@@ -158,7 +179,7 @@ public class Shop {
 				}
 			} else if(category.equals("skin")) {
 				pstmt = conn.prepareStatement(
-						"select * from store_menu where item_type = playerskin order by id desc limit ?, ?");
+						"select * from store_menu where item_type = 'playerskin' order by id desc limit ?, ?");
 				pstmt.setInt(1, start-1);
 				pstmt.setInt(2, end);
 				rs = pstmt.executeQuery();
@@ -180,9 +201,81 @@ public class Shop {
 						itemList.add(item);
 					} while(rs.next());
 				}
-			} else if(category.equals("weapon")) {
+			} else if(category.equals("hat")) {
 				pstmt = conn.prepareStatement(
-						"select * from store_menu where item_type = weapon order by id desc limit ?, ?");
+						"select * from store_menu where item_type = 'hat' order by id desc limit ?, ?");
+				pstmt.setInt(1, start-1);
+				pstmt.setInt(2, end);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					itemList = new ArrayList<ShopBean>(end);
+					do {
+						ShopBean item = new ShopBean();
+						item.setId(rs.getInt("id"));
+						item.setUnique_id(rs.getString("unique_id"));
+						item.setItem_type(rs.getString("item_type"));
+						item.setItem_name(rs.getString("item_name"));
+						item.setItem_price(rs.getInt("item_price"));
+						item.setItem_count(rs.getInt("item_count"));
+						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
+						item.setItem_dec(rs.getString("item_dec"));
+						
+						itemList.add(item);
+					} while(rs.next());
+				}
+			} else if(category.equals("pet")) {
+				pstmt = conn.prepareStatement(
+						"select * from store_menu where item_type = 'pet' order by id desc limit ?, ?");
+				pstmt.setInt(1, start-1);
+				pstmt.setInt(2, end);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					itemList = new ArrayList<ShopBean>(end);
+					do {
+						ShopBean item = new ShopBean();
+						item.setId(rs.getInt("id"));
+						item.setUnique_id(rs.getString("unique_id"));
+						item.setItem_type(rs.getString("item_type"));
+						item.setItem_name(rs.getString("item_name"));
+						item.setItem_price(rs.getInt("item_price"));
+						item.setItem_count(rs.getInt("item_count"));
+						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
+						item.setItem_dec(rs.getString("item_dec"));
+						
+						itemList.add(item);
+					} while(rs.next());
+				}
+			} else if(category.equals("grenade")) {
+				pstmt = conn.prepareStatement(
+						"select * from store_menu where item_type = 'grenadeskin' order by id desc limit ?, ?");
+				pstmt.setInt(1, start-1);
+				pstmt.setInt(2, end);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					itemList = new ArrayList<ShopBean>(end);
+					do {
+						ShopBean item = new ShopBean();
+						item.setId(rs.getInt("id"));
+						item.setUnique_id(rs.getString("unique_id"));
+						item.setItem_type(rs.getString("item_type"));
+						item.setItem_name(rs.getString("item_name"));
+						item.setItem_price(rs.getInt("item_price"));
+						item.setItem_count(rs.getInt("item_count"));
+						item.setItem_cat(rs.getString("item_cat"));
+						item.setItem_img(rs.getString("item_img"));
+						item.setItem_dec(rs.getString("item_dec"));
+						
+						itemList.add(item);
+					} while(rs.next());
+				}
+			} else if(category.equals("lasersight")) {
+				pstmt = conn.prepareStatement(
+						"select * from store_menu where item_type = 'lasersight' order by id desc limit ?, ?");
 				pstmt.setInt(1, start-1);
 				pstmt.setInt(2, end);
 				rs = pstmt.executeQuery();

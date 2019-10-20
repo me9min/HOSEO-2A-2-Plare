@@ -62,7 +62,6 @@
 <title><%=article.getTitle() %></title>
 </head>
 <%@ include file="/assets/include/board_top.jsp" %>
-
 	<div id="main" class="container" >
 		<center><h3>자유게시판</h3></center><br>
 		<div class="table-wrapper">

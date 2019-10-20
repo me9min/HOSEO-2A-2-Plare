@@ -38,29 +38,6 @@
 <html>
 	<head>
 		<title>상점</title>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-    	<script type="text/javascript">
-    		$('#Tab li:eq(0) a').click(function (e) {
-    		  e.preventDefault();
-    		  $(this).tab('show');
-    		})
-    		$('#Tab li:eq(1) a').click(function (e) {
-    		  e.preventDefault();
-    		  $(this).tab('show');
-    		})
-    		$('#Tab li:eq(2) a').click(function (e) {
-    		  e.preventDefault();
-    		  $(this).tab('show');
-    		})
-    		$('#Tab li:eq(3) a').click(function (e) {
-    		  e.preventDefault();
-    		  $(this).tab('show');
-    		})
-    		$('#Tab li:eq(4) a').click(function (e) {
-    		  e.preventDefault();
-    		  $(this).tab('show');
-    		})
-    	</script>
 		<style>
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;

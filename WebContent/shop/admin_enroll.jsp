@@ -8,7 +8,6 @@
 <!DOCTYPE html>
  <html>
 <%@ include file="/assets/include/menu.jsp" %>
-<%@ include file="/assets/include/board_top.jsp" %>
   <section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">

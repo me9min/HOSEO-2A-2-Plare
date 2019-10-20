@@ -38,6 +38,7 @@
 <html>
 	<head>
 		<title>상점</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 		<style>
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;

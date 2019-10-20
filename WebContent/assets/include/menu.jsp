@@ -32,6 +32,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String email = (String)session.getAttribute("email");
+Board bmenu = Board.getInstance();
 if(email == null || email.length() == 0) {
 %>
 		<li><a class="menuLink" href="#">회원서비스</a>
@@ -40,9 +41,8 @@ if(email == null || email.length() == 0) {
 				<li><a href="/member/find">아이디/비밀번호찾기</a></li>
 <%
 } else {
-	Board b = Board.getInstance();
 %>
-		<li><a class="menuLink" href="/member"><%=b.getNickname(email) %> 님</a>
+		<li><a class="menuLink" href="/member"><%=bmenu.getNickname(email) %> 님</a>
 			<ul id="dropmenu">
 				<li><a href="/member">내정보</a></li>
 				<li><a onclick="logout()">로그아웃</a></li>

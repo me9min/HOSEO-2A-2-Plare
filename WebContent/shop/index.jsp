@@ -9,8 +9,7 @@
 <%!
     int pageSize = 6;
 %>
-<%	
-
+<%
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 	

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
-<%@ page import = "Bean.*,java.util.*,java.text.SimpleDateFormat" %>
+<%@ page import = "Bean.*,java.util.*,java.text.*" %>
 
 <%@ include file="/assets/include/login_check.jsp" %>
 <jsp:useBean id="member" class="Bean.Member" />
 <%!
-	int pageSize = 15;
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	int pageSize = 10;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 
 <%
@@ -25,6 +25,8 @@
     List<HistoryBean> articleList = null;
     
     History history = History.getInstance();
+    Shop sh = new Shop();
+    int point = sh.getPoint(email);
     count = history.getHistoryCount(email);
     
     String con = request.getParameter("con");
@@ -64,7 +66,7 @@ function request_buy(){
 		buyer_tel : '<%=phone%>',
 		buyer_addr : '<%=address_road+" "+address_detail%>',
 		buyer_postcode : '<%=zipcode%>',
-		m_redirect_url : 'http://localhost/shop/db_buy.jsp'
+		m_redirect_url : 'http://127.0.0.1/member/wallet/db_buypoint.jsp'
 	}, function(rsp) {
 		if ( rsp.success ) {
 			var msg = '결제가 완료되었습니다.';
@@ -87,13 +89,17 @@ function request_buy(){
 		<title><%=email %>님의 지갑</title>
 		<style>
 			td {color: black; background-color: #ffffff;}
+			#info_box {
+				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
+				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
+			}
 			#thead {text-align: center; background-color: black; color: white;}
 			#con {display: inline; width: 100px;}
 			#q {display: inline; width: 300px;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: #ff0000; text-decoration: none;}
-		</style>
+      </style>
 <%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
 
@@ -127,24 +133,30 @@ function request_buy(){
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<td width="50%" id="thead">상품</td>
-					<td id="thead">종류</td>
+					<td width="50%" id="thead">상품이름</td>
+					<td id="thead">품목</td>
 					<td id="thead">수량</td>
 					<td id="thead">구매일자</td>
-					<td id="thead">구매액</td>
+					<td id="thead">구매가격</td>
 				</tr>
 			</thead>
 <%  
 		for (int i = 0 ; i < articleList.size() ; i++) {
-		  HistoryBean article = articleList.get(i);
+			HistoryBean article = articleList.get(i);
+			
+			String date_of_purchase = Integer.toString(article.getDate_of_purchase());
+			long timestamp = Long.parseLong(date_of_purchase);
+			Date date = new Date(timestamp*1000L); 
+			sdf.setTimeZone(TimeZone.getTimeZone("GMT+9")); 
+			String formattedDate = sdf.format(date);
 %>
 			<tbody>
 				<tr>
 					<td width="50%" align="center"><%=article.getItem_name() %></td>
 					<td align="center"><%=article.getItem_type() %></td>
 					<td align="center">1</td>
-					<td align="center"><%=article.getDate_of_purchase() %></td>
-					<td align="center"><%=article.getPrice_of_purchase() %></td>
+					<td align="center"><%=formattedDate %></td>
+					<td align="center"><%=NumberFormat.getInstance().format(article.getPrice_of_purchase()) %></td>
 				</tr>
 			</tbody>
 <% 		}
@@ -207,14 +219,10 @@ function request_buy(){
 						</div>
 					</div>
 				</div>
+
+<%@ include file="/assets/include/info_box.jsp" %>
+
 			</section>
-
-
-
-
-
-
-
 
 <%@ include file="/assets/include/foot.jsp" %>
 

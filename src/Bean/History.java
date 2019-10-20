@@ -62,9 +62,11 @@ public class History {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				
 				System.out.println("rs.getRow() = "+rs.getRow());
 				articleList = new ArrayList<HistoryBean>(rs.getRow());
 				do {
+					
 					HistoryBean article= new HistoryBean();
 					article.setUnique_id(rs.getString("unique_id"));
 					article.setItem_type(rs.getString("item_type"));
@@ -82,5 +84,25 @@ public class History {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 		return articleList;
+	}
+	
+	public void buyPoint(String email, int amount) throws Exception {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("call store_plusPoint(?,?)");
+			pstmt.setString(1,email);
+			pstmt.setInt(1,amount);
+			pstmt.executeQuery();
+		} catch(Exception ex) {
+		ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
 	}
 }

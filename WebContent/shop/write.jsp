@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
-<%@ page import = "Bean.Board" %>
-<%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
  <html>
  	<head>
-		<title>상점</title>
+		<title>상품등록</title>
 		<script language="JavaScript" src="shop.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
 <%@ include file="/assets/include/shop_top.jsp" %>

@@ -60,10 +60,11 @@ public class Shop {
 	}
 	
 	public void insertItem(ShopBean item) {
+		// 관리자 계정으로 아이템을 추가하는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
-		String sql="";
+		String sql = "";
 
         try {
             sql = "insert into store_menu(unique_id, item_type, item_name, item_price, item_dec) values(?, ?, ?, ?, ?)";
@@ -73,6 +74,53 @@ public class Shop {
             pstmt.setString(3, item.getItem_name());
 			pstmt.setInt(4, item.getItem_price());
 			pstmt.setString(5, item.getItem_dec());
+			
+            pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+    }
+	
+	public void updateItem(ShopBean item, int id) {
+		// 관리자 계정으로 아이템을 수정하는 메소드
+        Connection conn = Database.connect();
+        PreparedStatement pstmt = null;
+
+		String sql = "";
+
+        try {
+            sql = "update store_menu set unique_id=?, item_type=?, item_name=?, item_price=?, item_dec=? where id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, item.getUnique_id());
+            pstmt.setString(2, item.getItem_type());
+            pstmt.setString(3, item.getItem_name());
+			pstmt.setInt(4, item.getItem_price());
+			pstmt.setString(5, item.getItem_dec());
+			pstmt.setInt(6, id);
+			
+            pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+    }
+	
+	public void deleteItem(int id) {
+		// 관리자 계정으로 아이템을 삭제하는 메소드
+        Connection conn = Database.connect();
+        PreparedStatement pstmt = null;
+
+		String sql = "";
+
+        try {
+            sql = "delete from store_menu where id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
 			
             pstmt.executeUpdate();
         } catch(Exception ex) {

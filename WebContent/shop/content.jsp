@@ -92,7 +92,7 @@
 <%
 	if(email.equals(admin)) {
 %>
-							<br><br>
+							<br>
 							<button class="button special" onclick="location.href='edit.jsp?id=<%=item.getId() %>'">수정</button>
 							<button class="button special" onclick="location.href='db_delete.jsp?id=<%=item.getId() %>'">삭제</button>
 <%

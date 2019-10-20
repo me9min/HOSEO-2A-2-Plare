@@ -40,7 +40,7 @@ if(email == null || email.length() == 0) {
 } else {
 	Board b = Board.getInstance();
 %>
-		<li><a class="menuLink" href="#"><%=b.getNickname(email) %> 님</a>
+		<li><a class="menuLink" href="/member"><%=b.getNickname(email) %> 님</a>
 			<ul id="dropmenu">
 				<li><a href="/member">내정보</a></li>
 				<li><a onclick="logout()">로그아웃</a></li>

@@ -11,21 +11,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">	
 	<style>
 		#info_box {
-				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
-				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
+			position: fixed; top: 30%; right: 5%; background-color: black; color: white;
+			text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
 		}
 		#shop_button{
-		width:150px;
-		height:50px;
+			width:150px;
+			height:50px;
 		}
 		#inputtext{
-		height:300px;
+			height:300px;
 		}
 		#border{
-		border-top:none;
+			border-top:none;
 		}
 		table {
-		border-collapse:collapse;
+			border-collapse:collapse;
 		}
 		#link {color: black; text-decoration: none;}
 		#link:visited {color: black; text-decoration: none;}
@@ -44,9 +44,9 @@
 	Board board = Board.getInstance();	
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
-
+	
 	String admin = "admin@plare.cf";
-
+	
 	try{
 		Shop shop = Shop.getInstance(); 
 		ShopBean item = shop.getItem(id);
@@ -93,14 +93,14 @@
 <%
 	}
 %>
-							  </div>
 							</div>
-
+						</div>
 					</div>
 				</div>
-				</div>
+				<%=item.getItem_dec() %>
 			</div>
 		</div>
+	</div>
 
 <%@ include file="/assets/include/info_box.jsp" %>
 

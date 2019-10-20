@@ -10,17 +10,18 @@
 
 <%
 	String ref = request.getParameter("ref");
+	ref = ref.trim();
+	if(ref == "") {
+		ref = null;
+	}
 	
 	MemberBean member_sql = member.login(member_form);
 	String email = member_sql.getEmail();
 	
-	if(email != null) {
-		email = email.trim();
-	}
 	if(email == null || email == "") {
 		
 		if(ref == null) {
-			ref = "/";
+			ref = "./";
 		} else {
 			ref = "./index.jsp?ref="+ref;
 		}

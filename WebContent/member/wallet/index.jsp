@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.*,java.util.*,java.text.SimpleDateFormat" %>
+
 <%@ include file="/assets/include/login_check.jsp" %>
 <jsp:useBean id="member" class="Bean.Member" />
 <%!
@@ -11,39 +12,24 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
-	String category = "motd";
     String pageNum = request.getParameter("pageNum");
 	String admin = "admin@plare.cf";
 	
     if (pageNum == null) {
         pageNum = "1";
     }
-
+	
     int currentPage = Integer.parseInt(pageNum);
-    int startRow = (currentPage - 1) * pageSize + 1;
-    int endRow = currentPage * pageSize;
+    int startRow = pageSize*(currentPage-1);
     int count = 0;
-    List<BoardBean> articleList = null; 
+    List<HistoryBean> articleList = null;
     
-    Board board = Board.getInstance();
-    count = board.getArticleCount(category);
+    History history = History.getInstance();
+    count = history.getHistoryCount(email);
     
-    String condition = request.getParameter("condition");
+    String con = request.getParameter("con");
 	String q = request.getParameter("q");
-    if (condition != null) {
-	    count = board.getSearchCount(category, condition, q);
-    	System.out.println(category + condition + q);
-	    
-	    if (count > 0) {
-	        articleList = board.getSearchResults(category, startRow, pageSize, condition, q);
-	    }
-    } else {
-	    count = board.getArticleCount(category);
-	    
-	    if (count > 0) {
-	        articleList = board.getArticles(category, startRow, pageSize);
-	    }
-    }
+	articleList = history.getHistory(email, startRow, pageSize, con, q);
     
 	String pname = "10000P 추가";
 	int price = 10000;
@@ -102,7 +88,7 @@ function request_buy(){
 		<style>
 			td {color: black; background-color: #ffffff;}
 			#thead {text-align: center; background-color: black; color: white;}
-			#condition {display: inline; width: 100px;}
+			#con {display: inline; width: 100px;}
 			#q {display: inline; width: 300px;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
@@ -111,7 +97,120 @@ function request_buy(){
 <%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
 
-<input type="button" value="10000P구매" onclick="request_buy()"/>
+		<!-- main -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<input type="button" value="10000P구매" onclick="request_buy()"/>
+							<header class="align-center">
+								<h2>구매기록</h2>
+							</header>
+	<div class="table-wrapper">
+<%
+	if(email.equals(admin)) {
+%>
+		<a href="write.jsp" class="button special pull-right">글쓰기</a><br><br>
+<% 
+	} else {
+%>
+		<br><br>
+<%
+	}
+	if(count == 0) { %>
+		<table>
+			<tr>
+				<td><center>구매기록이 존재하지 않습니다.</center></td>
+			</tr>
+		</table>
+<% } else { %>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td width="50%" id="thead">상품</td>
+					<td id="thead">종류</td>
+					<td id="thead">수량</td>
+					<td id="thead">구매일자</td>
+					<td id="thead">구매액</td>
+				</tr>
+			</thead>
+<%  
+		for (int i = 0 ; i < articleList.size() ; i++) {
+		  HistoryBean article = articleList.get(i);
+%>
+			<tbody>
+				<tr>
+					<td width="50%" align="center"><%=article.getItem_name() %></td>
+					<td align="center"><%=article.getItem_type() %></td>
+					<td align="center">1</td>
+					<td align="center"><%=article.getDate_of_purchase() %></td>
+					<td align="center"><%=article.getPrice_of_purchase() %></td>
+				</tr>
+			</tbody>
+<% 		}
+	}
+%>
+			<tfoot>
+				<tr>
+					<td colspan="6">
+					<center>
+<%
+    if (count > 0) {
+        int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		int startPage = 1;
+		
+		if(currentPage % 5 != 0)
+           startPage = (int)(currentPage/5)*5 + 1;
+		else
+           startPage = ((int)(currentPage/5)-1)*5 + 1;
+
+		int pageBlock = 5;
+        int endPage = startPage + pageBlock - 1;
+        if (endPage > pageCount) endPage = pageCount;
+        
+        if (startPage > 5) { %>
+        	<a href="index.jsp?pageNum=<%= startPage - 5 %>" id="link">&lt;</a>
+<%      }
+        
+        for (int i = startPage ; i <= endPage ; i++) {  %>
+        	<a href="index.jsp?pageNum=<%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
+<%      }
+        
+        if (endPage < pageCount) {  %>
+   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>" id="link">&gt;</a>
+<%
+        }
+    }
+%>
+					</center>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align:center; border:none;">
+					<form method="get" name="search" action="index.jsp">
+						<select name="con" id="con">
+							<option value="title">이름</option>
+							<option value="content">설명</option>
+							<option value="all">이름+설명</option>
+							<option value="amount">수량</option>
+							<option value="price">가격</option>
+						</select>
+						<input type="text" name="q" id="q"> 
+						<input type="submit" value="검색" class="button alt">
+					</form>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
 
 
 

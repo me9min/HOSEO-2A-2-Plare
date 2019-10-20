@@ -54,7 +54,7 @@
 						</div>
 						
 						<div>
-							<div class="box">
+							<div class="box" onclick="window.location.replace('inventory/');">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-inbox px-200"></span>

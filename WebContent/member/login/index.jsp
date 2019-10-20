@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/assets/include/logout_check.jsp" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>로그인</title>
 		<script language="JavaScript" src="login.js"></script>
-<%@ include file="/assets/include/menu.jsp" %>
+<%@ include file="/assets/include/menu_member.jsp" %>
 
 <%@ include file="/assets/include/member_top.jsp" %>
 
 <%
+	String ref_me = request.getRequestURL().toString();
 	String ref = request.getHeader("REFERER");
 	String rref = request.getParameter("ref");
 	if(ref == null) {
@@ -19,7 +21,9 @@
 		}
 		ref = rref.trim();
 	}
-	session.invalidate();
+	if(ref.contains(ref_me) || ref.contains("db_login.jsp")) {
+		ref = "";
+	}
 %>
 	<!-- main -->
 	<section id="two" class="wrapper style2">

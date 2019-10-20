@@ -367,7 +367,7 @@ public class Member {
 		MemberBean memberBean = new MemberBean();
 		
 		try {
-			String sql = "select nickname,nickname_latest_changed,birthday,phone,address,address_detail,referrer from member where email=?";
+			String sql = "select nickname,nickname_latest_changed,birthday,phone,address,address_detail,referrer,kakaoid,kakako_profile_image from member where email=?";
 			// 파라미터 값으로 넘어온 이메일과 비밀번호에 해당되는 유저의 모든 정보를 불러오는 sql문
 			
 			pstmt = conn.prepareStatement(sql);

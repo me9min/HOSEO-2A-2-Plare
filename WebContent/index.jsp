@@ -133,7 +133,8 @@
 					</tbody>
 					</table>
 				</div>
-			  </div></div>
+			  </div>
+			  </div>
 			    <%
 	for(int i=0; i<issueList.size(); i++) {
 		BoardBean issue = issueList.get(i);
@@ -158,7 +159,8 @@
 					</tbody>
 					</table>
 				</div>
-			  </div></div>
+			  </div>
+			  </div>
 <%
 	}
 %> 

@@ -3,9 +3,7 @@ package Bean;
 import java.util.*;
 import java.sql.*;
 import javax.sql.*;
-
 import com.RemoveTag;
-
 import javax.naming.*;
 import Bean.BoardBean;
 import Bean.Database;

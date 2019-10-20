@@ -4,7 +4,47 @@
 <%@ page import = "Bean.*,java.util.*,java.text.SimpleDateFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
 <jsp:useBean id="member" class="Bean.Member" />
+<%!
+	int pageSize = 15;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+%>
+
 <%
+	request.setCharacterEncoding("utf-8");
+	String category = "motd";
+    String pageNum = request.getParameter("pageNum");
+	String admin = "admin@plare.cf";
+	
+    if (pageNum == null) {
+        pageNum = "1";
+    }
+
+    int currentPage = Integer.parseInt(pageNum);
+    int startRow = (currentPage - 1) * pageSize + 1;
+    int endRow = currentPage * pageSize;
+    int count = 0;
+    List<BoardBean> articleList = null; 
+    
+    Board board = Board.getInstance();
+    count = board.getArticleCount(category);
+    
+    String condition = request.getParameter("condition");
+	String q = request.getParameter("q");
+    if (condition != null) {
+	    count = board.getSearchCount(category, condition, q);
+    	System.out.println(category + condition + q);
+	    
+	    if (count > 0) {
+	        articleList = board.getSearchResults(category, startRow, pageSize, condition, q);
+	    }
+    } else {
+	    count = board.getArticleCount(category);
+	    
+	    if (count > 0) {
+	        articleList = board.getArticles(category, startRow, pageSize);
+	    }
+    }
+    
 	String pname = "10000P 추가";
 	int price = 10000;
 	
@@ -54,14 +94,28 @@ function request_buy(){
 	});
 }
 </script>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title><%=email %>님의 지갑</title>
+		<style>
+			td {color: black; background-color: #ffffff;}
+			#thead {text-align: center; background-color: black; color: white;}
+			#condition {display: inline; width: 100px;}
+			#q {display: inline; width: 300px;}
+			#link {color: black; text-decoration: none;}
+			#link:visited {color: black; text-decoration: none;}
+			#link:hover {color: #ff0000; text-decoration: none;}
+		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
 
 <input type="button" value="10000P구매" onclick="request_buy()"/>
+
+
+
+
 
 <%@ include file="/assets/include/foot.jsp" %>
 

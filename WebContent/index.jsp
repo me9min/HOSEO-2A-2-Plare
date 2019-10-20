@@ -19,8 +19,9 @@
 		<style>
 			#tb {table-layout:fixed; width:100%; height:100%;}
 			#title {font-weight:bold; font-size:16px; color:black; text-align:center; overflow:hidden; text-overflow:ellipsis;}
-			#content {color:black; background-color:white; overflow:hidden; text-overflow:ellipsis; height:50px;}
+			#content {color:black; background-color:white; overflow:hidden; text-overflow:ellipsis; height:165px; width:230px; display: block;}
 			#content p{margin:0;}
+			#main_text {overflow:hidden; text-overflow:ellipsis; height:10px;}
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: red; text-decoration: none;}
@@ -127,7 +128,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-								<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=free.getContent() %></a>
+									<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=free.getContent() %></a>
 							</td>
 						</tr>
 					</tbody>

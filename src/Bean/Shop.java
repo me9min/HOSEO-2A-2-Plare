@@ -59,6 +59,30 @@ public class Shop {
 		}
 	}
 	
+	public void insertItem(ShopBean item) {
+        Connection conn = Database.connect();
+        PreparedStatement pstmt = null;
+
+		String sql="";
+
+        try {
+            sql = "insert into store_menu(unique_id, item_type, item_name, item_price, item_dec) values(?, ?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, item.getUnique_id());
+            pstmt.setString(2, item.getItem_type());
+            pstmt.setString(3, item.getItem_name());
+			pstmt.setInt(4, item.getItem_price());
+			pstmt.setString(5, item.getItem_dec());
+			
+            pstmt.executeUpdate();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+        }
+    }
+	
 	//아이템구매 이메일,품목아이디
 	public int buyItem(String email, String mid) {
 		Connection conn = Database.connect();

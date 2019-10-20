@@ -65,7 +65,6 @@
 		<div class="inner">
 			<div class="box">
 				<div class="content">
-				<div style="height:438px;">
 				<a href="index.jsp" class="button alt pull-right">보유목록</a><br><br><br>
 					<div class="row">
 						<div class="col-md-8">
@@ -87,7 +86,6 @@
 							  	<input type="button" value="되팔기"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_sell.jsp?id=<%=item.getUnique_id() %>'">
 							  	<br><br>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>

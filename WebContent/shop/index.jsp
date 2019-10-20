@@ -84,7 +84,7 @@
 <%
 	if(email.equals(admin)) {
 %>
-		<a href="write.jsp" class="button special pull-right">상품등록</a><br><br>
+		<a href="write.jsp" class="button special pull-right">상품 등록</a><br><br>
 <% 
 	}
 %>

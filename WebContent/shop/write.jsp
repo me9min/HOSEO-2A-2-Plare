@@ -7,7 +7,11 @@
 <%@ page import = "java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
  <html>
+ 	<head>
+		<title>상점</title>
+		<script language="JavaScript" src="shop.js"></script>
 <%@ include file="/assets/include/menu.jsp" %>
+<%@ include file="/assets/include/shop_top.jsp" %>
   <section id="two" class="wrapper style2">
 				<div class="inner">
 					<div class="box">
@@ -15,6 +19,7 @@
 							<header class="align-center">
 								<h2>상품등록</h2>
 							</header>
+		<form method="post" action="db_write.jsp" name="item_insert">
 		<table class="table">
 			<tr>
 				<td align="center" width="30%" style="vertical-align: middle">아이템 고유 아이디</td>
@@ -23,10 +28,10 @@
 			<tr>
 				<td align="center" style="vertical-align: middle">카테고리</td>
 				<td><select name="item_type">
-					<option value="skin">플레이어 스킨</option>
+					<option value="playerskin">플레이어 스킨</option>
 					<option value="hat">모자</option>
 					<option value="pet">펫</option>
-					<option value="grenade">수류탄 스킨</option>
+					<option value="grenadeskin">수류탄 스킨</option>
 					<option value="lasersight">레이저 사이트</option>
 				</select></td>
 			</tr>
@@ -48,9 +53,11 @@
 					<input type="text" name="item_dec" id="item_dec" style="height:200px;"/>
 				</td>
 			</tr>
-
-			<a href="./" class="button alt pull-right">등록하기</a><br><br>
+			<tr>
+				<td colspan="2"><input type="button" class="button special pull-right" value="등록하기" onclick="insertCheck()"></td>
+			</tr>
 		</table>
+		</form>
 	</div></div></div></section>
 	
 <%@ include file="/assets/include/foot.jsp" %>

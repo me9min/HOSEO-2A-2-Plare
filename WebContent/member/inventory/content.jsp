@@ -53,6 +53,10 @@
 		if(item.getItem_img() != null) {
 			img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
 		}
+		String dec = "";
+		if(item.getItem_dec() != null) {
+			dec = item.getItem_dec();
+		}
 %>
 <head>
 <title><%=item.getItem_name() %></title>
@@ -77,7 +81,7 @@
 							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %></h4>
 							  	</div>
 							  	<div style="border: 1px solid white; height:150px; overflow:scroll;">
-							  	   <h6><%=item.getItem_dec() %></h6>
+							  	   <h6><%=dec %></h6>
 							  	</div>
 							  	<br>
 							  	<input type="button" value="되팔기"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_sell.jsp?id=<%=item.getUnique_id() %>'">

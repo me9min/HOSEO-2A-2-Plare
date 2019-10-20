@@ -55,6 +55,10 @@
 		if(item.getItem_img() != null) {
 			img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
 		}
+		String dec = "";
+		if(item.getItem_dec() != null) {
+			dec = item.getItem_dec();
+		}
 %>
 <head>
 <title><%=item.getItem_name() %></title>
@@ -78,14 +82,14 @@
 							  	<div style="ling-height:23px;">
 							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %></h4>
 							  	</div>
-							  	<div style="border: 1px solid white;">
-							  	   <h6><%=item.getItem_dec() %></h6>
+							  	<div style="border: 1px solid white; height:100px; overflow:scroll;">
+							  	   <h6><%=dec %></h6>
 							  	</div>
 							  	<br>
 							  	<input type="button" value="장바구니 담기" id="shop_button" onclick="location.href='db_cart.jsp?id=<%=item.getId() %>'">
 							  	<br><br>
 							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_buy.jsp?id=<%=id %>'">
-							  	<br><br><br>
+							  	<br><br>
 <%
 	if(email.equals(admin)) {
 %>

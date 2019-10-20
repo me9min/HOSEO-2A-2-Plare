@@ -144,7 +144,7 @@
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="<%=href %><%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
+        	<a href="<%=href %><%= i %>&category=<%=category %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>

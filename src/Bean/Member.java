@@ -639,6 +639,99 @@ public class Member {
 	      }
 	      return historyList;
 	}
+	
+	public int getInventoryCount(String email, String category) {
+		// 로그인한 사용자의 스팀 ID를 player_id로 가지고 있는 항목을 리턴하는 메소드
+    	Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			if(category.equals("all")) {
+				pstmt = conn.prepareStatement("call inventory_selectCount_all(?)");
+				pstmt.setString(1, email);
+			} else {
+				pstmt = conn.prepareStatement("call inventory_selectCount(?, ?)");
+				pstmt.setString(1, email);
+				pstmt.setString(2, category);
+			}
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return count;	
+	}
+	
+	public String[] getInventoryId(String email, String category, int start, int end) {
+    	// 로그인한 사용자의 스팀 ID를 player_id로 가지고 있는 항목을 리턴하는 메소드
+    	Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String[] idList = new String[end];
+		
+		try {
+			if(category.equals("all")) {
+				pstmt = conn.prepareStatement("call inventory_selectId_all(?, ?, ?)");
+				pstmt.setString(1, email);
+				pstmt.setInt(2, start-1);
+				pstmt.setInt(3, end);
+			} else {
+				pstmt = conn.prepareStatement("call inventory_selectId(?, ?, ?, ?)");
+				pstmt.setString(1, email);
+				pstmt.setString(2, category);
+				pstmt.setInt(3, start-1);
+				pstmt.setInt(4, end);
+			}
+			rs = pstmt.executeQuery();
+			
+			for(int i=0; rs.next(); i++) {
+				idList[i] = rs.getString(1);
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return idList;	
+    }
+	
+	
+    
+    public int InsertCart(String email, int mid) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int error = 3;
+		
+		try {
+			String sql = "call cart_insertItem(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, mid);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			error = rs.getInt("error");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return error;	//0=성공, 1=이미구매한아이템, 2=이미장바구니에있는아이템, 3=DB연결실패
+	}
 
 	
 	/* 사용하지않으나 참고용으로 남겨둠

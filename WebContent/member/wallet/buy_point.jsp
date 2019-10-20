@@ -7,8 +7,6 @@
 <jsp:useBean id="member" class="Bean.Member" />
 <%
 	request.setCharacterEncoding("utf-8");
-	String pname = "10000P";
-	int price = 10000;
 	
 	MemberBean member_sql = member.load_info(email);
 	
@@ -29,21 +27,22 @@
 var IMP = window.IMP; // 생략가능
 IMP.init('imp35661052'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 function request_buy(){
-	IMP.request_pay({
+	var json = {
 		pg : 'kakao', // version 1.1.0부터 지원.
 		pay_method : 'card',
 		merchant_uid : 'merchant_' + new Date().getTime(),
-		name : '<%=pname%>',
-		amount : <%=price%>,
 		buyer_email : '<%=email%>',
 		buyer_name : '<%=nickname%>',
 		buyer_tel : '<%=phone%>',
 		buyer_addr : '<%=address_road+" "+address_detail%>',
 		buyer_postcode : '<%=zipcode%>',
-		m_redirect_url : 'http://127.0.0.1/member/wallet/db_buypoint.jsp?amount=<%=price%>'
-	}, function(rsp) {
+		m_redirect_url : 'http://127.0.0.1/member/wallet/db_buypoint.jsp?amount='
+	};
+	json.name = $("select[name=price]").val();
+	json.amount = $("select[name=price]").val();
+	IMP.request_pay(json, function(rsp) {
 		if ( rsp.success ) {
-			location.replace('./db_buypoint_kakaopay.jsp?amount=<%=price%>');
+			location.replace('./db_buypoint_kakaopay.jsp?amount='+$("select[name=price]").val());
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
@@ -81,13 +80,41 @@ function request_buy(){
 							<header class="align-center">
 								<h2>포인트 충전</h2>
 							</header>
-							<input type="button" value="<%=pname%>"/>
-						</div>
-						<div class="content">
-							<img src="" alt="카카오페이" onclick="request_buy()"/>
-							<img src="" alt="일반카드결제" onclick="alert('현재 준비중인 기능입니다')"/>
-							<img src="" alt="계좌이체(무통장)" onclick="alert('현재 준비중인 기능입니다')"/>
-						</div>
+							<center><p>포인트와 실제 금액은 같습니다</p></center><br>
+			<div class="row uniform">
+				<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+				<div class="2u 12u$(xsmall)" >
+					
+					<div style="line-height:27px;text-align:right; vertical-align:middle;height:27px;">충전하실 금액</div>
+				</div>
+				<div class="4u 12u$(xsmall)">
+				 	<select name="price">
+				 		<option value="5000" style="width:100px;height:70px;">5,000 포인트</option>
+				 		<option value="10000" style="width:100px;height:70px;">10,000 포인트</option>
+				 		<option value="25000" style="width:100px;height:70px;">25,000 포인트</option>
+				 		<option value="50000" style="width:100px;height:70px;">50,000 포인트</option>
+				 	</select>
+			 	</div>
+				<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+			</div><br><br>
+			<div class="row uniform">
+				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+				<div class="3u 12u$(xsmall)">
+					<img src="/assets/images/payment_icon_yellow_medium.png" style="height:70px;" alt="카카오페이" onclick="request_buy()"/>
+				</div>
+				<div class="3u 12u$(xsmall)">
+					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
+						일반카드결제
+					</button>
+				</div>
+				<div class="3u 12u$(xsmall)">
+					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
+						계좌이체(무통장)
+					</button>
+				</div>
+				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+			</div>	<br><br>
+
 					</div>
 				</div>
 			</section>

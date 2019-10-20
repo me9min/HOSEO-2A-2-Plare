@@ -130,7 +130,7 @@ public class KakaoLogin {
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs != null && rs.isBeforeFirst()) {
+			if(rs.next()) {
 				email = (String) rs.getString("email");
 			}
 		} catch(SQLException sqle) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*,java.util.*,java.io.*,Kakao.KakaoLogin,com.google.gson.*,com.google.gson.internal.LinkedTreeMap"%>
+<%@ include file="/assets/include/logout_check.jsp" %>
 <%
 	Gson gson = new Gson();
 	KakaoLogin kakao = new KakaoLogin();
@@ -12,51 +13,21 @@
 	JsonObject json_profile = (JsonObject) gson.fromJson(string_profile, JsonObject.class);
 	String kakao_id = (String) Integer.toString(json_profile.get("id").getAsInt());
 	
- 	String email = (String)session.getAttribute("email");
- 	if(email == null) {
- 		
- 		email = kakao.loginMemberKakao(kakao_id);
- 		if(email == null || email.length() == 0) {
- 			
+ 	String emailq = kakao.loginMemberKakao(kakao_id);
+ 	if(emailq == null || emailq.length() == 0) {
 %>
 <script>
 	alert("연동된계정이없습니다! 회원가입이나 로그인후 내정보수정에서 연동해주세요.");
 </script>
 <%
- 		} else {
-			
-%>
-<script>
-	window.opener.location("/");
-</script>
-<%
-			session.setAttribute("email", email);
- 		}
  	} else {
- 		
- 		JsonObject json_properties = (JsonObject) json_profile.get("properties");
- 		//String kakao_nick = json_properties.get("nickname").getAsString();
- 		String kakao_img = json_properties.get("thumbnail_image").getAsString();
- 		
-		int res = kakao.updateMemberKakao(email, kakao_id, kakao_img);
-		String ress = "실패! unkown error";
-		switch(res) {
-			case 0:
-				ress = "실패! 이미 연동중인 카카오계정입니다";
-				break;
-			case 1:
-				ress = "연동 성공!";
-				break;
-			case 2:
-				ress = "연동해제 성공!";
-				break;
-		}
+ 		session.setAttribute("email", emailq);
 %>
 <script>
-	alert("<%=ress%>");
+	window.opener.location=("/");
 </script>
 <%
- 	}
+	}
 %>
 <script>
 	window.close();

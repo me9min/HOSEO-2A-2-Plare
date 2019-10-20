@@ -357,7 +357,7 @@ public class Shop {
 		try {
 			itemList = new ArrayList<ShopBean>();
 			for(int i=0; i<idList.length; i++) {
-				pstmt = conn.prepareStatement("select * from store_menu where id = ?");
+				pstmt = conn.prepareStatement("select * from store_menu where unique_id = ?");
 				pstmt.setString(1, idList[i]);
 				rs = pstmt.executeQuery();
 				

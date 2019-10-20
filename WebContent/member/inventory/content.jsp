@@ -33,7 +33,7 @@
 		#blank {text-align: right; width: 5%;}
 	</style>
 <%@ include file="/assets/include/menu.jsp" %>
-<%@ include file="/assets/include/shop_top.jsp" %>
+<%@ include file="/assets/include/member_top.jsp" %>
 <%
 	int id = 0;
 	String ids = request.getParameter("id");
@@ -44,8 +44,6 @@
 	Board board = Board.getInstance();	
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
-	
-	String admin = "admin@plare.cf";
 	
 	try{
 		Shop shop = Shop.getInstance(); 
@@ -64,7 +62,7 @@
 			<div class="box">
 				<div class="content">
 				<div style="height:438px;">
-				<a href="index.jsp" class="button alt pull-right">상품목록</a><br><br><br>
+				<a href="index.jsp" class="button alt pull-right">보유목록</a><br><br><br>
 					<div class="row">
 						<div class="col-md-8">
 							<div style="width:350px; background:white; margin:0 auto;" >
@@ -78,23 +76,12 @@
 							  	<div style="ling-height:23px;">
 							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %></h4>
 							  	</div>
-							  	<div style="border: 1px solid white;">
+							  	<div style="border: 1px solid white; height:150px; overflow:scroll;">
 							  	   <h6><%=item.getItem_dec() %></h6>
 							  	</div>
 							  	<br>
-							  	<input type="button" value="장바구니 담기" id="shop_button" onclick="location.href='db_cart.jsp?id=<%=item.getId() %>'">
+							  	<input type="button" value="되팔기"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_sell.jsp?id=<%=item.getUnique_id() %>'">
 							  	<br><br>
-							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_buy.jsp?id=<%=id %>'">
-							  	<br><br><br>
-<%
-	if(email.equals(admin)) {
-%>
-							<br><br>
-							<button class="button special" onclick="location.href='edit.jsp?id=<%=item.getId() %>'">수정</button>
-							<button class="button special" onclick="location.href='db_delete.jsp?id=<%=item.getId() %>'">삭제</button>
-<%
-	}
-%>
 							</div>
 						</div>
 					</div>

@@ -652,6 +652,11 @@ public class Member {
 				pstmt = conn.prepareStatement("call inventory_selectCount_all(?)");
 				pstmt.setString(1, email);
 			} else {
+				if(category.equals("skin")) {
+					category = "playerskin";
+				} else if(category.equals("grenade")) {
+					category = "grenadeskin";
+				}
 				pstmt = conn.prepareStatement("call inventory_selectCount(?, ?)");
 				pstmt.setString(1, email);
 				pstmt.setString(2, category);
@@ -685,6 +690,11 @@ public class Member {
 				pstmt.setInt(2, start-1);
 				pstmt.setInt(3, end);
 			} else {
+				if(category.equals("skin")) {
+					category = "playerskin";
+				} else if(category.equals("grenade")) {
+					category = "grenadeskin";
+				}
 				pstmt = conn.prepareStatement("call inventory_selectId(?, ?, ?, ?)");
 				pstmt.setString(1, email);
 				pstmt.setString(2, category);
@@ -706,7 +716,23 @@ public class Member {
 		return idList;	
     }
 	
-	
+	public void sellItem(String email, String id) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "call inventory_sellItem(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
     
     public int InsertCart(String email, int mid) {
 		Connection conn = Database.connect();

@@ -7,7 +7,7 @@
 	KakaoLogin kakao = new KakaoLogin();
 	
 	String code = request.getParameter("code");
-	String access_token = kakao.getToken(code);
+	String access_token = kakao.getToken(code,"http://amel.kro.kr/member/edit/kakao_link.jsp");
 	String string_profile = kakao.getProfile(access_token);
 	
 	JsonObject json_profile = (JsonObject) gson.fromJson(string_profile, JsonObject.class);
@@ -18,20 +18,17 @@
 	String kakao_img = json_properties.get("thumbnail_image").getAsString();
 	
 	int res = kakao.updateMemberKakao(email, kakao_id, kakao_img);
-	String ress = "실패! unkown error";
-	switch(res) {
-		case 0:
-			ress = "연동 성공!";
-			break;
-		case 1:
-			ress = "연동해제 실패!";
-			break;
-		case 2:
-			ress = "실패! 이미 연동중인 카카오계정입니다";
-			break;
+	String ress = "unknown";
+	if(res == 0) {
+		ress = "연동 성공!";
+	} else if(res == 1) {
+		ress = "실패! 이미 연동된계정";
+	} else if(res == 2) {
+		ress = "실패! 이미 다른계정에서 연동중인 카카오계정";
 	}
 %>
 <script>
 	alert("<%=ress%>");
+	window.opener.document.location.reload();
 	window.close();
 </script>

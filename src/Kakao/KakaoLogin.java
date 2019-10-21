@@ -21,7 +21,7 @@ public class KakaoLogin {
 	
 	private static final String USER_AGENT = "Mozila/5.0";
 	
-	public static String getToken(String code) throws ClientProtocolException, IOException {
+	public static String getToken(String code,String redirect_uri) throws ClientProtocolException, IOException {
 		
 		System.out.println("---카카오 로그인 시작---");
 		
@@ -38,7 +38,7 @@ public class KakaoLogin {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 	    params.add(new BasicNameValuePair("grant_type", "authorization_code"));
 	    params.add(new BasicNameValuePair("client_id", "f4b335bfa37a8ce098ed450312b37a35"));
-	    params.add(new BasicNameValuePair("redirect_uri", "http://amel.kro.kr/member/login/kakao_login.jsp"));
+	    params.add(new BasicNameValuePair("redirect_uri", redirect_uri));
 	    params.add(new BasicNameValuePair("code", code));
 	    post.setEntity(new UrlEncodedFormEntity(params));
 		
@@ -179,5 +179,26 @@ public class KakaoLogin {
 		System.out.println(res);
 		
 		return res;
+	}
+	
+	public void deleteMemberKakao(String email) {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("update member set kakaoid=null, kakako_profile_image=null where email=?");
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+			
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+		}
 	}
 }

@@ -7,7 +7,7 @@
 	KakaoLogin kakao = new KakaoLogin();
 	
 	String code = request.getParameter("code");
-	String access_token = kakao.getToken(code,"http://amel.kro.kr/member/login/kakao_login.jsp");
+	String access_token = kakao.getToken(code,"http://"+request.getServerName()+"/member/login/kakao_login.jsp");
 	String string_profile = kakao.getProfile(access_token);
 	
 	JsonObject json_profile = (JsonObject) gson.fromJson(string_profile, JsonObject.class);

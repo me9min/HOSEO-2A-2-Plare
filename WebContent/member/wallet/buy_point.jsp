@@ -36,7 +36,7 @@ function request_buy(){
 		buyer_tel : '<%=phone%>',
 		buyer_addr : '<%=address_road+" "+address_detail%>',
 		buyer_postcode : '<%=zipcode%>',
-		m_redirect_url : 'http://127.0.0.1/member/wallet/db_buypoint.jsp?amount='
+		m_redirect_url : 'http://<%=request.getServerName()%>/member/wallet/db_buypoint.jsp?amount='
 	};
 	json.name = $("select[name=price]").val();
 	json.amount = $("select[name=price]").val();

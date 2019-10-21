@@ -275,7 +275,7 @@
 %>
 <!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
 <%-- String encodeurl = response.encodeURL("https://kauth.kakao.com/oauth/authorize?client_id=f4b335bfa37a8ce098ed450312b37a35&redirect_uri=http://amel.kro.kr/member/edit/kakao_link.jsp&response_type=code"); --%>
-<% String encoded = "https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3dhttp%3a%2f%2famel.kro.kr%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode"; %>
+<% String encoded = "https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3dhttp%3a%2f%2f"+request.getServerName()+"%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode"; %>
 <a onclick="window.open('<%=encoded%>','카카오연동','width=480,height=600,location=no,status=no,scrollbars=no');">
 	<img alt="카카오연동" src="/assets/images/kakaolink_btn_medium_wb.png"/>
 </a>

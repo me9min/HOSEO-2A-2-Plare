@@ -16,10 +16,6 @@
     if (pageNum == null) {
         pageNum = "1";
     }
-	String category = request.getParameter("category");
-	if (category == null) {
-		category = "all";
-	}
 	int currentPage = Integer.parseInt(pageNum);
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;

@@ -8,27 +8,16 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
-<%!
-    int pageSize = 6;
-%>
 <%	
-	String pageNum = request.getParameter("pageNum");
-    if (pageNum == null) {
-        pageNum = "1";
-    }
-	int currentPage = Integer.parseInt(pageNum);
-    int startRow = (currentPage - 1) * pageSize + 1;
-    int endRow = currentPage * pageSize;
-    int count = 0;
-
 	Board board = Board.getInstance();
     Shop shop = Shop.getInstance();
     Cart cart = Cart.getInstance();
     
-    List<Integer> idList = cart.getCartId(email, startRow, pageSize);
-	List<ShopBean> itemList = shop.getItems(idList);
-	count = cart.getCartCount(email);
+	int count = cart.getCartCount(email);
 	int point = shop.getPoint(email);
+
+    List<Integer> idList = cart.getCartId(email, 1, count);
+	List<ShopBean> itemList = shop.getItems(idList);
 	
 	int all = 0;
 %>
@@ -161,36 +150,6 @@
 									<td colspan="6" style="text-align:center;">
 										<input type="hidden" name="total_value" id="total_value" value="0">
 										<input type="hidden" name="all" id="all" value="<%=all %>">
-<%
-    if (count > 0) {
-        int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		int startPage = 1;
-		
-		if(currentPage % 5 != 0)
-           startPage = (int)(currentPage/5)*5 + 1;
-		else
-           startPage = ((int)(currentPage/5)-1)*5 + 1;
-		int pageBlock = 5;
-        int endPage = startPage + pageBlock - 1;
-        if (endPage > pageCount) endPage = pageCount;
-        
-        String href = "index.jsp?pageNum=";
-        
-        if (startPage > 5) { 
-%>
-        	<a href="<%=href %><%= startPage - 5 %>" id="link">&lt;</a>
-<%      }
-        
-        for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="<%=href %><%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
-<%      }
-        
-        if (endPage < pageCount) {  %>
-   	     	<a href="<%=href %><%= startPage + 5 %>" id="link">&gt;</a>
-<%
-        }
-    }
-%>
 									</td>
 								</tr>
 								<tr><td style="border:none;">&nbsp;</td></tr>

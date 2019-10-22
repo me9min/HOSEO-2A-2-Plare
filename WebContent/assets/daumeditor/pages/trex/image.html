@@ -1,69 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Daum에디터 - 이미지 첨부</title> 
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="../../css/popup.css" type="text/css"  charset="utf-8"/>
+<script type="text/javascript" src="../../js/scopeVariable.js?v=1571722952558" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/txlib.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/hyperscript.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/template.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/dgetty.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/xgetty.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/lib/rubber.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/trex.js?v=1571722952559" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/config.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/event.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/lib/markup.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/lib/domutil.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/lib/utils.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/mixins/ajax.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/trex/mixins/observable.js?v=1571722952560" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/popuputil.js?v=1571722952561" charset="utf-8"></script>
+<link rel="stylesheet" href="../../css/popup.css" type="text/css" charset="utf-8">
 <script type="text/javascript">
 // <![CDATA[
-
-	function done() {
-		
-		// 기본설정
-		var objTarget = $('form[name=imageForm]');
-		var strFile = objTarget.find('[name=file]').val();
-
-		// 체크
-		if(!strFile) {
-			alert('파일을 선택하세요.');
-			return;
-		}
-
-		// 데이터 전달
-		objTarget.ajaxForm({
-			beforeSubmit :	function() {
-			},
-			success		 :  function(data) {
-				data =  $.parseJSON(data);
-				if(data['__STATE__'] == "SUCCESS") {
-				
-					// 기본 설정
-					var objData = data['__DATA__'];
-					var filename = objData['filename'];
-					var filesize = objData['filesize'];
-					var imagealign = objData['imagealign'];
-					var imageurl = objData['imageurl'];
-					var originalurl = objData['originalurl'];
-					var thumburl = objData['thumburl'];
-
-					var _mockdata = {
-						'imageurl': imageurl,
-						'filename': filename,
-						'filesize': filesize,
-						'imagealign': imagealign,
-						'originalurl': originalurl,
-						'thumburl': thumburl
-					};
-
-					alert(_mockdata['imageurl']);
-					
-					execAttach(_mockdata);
-					
-					closeWindow();
-
-				} else {
-					var strMsg = data['__MSG__'];
-					if(!strMsg) { strMsg = data; }
-					alert(strMsg);
-				}
-		   }
-		}); 
-
-		objTarget.submit();
-
-	}
 	
+	function done() {
+		if (typeof(execAttach) == 'undefined') { //Virtual Function
+	        return;
+	    }
+		for_cut1 = document.imageForm.mempic.value.split('|');
+		for_cut2 = document.imageForm.mempictemp.value.split('|');
+		for_cut3 = document.imageForm.mempicname.value.split('|');
+		for_cut4 = document.imageForm.mempicsize.value.split('|');
+        for(i=0;i < for_cut1.length;i++){
+        if(for_cut1[i]){
+		var _mockdata = {
+			'imageurl': for_cut2[i],
+			'filename': for_cut3[i],
+			'filesize': for_cut4[i],
+			'imagealign': 'C',
+			'originalurl': for_cut1[i],
+			'thumburl': for_cut2[i]
+		};
+		execAttach(_mockdata);
+		}
+		}
+		closeWindow();
+	}
+
 	function initUploader(){
 	    var _opener = PopupUtil.getOpener();
 	    if (!_opener) {
@@ -74,9 +56,52 @@
 	    var _attacher = getAttacher('image', _opener);
 	    registerAction(_attacher);
 	}
-
 // ]]>
+function file_delte(number){ 
+        for_cut1 = document.imageForm.mempic.value.split('|');
+		for_cut2 = document.imageForm.mempictemp.value.split('|');
+		for_cut3 = document.imageForm.mempicname.value.split('|');
+		for_cut4 = document.imageForm.mempicsize.value.split('|');
+		info1 = '';
+		info2 = '';
+		info3 = '';
+		info4 = '';
+		info = '';
+        for(i=0;i < (for_cut1.length)-1;i++){
+        if(for_cut1[i] && i!=number){
+        info1 = info1 + for_cut1[i]+ "|";
+        info2 = info2 + for_cut2[i]+ "|";
+        info3 = info3 + for_cut3[i]+ "|";
+        info4 = info4 + for_cut4[i]+ "|";
+        info = info + "<table cellspacing=0 cellpadding=0 height='18'><tr><td><b>" + for_cut3[i] + "</b></td><td width='10'></td><td><img src='/DaumEditor-master/btn_del01.gif' style='cursor:pointer;' onclick='file_delte("+i +");'></td></tr></table>";
+        }else{
+        info1 = info1 + "|";
+        info2 = info2 + "|";
+        info3 = info3 + "|";
+        info4 = info4 + "|";
+		}
+		}
+
+        document.imageForm.mempic.value =info1;
+        document.imageForm.mempictemp.value =info2;
+        document.imageForm.mempicname.value =info3;
+        document.imageForm.mempicsize.value =info4;
+		var objTbody, objRow, objCell,e_num,c_num;
+		objTbody = document.getElementById("Addfilecontet");
+		objTbody.innerHTML= info;
+
+}
+
+function _submit(ac){ 
+document.imageForm.target = "_write_frame_"; 
+document.imageForm.a.value = ac;
+document.imageForm.submit(); 
+} 
 </script>
+<style>
+#Addfilecontetcon { overflow: auto; padding:0px; border-color:#cecece; background-color:#ffffff; border-style:solid;
+border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:1px;solid;scrollbar-3dlight-color:#FFFFFF;scrollbar-arrow-color:#FFFFFF;scrollbar-track-color:#FFFFFF;scrollbar-darkshadow-color:#FFFFFF;scrollbar-face-color:#aaaaaa;scrollbar-highlight-color:#FFFFFF;scrollbar-shadow-color:#FFFFFF;color:#aaaaaa;} 
+</style>
 </head>
 <body onload="initUploader();">
 <div class="wrapper">
@@ -84,15 +109,29 @@
 		<h1>사진 첨부</h1>
 	</div>	
 	<div class="body">
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="/board/issue/write.jsp">
-		<input type="hidden" name="menuType" value="daumeditor"/>
-		<input type="hidden" name="mode" value="json"/>
-		<input type="hidden" name="act" value="imageUpload"/>
-			<dl class="alert">
-			    <dt>사진 첨부 확인</dt>
-			    <dd><input type="file" name="file"/></dd>
-			</dl>
-		</form>
+		<dl class="alert">
+		    <dt>사진 첨부 확인</dt>
+		    <dd>
+<form name="imageForm" action="../../image_upload.jsp" method="post" onsubmit="return regisCheck(this);" enctype="multipart/form-data">
+<input type="hidden" name="action" value="regis">
+<input type="hidden" name="a" value="">
+<input type="file" name="mepic01" id="mepic01" value="" size="15" class="box2" onchange="_submit('upfile_info01');" style="width:207px;height:27px;background-image: url(img/boxtxt3.jpg);background-repeat: no-repeat; background-position: left top;" onkeypress="this.style.background='#f5f5f5';" onblur="this.style.background='#f5f5f5';" onkeydown="this.style.background='#f5f5f5';" onkeyup="this.style.background='#f5f5f5';" onfocus="this.style.background='#f5f5f5';">
+<input type="hidden" name="mempic" id="mempic" value="">
+<input type="hidden" name="mempictemp" id="mempictemp" value="">
+<input type="hidden" name="mempicname" id="mempicname" value="">
+<input type="hidden" name="mempicsize" id="mempicsize" value="">
+</form>
+첨부된사진<font color="fe0501" style="font-size:11px;"><b>* 용량이 클 경우 업로드가 지연될 수 있습니다.</b></font>
+<div id="Addfilecontetcon" style="width:100%;height:200px;">
+<table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tbody><tr>
+    <td id="Addfilecontet" align="left"></td>
+ </tr>
+</tbody></table>
+</div>
+			</dd>
+		</dl>
+
 	</div>
 	<div class="footer">
 		<p><a href="#" onclick="closeWindow();" title="닫기" class="close">닫기</a></p>
@@ -102,5 +141,6 @@
 		</ul>
 	</div>
 </div>
-</body>
-</html>
+<iframe name="_write_frame_" src="" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+
+</body></html>

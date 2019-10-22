@@ -5,8 +5,6 @@
 <%@ page import = "Bean.ShopBean" %>
 <%@ page import = "Bean.Cart" %>
 <%@ page import = "Bean.CartBean" %>
-<%@ page import = "java.util.List" %>
-<%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
 <%!
@@ -26,12 +24,8 @@
     Shop shop = Shop.getInstance();
     Cart cart = Cart.getInstance();
     
-    String id[] = request.getParameterValues("checkItem");
-    List<Integer> idList = new ArrayList<Integer>();
-    for(int i=0; i<id.length; i++) {
-    	idList.add(Integer.parseInt(id[i]));
-    }
-	List<ShopBean> itemList = shop.getItems(idList);
+    int id = Integer.parseInt(request.getParameter("id"));
+	ShopBean item = shop.getItem(id);
 	int point = shop.getPoint(email);
 	
 	int all = 0;
@@ -77,8 +71,6 @@
 							</thead>
 							<tbody>
 <%
-		for(int i=0; i<itemList.size(); i++) {
-			ShopBean item = itemList.get(i);
 			String type = "";
 			if(item.getItem_type().equals("playerskin")) {
 				type = "스킨";
@@ -91,14 +83,9 @@
 			} else if(item.getItem_type().equals("lasersight")) {
 				type = "레이저 사이트";
 			}
-			
-			all += item.getItem_price();
 %>
 							    <tr>
-									<td id="tbody">
-										<%=i+1 %>
-										<input type="checkbox" name="checkItem" value="<%=item.getId() %>" class="items" style="display:none;" checked>
-									</td>
+									<td id="tbody">&nbsp;</td>
 									<td style="font-weight:bold; vertical-align:middle;" id="tbody"><%=item.getItem_name() %></td>
 									<td id="tbody"><%=type %></td>
 									<td id="tbody">
@@ -106,9 +93,6 @@
 									</td>
 								</tr>
 							</tbody>
-<%
-		}
-%>
 							<tfoot>
 								<tr>
 									<td colspan="4" style="text-align:center;">
@@ -126,10 +110,10 @@
 								</tr>
 								<tr style="text-align:right;">
 									<td colspan="3" style="border-top:none;">
-										<b>총 주문 금액</b>
+										<b>주문 금액</b>
 									</td>
 									<td style="border-top:none;">
-										<b>- <%=all %></b>
+										<b>- <%=item.getItem_price() %></b>
 									</td>
 								</tr>
 								<tr style="text-align:right; font-size:24px;">
@@ -138,12 +122,12 @@
 									</td>
 									<td>
 										<img src="/assets/images/PointLogo.png" height="24px;"> 
-										<b style="color:#ff0000;"><%=point-all %></b>
+										<b style="color:#ff0000;"><%=point-item.getItem_price() %></b>
 									</td>
 								</tr>
 								
 <%
-	if((point - all) < 0) {
+	if((point - item.getItem_price()) < 0) {
 %>
 								<tr>
 									<td colspan="4" style="text-align:center; border:none;">
@@ -152,7 +136,7 @@
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align:center; border:none;">
-										<input type="button" class="button special" value="충전하기" onclick="location.href='../wallet/buy_point.jsp'">
+										<input type="button" class="button special" value="충전하기" onclick="location.href='../member/wallet/buy_point.jsp'">
 <%		
 	} else {
 %>
@@ -163,7 +147,7 @@
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align:center; border:none;">
-										<input type="submit" class="button special" value="구매하기">
+										<input type="button" class="button special" value="구매하기" onclick="location.href='db_buy.jsp?id=<%=id %>'">
 										<input type="button" class="button alt" value="이전으로" onclick="history.back()">
 <%
 	}

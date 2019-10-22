@@ -961,7 +961,15 @@ public class Board {
 	            pstmt.setString(2, article.getContent());
 	            pstmt.setInt(3, article.getNum());
 	            pstmt.executeUpdate();
-            }
+            } else if(category.equals("event")) {
+            	sql="update board_event set title=?,content=? where num=?";
+   	            pstmt = conn.prepareStatement(sql);
+   	            
+   	            pstmt.setString(1, rt.removeHtmlTag(article.getTitle()));
+   	            pstmt.setString(2, article.getContent());
+   	            pstmt.setInt(3, article.getNum());
+   	            pstmt.executeUpdate();
+            } 
         } catch(Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -992,6 +1000,12 @@ public class Board {
 	            pstmt.executeUpdate();
             } else if(category.equals("issue")) {
             	sql="delete from board_issue where num=?";
+	            pstmt = conn.prepareStatement(sql);
+
+	            pstmt.setInt(1, num);
+	            pstmt.executeUpdate();
+            } else if(category.equals("event")) {
+            	sql="delete from board_event where num=?";
 	            pstmt = conn.prepareStatement(sql);
 
 	            pstmt.setInt(1, num);

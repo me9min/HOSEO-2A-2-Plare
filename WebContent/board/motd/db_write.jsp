@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "java.sql.Date" %>
 <%@ page import = "java.io.File"%>
@@ -9,9 +10,11 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String email = (String)session.getAttribute("email");
-	String admin = "admin@plare.cf";
 	
-	if(email != null && email.equals(admin)) {
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
+	
+	if(email != null && admin_check == true) {
 %>
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
 	<jsp:setProperty name="article" property="*"/>

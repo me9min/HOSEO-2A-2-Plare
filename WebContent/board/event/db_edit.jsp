@@ -25,7 +25,7 @@
 </jsp:useBean>
 <%
 		Board board = Board.getInstance();
-		board.updateArticle(article, "motd");
+		board.updateArticle(article, "event");
 %>
 <script>
 	alert("게시글 수정이 완료되었습니다.");

@@ -52,6 +52,7 @@ if(email == null || email.length() == 0) {
 		<li><a href="#">게시판</a>
 			<ul id="dropmenu">
 				<li><a href="/board/motd">공지사항</a></li>
+				<li><a href="/board/event">이벤트</a></li>
 				<li><a href="/board/free">자유게시판</a></li>
 				<li><a href="/board/issue">문의/신고게시판</a></li>
 			</ul>

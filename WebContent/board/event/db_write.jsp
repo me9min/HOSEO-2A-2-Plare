@@ -3,7 +3,10 @@
 <%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "java.sql.Date" %>
-
+<%@ page import = "java.io.File"%>
+<%@ page import = "java.util.Enumeration"%>
+<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import = "com.oreilly.servlet.MultipartRequest"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String email = (String)session.getAttribute("email");
@@ -11,25 +14,19 @@
 	Member member = Member.getInstance();
 	boolean admin_check = member.admin_check(email);
 	
-	String nums = (String)request.getParameter("num");
-	int num = 0;
-	if(nums != null){
-		num = Integer.parseInt(nums);
-	}
-	
-	if(num != 0 && email != null && admin_check == true) {
+	if(email != null && admin_check == true) {
 %>
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
 	<jsp:setProperty name="article" property="*"/>
-	<jsp:setProperty name="article" property="num" value="<%=num %>"/>
+	<jsp:setProperty name="article" property="writer" value="<%=email %>"/>
 </jsp:useBean>
 <%
 		Board board = Board.getInstance();
-		board.updateArticle(article, "motd");
+		board.insertArticle(article, "event");
 %>
 <script>
-	alert("게시글 수정이 완료되었습니다.");
-	window.location = './content.jsp?num=<%=nums %>';
+	alert("게시글 등록이 완료되었습니다.");
+	window.location = './';
 </script>
 <%
 	} else {

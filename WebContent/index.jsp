@@ -10,6 +10,7 @@
 	Board board = Board.getInstance();
 	List<BoardBean> issueList = board.getBestIssues();
 	List<BoardBean> motdList = board.getLatestMotds();
+	List<BoardBean> eventList = board.getLatestEvents();
 	BoardBean free = board.getBestArticle();
 	String nickname_free = board.getNickname(free.getWriter());
 %>
@@ -95,21 +96,34 @@
 			
 			<div class="row">
 				<b style="font-size:20px;">이벤트</b><br><br>
+<%
+	for(int i=0; i<eventList.size(); i++) {
+		BoardBean event = eventList.get(i);
+%>
 			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px">
-				이벤트
+				<div style="margin:10px;">
+					<table id="tb">
+					<thead>
+						<tr>
+							<td id="title" >
+								<a href="./board/event/content.jsp?num=<%=event.getNum()%>" id="link"><%=event.getTitle() %></a>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:none;">
+							<td id="content">
+								<a href="./board/event/content.jsp?num=<%=event.getNum()%>" id="link"><%=event.getContent() %></a>
+							</td>
+						</tr>
+					</tbody>
+					</table>
 				</div>
 			  </div></div>
-			  <div class="col-md-8">
-			  <div style="background-color:#ffffff; width:528px;height:250px;border:1px solid black;margin:15px;">
-				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
-				<img src="/assets/images/test2.jpg" width="230px" height="230px">
-				</div>
-				<div style="margin:10px;text-align:center;line-height:220px;float:left;width:230px;height:230px;">
-				광고
-				</div>
-				</div></div>
+<%
+	}
+%>
 			  </div><br><br>
 
 			<div class="row">

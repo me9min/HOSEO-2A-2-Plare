@@ -84,6 +84,15 @@ public class Board {
 				pstmt.setString(9, article.getAttach_file_name());
 				
 	            pstmt.executeUpdate();
+            } else if (category.equals("event")) {
+            	sql = "insert into board_event (writer,reg_date,title,content) values(?,now(),?,?)";
+            	
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, article.getWriter());
+	            pstmt.setString(2, rt.removeHtmlTag(article.getTitle()));
+				pstmt.setString(3, article.getContent());
+				
+	            pstmt.executeUpdate();
             }
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -117,6 +126,13 @@ public class Board {
 					}
 	    	   } else if(category.equals("issue")) {
 	    		   pstmt = conn.prepareStatement("select count(*) from board_issue where num_rep = 0");
+		           rs = pstmt.executeQuery();
+		
+		           if (rs.next()) {
+		              x = rs.getInt(1);
+					}
+	    	   } else if(category.equals("event")) {
+	    		   pstmt = conn.prepareStatement("select count(*) from board_event");
 		           rs = pstmt.executeQuery();
 		
 		           if (rs.next()) {
@@ -217,6 +233,31 @@ public class Board {
 		    		   pstmt.setString(1, "%" + writer_email + "%");
 		               rs = pstmt.executeQuery();
 		    	   }
+	    	   } else if(category.equals("event")) {
+	    		   if(condition.equals("all")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_event where title like ? or content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		    		   pstmt.setString(2, "%" + content + "%");
+		    		   rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("title")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_event where title like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("content")) {
+		    		   pstmt = conn.prepareStatement("select count(*) from board_event where content like ?");
+		    		   pstmt.setString(1, "%" + content + "%");
+		               rs = pstmt.executeQuery();
+		    	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		    		   
+		    		   pstmt = conn.prepareStatement("select count(*) from board_event where writer like ?");
+		    		   pstmt.setString(1, "%" + writer_email + "%");
+		               rs = pstmt.executeQuery();
+		    	   }
 	    	   }
 	    	   
 	           if (rs.next()) {
@@ -313,7 +354,28 @@ public class Board {
  					  articleList.add(article);
  				    }while(rs.next());
  				}
-           }
+           } else if(category.equals("event")) {
+        	   pstmt = conn.prepareStatement(
+         	           	"select * from board_event order by num desc limit ?, ?");
+       	   pstmt.setInt(1, start-1);
+       	   pstmt.setInt(2, end);
+     	       rs = pstmt.executeQuery();
+     	
+ 	           if (rs.next()) {
+ 	               articleList = new ArrayList<BoardBean>(end);
+ 	               do{
+ 	                 BoardBean article= new BoardBean();
+ 					  article.setNum(rs.getInt("num"));
+ 					  article.setWriter(rs.getString("writer"));
+ 					  article.setRead_count(rs.getInt("read_count"));
+ 					  article.setReg_date(rs.getTimestamp("reg_date"));
+ 					  article.setTitle(rs.getString("title"));
+ 					  article.setContent(rs.getString("content"));
+ 					  
+ 	                 articleList.add(article);
+ 				    }while(rs.next());
+ 				}
+          }
        } catch(Exception ex) {
            ex.printStackTrace();
        } finally {
@@ -499,6 +561,58 @@ public class Board {
 	 					  articleList.add(article);
 	 				    }while(rs.next());
 	 				}
+	           } else if(category.equals("event")) {
+	        	   if(condition.equals("all")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_event where title like ? or content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setString(2, "%" + content + "%");
+		        	   pstmt.setInt(3, start-1);
+		        	   pstmt.setInt(4, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("title")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_event where title like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("content")) {
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_event where content like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + content + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   } else if(condition.equals("writer")) {
+		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
+		    		   pstmt.setString(1, content);
+		    		   rs = pstmt.executeQuery();
+		    		   rs.next();
+		    		   writer_email = rs.getString("email");
+		           
+	        		   pstmt = conn.prepareStatement(
+			       	           	"select * from board_event where writer like ? order by num desc limit ?, ?");
+		        	   pstmt.setString(1, "%" + writer_email + "%");
+		        	   pstmt.setInt(2, start-1);
+		        	   pstmt.setInt(3, end);
+		   	           rs = pstmt.executeQuery();
+	        	   }
+	      	
+	  	           if (rs.next()) {
+	  	               articleList = new ArrayList<BoardBean>(end);
+	  	               do{
+	  	                 BoardBean article= new BoardBean();
+	  					  article.setNum(rs.getInt("num"));
+	  					  article.setWriter(rs.getString("writer"));
+	  					  article.setRead_count(rs.getInt("read_count"));
+	  					  article.setReg_date(rs.getTimestamp("reg_date"));
+	  					  article.setTitle(rs.getString("title"));
+	  					  article.setContent(rs.getString("content"));
+	  					  
+	  	                 articleList.add(article);
+	  				    }while(rs.next());
+	  				}
 	           }
 	       } catch(Exception ex) {
 	           ex.printStackTrace();
@@ -570,6 +684,39 @@ public class Board {
 	    }
 			return articleList;
 	    }
+	
+	public List<BoardBean> getLatestEvents() {
+		Connection conn = Database.connect();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+        List<BoardBean> articleList=null;
+	    try {
+	 	   	pstmt = conn.prepareStatement(
+	  	           	"select * from board_event order by reg_date desc limit 3");
+	 	   	rs = pstmt.executeQuery();
+	 	   	
+	 	   	if (rs.next()) {	
+	 	   		articleList = new ArrayList<BoardBean>(3);
+	            do{
+		            BoardBean article= new BoardBean();
+					article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content"));
+					
+					articleList.add(article);
+	            }while(rs.next());
+	 	   	}
+   		} catch(Exception ex) {
+   			ex.printStackTrace();
+	    } finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }
+			return articleList;
+	 }
 		
 		public BoardBean getBestArticle() {
 			Connection conn = Database.connect();
@@ -754,6 +901,24 @@ public class Board {
 					article.setAttach_file(rs.getString("attach_file"));
 					article.setAttach_file_name(rs.getString("attach_file_name"));
                 }
+            } else if(category.equals("event")) {
+            	pstmt = conn.prepareStatement("update board_event set read_count = read_count + 1 where num = ?");
+        		pstmt.setInt(1, num);
+        		pstmt.executeUpdate();
+
+                pstmt = conn.prepareStatement("select * from board_event where num = ?");
+                pstmt.setInt(1, num);
+                rs = pstmt.executeQuery();
+                    
+                if (rs.next()) {
+					article = new BoardBean();
+					article.setNum(rs.getInt("num"));
+					article.setWriter(rs.getString("writer"));
+					article.setRead_count(rs.getInt("read_count"));
+					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setTitle(rs.getString("title"));
+					article.setContent(rs.getString("content")); 
+        		}
             }
         } catch(Exception ex) {
             ex.printStackTrace();

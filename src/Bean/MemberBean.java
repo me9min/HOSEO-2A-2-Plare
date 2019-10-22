@@ -14,6 +14,7 @@ public class MemberBean {
 	private String address;
 	private String address_detail;
 	private String referrer;
+	private String flag;
 	
 	private String address_road;
 	private String zipcode;
@@ -100,6 +101,12 @@ public class MemberBean {
 	}
 	
 	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 	public String getAddress_road() {
 		return address_road;
 	}

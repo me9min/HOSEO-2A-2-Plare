@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
@@ -34,10 +35,15 @@
 	if(email == null) {
 		email = "";
 	}
+	
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
+	
 	Board board = Board.getInstance(); 
 	String nickname = board.getNickname(email);
 
 	int num = Integer.parseInt(request.getParameter("num"));
+	 
 	
     List<BoardBean> commentList = null;
     commentList = board.getComments(num);
@@ -97,6 +103,14 @@
 				</td>
 			</tr>
 <%
+	} else if(admin_check == true) {
+%>
+			<tr style="background-color:#ffffff; border:hidden;">
+				<td colspan="2" align="right">
+					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a> 
+				</td>
+			</tr>
+<%
 	}
 %>
 			<tr id="border" style="background-color:#ffffff;">
@@ -145,6 +159,10 @@
 			if(email.equals(comment.getWriter())) {
 %>
 					<p style="display:inline;" id="link" onclick="updateShow(<%=count %>)">수정</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=comment.getNum()%>&num=<%=num%>'">삭제</p>
+<%
+			} else if(admin_check == true) {
+%>
 					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=comment.getNum()%>&num=<%=num%>'">삭제</p>
 <%
 			}
@@ -199,6 +217,10 @@
 %>
 					&nbsp;
 					<p style="display:inline;" id="link" onclick="updateReplyShow(<%=count %>)">수정</p>
+					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=reply.getNum()%>&num=<%=num%>'">삭제</p>
+<%
+			} else if(admin_check == true) {
+%>
 					<p style="display:inline;" id="link" onclick="window.location='db_comment_delete.jsp?commentNum=<%=reply.getNum()%>&num=<%=num%>'">삭제</p>
 <%
 			}

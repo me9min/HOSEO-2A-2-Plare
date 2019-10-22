@@ -56,6 +56,10 @@
 				<div class="inner">
 					<div class="box">
 						<div class="content">
+							<header class="align-center">
+		                        <h2>인벤토리</h2>
+		                        <br>
+		                    </header>
 		<nav class="tabbable" style="align:center;">
 		        <div>&nbsp;&nbsp;
 		          <ul class="nav navbar-nav nav-tabs" id="tab">

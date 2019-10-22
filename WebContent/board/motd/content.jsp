@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
@@ -33,7 +34,9 @@
 	if(email == null) {
 		email = "";
 	}
-	String admin = "admin@plare.cf";
+	
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
 
 	int num = Integer.parseInt(request.getParameter("num"));
 	
@@ -73,7 +76,7 @@
 				<td height="300px"><pre style="background:transparent; border:hidden; font-family:'Nanum Gothic', sans-serif;"><%=article.getContent() %></pre></td>
 			</tr>
 <%
-	if(email.equals(admin)) {
+	if(admin_check == true) {
 %>
 			<tr style="background-color:#ffffff; border:hidden;">
 				<td colspan="2" align="right">

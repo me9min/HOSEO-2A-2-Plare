@@ -57,6 +57,7 @@
 		if(item.getItem_dec() != null) {
 			dec = item.getItem_dec();
 		}
+		int price_sell = (int)(item.getItem_price() * 0.5);
 %>
 <head>
 <title><%=item.getItem_name() %></title>
@@ -77,15 +78,26 @@
 							  	<h4><%=item.getItem_name() %></h4>
 							  	<hr>
 							  	<div style="ling-height:23px;">
-							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %></h4>
-							  	</div>
-							  	<div style="border: 1px solid white; height:150px; overflow:scroll;">
-							  	   <h6><%=dec %></h6>
+							  	   <h5>실구매 가격 : </h5>
+							  	   <h4 style="color:red; text-decoration:line-through;">
+							  	   		<%=NumberFormat.getInstance().format(item.getItem_price()) %>
+							  	   </h4>
+							  	   <h5>되팔기 가격 : </h5>
+							  	   <h3>
+							  	   		<img src="/assets/images/PointLogo.png" height="30px;"> 
+							  	   		<%=NumberFormat.getInstance().format(price_sell) %>
+							  	   </h3>
 							  	</div>
 							  	<br>
 							  	<input type="button" value="되팔기"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_sell.jsp?id=<%=item.getUnique_id() %>'">
 							  	<br><br>
 							</div>
+							<br>
+					</div>
+					<div class="row" style="margin-top:20px;">
+				  	  <div class="col-md-12" style="border: 1px solid white;">
+				  	     <h6><%=dec %></h6>
+				  	  </div>
 					</div>
 				</div>
 			</div>

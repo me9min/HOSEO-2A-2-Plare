@@ -9,5 +9,5 @@
 %>
 <script>
 	alert("성공적으로 포인트충전이 완료되었습니다.");
-	window.location = './';
+	window.location = '../../shop/';
 </script>

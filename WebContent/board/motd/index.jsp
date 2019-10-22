@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
@@ -14,7 +15,6 @@
 	request.setCharacterEncoding("utf-8");
 	String category = "motd";
     String pageNum = request.getParameter("pageNum");
-	String admin = "admin@plare.cf";
 
     if (pageNum == null) {
         pageNum = "1";
@@ -65,6 +65,9 @@
 	if(email == null) {
 		email = "";
 	}
+
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
 %>
 
 <%@ include file="/assets/include/board_top.jsp" %>
@@ -80,7 +83,7 @@
 
 	<div class="table-wrapper">
 <%
-	if(email.equals(admin)) {
+	if(admin_check == true) {
 %>
 		<a href="write.jsp" class="button special pull-right">글쓰기</a><br><br>
 <% 

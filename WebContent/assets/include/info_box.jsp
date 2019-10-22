@@ -5,5 +5,6 @@
 	보유 포인트<br>
 	<b style="color:white;"><%=NumberFormat.getInstance().format(point) %></b><br><br>
 	<button type="button" class="button special" onclick="location.href='/member/wallet/buy_point.jsp'">충전하기</button><br><br>
-	<button type="button" class="button special" onclick="location.href='/member/cart/'">장바구니</button>
+	<button type="button" class="button special" onclick="location.href='/member/cart/'">장바구니</button><br><br>
+	<button type="button" class="button special" onclick="location.href='/member/inventory/'">인벤토리</button>
 </div>

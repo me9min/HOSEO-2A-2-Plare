@@ -440,6 +440,41 @@ public class Member {
 		return memberBean;
 	}
 	
+	public boolean admin_check(String email) {
+		// 로그인한 회원이 관리자 권한이 있는 계정인지 검사하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean check = false;
+
+		try {
+			String sql = "select flag from member where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			String flag = rs.getString("flag");
+			
+			if(flag.equals("z") || flag.equals("b")) {
+				check = true;
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		} 
+
+		return check;
+	}
+	
 	public StringBuffer emailCode(String email) {
 		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
 		String host = "smtp.naver.com";

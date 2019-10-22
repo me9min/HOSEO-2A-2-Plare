@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
@@ -10,9 +11,12 @@
 	if(email == null) {
 		email = "";
 	}
+	
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
+	
 	Board board = Board.getInstance(); 
 	String nickname = board.getNickname(email);
-	String admin = "admin@plare.cf";
 	
 	int num = Integer.parseInt(request.getParameter("num"));
 	
@@ -119,16 +123,25 @@
 			<tr style="background-color:#ffffff; border:hidden;">
 				<td colspan="2" align="right">
 <%
-	if(email.equals(article.getWriter())) {
+	if(email.equals(article.getWriter()) && admin_check == false) {
 %>
 					<a href="edit.jsp?num=<%=article.getNum() %>" class="button alt">수정</a>
 					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
 <%
-	}
-	if(email.equals(admin) && num_rep == 0) {
+	} else if(email.equals(article.getWriter()) && admin_check == true) {
 %>
+					<a href="edit.jsp?num=<%=article.getNum() %>" class="button alt">수정</a>
+<%
+	}
+	if(admin_check == true && num_rep == 0) {
+%>
+					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
 					<a href="write.jsp?num=<%=request.getParameter("num") %>" class="button special">답변쓰기</a>
 <% 
+	} else if(admin_check == true && num_rep != 0) {
+%>
+					<a href="db_delete.jsp?num=<%=article.getNum() %>" class="button alt">삭제</a>
+<%
 	}
 %>
 				</td>

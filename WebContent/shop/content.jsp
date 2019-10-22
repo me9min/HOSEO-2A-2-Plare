@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
 <%@ page import = "Bean.ShopBean" %>
@@ -45,7 +46,8 @@
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 	
-	String admin = "admin@plare.cf";
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
 	
 	try{
 		Shop shop = Shop.getInstance(); 
@@ -81,16 +83,13 @@
 							  	<div style="ling-height:23px;">
 							  	   <h4><img src="/assets/images/PointLogo.png" height="23px;"> <%=NumberFormat.getInstance().format(item.getItem_price()) %></h4>
 							  	</div>
-							  	<div style="border: 1px solid white; height:100px; overflow:scroll;">
-							  	   <h6><%=dec %></h6>
-							  	</div>
 							  	<br>
 							  	<input type="button" value="장바구니 담기" id="shop_button" onclick="location.href='db_cart.jsp?id=<%=item.getId() %>'">
 							  	<br><br>
 							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_buy.jsp?id=<%=id %>'">
 							  	<br><br>
 <%
-	if(email.equals(admin)) {
+	if(admin_check == true) {
 %>
 							<br>
 							<button class="button special" onclick="location.href='edit.jsp?id=<%=item.getId() %>'">수정</button>
@@ -100,6 +99,11 @@
 %>
 							</div>
 					</div>
+				</div>
+				<div class="row" style="margin-top:20px;">
+			  	  <div class="col-md-12" style="border: 1px solid white;">
+			  	     <h6><%=dec %></h6>
+			  	  </div>
 				</div>
 			</div>
 		</div>

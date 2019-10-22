@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
 <%@ page import = "Bean.ShopBean" %>
@@ -13,7 +14,8 @@
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 	
-	String admin = "admin@plare.cf";
+	Member member = Member.getInstance();
+	boolean admin_check = member.admin_check(email);
 	
 	String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
@@ -82,7 +84,7 @@
 		</nav>	
 
 <%
-	if(email.equals(admin)) {
+	if(admin_check == true) {
 %>
 		<a href="write.jsp" class="button special pull-right">상품 등록</a><br><br>
 <% 

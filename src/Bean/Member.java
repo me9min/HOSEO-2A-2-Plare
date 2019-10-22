@@ -458,8 +458,10 @@ public class Member {
 			rs.next();
 			String flag = rs.getString("flag");
 			
-			if(flag.equals("z") || flag.equals("b")) {
-				check = true;
+			if(flag != null) {
+				if(flag.equals("z") || flag.equals("b")) {
+					check = true;
+				}
 			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();

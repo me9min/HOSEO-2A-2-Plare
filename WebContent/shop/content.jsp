@@ -86,7 +86,7 @@
 							  	<br>
 							  	<input type="button" value="장바구니 담기" id="shop_button" onclick="location.href='db_cart.jsp?id=<%=item.getId() %>'">
 							  	<br><br>
-							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_buy.jsp?id=<%=id %>'">
+							  	<input type="button" value="바로 구매"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='buy_confirm.jsp?id=<%=id %>'">
 							  	<br><br>
 <%
 	if(admin_check == true) {

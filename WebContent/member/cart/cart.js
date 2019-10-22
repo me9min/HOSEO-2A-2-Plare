@@ -32,6 +32,6 @@ function buyCheck() {
         return;
     }
 	
-	document.cart_select.action = "db_buy.jsp";
+	document.cart_select.action = "buy_confirm.jsp";
 	document.cart_select.submit();
 }

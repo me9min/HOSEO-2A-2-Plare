@@ -5,9 +5,13 @@
 <%
 	Gson gson = new Gson();
 	KakaoLogin kakao = new KakaoLogin();
+	String httpIsSsl = "http";
+	if(request.isSecure()) {
+		httpIsSsl += "s";
+	}
 	
 	String code = request.getParameter("code");
-	String access_token = kakao.getToken(code,request.getScheme()+"://"+request.getServerName()+"/member/edit/kakao_link.jsp");
+	String access_token = kakao.getToken(code,httpIsSsl+"://"+request.getServerName()+"/member/edit/kakao_link.jsp");
 	String string_profile = kakao.getProfile(access_token);
 	
 	JsonObject json_profile = (JsonObject) gson.fromJson(string_profile, JsonObject.class);

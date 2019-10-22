@@ -10,9 +10,9 @@
 	int num = Integer.parseInt(request.getParameter("num"));
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+	
    	try{
-   		Board board = Board.getInstance(); 
+   		Board board = Board.getInstance();
       	BoardBean article = board.getArticle("event", num);
       	String nickname = board.getNickname(article.getWriter());
       	String edit_date = "";
@@ -57,7 +57,7 @@ debug - 현재접속 아이피 : <%=ip %> , 오늘날짜 : <%=sdf.format(new Tim
 								</div>
 							</header>
 
-<%@ include file="/assets/daumeditor/editor.jsp" %>
+<%@ include file="/assets/daumeditor/editor_edit.jsp" %>
 
 <div class="12u 12u$(xsmall)">
 	<button class="button special" onclick='saveContent()'>수정</button>

@@ -7,6 +7,10 @@
 <jsp:useBean id="member" class="Bean.Member" />
 <%
 	request.setCharacterEncoding("utf-8");
+	String httpIsSsl = "http";
+	if(request.isSecure()) {
+		httpIsSsl += "s";
+	}
 	
 	MemberBean member_sql = member.load_info(email);
 	
@@ -36,7 +40,7 @@ function request_buy(){
 		buyer_tel : '<%=phone%>',
 		buyer_addr : '<%=address_road+" "+address_detail%>',
 		buyer_postcode : '<%=zipcode%>',
-		m_redirect_url : '<%=request.getScheme()+"://"+request.getServerName()%>/member/wallet/db_buypoint_kakaopay.jsp?amount='
+		m_redirect_url : '<%=httpIsSsl+"://"+request.getServerName()%>/member/wallet/db_buypoint_kakaopay.jsp?amount='
 	};
 	json.name = $("select[name=price]").val();
 	json.amount = $("select[name=price]").val();

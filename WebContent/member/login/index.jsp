@@ -11,6 +11,10 @@
 <%@ include file="/assets/include/member_top.jsp" %>
 
 <%
+	String httpIsSsl = "http";
+	if(request.isSecure()) {
+		httpIsSsl += "s";
+	}
 	String ref_me = request.getRequestURL().toString();
 	String ref = request.getHeader("REFERER");
 	String rref = request.getParameter("ref");
@@ -63,7 +67,7 @@
 				<div class="row uniform">
 					<div class="4u 12u$(xsmall) style="visibility:hidden;"></div>
 					<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
-					<a onclick="window.open('https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3d<%=request.getScheme()%>%3a%2f%2f<%=request.getServerName()%>%2fmember%2flogin%2fkakao_login.jsp%26response_type%3dcode','카카오로그인','width=480,height=600,location=no,status=no,scrollbars=no');">
+					<a onclick="window.open('https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3d<%=httpIsSsl%>%3a%2f%2f<%=request.getServerName()%>%2fmember%2flogin%2fkakao_login.jsp%26response_type%3dcode','카카오로그인','width=480,height=600,location=no,status=no,scrollbars=no');">
 						<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
 					</a>
 				</div>

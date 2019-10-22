@@ -10,7 +10,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
     String pageNum = request.getParameter("pageNum");
-	String admin = "admin@plare.cf";
 	
     if (pageNum == null) {
         pageNum = "1";
@@ -19,6 +18,12 @@
     int currentPage = Integer.parseInt(pageNum);
     int startRow = pageSize*(currentPage-1);
     int count = 0;
+    
+    Calendar currentCalendar = Calendar.getInstance();
+    DecimalFormat df = new DecimalFormat("00");
+    String year = Integer.toString(currentCalendar.get(Calendar.YEAR));
+    String month  = df.format(currentCalendar.get(Calendar.MONTH) + 1);
+    
     List<RankBean> articleList = null;
     
     Rank rank = Rank.getInstance();
@@ -55,7 +60,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2>10월 실시간 랭킹</h2>
+								<h2><%=year %>년 <%=month %>월 실시간 랭킹</h2>
 							</header>
 	<div class="table-wrapper">
 	

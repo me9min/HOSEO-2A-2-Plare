@@ -60,11 +60,10 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<h2><%=year %>년 <%=month %>월 실시간 랭킹</h2>
+								<h2><%=year %>년 <%=month %>월 실시간 랭킹 <img src="/assets/images/crown.jpg" width="40px" height="40px"></h2>
 							</header>
 	<div class="table-wrapper">
-	
-		<br><br>
+		<br>
 <%
 	if(count == 0) { %>
 		<table>

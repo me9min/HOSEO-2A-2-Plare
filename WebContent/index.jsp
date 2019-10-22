@@ -62,7 +62,7 @@
 	<div class="inner">
 
 			<div class="row">
-				<b style="font-size:20px;">최근 공지사항</b><br><br>
+					<b style="font-size:20px;">최근 공지사항</b><br><br>
 <%
 	for(int i=0; i<motdList.size(); i++) {
 		BoardBean motd = motdList.get(i);

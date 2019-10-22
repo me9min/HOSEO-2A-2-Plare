@@ -55,6 +55,7 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
+								<h2>10월 실시간 랭킹</h2>
 							</header>
 	<div class="table-wrapper">
 	

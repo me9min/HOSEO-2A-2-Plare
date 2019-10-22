@@ -5,7 +5,6 @@
 
 <%!
 	int pageSize = 10;
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 <%
 	request.setCharacterEncoding("utf-8");

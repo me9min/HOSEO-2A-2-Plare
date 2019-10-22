@@ -300,7 +300,7 @@
 <script>
 	function kakao_link() {
 		window.open(
-			'https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3dhttp%3a%2f%2f<%=request.getServerName()%>%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode'
+			'https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3d<%=request.getScheme()%>%3a%2f%2f<%=request.getServerName()%>%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode'
 			,'카카오연동'
 			,'width=480,height=600,location=no,status=no,scrollbars=no'
 		);

@@ -28,9 +28,6 @@
 	<link rel="stylesheet" href="/assets/daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
 	<script src="/assets/daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
 	<script language="JavaScript" src="write.js"></script>
-	<script>
-		var edit_content_val = "<%=article.getContent() %>";
-	</script>
 <%@ include file="/assets/include/menu.jsp" %>
 
 <%@ include file="/assets/include/board_top.jsp" %>

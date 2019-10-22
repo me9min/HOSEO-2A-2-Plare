@@ -40,7 +40,6 @@
 <html>
 	<head>
 		<title>상점</title>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 		<style>
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
@@ -57,26 +56,27 @@
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-		<nav class="tabbable" style="align:center;">
+						
+		<nav class="tabbable">
 		        <div>&nbsp;&nbsp;
-		          <ul class="nav navbar-nav nav-tabs" id="tab">
+		          <ul class="nav navbar-nav nav-tabs">
 		              <li<% if(category.equals("all")) {%> class="active"<%} %>>
-		              	<a href="index.jsp" >&nbsp;모두 보기&nbsp;</a>
+		              	<a href="index.jsp" id="link">&nbsp;모두 보기&nbsp;</a>
 		              </li>
 		              <li<% if(category.equals("skin")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=skin" >플레이어 스킨</a>
+		              	<a href="index.jsp?category=skin" id="link">플레이어 스킨</a>
 		              </li>
 		              <li<% if(category.equals("hat")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=hat" data-togge="tab" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;모자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+		              	<a href="index.jsp?category=hat" id="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;모자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 		              </li>
 		              <li<% if(category.equals("pet")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=pet" data-togge="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+		              	<a href="index.jsp?category=pet" id="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 		              </li>
 		              <li<% if(category.equals("grenade")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=grenade" data-togge="tab"> &nbsp;&nbsp;&nbsp;수류탄 스킨&nbsp;&nbsp;&nbsp; </a>
+		              	<a href="index.jsp?category=grenade" id="link"> &nbsp;&nbsp;&nbsp;수류탄 스킨&nbsp;&nbsp;&nbsp; </a>
 		              </li>
 		              <li<% if(category.equals("lasersight")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=lasersight" data-togge="tab">&nbsp;레이저 사이트&nbsp;</a>
+		              	<a href="index.jsp?category=lasersight" id="link">&nbsp;레이저 사이트&nbsp;</a>
 		              </li>
 		          </ul>
 		        </div>

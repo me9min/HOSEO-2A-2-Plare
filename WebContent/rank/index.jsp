@@ -71,7 +71,7 @@
 			<thead>
 				<tr>
 					<td id="thead">순위</td>
-					<td id="thead">닉네임</td>
+					<td id="thead" width="60%">닉네임</td>
 					<td id="thead">캐시</td>
 					<td id="thead">스팀고유번호</td>
 				</tr>
@@ -82,10 +82,10 @@
 %>
 			<tbody>
 				<tr>
-					<td align="center"><%=i+1%></td>
-					<td align="center"><%=article.getName()%></td>
-					<td align="center"><%=article.getCash()%></td>
-					<td align="center"><%=article.getSteam_id()%></td>
+					<td align="center"><%=startRow+=1%></td>
+					<td align="left" width="60%"><%=article.getName()%></td>
+					<td align="left"><%=article.getCash()%></td>
+					<td align="left"><%=article.getSteam_id()%></td>
 				</tr>
 			</tbody>
 <% 		}

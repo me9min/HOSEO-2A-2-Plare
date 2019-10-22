@@ -274,23 +274,13 @@
 	if(kakaoid == null) {
 %>
 <!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
-<%-- String encodeurl = response.encodeURL("https://kauth.kakao.com/oauth/authorize?client_id=f4b335bfa37a8ce098ed450312b37a35&redirect_uri=http://amel.kro.kr/member/edit/kakao_link.jsp&response_type=code"); --%>
-<% String encoded = "https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3dhttp%3a%2f%2f"+request.getServerName()+"%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode"; %>
-<a onclick="window.open('<%=encoded%>','카카오연동','width=480,height=600,location=no,status=no,scrollbars=no');">
+<a onclick="kakao_link()">
 	<img alt="카카오연동" src="/assets/images/kakaolink_btn_medium_wb.png"/>
 </a>
 <%
 	} else {
 %>
-<script>
-	function unlink_confirm() {
-		var unlink_confirm = confirm('연동해제 하시겠습니까?');
-		if(unlink_confirm) {
-			window.open('./kakao_unlink.jsp','카카오연동해제','width=480,height=600');
-		}
-	}
-</script>
-<a onclick="unlink_confirm()">
+<a onclick="kakao_unlink_confirm()">
 	<img alt="카카오연동해제" src="/assets/images/kakaolink_btn_medium.png"/>
 </a>
 <%=kakaoid%>
@@ -306,3 +296,20 @@
 <%@ include file="/assets/include/foot.jsp" %>
 
 </html>
+
+<script>
+	function kakao_link() {
+		window.open(
+			'https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3dhttp%3a%2f%2f<%=request.getServerName()%>%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode'
+			,'카카오연동'
+			,'width=480,height=600,location=no,status=no,scrollbars=no'
+		);
+	}
+	
+	function kakao_unlink_confirm() {
+		var unlink_confirm = confirm('연동해제 하시겠습니까?');
+		if(unlink_confirm) {
+			window.open('./kakao_unlink.jsp','카카오연동해제','width=480,height=600');
+		}
+	}
+</script>

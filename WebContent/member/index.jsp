@@ -7,6 +7,10 @@
 		<title>프로필</title>
 		<style type="text/css">
 			.px-200{font-size: 200px;}
+			#member_menu:link{color:gray !important;text-decoration:none !important}
+			#member_menu:visited{color:gray !important;text-decoration:none !important}
+			#member_menu:hover{color:red !important;text-decoration:none !important;}
+			#member_menu:active{color:red !important;text-decoration:none !important}
 		</style>
 <%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
@@ -15,7 +19,8 @@
 					<div class="grid-style">
 
 						<div>
-							<div class="box" onclick="window.location.replace('edit/password_check.jsp');">
+						<a id="member_menu" href="edit/password_check.jsp">
+							<div class="box">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-pencil px-200"></span>
@@ -25,10 +30,12 @@
 									</footer>
 								</div>
 							</div>
+						</a>
 						</div>
 
 						<div>
-							<div class="box" onclick="window.location.replace('wallet/');">
+						<a id="member_menu" href="wallet/">
+							<div class="box">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-credit-card px-200"></span>
@@ -38,10 +45,13 @@
 									</footer>
 								</div>
 							</div>
+						</a>
 						</div>
 						
+						
 						<div>
-							<div class="box" onclick="window.location.replace('cart/');">
+						<a id="member_menu" href="cart/">
+							<div class="box">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-shopping-cart px-200"></span>
@@ -51,10 +61,12 @@
 									</footer>
 								</div>
 							</div>
+						</a>
 						</div>
 						
 						<div>
-							<div class="box" onclick="window.location.replace('inventory/');">
+						<a id="member_menu" href="inventory/">
+							<div class="box">
 								<div class="content">
 									<header class="align-center">
 										<span class="glyphicon glyphicon-inbox px-200"></span>
@@ -64,6 +76,7 @@
 									</footer>
 								</div>
 							</div>
+						</a>
 						</div>
 
 					</div>

@@ -1,146 +1,208 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Daum에디터 - 이미지 첨부</title> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://onesports.ga/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://onesports.ga/css/Nunito.css" rel="stylesheet">
+  <link href="https://onesports.ga/css/sb-admin-2.min.css" rel="stylesheet">
+  
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+<meta http-equiv="cache-control" content="no-cache, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<title>이미지 첨부</title> 
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/scopeVariable.js?v=1571722952558" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/txlib.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/hyperscript.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/template.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/dgetty.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/xgetty.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/lib/rubber.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/trex.js?v=1571722952559" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/config.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/event.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/lib/markup.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/lib/domutil.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/lib/utils.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/mixins/ajax.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/trex/mixins/observable.js?v=1571722952560" charset="utf-8"></script>
-<script type="text/javascript" src="../../js/popuputil.js?v=1571722952561" charset="utf-8"></script>
-<link rel="stylesheet" href="../../css/popup.css" type="text/css" charset="utf-8">
 <script type="text/javascript">
 // <![CDATA[
 	
 	function done() {
-		if (typeof(execAttach) == 'undefined') { //Virtual Function
-	        return;
-	    }
-		for_cut1 = document.imageForm.mempic.value.split('|');
-		for_cut2 = document.imageForm.mempictemp.value.split('|');
-		for_cut3 = document.imageForm.mempicname.value.split('|');
-		for_cut4 = document.imageForm.mempicsize.value.split('|');
-        for(i=0;i < for_cut1.length;i++){
-        if(for_cut1[i]){
-		var _mockdata = {
-			'imageurl': for_cut2[i],
-			'filename': for_cut3[i],
-			'filesize': for_cut4[i],
-			'imagealign': 'C',
-			'originalurl': for_cut1[i],
-			'thumburl': for_cut2[i]
-		};
-		execAttach(_mockdata);
+		if (typeof (execAttach) == 'undefined') { //Virtual Function
+			return;
 		}
+		
+		var formData = new FormData();
+ 		var fileLength = $("input[type='file']").length;
+ 		
+		for(n = 0; n < fileLength; n++) {
+			$.each($("input[type='file']")[n].files, function(i, file) {
+				if(file.size <= 1024*1024) {
+			    	formData.append('file', file);
+				}
+			});
 		}
-		closeWindow();
+	
+		var _mockdata = new Array();
+		
+		$.ajax({
+			url : '/assets/upload',
+			type : 'POST',
+			enctype : 'multipart/form-data',
+			data: formData,
+			dataType: "json",
+			contentType : false,
+			cache : false,
+			async : false,
+			processData : false
+		}).done(function(data) {
+			for(i = 0; i < data.length; i++) {
+				_mockdata[i] = {
+					'imageurl' : data[i].imgUrl,
+					'filename' : data[i].originalFileName,
+					'filesize' : data[i].fileSize,
+					'imagealign' : 'C',
+					'originalurl' : data[i].imgUrl,
+					'thumburl' : data[i].imgUrl
+				};
+				
+				execAttach(_mockdata[i]);
+			}
+			closeWindow();
+		});
+	}
+	
+	var imgNo = 1;
+	
+	// 이미지 미리보기
+	var previewNo = 1;
+	var previewShowNo = 1;
+	
+	function registerImg() {
+		$('#file' + imgNo).trigger('click');
+
+		$('#file' + imgNo).bind("change", function() {
+			readURL(this);
+		});
+
+		//$("input[id=file" + imgNo + "]").change(function() {
+			/*
+			var file  = this.files[0];
+			var _URL = window.URL || window.webkitURL;
+			var img = new Image();
+			
+			img.src = _URL.createObjectURL(file);
+			img.onload = function() {
+			    
+			    if(img.width != 720 || img.height != 270) {
+			        alert("이미지 가로 720px, 세로 270px로 맞춰서 올려주세요.");
+			        $("input[id=file" + imgNo + "]").val("");
+			    } 
+			}*/
+		//});
+
 	}
 
-	function initUploader(){
-	    var _opener = PopupUtil.getOpener();
-	    if (!_opener) {
-	        alert('잘못된 경로로 접근하셨습니다.');
-	        return;
-	    }
-	    
-	    var _attacher = getAttacher('image', _opener);
-	    registerAction(_attacher);
+	
+	
+	function readURL(input) {
+		var imgStartNo ;
+		var imgEndNo ;
+		
+		// 이미지 미리보기를 위해 필요
+		previewShowNo = previewNo;
+		
+		if (input.files != undefined) {
+			imgStartNo = previewNo;
+			for(i = 0; i < input.files.length; i++) {
+				var tdImgId = "img" + previewNo;
+				var tdNameId = "name" + previewNo;
+				var tdSizeId = "size" + previewNo;
+				var trRowId = "row" + previewNo;
+				
+				// 파일명구하기
+				var fileValue = document.getElementById("file" + imgNo).files[i].name.split("\\");
+				var fileName = fileValue[fileValue.length - 1]; // 파일명
+				
+				if(fileName) {
+					appendStr = "";
+					appendStr += "<tr class='boardrow'  id='" + trRowId + "'>";
+					appendStr += "	<td style='vertical-align: middle;'><input type='checkbox'/></td>";
+					appendStr += "	<td style='vertical-align: middle;' id='" + tdNameId + "'></td>";
+					appendStr += "	<td style='vertical-align: middle;' id='" + tdSizeId + "'></td>";
+					appendStr += '	<td style="vertical-align: middle;"><center><img id="' + tdImgId + '" width="230px"/></center></td>';
+					appendStr += "</tr>";
+					$("#dynamicTb").append(appendStr);
+					
+					$("#" + tdNameId).html(fileName);
+	
+					var ext = $(input).val().split(".").pop().toLowerCase();
+	
+					if ($.inArray(ext, [ "gif", "jpg", "jpeg", "png", "bmp" ]) == -1) {
+						alert("gif, jpg, jpeg, png, bmp 파일만 업로드 해주세요.");
+						$("input[id=file" + imgNo + "]").val("");
+						$("#" + trRowId).remove();
+						return;
+					}
+	
+					
+					// 1메가
+					imgEndNo = previewNo;
+					
+					var fileSize = input.files[i].size;
+					$("#" + tdSizeId).html((fileSize / 1024).toFixed(1) + "KB")
+					var maxSize = 1024 * 1024;
+					
+					if (fileSize > maxSize) {
+						$("#" + trRowId).remove();
+						alert("파일용량제한은 1024KB입니다.\n파일 : " + fileName + "의 용량은 "
+								+ (fileSize / 1024).toFixed(1) + "KB입니다.");
+					}
+					else {
+						// 이미지 미리보기
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$("#img" + previewShowNo).attr('src', e.target.result);
+							previewShowNo++;
+						}
+						reader.readAsDataURL(input.files[i]);
+					}
+					
+					previewNo++;
+				}
+			}
+		}
+
+		imgNo++;
+
+		$("#fileDiv").append(
+				"<input type='file' name='files' id='file" + imgNo + "' multiple/>")
 	}
-// ]]>
-function file_delte(number){ 
-        for_cut1 = document.imageForm.mempic.value.split('|');
-		for_cut2 = document.imageForm.mempictemp.value.split('|');
-		for_cut3 = document.imageForm.mempicname.value.split('|');
-		for_cut4 = document.imageForm.mempicsize.value.split('|');
-		info1 = '';
-		info2 = '';
-		info3 = '';
-		info4 = '';
-		info = '';
-        for(i=0;i < (for_cut1.length)-1;i++){
-        if(for_cut1[i] && i!=number){
-        info1 = info1 + for_cut1[i]+ "|";
-        info2 = info2 + for_cut2[i]+ "|";
-        info3 = info3 + for_cut3[i]+ "|";
-        info4 = info4 + for_cut4[i]+ "|";
-        info = info + "<table cellspacing=0 cellpadding=0 height='18'><tr><td><b>" + for_cut3[i] + "</b></td><td width='10'></td><td><img src='/DaumEditor-master/btn_del01.gif' style='cursor:pointer;' onclick='file_delte("+i +");'></td></tr></table>";
-        }else{
-        info1 = info1 + "|";
-        info2 = info2 + "|";
-        info3 = info3 + "|";
-        info4 = info4 + "|";
-		}
+
+	function initUploader() {
+		var _opener = PopupUtil.getOpener();
+		if (!_opener) {
+			alert('잘못된 경로로 접근하셨습니다.');
+			return;
 		}
 
-        document.imageForm.mempic.value =info1;
-        document.imageForm.mempictemp.value =info2;
-        document.imageForm.mempicname.value =info3;
-        document.imageForm.mempicsize.value =info4;
-		var objTbody, objRow, objCell,e_num,c_num;
-		objTbody = document.getElementById("Addfilecontet");
-		objTbody.innerHTML= info;
-
-}
-
-function _submit(ac){ 
-document.imageForm.target = "_write_frame_"; 
-document.imageForm.a.value = ac;
-document.imageForm.submit(); 
-} 
+		var _attacher = getAttacher('image', _opener);
+		registerAction(_attacher);
+	}
 </script>
-<style>
-#Addfilecontetcon { overflow: auto; padding:0px; border-color:#cecece; background-color:#ffffff; border-style:solid;
-border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:1px;solid;scrollbar-3dlight-color:#FFFFFF;scrollbar-arrow-color:#FFFFFF;scrollbar-track-color:#FFFFFF;scrollbar-darkshadow-color:#FFFFFF;scrollbar-face-color:#aaaaaa;scrollbar-highlight-color:#FFFFFF;scrollbar-shadow-color:#FFFFFF;color:#aaaaaa;} 
-</style>
 </head>
 <body onload="initUploader();">
-<div class="wrapper">
-	<div class="header">
-		<h1>사진 첨부</h1>
-	</div>	
-	<div class="body">
-		<dl class="alert">
-		    <dt>사진 첨부 확인</dt>
-		    <dd>
-<form name="imageForm" action="../../image_upload.jsp" method="post" onsubmit="return regisCheck(this);" enctype="multipart/form-data">
-<input type="hidden" name="action" value="regis">
-<input type="hidden" name="a" value="">
-<input type="file" name="mepic01" id="mepic01" value="" size="15" class="box2" onchange="_submit('upfile_info01');" style="width:207px;height:27px;background-image: url(img/boxtxt3.jpg);background-repeat: no-repeat; background-position: left top;" onkeypress="this.style.background='#f5f5f5';" onblur="this.style.background='#f5f5f5';" onkeydown="this.style.background='#f5f5f5';" onkeyup="this.style.background='#f5f5f5';" onfocus="this.style.background='#f5f5f5';">
-<input type="hidden" name="mempic" id="mempic" value="">
-<input type="hidden" name="mempictemp" id="mempictemp" value="">
-<input type="hidden" name="mempicname" id="mempicname" value="">
-<input type="hidden" name="mempicsize" id="mempicsize" value="">
-</form>
-첨부된사진<font color="fe0501" style="font-size:11px;"><b>* 용량이 클 경우 업로드가 지연될 수 있습니다.</b></font>
-<div id="Addfilecontetcon" style="width:100%;height:200px;">
-<table width="100%" border="0" cellspacing="10" cellpadding="0">
-  <tbody><tr>
-    <td id="Addfilecontet" align="left"></td>
- </tr>
-</tbody></table>
-</div>
-			</dd>
-		</dl>
-
+	<input type="button" class="btn btn-secondary" value="사진첨부" onClick="javascript:registerImg()"/>
+	<div id="fileDiv" style="display:none;"> 
+		<input type="file" id="file1" name="files" multiple style="display:none;"/>
 	</div>
-	<div class="footer">
-		<p><a href="#" onclick="closeWindow();" title="닫기" class="close">닫기</a></p>
-		<ul>
-			<li class="submit"><a href="#" onclick="done();" title="등록" class="btnlink">등록</a> </li>
-			<li class="cancel"><a href="#" onclick="closeWindow();" title="취소" class="btnlink">취소</a></li>
-		</ul>
+	<div class="table-responsive">
+		<table class="table table-bordered" id="dataTable" width="100%"
+			cellspacing="0">
+			<thead>
+				<tr>
+					<th style="width: 40px; vertical-align: middle;"><input type="checkbox"/></th>
+					<th style="width: 200px; vertical-align: middle;">사진 이름</th>
+					<th style="width: 60px; vertical-align: middle;">사진 크기</th>
+					<th style="width: 100px; vertical-align: middle;">미리보기</th>
+				</tr>
+			</thead>
+			<tbody id="dynamicTb">
+				
+			</tbody>
+		</table>
 	</div>
-</div>
-<iframe name="_write_frame_" src="" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+	<br>
+		<input type="button" class="btn btn-secondary" value="사진등록"
+		onClick="javascript:done()"/>
+	</br>
+</body>
+</html>
 
-</body></html>
+<script src="https://onesports.ga/vendor/jquery/jquery.min.js"></script>

@@ -3,15 +3,13 @@
 <%@ page import="java.sql.*,java.util.*,java.io.*,Kakao.KakaoLogin,com.google.gson.*,com.google.gson.internal.LinkedTreeMap"%>
 <%@ include file="/assets/include/login_check.jsp" %>
 <%
+	String code = request.getParameter("code");
+	String urlme = request.getRequestURL().toString();
+	
 	Gson gson = new Gson();
 	KakaoLogin kakao = new KakaoLogin();
-	String httpIsSsl = "http";
-	if(request.isSecure()) {
-		httpIsSsl += "s";
-	}
 	
-	String code = request.getParameter("code");
-	String access_token = kakao.getToken(code,httpIsSsl+"://"+request.getServerName()+"/member/edit/kakao_link.jsp");
+	String access_token = kakao.getToken(code,urlme);
 	String string_profile = kakao.getProfile(access_token);
 	
 	JsonObject json_profile = (JsonObject) gson.fromJson(string_profile, JsonObject.class);

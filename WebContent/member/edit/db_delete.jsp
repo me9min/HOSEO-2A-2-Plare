@@ -21,7 +21,7 @@
 %>
 <script>
 	alert("회원탈퇴가 성공적으로 완료되었습니다.");
-	location.href = "/";
+	location.replace = "/";
 </script>
 <%
 		} else {

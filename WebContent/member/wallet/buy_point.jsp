@@ -7,10 +7,6 @@
 <jsp:useBean id="member" class="Bean.Member" />
 <%
 	request.setCharacterEncoding("utf-8");
-	String httpIsSsl = "http";
-	if(request.isSecure()) {
-		httpIsSsl += "s";
-	}
 	
 	MemberBean member_sql = member.load_info(email);
 	
@@ -31,6 +27,8 @@
 var IMP = window.IMP; // 생략가능
 IMP.init('imp35661052'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 function request_buy(){
+	var price = $("select[name=price]").val();
+	var rurl = location.protocol+"//"+location.host+"/member/wallet/db_buypoint_kakaopay.jsp?amount="+price;
 	var json = {
 		pg : 'kakao', // version 1.1.0부터 지원.
 		pay_method : 'card',
@@ -39,14 +37,15 @@ function request_buy(){
 		buyer_name : '<%=nickname%>',
 		buyer_tel : '<%=phone%>',
 		buyer_addr : '<%=address_road+" "+address_detail%>',
-		buyer_postcode : '<%=zipcode%>',
-		m_redirect_url : '<%=httpIsSsl+"://"+request.getServerName()%>/member/wallet/db_buypoint_kakaopay.jsp?amount='
+		buyer_postcode : '<%=zipcode%>'
 	};
-	json.name = $("select[name=price]").val();
-	json.amount = $("select[name=price]").val();
+	json.m_redirect_url = rurl;
+	json.name = price;
+	json.amount = price;
+	alert(rurl);
 	IMP.request_pay(json, function(rsp) {
 		if ( rsp.success ) {
-			location.replace('./db_buypoint_kakaopay.jsp?amount='+$("select[name=price]").val());
+			location.replace(rurl);
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;

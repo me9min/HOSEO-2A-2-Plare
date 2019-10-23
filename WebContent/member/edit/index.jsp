@@ -20,11 +20,6 @@
 
 <jsp:useBean id="member" class="Bean.Member" />
 <%
-	String httpIsSsl = "http";
-	if(request.isSecure()) {
-		httpIsSsl += "s";
-	}
-	
 	MemberBean member_sql = member.load_info(email);
 	
 	String nickname = member_sql.getNickname();
@@ -304,8 +299,10 @@
 
 <script>
 	function kakao_link() {
+		var return_url = location.protocol+'%2F%2F'+location.host+'%2Fmember%2Fedit%2Fkakao_link.jsp';
+		var api_url = 'https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fclient_id%3Df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3D'+return_url+'%26response_type%3Dcode';
 		window.open(
-			'https://accounts.kakao.com/login?continue=https%3a%2f%2fkauth.kakao.com%2foauth%2fauthorize%3fclient_id%3df4b335bfa37a8ce098ed450312b37a35%26redirect_uri%3d<%=httpIsSsl%>%3a%2f%2f<%=request.getServerName()%>%2fmember%2fedit%2fkakao_link.jsp%26response_type%3dcode'
+			'https://accounts.kakao.com/login?continue='+api_url
 			,'카카오연동'
 			,'width=480,height=600,location=no,status=no,scrollbars=no'
 		);

@@ -15,6 +15,7 @@ public class MemberBean {
 	private String address_detail;
 	private String referrer;
 	private String flag;
+	private String pay_password;
 	
 	private String address_road;
 	private String zipcode;
@@ -22,6 +23,13 @@ public class MemberBean {
 	private String steam_profile_image;
 	private String kakaoid;
 	private String kakako_profile_image;
+	
+	private int id;
+	private String card_bank;
+	private String card_num;
+	private String card_date;
+	private String card_cvc;
+	private String card_password;
 	
 	public String getEmail() {
 		return email;
@@ -98,14 +106,18 @@ public class MemberBean {
 	}
 	public void setReferrer(String referrer) {
 		this.referrer = referrer;
-	}
-	
-	
+	}	
 	public String getFlag() {
 		return flag;
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+	public String getPay_password() {
+		return pay_password;
+	}
+	public void setPay_password(String pay_password) {
+		this.pay_password = pay_password;
 	}
 	public String getAddress_road() {
 		return address_road;
@@ -138,5 +150,41 @@ public class MemberBean {
 	}
 	public void setKakako_profile_image(String kakako_profile_image) {
 		this.kakako_profile_image = kakako_profile_image;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getCard_bank() {
+		return card_bank;
+	}
+	public void setCard_bank(String card_bank) {
+		this.card_bank = card_bank;
+	}
+	public String getCard_num() {
+		return card_num;
+	}
+	public void setCard_num(String card_num) {
+		this.card_num = card_num;
+	}
+	public String getCard_date() {
+		return card_date;
+	}
+	public void setCard_date(String card_date) {
+		this.card_date = card_date;
+	}
+	public String getCard_cvc() {
+		return card_cvc;
+	}
+	public void setCard_cvc(String card_cvc) {
+		this.card_cvc = card_cvc;
+	}
+	public String getCard_password() {
+		return card_password;
+	}
+	public void setCard_password(String card_password) {
+		this.card_password = card_password;
 	}
 }

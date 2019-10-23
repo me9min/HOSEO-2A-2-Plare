@@ -481,7 +481,7 @@ public class Member {
 		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
 		String host = "smtp.naver.com";
         String user = "plare2019_2a02"; //자신의 네이버 계정
-        String password = "int=hell";//자신의 네이버 패스워드
+        String password = "int=hell"; //자신의 네이버 패스워드
         
         //SMTP 서버 정보를 설정한다.
         Properties props = new Properties();
@@ -534,7 +534,7 @@ public class Member {
             Transport.send(msg);
             System.out.println("인증 번호 이메일 전송");
             
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         
@@ -542,10 +542,10 @@ public class Member {
 	}
 	
 	public void tempPassword(String email) {
-		// 이메일 인증 코드를 발송하고 랜덤하게 생성된 코드를 반환하는 메소드
+		// 랜덤하게 생성된 임시 비밀번호를 이메일로 전송하는 메소드
 		String host = "smtp.naver.com";
 		String user = "plare2019_2a02"; //자신의 네이버 계정
-		String password = "int=hell";//자신의 네이버 패스워드
+		String password = "int=hell"; //자신의 네이버 패스워드
         
         //SMTP 서버 정보를 설정한다.
         Properties props = new Properties();
@@ -608,9 +608,175 @@ public class Member {
 			pstmt.setString(2, email);
 			
 			pstmt.executeUpdate();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+	}
+	
+	public void addCard(MemberBean card) throws Exception {
+		// 카드 정보를 저장하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "insert into member(email, card_bank, card_num, card_date, card_cvc, card_password) "
+					+ "values(?, ?, ?, ?, ?, ?)";
+			// 받아온 모든 정보를 DB에 저장하는 sql문
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, card.getEmail());
+			pstmt.setString(2, card.getCard_bank());
+			pstmt.setString(3, card.getCard_num());
+			pstmt.setString(4, card.getCard_date());
+			pstmt.setString(5, card.getCard_cvc());
+			pstmt.setString(6, card.getCard_password());
+			
+			pstmt.executeUpdate();
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+		}
+	}
+	
+	public boolean deleteCard(int id) {
+		// 회원탈퇴 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		boolean success = false;
+		
+		try {
+			pstmt = conn.prepareStatement("delete from member_card where id=?");
+			pstmt.setInt(1, id);
+			
+			pstmt.executeUpdate();
+				
+			success = true;
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+		}
+		return success;
+	}
+	
+	public int getCardCount(String email) {
+		// 해당 회원의 이메일로 등록된 카드의 개수를 구하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+
+		try {
+			String sql = "select count(*) from member_card where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			count = rs.getInt(1);
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		} 
+
+		return count;
+	}
+	
+	public MemberBean getCard(int id) {
+		// 해당 회원이 등록한 카드의 정보를 리스트로 리턴하는 메소드
+		Connection conn = Database.connect();
+		MemberBean memberBean = new MemberBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member_card where id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			memberBean.setId(rs.getInt("id"));
+			memberBean.setEmail(rs.getString("email"));
+			memberBean.setCard_bank(rs.getString("card_bank"));
+			memberBean.setCard_num(rs.getString("card_num"));
+			memberBean.setCard_date(rs.getString("card_date"));
+			memberBean.setCard_cvc(rs.getString("card_cvc"));
+			memberBean.setCard_password(rs.getString("card_password"));
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		
+		return memberBean;
+	}
+	
+	public List<MemberBean> getCards(String email) {
+		// 해당 회원이 등록한 카드의 정보를 리스트로 리턴하는 메소드
+		Connection conn = Database.connect();
+		List<MemberBean> cardList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cardList = new ArrayList<MemberBean>();
+				do {
+					MemberBean card = new MemberBean();
+					card.setId(rs.getInt("id"));
+					card.setEmail(rs.getString("email"));
+					card.setCard_bank(rs.getString("card_bank"));
+					card.setCard_num(rs.getString("card_num"));
+					card.setCard_date(rs.getString("card_date"));
+					card.setCard_cvc(rs.getString("card_cvc"));
+					card.setCard_password(rs.getString("card_password"));
+					
+					cardList.add(card);
+				} while(rs.next());
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		
+		return cardList;
 	}
 	
 	public int getHistoryCount(String email) {

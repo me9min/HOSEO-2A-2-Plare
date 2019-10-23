@@ -619,7 +619,7 @@ public class Member {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "insert into member(email, card_bank, card_num, card_date, card_cvc, card_password) "
+			String sql = "insert into member_card(email, card_bank, card_num, card_date, card_cvc, card_password) "
 					+ "values(?, ?, ?, ?, ?, ?)";
 			// 받아온 모든 정보를 DB에 저장하는 sql문
 			
@@ -643,7 +643,7 @@ public class Member {
 	}
 	
 	public boolean deleteCard(int id) {
-		// 회원탈퇴 메소드
+		// 등록된 카드를 삭제하는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		boolean success = false;
@@ -777,6 +777,96 @@ public class Member {
 		}
 		
 		return cardList;
+	}
+	
+	public boolean hasPayPassword(String email) {
+		// 결제 비밀번호를 설정했는지 boolean 값을 리턴하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean check = false;
+
+		try {
+			String sql = "select pay_password from member_card where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				check = true;
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		} 
+
+		return check;
+	}
+	
+	public void addPayPassword(String email, String password) throws Exception {
+		// 결제 비밀번호를 설정하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "update member set pay_password=? where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, password);
+			pstmt.setString(2, email);
+			
+			pstmt.executeUpdate();
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+		}
+	}
+	
+	public boolean payPasswordCheck(String email, String password) {
+		// 회원 정보 수정 시 비밀번호가 맞는지 확인하는 메소드
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean check = false;
+
+		try {
+			String sql = "select pay_password from member where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			String password_sql = rs.getString("pay_password");
+			
+			if(password_sql.equals(password)) {
+				check = true;
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		} 
+
+		return check;
 	}
 	
 	public int getHistoryCount(String email) {

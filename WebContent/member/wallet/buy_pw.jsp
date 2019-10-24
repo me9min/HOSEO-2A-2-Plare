@@ -65,6 +65,18 @@
 			<div class="row uniform">
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)" >
+					<div style="line-height:27px;text-align:center; vertical-align:middle;height:27px;">카드번호</div> 
+				</div>
+				<div class="4u 12u$(xsmall)">
+					<input type="password" name="card_number" id="card_number" value=""/>
+				</div>
+				<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+			</div>
+			<br><br>
+			<div class="row uniform">
+			
+				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+				<div class="3u 12u$(xsmall)" >
 					<div style="line-height:27px;text-align:center; vertical-align:middle;height:27px;">결제 비밀번호</div>
 				</div>
 				<div class="4u 12u$(xsmall)">
@@ -85,7 +97,7 @@
 				<div class="5u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">
 					<button type="button" style="width:150px;height:70px;" onclick="passwordCheck()">
-						비밀번호 등록
+						비밀번호 설정
 					</button>
 				</div>
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>

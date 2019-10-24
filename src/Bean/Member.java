@@ -20,6 +20,33 @@ public class Member {
 	}
 	RemoveTag rt = new RemoveTag();
 	
+	public String steamidCheck(String email) {
+		//스팀연동체크
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String steamid = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select steamid from member where email=?");
+			pstmt.setString(1,email);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			steamid = rs.getString("steamid");
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		return steamid;
+	}
+	
 	public MemberBean login(MemberBean member) {
 		// 로그인 메소드
 		Connection conn = Database.connect();

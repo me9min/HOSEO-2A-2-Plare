@@ -13,7 +13,7 @@
 %>
 	<script>
 		alert("비밀번호가 틀렸습니다. 다시 시도해주세요.");
-		location.replace = "./password_check.jsp";
+		location.href = "./password_check.jsp";
 	</script>
 <%		
 	} else {

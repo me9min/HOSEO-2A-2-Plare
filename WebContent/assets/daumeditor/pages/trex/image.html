@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <link href="https://onesports.ga/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://onesports.ga/css/Nunito.css" rel="stylesheet">
-  <link href="https://onesports.ga/css/sb-admin-2.min.css" rel="stylesheet">
-  
+<link href="https://onesports.ga/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://onesports.ga/css/Nunito.css" rel="stylesheet">
+<link href="https://onesports.ga/css/sb-admin-2.min.css" rel="stylesheet">
+
 <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
 <meta http-equiv="cache-control" content="no-cache, must-revalidate">
 <meta http-equiv="pragma" content="no-cache">
-<title>이미지 첨부</title> 
+<title>이미지 첨부</title>
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 // <![CDATA[
@@ -23,16 +23,16 @@
  		
 		for(n = 0; n < fileLength; n++) {
 			$.each($("input[type='file']")[n].files, function(i, file) {
-				if(file.size <= 1024*1024) {
+				if(file.size <= 10*1024*1024) {
 			    	formData.append('file', file);
 				}
 			});
 		}
-	
+		
 		var _mockdata = new Array();
 		
 		$.ajax({
-			url : '/assets/upload',
+			url : '/assets/upload/index.jsp',
 			type : 'POST',
 			enctype : 'multipart/form-data',
 			data: formData,
@@ -44,12 +44,12 @@
 		}).done(function(data) {
 			for(i = 0; i < data.length; i++) {
 				_mockdata[i] = {
-					'imageurl' : data[i].imgUrl,
-					'filename' : data[i].originalFileName,
-					'filesize' : data[i].fileSize,
+					'imageurl' : data[i].url,
+					'filename' : data[i].name,
+					'filesize' : data[i].size,
 					'imagealign' : 'C',
-					'originalurl' : data[i].imgUrl,
-					'thumburl' : data[i].imgUrl
+					'originalurl' : data[i].url,
+					'thumburl' : data[i].url
 				};
 				
 				execAttach(_mockdata[i]);
@@ -86,10 +86,8 @@
 			    } 
 			}*/
 		//});
-
-	}
-
 	
+	}
 	
 	function readURL(input) {
 		var imgStartNo ;
@@ -130,18 +128,17 @@
 						$("#" + trRowId).remove();
 						return;
 					}
-	
 					
 					// 1메가
 					imgEndNo = previewNo;
 					
 					var fileSize = input.files[i].size;
 					$("#" + tdSizeId).html((fileSize / 1024).toFixed(1) + "KB")
-					var maxSize = 1024 * 1024;
+					var maxSize = 10 * 1024 * 1024;
 					
 					if (fileSize > maxSize) {
 						$("#" + trRowId).remove();
-						alert("파일용량제한은 1024KB입니다.\n파일 : " + fileName + "의 용량은 "
+						alert("파일용량제한은 10MB입니다.\n파일 : " + fileName + "의 용량은 "
 								+ (fileSize / 1024).toFixed(1) + "KB입니다.");
 					}
 					else {
@@ -158,20 +155,20 @@
 				}
 			}
 		}
-
+		
 		imgNo++;
-
+		
 		$("#fileDiv").append(
 				"<input type='file' name='files' id='file" + imgNo + "' multiple/>")
 	}
-
+	
 	function initUploader() {
 		var _opener = PopupUtil.getOpener();
 		if (!_opener) {
 			alert('잘못된 경로로 접근하셨습니다.');
 			return;
 		}
-
+		
 		var _attacher = getAttacher('image', _opener);
 		registerAction(_attacher);
 	}

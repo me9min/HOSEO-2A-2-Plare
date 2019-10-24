@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.Rank,Bean.RankBean,java.util.*,java.text.*" %>
 
 <%!
@@ -9,6 +8,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
     String pageNum = request.getParameter("pageNum");
+    String con = request.getParameter("con");
+    String q = request.getParameter("q");
 	
     if (pageNum == null) {
         pageNum = "1";
@@ -28,8 +29,6 @@
     Rank rank = Rank.getInstance();
     count = rank.getRankCount();
     
-    String con = request.getParameter("con");
-	String q = request.getParameter("q");
 	articleList = rank.getRank(startRow, pageSize, con, q);
 %>
 

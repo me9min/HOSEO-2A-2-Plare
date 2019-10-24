@@ -71,7 +71,7 @@
 			// 파일명을 utf-8로 인코딩한다.
 			var attach_file = encodeURIComponent("<%=article.getAttach_file()%>");
 			// 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
-			window.location ="fileDown.jsp?attach_file="+attach_file;
+			window.location ="/assets/upload/download.jsp?attach_file="+attach_file;
 		});
 	</script>
 	<script language="JavaScript" src="write.js"></script>

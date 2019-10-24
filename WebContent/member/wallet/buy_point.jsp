@@ -113,16 +113,19 @@ function submit_bank() {
 			<div class="row uniform">
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">
-					<img src="/assets/images/payment_icon_yellow_medium.png" style="width:150px;height:70px;" onclick="request_buy('kakaopay','card')"/>
+					<button type="button" style="width:150px;height:70px;" onclick="request_buy('kakaopay','card')"> 
+						<img src="/assets/images/logo_kakao_pay.png" style="width:45px;height:45px; border-radius:10px;"/>
+						&nbsp;카카오페이
+					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
 					<button type="button" style="width:150px;height:70px;" onclick="submit_card()">
-						일반카드결제
+						간편카드결제
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
 					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
-						계좌이체,무통장
+						계좌/무통장입금
 					</button>
 				</div>
 				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
@@ -132,7 +135,7 @@ function submit_bank() {
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">
 					<button type="button" style="width:150px;height:70px;" onclick="request_buy('html5_inicis','card')">
-						카드,간편결제(이니시스)
+						일반카드결제
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
@@ -141,8 +144,9 @@ function submit_bank() {
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" onclick="request_buy('html5_inicis','cultureland')">
-						컬처랜드(문상)
+					<button type="button" style="width:150px;height:70px;" onclick="request_buy('html5_inicis','cultureland')"> 
+					<img src="/assets/images/logo_culture_land.png" style="width:45px;height:45px;"/>
+						&nbsp;문화상품권
 					</button>
 				</div>
 				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>

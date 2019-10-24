@@ -296,7 +296,7 @@
 								<tr>
 									<td colspan="2" style="text-align:center; border:none;">
 										<input type="button" class="button special" value="구매하기" onclick="location.href='buy_pw_check.jsp?price=<%=price %>'">
-										<input type="button" class="button alt" value="이전으로" onclick="history.back()">
+										<input type="button" class="button alt" value="이전으로" onclick="location.href='buy_point.jsp'">
 									</td>
 								</tr>
 <%
@@ -309,7 +309,7 @@
 								</tr>
 								<tr>
 									<td colspan="2" style="text-align:center; border:none;">
-										<input type="button" class="button alt" value="이전으로" onclick="history.back()">
+										<input type="button" class="button alt" value="이전으로" onclick="location.href='buy_point.jsp'">
 									</td>
 								</tr>
 <%

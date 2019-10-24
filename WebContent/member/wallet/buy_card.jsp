@@ -109,7 +109,7 @@
 <%
 										if(currentPage == endPage) {
 %>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; 
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px;
 										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
 											+
 										</div>
@@ -117,24 +117,44 @@
 										} else if(currentPage == endPage - 1) {
 											MemberBean card = member.getLastCard(email);
 											String bank = "";
+											String color = "#ffffff";
+											String font = "#000000";
 											if(card.getCard_bank().equals("NH")) {
 												bank = "NH농협";
+												color = "#0066b3";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("KB")) {
 												bank = "KB국민";
+												color = "#ffcc00";
+												font = "#7f7367";
 											} else if(card.getCard_bank().equals("IBK")) {
 												bank = "IBK기업";
+												color = "#004b9e";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("KEB")) {
 												bank = "KEB하나";
+												color = "#029990";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("woori")) {
 												bank = "우리";
+												color = "#08579a";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("shinhan")) {
 												bank = "신한";
+												color = "#1068ac";
+												font = "#707271";
 											} else if(card.getCard_bank().equals("hyundae")) {
 												bank = "현대";
+												color = "#ffffff";
+												font = "#000000";
 											} else if(card.getCard_bank().equals("BC")) {
 												bank = "BC";
+												color = "#e6303f";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("lotte")) {
 												bank = "롯데";
+												color = "#ffffff";
+												font = "#e6303f";
 											}
 											String num1 = card.getCard_num().substring(0, 4);
 											String num2 = card.getCard_num().substring(4, 8);
@@ -142,12 +162,14 @@
 											String num4 = card.getCard_num().substring(12, 16);
 											String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
 %>
-										<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; 
-										text-align:center; vertical-align:middle; line-height:100px;" id="card">
-											<%=bank %><br>
-											<%=num %><br>
-										</div>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; 
+										<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; border-radius:10px;
+											text-align:center; vertical-align:middle; line-height:100px; background-color:<%=color %>;" id="card">
+												<div style="height:10px;">&nbsp;</div>
+												<div style="height:20px; background-color:black;">&nbsp;</div>
+												<div style="height:30px; font-size:16px; color:<%=font %>;"><%=bank %></div>
+												<div style="height:140px; font-size:18px; color:<%=font %>;"><%=num %></div>
+											</div>
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px; 
 										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
 											+
 										</div>
@@ -157,24 +179,44 @@
 											for(int i=0; i<cardList.size(); i++) {
 												MemberBean card = cardList.get(i);
 												String bank = "";
+												String color = "#ffffff";
+												String font = "#000000";
 												if(card.getCard_bank().equals("NH")) {
 													bank = "NH농협";
+													color = "#0066b3";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("KB")) {
 													bank = "KB국민";
+													color = "#ffcc00";
+													font = "#7f7367";
 												} else if(card.getCard_bank().equals("IBK")) {
 													bank = "IBK기업";
+													color = "#004b9e";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("KEB")) {
 													bank = "KEB하나";
+													color = "#029990";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("woori")) {
 													bank = "우리";
+													color = "#08579a";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("shinhan")) {
 													bank = "신한";
+													color = "#1068ac";
+													font = "#707271";
 												} else if(card.getCard_bank().equals("hyundae")) {
 													bank = "현대";
+													color = "#ffffff";
+													font = "#000000";
 												} else if(card.getCard_bank().equals("BC")) {
 													bank = "BC";
+													color = "#e6303f";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("lotte")) {
 													bank = "롯데";
+													color = "#ffffff";
+													font = "#e6303f";
 												}
 												String num1 = card.getCard_num().substring(0, 4);
 												String num2 = card.getCard_num().substring(4, 8);
@@ -182,10 +224,12 @@
 												String num4 = card.getCard_num().substring(12, 16);
 												String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
 %>
-											<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; 
-											text-align:center; vertical-align:middle; line-height:100px;" id="card<%=i %>">
-												<%=bank %><br>
-												<%=num %><br>
+											<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; border-radius:10px;
+											text-align:center; vertical-align:middle; line-height:100px; background-color:<%=color %>;" id="card<%=i %>">
+												<div style="height:10px;">&nbsp;</div>
+												<div style="height:20px; background-color:black;">&nbsp;</div>
+												<div style="height:30px; font-size:16px; color:<%=font %>;"><%=bank %></div>
+												<div style="height:140px; font-size:18px; color:<%=font %>;"><%=num %></div>
 											</div>
 <%
 											}
@@ -241,6 +285,9 @@
 										<b style="color:#ff0000;"><%=point+price %></b>
 									</td>
 								</tr>
+<%
+							if(count > 0) {
+%>
 								<tr>
 									<td colspan="2" style="text-align:center; border:none;">
 										정말로 결제하시겠습니까?
@@ -252,6 +299,22 @@
 										<input type="button" class="button alt" value="이전으로" onclick="history.back()">
 									</td>
 								</tr>
+<%
+							} else {
+%>
+								<tr>
+									<td colspan="2" style="text-align:center; border:none;">
+										먼저 카드 등록을 해주세요.
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align:center; border:none;">
+										<input type="button" class="button alt" value="이전으로" onclick="history.back()">
+									</td>
+								</tr>
+<%
+							}
+%>
 							</tfoot>
 							</table>
 							</form>

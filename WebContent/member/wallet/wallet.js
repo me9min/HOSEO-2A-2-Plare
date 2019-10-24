@@ -48,3 +48,13 @@ function passwordCheck() {
 	}
 	document.pay.submit();
 }
+
+function payPasswordCheck() {
+	var password = document.check.password;
+	if(password.value == "") {
+		alert("결제 비밀번호를 입력해주세요.");
+		password.focus();
+		return false;
+	}
+	return true;
+}

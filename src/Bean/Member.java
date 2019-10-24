@@ -697,6 +697,44 @@ public class Member {
 		return count;
 	}
 	
+	public MemberBean getLastCard(String email) {
+		// 해당 회원이 등록한 카드의 정보를 리스트로 리턴하는 메소드
+		Connection conn = Database.connect();
+		MemberBean memberBean = new MemberBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member_card where email=? order by id desc limit 1";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			memberBean.setId(rs.getInt("id"));
+			memberBean.setEmail(rs.getString("email"));
+			memberBean.setCard_bank(rs.getString("card_bank"));
+			memberBean.setCard_num(rs.getString("card_num"));
+			memberBean.setCard_date(rs.getString("card_date"));
+			memberBean.setCard_cvc(rs.getString("card_cvc"));
+			memberBean.setCard_password(rs.getString("card_password"));
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		
+		return memberBean;
+	}
+	
 	public MemberBean getCard(int id) {
 		// 해당 회원이 등록한 카드의 정보를 리스트로 리턴하는 메소드
 		Connection conn = Database.connect();
@@ -735,7 +773,7 @@ public class Member {
 		return memberBean;
 	}
 	
-	public List<MemberBean> getCards(String email) {
+	public List<MemberBean> getCards(String email, int start, int end) {
 		// 해당 회원이 등록한 카드의 정보를 리스트로 리턴하는 메소드
 		Connection conn = Database.connect();
 		List<MemberBean> cardList = null;
@@ -743,10 +781,12 @@ public class Member {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from member where email=?";
+			String sql = "select * from member_card where email=? order by id limit ?, ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
+			pstmt.setInt(2, start-1);
+			pstmt.setInt(3, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -787,7 +827,7 @@ public class Member {
 		boolean check = false;
 
 		try {
-			String sql = "select pay_password from member_card where email=?";
+			String sql = "select pay_password from member where email=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
@@ -835,7 +875,7 @@ public class Member {
 	}
 	
 	public boolean payPasswordCheck(String email, String password) {
-		// 회원 정보 수정 시 비밀번호가 맞는지 확인하는 메소드
+		// 신용카드 간편 결제 시 결제 비밀번호가 맞는지 확인하는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -52,6 +52,16 @@ function request_buy(payg,paym){
 		}
 	});
 }
+
+function submit_card() {
+	document.point.action="buy_card.jsp";
+	document.point.submit();
+}
+
+function submit_bank() {
+	document.point.action="buy_bank.jsp";
+	document.point.submit();
+}
 </script>
 
 <!DOCTYPE HTML>
@@ -79,6 +89,7 @@ function request_buy(payg,paym){
 				<div class="inner">
 					<div class="box">
 						<div class="content">
+						<form method="post" name="point">
 							<header class="align-center">
 								<h2>포인트 충전</h2>
 							</header>
@@ -105,12 +116,12 @@ function request_buy(payg,paym){
 					<img src="/assets/images/payment_icon_yellow_medium.png" style="width:150px;height:70px;" onclick="request_buy('kakaopay','card')"/>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" href="./buy_card.jsp" onclick="alert('현재 준비중인 기능입니다')">
+					<button type="button" style="width:150px;height:70px;" onclick="submit_card()">
 						일반카드결제
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" href="./buy_order.jsp" onclick="alert('현재 준비중인 기능입니다')">
+					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
 						계좌이체,무통장
 					</button>
 				</div>
@@ -136,7 +147,7 @@ function request_buy(payg,paym){
 				</div>
 				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 			</div>	<br><br>
-
+					</form>
 					</div>
 				</div>
 			</section>

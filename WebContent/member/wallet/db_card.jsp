@@ -30,7 +30,7 @@
 %>
 <script>
 	alert("카드 등록이 완료되었습니다. 결제 비밀번호를 설정해주세요.");
-	window.location = 'buy_pw.jsp';
+	window.location = 'buy_pw_add.jsp';
 </script>
 <%
 		}

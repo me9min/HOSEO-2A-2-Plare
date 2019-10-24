@@ -26,12 +26,10 @@
 <script type="text/javascript">
 var IMP = window.IMP; // 생략가능
 IMP.init('imp35661052'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-function request_buy(){
+function request_buy(payg,paym){
 	var price = $("select[name=price]").val();
-	var rurl = location.protocol+"//"+location.host+"/member/wallet/db_buypoint_kakaopay.jsp?amount="+price;
+	var rurl = location.protocol+"//"+location.host+"/member/wallet/db_buy_iamport.jsp?amount="+price;
 	var json = {
-		pg : 'kakao', // version 1.1.0부터 지원.
-		pay_method : 'card',
 		merchant_uid : 'merchant_' + new Date().getTime(),
 		buyer_email : '<%=email%>',
 		buyer_name : '<%=nickname%>',
@@ -39,10 +37,11 @@ function request_buy(){
 		buyer_addr : '<%=address_road+" "+address_detail%>',
 		buyer_postcode : '<%=zipcode%>'
 	};
-	json.m_redirect_url = rurl;
-	json.name = price;
+	json.pg = payg;	// version 1.1.0부터 지원.
+	json.pay_method = paym;
+	json.name = 'plare.cf '+price+'포인트 충전';
 	json.amount = price;
-	alert(rurl);
+	json.m_redirect_url = rurl;
 	IMP.request_pay(json, function(rsp) {
 		if ( rsp.success ) {
 			location.replace(rurl);
@@ -103,16 +102,36 @@ function request_buy(){
 			<div class="row uniform">
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">
-					<img src="/assets/images/payment_icon_yellow_medium.png" style="height:70px;" alt="카카오페이" onclick="request_buy()"/>
+					<img src="/assets/images/payment_icon_yellow_medium.png" style="width:150px;height:70px;" onclick="request_buy('kakaopay','card')"/>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
+					<button type="button" style="width:150px;height:70px;" href="./buy_card.jsp" onclick="alert('현재 준비중인 기능입니다')">
 						일반카드결제
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
-						계좌이체(무통장)
+					<button type="button" style="width:150px;height:70px;" href="./buy_order.jsp" onclick="alert('현재 준비중인 기능입니다')">
+						계좌이체,무통장
+					</button>
+				</div>
+				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+			</div>
+			
+			<div class="row uniform">
+				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+				<div class="3u 12u$(xsmall)">
+					<button type="button" style="width:150px;height:70px;" onclick="request_buy('html5_inicis','card')">
+						카드,간편결제(이니시스)
+					</button>
+				</div>
+				<div class="3u 12u$(xsmall)">
+					<button type="button" style="width:150px;height:70px;" onclick="request_buy('danal','phone')">
+						휴대폰소액결제
+					</button>
+				</div>
+				<div class="3u 12u$(xsmall)">
+					<button type="button" style="width:150px;height:70px;" onclick="request_buy('html5_inicis','cultureland')">
+						컬처랜드(문상)
 					</button>
 				</div>
 				<div class="1u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>

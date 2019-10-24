@@ -9,9 +9,10 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>일반카드 등록</title>
+		<title>무통장 입금</title>
 		<style>
-			td {color: black; background-color: #ffffff;}
+			td {color: black; background-color: #ffffff; height: 100%;}
+			#thead {text-align: center; background-color: black; color: white;}
 			#info_box {
 				position: fixed; top: 30%; right: 5%; background-color: black; color: white;
 				text-align: center; vertical-align: middle; padding: 10px; border-radius: 5px;
@@ -63,7 +64,36 @@
 				 	</select>
 			 	</div>
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
-					
+			</div>	
+			<table class="table table-hover"><br><br><br>
+				<tfoot>
+					<tr style="text-align:right;">
+						<td colspan="3">
+							<b>보유중인 포인트</b>
+						</td>
+						<td>
+							<b>보유포인트</b>
+						</td>
+					</tr>
+					<tr style="text-align:right;">
+						<td colspan="3" style="border-top:none;">
+							<b>충전할 포인트</b>
+						</td>
+						<td style="border-top:none;">
+							<b>+ 충전금액</b>
+						</td>
+					</tr>
+					<tr style="text-align:right; font-size:24px;">
+						<td colspan="3">
+							<b>구매 후 포인트</b>
+						</td>
+						<td>
+							<img src="/assets/images/PointLogo.png" height="24px;"> 
+							<b style="color:#ff0000;">구매 후 포인트</b>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
 			<div class="row uniform">
 				<div class="5u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">

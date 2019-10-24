@@ -82,8 +82,8 @@
 <%
 									if(count <= 0) {
 %>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; 
-										text-align:center; vertical-align:middle; line-height:100px;" onclick="location.href='buy_card_add.jsp'">
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px; 
+										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
 											+
 										</div>
 <%										

@@ -68,7 +68,7 @@
 			<table class="table table-hover"><br><br><br>
 				<tfoot>
 					<tr style="text-align:right;">
-						<td colspan="3">
+						<td colspan="4">
 							<b>보유중인 포인트</b>
 						</td>
 						<td>
@@ -76,7 +76,7 @@
 						</td>
 					</tr>
 					<tr style="text-align:right;">
-						<td colspan="3" style="border-top:none;">
+						<td colspan="4" style="border-top:none;">
 							<b>충전할 포인트</b>
 						</td>
 						<td style="border-top:none;">
@@ -84,12 +84,12 @@
 						</td>
 					</tr>
 					<tr style="text-align:right; font-size:24px;">
-						<td colspan="3">
+						<td colspan="4">
 							<b>구매 후 포인트</b>
 						</td>
 						<td>
 							<img src="/assets/images/PointLogo.png" height="24px;"> 
-							<b style="color:#ff0000;">구매 후 포인트</b>
+							<b style="color:#ff0000;">15000</b>
 						</td>
 					</tr>
 				</tfoot>

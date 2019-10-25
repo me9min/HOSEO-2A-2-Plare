@@ -37,7 +37,7 @@
 						<div class="content">
 						<form method="post" action="db_card.jsp" name="card">
 							<header class="align-center">
-								<h2>무통장입금</h2>
+								<h2>무통장 입금</h2>
 							</header>
 							<center><p>포인트와 실제 금액은 같습니다</p></center><br>
 			<div class="row uniform">

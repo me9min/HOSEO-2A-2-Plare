@@ -49,6 +49,7 @@
 	visibility: visible;
 	}
 	#plare_logo{
+	padding:5px 10px;
 	position: absolute;
 	float: left;
 	vertical-align: middle;

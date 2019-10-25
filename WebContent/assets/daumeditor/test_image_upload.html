@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+<link href="https://onesports.ga/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://onesports.ga/css/Nunito.css" rel="stylesheet">
+<link href="https://onesports.ga/css/sb-admin-2.min.css" rel="stylesheet">
+
 <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
 <meta http-equiv="cache-control" content="no-cache, must-revalidate">
 <meta http-equiv="pragma" content="no-cache">
 <title>이미지 첨부</title>
-<link rel="stylesheet" href="/assets/css/main.css"/>
-<link rel="stylesheet" href="/assets/css/menu.css"/>
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
-<script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 // <![CDATA[
 	
@@ -125,10 +126,10 @@
 				if(fileName) {
 					appendStr = "";
 					appendStr += "<tr class='boardrow' for='" + imgNo + "' each='" + i + "'  id='" + trRowId + "'>";
-					appendStr += "	<td style='vertical-align: middle;width: 10%;'><input class='remove' type='checkbox' removeFor='" + imgNo + "' removeEach='" + i + "'/></td>";
-					appendStr += "	<td style='vertical-align: middle;width: 50%;' id='" + tdNameId + "'></td>";
-					appendStr += "	<td style='vertical-align: middle;width: 20%;' id='" + tdSizeId + "'></td>";
-					appendStr += '	<td style="vertical-align: middle;width: 20%;"><center><img id="' + tdImgId + '" width="100px" alt="^^"/></center></td>';
+					appendStr += "	<td style='vertical-align: middle;'><input class='remove' type='checkbox' removeFor='" + imgNo + "' removeEach='" + i + "'/></td>";
+					appendStr += "	<td style='vertical-align: middle;' id='" + tdNameId + "'></td>";
+					appendStr += "	<td style='vertical-align: middle;' id='" + tdSizeId + "'></td>";
+					appendStr += '	<td style="vertical-align: middle;"><center><img id="' + tdImgId + '" width="230px" alt="얘! 파일 첨부도중에 취소되거나 최소를 하면\n보안상 미리보기가 안된단다."/></center></td>';
 					appendStr += "</tr>";
 					$("#dynamicTb").append(appendStr);
 					
@@ -196,44 +197,34 @@
 ﻿            alert("선택된 사진이없습니다.");
 		}﻿ 
 	}
-	
-	// 체크박스 전체선택 및 전체해제
-	$("#remove_all").click(function(){
-		if($("#remove_all").is(":checked")){
-			$(".remove").prop("checked", true);
-		}
-		else{
-			$(".remove").prop("checked", false);
-		}
-	});
-	
-	// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
-	$(".remove").click(function(){
-		$("#remove_all").prop("checked", false);
-	});
 </script>
 
 </head>
 <body onload="initUploader();">
-	<input type="button" class="button special" value="사진등록" onclick="javascript:done()">
-	<input type="button" class="button alt" value="사진첨부" onclick="javascript:registerImg()">
-	<input type="button" class="button alt" value="사진삭제" onclick="javascript:removeImgePreview()">
+	<input type="button" class="btn btn-secondary" value="사진첨부" onclick="javascript:registerImg()">
+	<input type="button" class="btn btn-secondary" value="사진삭제" onclick="javascript:removeImgePreview()">
 	<div id="fileDiv" style="display: none;"> 
 		<input type="file" id="file0" name="files" multiple="">
 	</div>
 	<div class="table-responsive">
-		<table class="table table-bordered" id="dataTable" width="100%">
+		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<tr>
-					<th style="width: 10%; vertical-align: middle;"><input type="checkbox" name="remove_all"></th>
-					<th style="width: 50%; vertical-align: middle;">사진 이름</th>
+					<th style="width: 10%; vertical-align: middle;"><input type="checkbox"></th>
+					<th style="width: 20%; vertical-align: middle;">사진 이름</th>
 					<th style="width: 20%; vertical-align: middle;">사진 크기</th>
-					<th style="width: 20%; vertical-align: middle;">미리보기</th>
+					<th style="width: 50%; vertical-align: middle;">미리보기</th>
 				</tr>
 			</thead>
 			<tbody id="dynamicTb">
+				
 			</tbody>
 		</table>
 	</div>
+	<br>
+		<input type="button" class="btn btn-secondary" value="사진등록" onclick="javascript:done()">
+	<br>
 </body>
 </html>
+
+<script src="https://onesports.ga/vendor/jquery/jquery.min.js"></script>

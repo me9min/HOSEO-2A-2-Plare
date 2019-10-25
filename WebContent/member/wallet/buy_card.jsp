@@ -78,13 +78,13 @@
 							<table class="table table-hover">
 							<tbody>
 								<tr>
-									<td colspan="2" style="text-align:center;">
+									<td colspan="2" style="text-align:center; padding:50px 0;">
 <%
 									if(count <= 0) {
 %>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px; 
-										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
-											+
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:150px; border-radius:10px; 
+										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_add.jsp'">
+											<img src="/assets/images/logo_plus.png" width="30px" height="30px">
 										</div>
 <%										
 									} else {
@@ -92,15 +92,15 @@
 <%
 										if(currentPage != 1) {
 %>
-										<div style="display:inline-block; margin:5px; width:10%; height:200px; 
-										text-align:center; vertical-align:middle; line-height:200px;">
+										<div style="display:inline-block; margin:5px; width:10%; height:150px; 
+										text-align:center; vertical-align:middle; line-height:150px;">
 											<a href="buy_card.jsp?pageNum=<%=currentPage - 1 %>&price=<%=price %>">&lt;</a>
 										</div>
 <%
 										} else {
 %>
-										<div style="display:inline-block; margin:5px; width:10%; height:200px; 
-										text-align:center; vertical-align:middle; line-height:200px;">
+										<div style="display:inline-block; margin:5px; width:10%; height:150px; 
+										text-align:center; vertical-align:middle; line-height:150px;">
 											&nbsp;
 										</div>
 <%
@@ -109,9 +109,13 @@
 <%
 										if(currentPage == endPage) {
 %>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px;
-										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
-											+
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:150px; border-radius:10px;
+										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_add.jsp'">
+											<img src="/assets/images/logo_plus.png" width="30px" height="30px">
+										</div>
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:150px; border-radius:10px;
+										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_manage.jsp'">
+											<img src="/assets/images/logo_option.png" width="30px" height="30px">
 										</div>
 <%
 										} else if(currentPage == endPage - 1) {
@@ -162,16 +166,16 @@
 											String num4 = card.getCard_num().substring(12, 16);
 											String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
 %>
-										<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; border-radius:10px;
-											text-align:center; vertical-align:middle; line-height:100px; background-color:<%=color %>;" id="card">
+										<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:150px; border-radius:10px;
+											text-align:center; vertical-align:middle; line-height:75px; background-color:<%=color %>;" id="card">
 												<div style="height:10px;">&nbsp;</div>
-												<div style="height:20px; background-color:black;">&nbsp;</div>
+												<div style="height:30px; background-color:black;">&nbsp;</div>
 												<div style="height:30px; font-size:16px; color:<%=font %>;"><%=bank %></div>
 												<div style="height:140px; font-size:18px; color:<%=font %>;"><%=num %></div>
 											</div>
-										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:200px; border-radius:10px; 
-										text-align:center; vertical-align:middle; line-height:200px;" onclick="location.href='buy_card_add.jsp'">
-											+
+										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:150px; border-radius:10px; 
+										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_add.jsp'">
+											<img src="/assets/images/logo_plus.png" width="30px" height="30px">
 										</div>
 <%
 										} else {
@@ -224,10 +228,10 @@
 												String num4 = card.getCard_num().substring(12, 16);
 												String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
 %>
-											<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:200px; border-radius:10px;
-											text-align:center; vertical-align:middle; line-height:100px; background-color:<%=color %>;" id="card<%=i %>">
+											<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:150px; border-radius:10px;
+											text-align:center; vertical-align:middle; line-height:75px; background-color:<%=color %>;" id="card<%=i %>">
 												<div style="height:10px;">&nbsp;</div>
-												<div style="height:20px; background-color:black;">&nbsp;</div>
+												<div style="height:30px; background-color:black;">&nbsp;</div>
 												<div style="height:30px; font-size:16px; color:<%=font %>;"><%=bank %></div>
 												<div style="height:140px; font-size:18px; color:<%=font %>;"><%=num %></div>
 											</div>
@@ -236,15 +240,15 @@
 										}
 										if(currentPage != endPage) {
 %>
-										<div style="display:inline-block; margin:5px; width:10%; height:200px; 
-										text-align:center; vertical-align:middle; line-height:200px;">
+										<div style="display:inline-block; margin:5px; width:10%; height:150px; 
+										text-align:center; vertical-align:middle; line-height:150px;">
 											<a href="buy_card.jsp?pageNum=<%=currentPage + 1 %>&price=<%=price %>">&gt;</a>
 										</div>
 <%
 										} else {
 %>
-										<div style="display:inline-block; margin:5px; width:10%; height:200px; 
-										text-align:center; vertical-align:middle; line-height:200px;">
+										<div style="display:inline-block; margin:5px; width:10%; height:150px; 
+										text-align:center; vertical-align:middle; line-height:150px;">
 											&nbsp;
 										</div>
 <%

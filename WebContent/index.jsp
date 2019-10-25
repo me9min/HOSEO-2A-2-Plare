@@ -45,7 +45,7 @@
 					<img src="assets/images/gasstation.jpg" alt="" />
 					<div class="inner">
 						<header>
-							<h2>새로운맵!</h2>
+							<h2></h2>
 						</header>
 					</div>
 				</article>
@@ -53,7 +53,7 @@
 					<img src="assets/images/m4.jpg"  alt="" />
 					<div class="inner">
 						<header>
-							<h2>새로운무기!</h2>
+							<h2></h2>
 						</header>
 					</div>
 				</article>

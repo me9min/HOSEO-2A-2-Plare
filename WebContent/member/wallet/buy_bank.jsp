@@ -2,9 +2,13 @@
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.*,java.util.*,java.text.*" %>
-
 <%@ include file="/assets/include/login_check.jsp" %>
-<jsp:useBean id="member" class="Bean.Member" />
+
+<%	
+    Shop shop = Shop.getInstance();
+	int point = shop.getPoint(email);
+	int price = Integer.parseInt(request.getParameter("price"));
+%>
 
 <!DOCTYPE HTML>
 <html>
@@ -35,7 +39,8 @@
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-						<form method="post" action="db_card.jsp" name="card">
+						<form method="post" action="buy_bank_confirm.jsp" name="bank">
+						<input type="hidden" name="price" value="<%=price %>">
 							<header class="align-center">
 								<h2>무통장 입금</h2>
 							</header>
@@ -46,7 +51,7 @@
 					<div style="line-height:27px;text-align:center; vertical-align:middle;height:27px;">입금자명</div>
 				</div>
 				<div class="5u 12u$(xsmall)">
-					<input type="text" name="bankbook_name" id="card_number" value="" placeholder="입금자명">
+					<input type="text" name="bank_name" id="bank_name" value="" placeholder="입금자명">
 				</div>
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 			
@@ -55,12 +60,12 @@
 					<div style="line-height:27px;text-align:center; vertical-align:middle;height:27px;">은행</div>
 				</div>
 				<div class="5u 12u$(xsmall)">
-				 	<select name="card_bank">
-				 		<option value='' selected>입금할 은행 선택</option>
-				 		<option value="NH" style="width:100px;height:70px;">NH농협 302-2222-4446</option>
-				 		<option value="KB" style="width:100px;height:70px;">KB국민 214-1151-1461</option>
-				 		<option value="IBK" style="width:100px;height:70px;">IBK기업 019-2555-4444</option>
-				 		<option value="KEB" style="width:100px;height:70px;">KEB하나 155-4465-1111</option>
+				 	<select name="bank_account">
+				 		<option value="" selected>입금할 은행 선택</option>
+				 		<option value="NH농협 302-2222-4446" style="width:100px;height:70px;">NH농협 302-2222-4446</option>
+				 		<option value="KB국민 214-1151-1461" style="width:100px;height:70px;">KB국민 214-1151-1461</option>
+				 		<option value="IBK기업 019-2555-4444" style="width:100px;height:70px;">IBK기업 019-2555-4444</option>
+				 		<option value="KEB하나 155-4465-1111" style="width:100px;height:70px;">KEB하나 155-4465-1111</option>
 				 	</select>
 			 	</div>
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
@@ -69,27 +74,27 @@
 				<tfoot>
 					<tr style="text-align:right;">
 						<td colspan="4">
-							<b>보유중인 포인트</b>
+							<b>보유 금액</b>
 						</td>
 						<td>
-							<b>보유포인트</b>
+							<b><%=point %></b>
 						</td>
 					</tr>
 					<tr style="text-align:right;">
 						<td colspan="4" style="border-top:none;">
-							<b>충전할 포인트</b>
+							<b>충전 금액</b>
 						</td>
 						<td style="border-top:none;">
-							<b>+ 충전금액</b>
+							<b>+ <%=price %></b>
 						</td>
 					</tr>
 					<tr style="text-align:right; font-size:24px;">
 						<td colspan="4">
-							<b>구매 후 포인트</b>
+							<b>충전 후 금액</b>
 						</td>
 						<td>
 							<img src="/assets/images/PointLogo.png" height="24px;"> 
-							<b style="color:#ff0000;">15000</b>
+							<b style="color:#ff0000;"><%=point+price %></b>
 						</td>
 					</tr>
 				</tfoot>
@@ -97,7 +102,7 @@
 			<div class="row uniform">
 				<div class="5u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" onclick="cardCheck()">
+					<button type="button" style="width:150px;height:70px;" onclick="bankCheck()">
 						결제하기
 					</button>
 				</div>

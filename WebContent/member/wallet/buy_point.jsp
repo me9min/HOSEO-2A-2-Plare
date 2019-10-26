@@ -124,7 +124,7 @@ function submit_bank() {
 					</button>
 				</div>
 				<div class="3u 12u$(xsmall)">
-					<button type="button" style="width:150px;height:70px;" onclick="alert('현재 준비중인 기능입니다')">
+					<button type="button" style="width:150px;height:70px;" onclick="submit_bank()">
 						계좌/무통장입금
 					</button>
 				</div>

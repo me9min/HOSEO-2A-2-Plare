@@ -26,6 +26,21 @@ function cardCheck() {
 	document.card.submit();
 }
 
+function bankCheck() {
+	var bank_name = document.bank.bank_name;
+	var bank_account = document.bank.bank_account;
+	if(bank_name.value == "") {
+		alert("입금자명을 입력해주세요.");
+		bank_name.focus();
+		return;
+	}
+	if(bank_account.value == "") {
+		alert("입금 계좌를 선택해주세요.");
+		return;
+	}
+	document.bank.submit();
+}
+
 function passwordCheck() {
 	var password = document.pay.pay_password;
 	var repassword = document.pay.pay_repassword;

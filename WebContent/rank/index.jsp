@@ -66,7 +66,7 @@
 	if(count == 0) { %>
 		<table>
 			<tr>
-				<td><center>랭크를 불러오는데 문제가발생했습니다.</center></td>
+				<td><center>랭크를 불러오는데 문제가 발생했습니다.</center></td>
 			</tr>
 		</table>
 <% } else { %>

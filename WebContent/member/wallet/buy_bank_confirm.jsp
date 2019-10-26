@@ -2,9 +2,21 @@
 	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.*,java.util.*,java.text.*" %>
-
 <%@ include file="/assets/include/login_check.jsp" %>
-<jsp:useBean id="member" class="Bean.Member" />
+
+<%	
+    Shop shop = Shop.getInstance();
+	int point = shop.getPoint(email);
+	int price = Integer.parseInt(request.getParameter("price"));
+	String name = request.getParameter("bank_name");
+	String account = request.getParameter("bank_account");
+	
+    Calendar currentCalendar = Calendar.getInstance();
+    DecimalFormat df = new DecimalFormat("00");
+    String year = Integer.toString(currentCalendar.get(Calendar.YEAR));
+    String month  = df.format(currentCalendar.get(Calendar.MONTH) + 1);
+    String day = Integer.toString(currentCalendar.get(Calendar.DAY_OF_MONTH) + 1);
+%>
 
 <!DOCTYPE HTML>
 <html>
@@ -43,7 +55,7 @@
 			<div class="row uniform">
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="4u 12u$(xsmall)">
-					<input type="text" value="입금자명" disabled>
+					<input type="text" value="<%=name %>" disabled>
 				</div>
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 			
@@ -52,19 +64,19 @@
 					<div style="line-height:27px;text-align:right; vertical-align:middle;height:27px;">은행</div>
 				</div>
 				<div class="4u 12u$(xsmall)">
-				 	<input type="text" value="농협 111-5552-1515" disabled> 
+				 	<input type="text" value="<%=account %>" disabled> 
 			 	</div>
 				<div class="2u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="4u 12u$(xsmall)">
-					<input type="text" value="충전금액" disabled> 
+					<input type="text" value="<%=NumberFormat.getInstance().format(price) %> 포인트" disabled> 
 				</div>
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				
 				<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="6u 12u$(xsmall)" style="color:#ff0000 !important; line-height:27px;text-align:center;vertical-align:middle;">
-					2019-10-31 23:59분까지 입금을 완료해주십시오
+					<%=year %>-<%=month %>-<%=day %> 23:59분까지 입금을 완료해주십시오
 				</div>
 				<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 			</div>	
@@ -73,8 +85,8 @@
 			<div class="row uniform">
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 				<div class="4u 12u$(xsmall)" >
-					<button type="button" style="width:150px;height:70px;position:relative;left:15%;" onclick="cardCheck()">
-						메인으로
+					<button type="button" style="width:150px;height:70px;position:relative;left:15%;" onclick="location.href='db_buy_bank.jsp?price=<%=price %>'">
+						확인
 					</button>
 				</div>
 				<div class="4u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>

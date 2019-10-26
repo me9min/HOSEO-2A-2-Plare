@@ -74,7 +74,7 @@
 		              	<a href="index.jsp?category=pet" id="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 		              </li>
 		              <li<% if(category.equals("grenade")) {%> class="active"<%} %>>
-		              	<a href="index.jsp?category=grenade" id="link"> &nbsp;&nbsp;&nbsp;수류탄 스킨&nbsp;&nbsp;&nbsp; </a>
+		              	<a href="index.jsp?category=grenade" id="link">&nbsp;&nbsp;&nbsp;수류탄 스킨&nbsp;&nbsp;&nbsp;</a>
 		              </li>
 		              <li<% if(category.equals("lasersight")) {%> class="active"<%} %>>
 		              	<a href="index.jsp?category=lasersight" id="link">&nbsp;레이저 사이트&nbsp;</a>
@@ -87,7 +87,7 @@
 <%
 	if(admin_check == true) {
 %>
-		<a href="write.jsp" class="button special pull-right">상품 등록</a><br><br>
+		<a href="write.jsp" class="button special pull-right" style="margin-right:30px;">상품 등록</a><br><br>
 <% 
 	}
 %>

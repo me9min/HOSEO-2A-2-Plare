@@ -60,7 +60,7 @@
 			<div class ="10u 12u$(xsmall)">
 				현재 들고 있는 총의 실탄을 갈아줍니다
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key"  style="line-height:40px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key"  style="line-height:38px;vertical-align:middle">
 				R 길게 입력
 			</div>
 			<div class ="10u 12u$(xsmall)">
@@ -92,14 +92,14 @@
 			<div class ="10u 12u$(xsmall)">
 				인벤토리, 무전기나 둔기들, 총이나 탄창 등 가지고 있는 아이템들을 볼 수 있습니다
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:40px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:38px;vertical-align:middle">
 				2
 			</div>
 			<div class ="10u 12u$(xsmall)">
 				탄창 인벤토리로 탄창들을 관리하는 인벤토리로 1번 인벤토리에서는 우클릭으로 물건을 버리지만<br>
 				탄창 인벤토리에서는 좌클릭으로 물건을 버립니다.
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:40px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:38px;vertical-align:middle">
 				3
 			</div>
 			<div class ="10u 12u$(xsmall)">
@@ -148,7 +148,7 @@
 			<div class ="10u 12u$(xsmall)">
 				자신이 들고 있는 무기를 멀리 던져서 버립니다 (좀비에게 맞을 경우 데미지를 입힐 수 있습니다)
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:60px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:56px;vertical-align:middle">
 				V
 			</div>
 			<div class ="10u 12u$(xsmall)">
@@ -168,7 +168,7 @@
 			<div class ="10u 12u$(xsmall)">
 				관리자 콘솔 창을 열어줍니다  (단, 개발자 콘솔 사용에 체크가 되어있어야 사용이 가능합니다)
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:60px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:56px;vertical-align:middle">
 				X
 			</div>
 			<div class ="10u 12u$(xsmall)">
@@ -182,7 +182,7 @@
 			<div class ="10u 12u$(xsmall)">
 				둔기를 휘두르거나, 탄창 인벤토리에서 탄창을 버릴 때 등에 사용합니다.
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:40px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:38px;vertical-align:middle">
 				우클릭
 			</div>
 			<div class ="10u 12u$(xsmall)">
@@ -195,7 +195,7 @@
 			<div class ="10u 12u$(xsmall)">
 				 총알을 분리한다 
 			</div>
-			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:40px;vertical-align:middle">
+			<div class ="2u 12u$(xsmall)" id="guide_key" style="line-height:38px;vertical-align:middle">
 				K
 			</div>
 			<div class ="10u 12u$(xsmall)">

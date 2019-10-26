@@ -114,7 +114,7 @@
 											<img src="/assets/images/logo_plus.png" width="30px" height="30px">
 										</div>
 										<div style="display:inline-block; margin:5px; border:1px dashed black; width:250px; height:150px; border-radius:10px;
-										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_manage.jsp'">
+										text-align:center; vertical-align:middle; line-height:150px;" onclick="location.href='buy_card_edit.jsp'">
 											<img src="/assets/images/logo_option.png" width="30px" height="30px">
 										</div>
 <%

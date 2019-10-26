@@ -5,23 +5,19 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String email = (String)session.getAttribute("email");
+	int id = Integer.parseInt(request.getParameter("id"));
 %>
-
-<jsp:useBean id="card" class="Bean.MemberBean">
-	<jsp:setProperty property="*" name="card"/>
-	<jsp:setProperty property="email" name="card" value="<%=email %>"/>
-</jsp:useBean>
 
 <% 
 	Member member = Member.getInstance();
 
 	try {
-		member.addCard(card);	// addCard 메소드로 받아온 정보를 DB에 저장
+		member.deleteCard(id);
 	} catch(Exception e) {
 %>
 <script>
 	alert("오류가 발생했습니다. 다시 시도해주세요.");
-	window.location = 'buy_card.jsp';
+	window.location = 'buy_point.jsp';
 </script>
 <%
 	} finally {
@@ -29,14 +25,14 @@
 		if(check == false) {
 %>
 <script>
-	alert("카드 등록이 완료되었습니다. 결제 비밀번호를 설정해주세요.");
+	alert("카드 삭제가 완료되었습니다. 결제 비밀번호를 설정해주세요.");
 	window.location = 'buy_pw_add.jsp';
 </script>
 <%
 		} else {
 %>
 <script>
-	alert("카드 등록이 완료되었습니다.");
+	alert("카드 삭제가 완료되었습니다.");
 	window.location = 'buy_point.jsp';
 </script>
 <%		}

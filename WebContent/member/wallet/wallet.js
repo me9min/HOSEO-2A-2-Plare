@@ -3,22 +3,22 @@ function cardCheck() {
 	var card_date = document.card.card_date;
 	var card_cvc = document.card.card_cvc;
 	var card_password = document.card.card_password;
-	if(card_number.value == "" || card_number.length < 19) {
+	if(card_number.value == "" || card_number.value.length < 19) {
 		alert("카드 번호를 입력해주세요.");
 		card_num.focus();
 		return;
 	}
-	if(card_date.value == "" || card_date.length < 4) {
+	if(card_date.value == "" || card_date.value.length < 4) {
 		alert("카드 유효 기간을 입력해주세요.");
 		card_date.focus();
 		return;
 	}
-	if(card_cvc == "" || card_cvc.length < 3) {
+	if(card_cvc == "" || card_cvc.value.length < 3) {
 		alert("카드 CVC를 입력해주세요.");
 		card_cvc.focus();
 		return;
 	}
-	if(card_password.value == "" || card_password.length < 2) {
+	if(card_password.value == "" || card_password.value.length < 2) {
 		alert("카드 비밀번호 앞 두 자리를 입력해주세요.");
 		card_password.focus();
 		return;

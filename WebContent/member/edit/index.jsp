@@ -260,7 +260,18 @@
 			<input type="text" value="<%=referrer %>" placeholder="추천인" disabled />
 		</div>
 		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
-		
+
+<!-- 카카오로그인 버튼 client_id=카카오로그인 api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올 url -->
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
+		<div class="3u 12u$(xsmall)" style="text-align:right;">
+			<a onclick="kakao_link()">
+				<img alt="카카오연동" src="/assets/images/kakaolink_btn_medium_wb.png"/>
+			</a>
+		</div>
+		<div class="3u 12u$(xsmall)" style="color:#000000; line-height: 70px;">
+			카카오톡 연동하기
+		</div>
+		<div class ="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 	</div><br>
   <div style="float:right;">
   	<ul class="actions">
@@ -273,10 +284,8 @@
 <%
 	if(kakaoid == null) {
 %>
-<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
-<a onclick="kakao_link()">
-	<img alt="카카오연동" src="/assets/images/kakaolink_btn_medium_wb.png"/>
-</a>
+
+
 <%
 	} else {
 %>

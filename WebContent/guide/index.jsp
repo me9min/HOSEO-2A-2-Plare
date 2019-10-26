@@ -53,6 +53,7 @@
 			<div class ="10u 12u$(xsmall)">
 				기본 조작키. 각각 앞, 왼쪽, 뒤, 오른쪽으로 이동합니다
 			</div>
+			
 			<div class ="2u 12u$(xsmall)" id="guide_key">
 				R
 			</div>
@@ -66,6 +67,7 @@
 				여분의 실탄이 있을 경우, 총의 실탄이 가득차지 않았을 경우<br>
 				현재 들고 있는 총에 들어있는 남은 실탄과 여분의 실탄 수를 함께 보여줍니다
 			</div>	
+			
 			<div class ="2u 12u$(xsmall)" id="guide_key">
 				C
 			</div>

@@ -6,7 +6,7 @@
 	<head>
 		<title>프로필</title>
 		<style type="text/css">
-			.px-200{font-size: 200px;}
+			.px-180{font-size: 180px;}
 			#member_menu:link{color:gray !important;text-decoration:none !important}
 			#member_menu:visited{color:gray !important;text-decoration:none !important}
 			#member_menu:hover{color:red !important;text-decoration:none !important;}
@@ -16,14 +16,14 @@
 <%@ include file="/assets/include/member_top.jsp" %>
 			<section id="one" class="wrapper style2">
 				<div class="inner">
-					<div class="grid-style">
+					<div class="grid-style" style="padding:50px !important; ">
 
 						<div>
 						<a id="member_menu" href="edit/password_check.jsp">
 							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-pencil px-200"></span>
+										<span class="glyphicon glyphicon-pencil px-180"></span>
 									</header>
 									<footer class="align-center">
 										<h3>내 정보 수정</h3>
@@ -38,7 +38,7 @@
 							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-credit-card px-200"></span>
+										<span class="glyphicon glyphicon-credit-card px-180"></span>
 									</header>
 									<footer class="align-center">
 										<h3>내 지갑</h3>
@@ -54,7 +54,7 @@
 							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-shopping-cart px-200"></span>
+										<span class="glyphicon glyphicon-shopping-cart px-180"></span>
 									</header>
 									<footer class="align-center">
 										<h3>장바구니</h3>
@@ -69,7 +69,7 @@
 							<div class="box">
 								<div class="content">
 									<header class="align-center">
-										<span class="glyphicon glyphicon-inbox px-200"></span>
+										<span class="glyphicon glyphicon-inbox px-180"></span>
 									</header>
 									<footer class="align-center">
 										<h3>인벤토리</h3>

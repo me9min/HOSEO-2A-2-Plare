@@ -861,7 +861,8 @@ public class Member {
 
 			rs = pstmt.executeQuery();
 
-			if(rs.next()) {
+			rs.next();
+			if(rs.getString("pay_password") != null) {
 				check = true;
 			}
 		} catch(SQLException sqle) {

@@ -15,6 +15,7 @@
 	
 	Member member = Member.getInstance();
 	boolean check = member.hasPayPassword(email);
+	System.out.println(check);
 	if(check == false) {
 %>
 <script>

@@ -28,6 +28,13 @@
 			#link {color: black; text-decoration: none;}
 			#link:visited {color: black; text-decoration: none;}
 			#link:hover {color: red; text-decoration: none;}
+			#guide_bg{
+				background: url('./assets/images/background_2.png') no-repeat center center fixed;
+			    background-size: cover;
+			    -webkit-background-size: cover;
+			    -moz-background-size: cover;
+			    -o-background-size: cover;
+			}
 		</style>
 		<title>plare.cf</title>
 		<meta charset="utf-8" />
@@ -44,7 +51,7 @@
 					</div>
 				</article>
 				<article>
-					<img src="assets/images/gasstation.jpg" alt="" />
+					<img src="assets/images/main2.png" alt="" />
 					<div class="inner">
 						<header>
 							<h2></h2>
@@ -52,7 +59,15 @@
 					</div>
 				</article>
 				<article>
-					<img src="assets/images/m4.jpg"  alt="" />
+					<img src="assets/images/main3.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<h2></h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="assets/images/main4.jpg" alt="" />
 					<div class="inner">
 						<header>
 							<h2></h2>
@@ -61,11 +76,11 @@
 				</article>
 			</section>
 
-<section id="one" class="wrapper style2">
+<section id="guide_bg" class="wrapper style2" >
 	<div class="inner">
 
 			<div class="row">
-					<b style="font-size:20px;">최근 공지사항</b><br><br>
+					<b style="font-size:20px; color:#ffffff;">최근 공지사항</b><br><br>
 <%
 	for(int i=0; i<motdList.size(); i++) {
 		BoardBean motd = motdList.get(i);
@@ -97,7 +112,7 @@
 			</div><br><br>
 			
 			<div class="row">
-				<b style="font-size:20px;">이벤트</b><br><br>
+				<b style="font-size:20px;color:#ffffff"">이벤트</b><br><br>
 <%
 	for(int i=0; i<eventList.size(); i++) {
 		BoardBean event = eventList.get(i);
@@ -129,7 +144,7 @@
 			  </div><br><br>
 
 			<div class="row">
-				<b style="font-size:20px;">인기글</b><br><br>
+				<b style="font-size:20px;color:#ffffff"">인기글</b><br><br>
 			  <div class="col-md-4">
 			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;">

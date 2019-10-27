@@ -34,7 +34,7 @@
 			articleList = rank.getRank(startRow, pageSize);
 		}
 	} else {
-		con = q.trim();
+		q = q.trim();
 		count = rank.getRankCount(con, q);
 		if (count > 0) {
 			articleList = rank.getRank(startRow, pageSize, con, q);

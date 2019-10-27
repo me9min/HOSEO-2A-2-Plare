@@ -160,11 +160,20 @@
 												color = "#ffffff";
 												font = "#e6303f";
 											}
-											String num1 = card.getCard_num().substring(0, 4);
-											String num2 = card.getCard_num().substring(4, 8);
-											String num3 = card.getCard_num().substring(8, 12);
-											String num4 = card.getCard_num().substring(12, 16);
-											String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
+											String num = "0000-0000-0000-0000";
+											if(card.getCard_num().length() == 16) {
+												String num1 = card.getCard_num().substring(0, 4);
+												String num2 = card.getCard_num().substring(4, 8);
+												String num3 = card.getCard_num().substring(8, 12);
+												String num4 = card.getCard_num().substring(12, 16);
+												num = num1 + " - " + num2 + " - " + num3 + " - " + num4;	
+											} else {
+												String num1 = card.getCard_num().substring(0, 4);
+												String num2 = card.getCard_num().substring(4, 8);
+												String num3 = card.getCard_num().substring(8, 12);
+												String num4 = card.getCard_num().substring(12, 15);
+												num = num1 + " - " + num2 + " - " + num3 + " - " + num4 + "0";
+											}
 %>
 										<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:150px; border-radius:10px;
 											text-align:center; vertical-align:middle; line-height:75px; background-color:<%=color %>;" id="card">
@@ -208,7 +217,7 @@
 												} else if(card.getCard_bank().equals("shinhan")) {
 													bank = "신한";
 													color = "#1068ac";
-													font = "#707271";
+													font = "#ffffff";
 												} else if(card.getCard_bank().equals("hyundae")) {
 													bank = "현대";
 													color = "#ffffff";
@@ -222,11 +231,20 @@
 													color = "#ffffff";
 													font = "#e6303f";
 												}
-												String num1 = card.getCard_num().substring(0, 4);
-												String num2 = card.getCard_num().substring(4, 8);
-												String num3 = card.getCard_num().substring(8, 12);
-												String num4 = card.getCard_num().substring(12, 16);
-												String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
+												String num = "0000-0000-0000-0000";
+												if(card.getCard_num().length() == 16) {
+													String num1 = card.getCard_num().substring(0, 4);
+													String num2 = card.getCard_num().substring(4, 8);
+													String num3 = card.getCard_num().substring(8, 12);
+													String num4 = card.getCard_num().substring(12, 16);
+													num = num1 + " - " + num2 + " - " + num3 + " - " + num4;	
+												} else {
+													String num1 = card.getCard_num().substring(0, 4);
+													String num2 = card.getCard_num().substring(4, 8);
+													String num3 = card.getCard_num().substring(8, 12);
+													String num4 = card.getCard_num().substring(12, 15);
+													num = num1 + " - " + num2 + " - " + num3 + " - " + num4 + "0";
+												}
 %>
 											<div style="display:inline-block; margin:5px; border:1px solid black; width:250px; height:150px; border-radius:10px;
 											text-align:center; vertical-align:middle; line-height:75px; background-color:<%=color %>;" id="card<%=i %>">

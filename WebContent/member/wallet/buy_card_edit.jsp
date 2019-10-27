@@ -88,11 +88,20 @@
 			} else if(card.getCard_bank().equals("lotte")) {
 				bank = "롯데";
 			}
-			String num1 = card.getCard_num().substring(0, 4);
-			String num2 = card.getCard_num().substring(4, 8);
-			String num3 = card.getCard_num().substring(8, 12);
-			String num4 = card.getCard_num().substring(12, 16);
-			String num = num1 + " - " + num2 + " - " + num3 + " - " + num4;
+			String num = "0000-0000-0000-0000";
+			if(card.getCard_num().length() == 16) {
+				String num1 = card.getCard_num().substring(0, 4);
+				String num2 = card.getCard_num().substring(4, 8);
+				String num3 = card.getCard_num().substring(8, 12);
+				String num4 = card.getCard_num().substring(12, 16);
+				num = num1 + " - " + num2 + " - " + num3 + " - " + num4;	
+			} else {
+				String num1 = card.getCard_num().substring(0, 4);
+				String num2 = card.getCard_num().substring(4, 8);
+				String num3 = card.getCard_num().substring(8, 12);
+				String num4 = card.getCard_num().substring(12, 15);
+				num = num1 + " - " + num2 + " - " + num3 + " - " + num4 + "0";
+			}
 %>
 							<tr>
 									<td id="tbody">

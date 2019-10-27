@@ -1,100 +1,204 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>파일 첨부</title> 
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+<meta http-equiv="cache-control" content="no-cache, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<title>이미지 첨부</title>
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="stylesheet" href="/assets/css/menu.css"/>
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="../../css/popup.css" type="text/css"  charset="utf-8"/>
+<script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 // <![CDATA[
 	
 	function done() {
+// 		if (typeof (execAttach) == 'undefined') { //Virtual Function
+// 			return;
+// 		}
+		
+		var formData = new FormData();
+ 		var fileLength = $("input[type='file']").length;
+ 		var checkFile = false;
+ 		var checkFileSize = 0;
+ 		
+		for(n = 0; n < fileLength; n++) {
+			$.each($("input[type='file']")[n].files, function(i, file) {
+				// 삭제한파일은 no append
+				if($("[for=" + n + "][each=" + i + "]").html() != undefined) {
+			    	formData.append('file', file);
+			    	checkFile = true;
+			    	checkFileSize += file.size;
+				}
+			});
+		}
+		
+		if(checkFileSize > 1024*1024*3) {
+			alert("총 용량은 3MB이하여야합니다.");
+			return;
+		}
+		
+		if(checkFile == false) {
+			alert("등록할 파일을 첨부해주세요.")
+			return;
+		}
+	
+		var _mockdata = new Array();
+		
+		$.ajax({
+			url : '/assets/upload/index.jsp',
+			type : 'POST',
+			enctype : 'multipart/form-data',
+			data : formData,
+			dataType : "json",
+			contentType : false,
+			cache : false,
+			processData : false
+		}).done(function(data) {
+			_mockdata[i] = {
+				'attachurl' : data.url,
+				'filemime' : data.type,
+				'filename' : data.name,
+				'filesize' : data.size
+			};
+			execAttach(_mockdata[i]);
+			window.close();
+		});
+	}
+	
+	var imgNo = 0;
+	
+	// 이미지 미리보기
+	var previewNo = 0;
+	var previewShowNo = 0;
+	
+	function registerImg() {
+		$('#file' + imgNo).trigger('click');
 
-		// 기본설정
-		var objTarget = $('form[name=imageForm]');
-		var strFile = objTarget.find('[name=file]').val();
+		$('#file' + imgNo).bind("change", function() {
+			if($('#file' + imgNo).length > 0) {
+				readURL(this);
+			}
+		});
+	}
+	
+	function readURL(input) {
+		var imgStartNo ;
+		var imgEndNo ;
+		
+		// 이미지 미리보기를 위해 필요
+		previewShowNo = previewNo;		
+		
+		if (input.files != undefined) {
+			imgStartNo = previewNo;
+			for(i = 0; i < input.files.length; i++) {
+				var tdImgId = "img" + previewNo;
+				var tdNameId = "name" + previewNo;
+				var tdSizeId = "size" + previewNo;
+				var trRowId = "row" + previewNo;
+				
+				// 파일명구하기
+				var fileValue = document.getElementById("file" + imgNo).files[i].name.split("\\");
+				var fileName = fileValue[fileValue.length - 1]; // 파일명
+				
+				if(fileName) {
+					appendStr = "";
+					appendStr += "<tr class='boardrow' for='" + imgNo + "' each='" + i + "'  id='" + trRowId + "'>";
+					appendStr += "	<td style='vertical-align: middle;width: 10%;'><input class='remove' type='checkbox' removeFor='" + imgNo + "' removeEach='" + i + "'/></td>";
+					appendStr += "	<td style='vertical-align: middle;width: 70%;' id='" + tdNameId + "'></td>";
+					appendStr += "	<td style='vertical-align: middle;width: 20%;' id='" + tdSizeId + "'></td>";
+					appendStr += "</tr>";
+					$("#dynamicTb").append(appendStr);
+					
+					$("#" + tdNameId).html(fileName);
+					
+					// 1메가
+					imgEndNo = previewNo;
+					
+					var fileSize = input.files[i].size;
+					$("#" + tdSizeId).html((fileSize / 1024).toFixed(1) + "KB")
+					var maxSize = 3 * 1024 * 1024;
+					
+					if (fileSize > maxSize) {
+						$("#" + trRowId).remove();
+						alert("파일용량제한은 3MB입니다.\n파일 : " + fileName + "의 용량은 "
+								+ (fileSize / 1024).toFixed(1) + "KB입니다.");
+					}
+					else {
+						// 이미지 미리보기
+						var reader = new FileReader();
+						reader.readAsDataURL(input.files[i]);
+						reader.onload = function(e) {
+							//$("#img" + previewShowNo).attr('src', e.target.result);
+						}
+					}
+					previewNo++;
+				}
+			}
+		}
 
-		// 체크
-		if(!strFile) {
-			alert('파일을 선택하세요.');
+		imgNo++;
+
+		$("#fileDiv").append("<input type='file' name='files' id='file" + imgNo + "' multiple/>")
+	}
+	
+	function initUploader() {
+		var _opener = PopupUtil.getOpener();
+		if (!_opener) {
+			alert('잘못된 경로로 접근하셨습니다.');
 			return;
 		}
 
-		// 데이터 전달
-		objTarget.ajaxForm({
-			beforeSubmit :	function() {
-			},
-			success		 :  function(data) {
-				data =  $.parseJSON(data);
-				if(data['__STATE__'] == "SUCCESS") {
-				
-					// 기본 설정
-					var objData = data['__DATA__'];
-					var filename = objData['filename'];
-					var filesize = objData['filesize'];
-					var attachurl = objData['attachurl'];
-					var filemime = objData['filemime'];
-					
-					var _mockdata = {
-						'attachurl': attachurl,
-						'filemime': filemime,
-						'filename': filename,
-						'filesize': filesize
-					};
-
-					execAttach(_mockdata);
-					
-					closeWindow();
-
-				} else {
-					var strMsg = data['__MSG__'];
-					if(!strMsg) { strMsg = data; }
-					alert(strMsg);
-				}
-		   }
-		}); 
-
-		objTarget.submit();
-
-	}
-
-	function initUploader(){
-	    var _opener = PopupUtil.getOpener();
-	    if (!_opener) {
-	        alert('잘못된 경로로 접근하셨습니다.');
-	        return;
-	    }
-	    
-	    var _attacher = getAttacher('file', _opener);
-	    registerAction(_attacher);
+		var _attacher = getAttacher('file', _opener);
+		registerAction(_attacher);
 	}
 	
+	function removeImgePreview() {
+		if ($("input[class='remove']").is(":checked")) {
+			for(var i=$("input[class='remove']:checked").length-1; i>-1; i--) {
+				$("input[class='remove']:checked").eq(i).closest("tr").remove();
+			}﻿
+		} else {
+﻿            alert("선택된 사진이없습니다.");
+		}﻿ 
+	}
+	
+	// 체크박스 전체선택 및 전체해제
+	$("#remove_all").click(function(){
+		if($("#remove_all").is(":checked")){
+			$(".remove").prop("checked", true);
+		}
+		else{
+			$(".remove").prop("checked", false);
+		}
+	});
+	
+	// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
+	$(".remove").click(function(){
+		$("#remove_all").prop("checked", false);
+	});
 </script>
+
 </head>
 <body onload="initUploader();">
-<div class="wrapper">
-	<div class="header">
-		<h1>파일 첨부</h1>
-	</div>	
-	<div class="body">
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="/board/issue/write.jsp">
-			<input type="hidden" name="menuType" value="daumeditor">
-			<input type="hidden" name="mode" value="json">
-			<input type="hidden" name="act" value="fileUpload">
-			<dl class="alert">
-				<dt>파일 첨부 확인</dt>
-				<dd><input type="file" name="file"></dd>
-			</dl>
-		</form>
+	<input type="button" class="button special" value="파일등록" onclick="javascript:done()">
+	<input type="button" class="button alt" value="파일첨부" onclick="javascript:registerImg()">
+	<input type="button" class="button alt" value="파일삭제" onclick="javascript:removeImgePreview()">
+	<div id="fileDiv" style="display: none;"> 
+		<input type="file" id="file0" name="files" multiple="">
 	</div>
-	<div class="footer">
-		<p><a href="#" onclick="closeWindow();" title="닫기" class="close">닫기</a></p>
-		<ul>
-			<li class="submit"><a href="#" onclick="done();" title="등록" class="btnlink">등록</a> </li>
-			<li class="cancel"><a href="#" onclick="closeWindow();" title="취소" class="btnlink">취소</a></li>
-		</ul>
+	<div class="table-responsive">
+		<table class="table table-bordered" id="dataTable" width="100%">
+			<thead>
+				<tr>
+					<th style="width: 10%; vertical-align: middle;"><input type="checkbox" name="remove_all"></th>
+					<th style="width: 70%; vertical-align: middle;">파일 이름</th>
+					<th style="width: 20%; vertical-align: middle;">파일 크기</th>
+				</tr>
+			</thead>
+			<tbody id="dynamicTb">
+			</tbody>
+		</table>
 	</div>
-</div>
 </body>
 </html>

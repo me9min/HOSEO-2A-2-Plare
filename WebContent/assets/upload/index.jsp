@@ -20,6 +20,7 @@ System.out.println("-------------------------------------");
 System.out.println("저장된실제폴더 : " + realFolder);
 
 String url = null;
+String type = null;
 String oname = null;
 String size = null;
 long lsize = 0;
@@ -57,7 +58,7 @@ try{
       oname = multi.getOriginalFileName(name);
    
      //전송된 파일의 내용 타입
-      String type = multi.getContentType(name);
+      type = multi.getContentType(name);
       
      //전송된 파일 속성이 file인 태그의 name 속성값을 이용해 파일 객체 생성
       File file = multi.getFile(name);
@@ -94,6 +95,7 @@ Gson gson = new Gson();
 Map<String,Object> map = new HashMap<String,Object>();
 
 map.put("url", url);
+map.put("type", type);
 map.put("name", oname);
 map.put("size", lsize);
 

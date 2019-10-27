@@ -22,6 +22,7 @@ public class Database {
 			conn = DriverManager.getConnection(JDBC_URL+"web", DB_ID, DB_PWD);
 		} catch(Exception e) {
 			System.out.println("Fail to Connect to Database");
+			e.printStackTrace();
 		}
 		return conn;
 	}

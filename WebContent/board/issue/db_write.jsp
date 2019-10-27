@@ -10,13 +10,20 @@
 	
 	int reply_num = 0;
 	String title = request.getParameter("title");
+	if(title == null) {
+		return;
+	} else {
+		title = title.trim();
+	}
+	if(title == "") {
+		return;
+	}
 	
 	if(email != null) {
 		if(email.equals(admin)) {
 			try {
 				reply_num = Integer.parseInt(request.getParameter("reply_num"));
-			} catch(Exception e) {
-			}
+			} catch(Exception e) {}
 		}
 %>
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">

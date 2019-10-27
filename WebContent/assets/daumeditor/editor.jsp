@@ -428,6 +428,11 @@
 <script type="text/javascript">
 	/* 예제용 함수 */
 	function saveContent() {
+		if(document.tx_editor_form.title.value == "") {
+			alert("제목을 입력해주세요");
+			document.event.title.focus();
+			return;
+		}
 		Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
 	}
 	/**

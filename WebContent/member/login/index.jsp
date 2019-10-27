@@ -60,6 +60,7 @@
 					</ul>
 				</div>
 			</form>
+			<%--
 				<div class="row uniform">
 					<div class="4u 12u$(xsmall) style="visibility:hidden;"></div>
 					<!-- 카카오로그인 버튼 client_id=카카오로그인api에 접속할수있는키 redirect_uri=카카오로그인후 토큰을받아올url -->
@@ -67,6 +68,7 @@
 						<img alt="카카오로그인" src="/assets/images/kakao_account_login_btn_medium_narrow.png"/>
 					</a>
 				</div>
+			--%>
 					</div>
 				</div>
 			</div>

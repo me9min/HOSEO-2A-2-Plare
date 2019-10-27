@@ -14,10 +14,21 @@
 	Member member = Member.getInstance();
 	boolean admin_check = member.admin_check(email);
 	
+	String title = request.getParameter("title");
+	if(title == null) {
+		return;
+	} else {
+		title = title.trim();
+	}
+	if(title == "") {
+		return;
+	}
+	
 	if(email != null && admin_check == true) {
 %>
 <jsp:useBean id="article" scope="page" class="Bean.BoardBean">
 	<jsp:setProperty name="article" property="*"/>
+	<jsp:setProperty name="article" property="title" value="<%=title %>"/>
 	<jsp:setProperty name="article" property="writer" value="<%=email %>"/>
 </jsp:useBean>
 <%

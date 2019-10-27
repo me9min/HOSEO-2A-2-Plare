@@ -8,6 +8,14 @@
 	String email = (String)session.getAttribute("email");
 	
 	String title = request.getParameter("title");
+	if(title == null) {
+		return;
+	} else {
+		title = title.trim();
+	}
+	if(title == "") {
+		return;
+	}
 	
 	if(email != null) {
 %>

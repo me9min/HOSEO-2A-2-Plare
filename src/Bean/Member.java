@@ -11,6 +11,7 @@ import javax.naming.*;
 import Bean.MemberBean;
 import Bean.Database;
 import com.RemoveTag;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeUtility;
 
 public class Member {
 	private static Member instance = new Member();
@@ -555,9 +556,9 @@ public class Member {
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             
             //메일 제목
-            msg.setSubject("Plare 비밀번호 찾기 인증 메일입니다.");
+            msg.setSubject(MimeUtility.encodeText("Plare 비밀번호 찾기 인증 메일입니다.", "UTF-8", "B"));
             //메일 내용
-            msg.setText("인증 번호는 " + temp + " 입니다.");
+            msg.setContent("인증 번호는 " + temp + " 입니다.", "text/html; charset=UTF-8");
             
             Transport.send(msg);
             System.out.println("인증 번호 이메일 전송");
@@ -619,9 +620,9 @@ public class Member {
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             
             //메일 제목
-            msg.setSubject("Plare 임시 비밀번호 발급 이메일입니다.");
+            msg.setSubject(MimeUtility.encodeText("Plare 임시 비밀번호 발급 이메일입니다.", "UTF-8", "B"));
             //메일 내용
-            msg.setText("임시 비밀번호는 " + temp + " 입니다. 해당 비밀번호를 사용하여 로그인해주세요.");
+            msg.setContent("임시 비밀번호는 " + temp + " 입니다. 해당 비밀번호를 사용하여 로그인해주세요.", "text/html; charset=UTF-8");
             
             Transport.send(msg);
             System.out.println("임시 비밀번호 이메일 전송");

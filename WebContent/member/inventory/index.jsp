@@ -31,7 +31,7 @@
 	Board board = Board.getInstance();
 	Shop shop = Shop.getInstance();
     
-	String idList[] = member.getInventoryId(email, category, 1, 6);
+	String idList[] = member.getInventoryId(email, category, startRow, pageSize);
 	List<ShopBean> itemList = shop.getItems(idList);
 	count = member.getInventoryCount(email, category);
 %>

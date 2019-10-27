@@ -5,8 +5,10 @@
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "com.*" %>
 <%! SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 <%
+	RemoveTag rt = new RemoveTag();
 	Board board = Board.getInstance();
 	List<BoardBean> issueList = board.getBestIssues();
 	List<BoardBean> motdList = board.getLatestMotds();
@@ -82,7 +84,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-								<a href="./board/motd/content.jsp?num=<%=motd.getNum()%>" id="link"><%=motd.getContent() %></a>
+								<a href="./board/motd/content.jsp?num=<%=motd.getNum()%>" id="link"><%=rt.removeHtmlTag(motd.getContent()) %></a>
 							</td>
 						</tr>
 					</tbody>
@@ -114,7 +116,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-								<a href="./board/event/content.jsp?num=<%=event.getNum()%>" id="link"><%=event.getContent() %></a>
+								<a href="./board/event/content.jsp?num=<%=event.getNum()%>" id="link"><%=rt.removeHtmlTag(event.getContent()) %></a>
 							</td>
 						</tr>
 					</tbody>
@@ -142,7 +144,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-									<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=free.getContent() %></a>
+									<a href="./board/free/content.jsp?num=<%=free.getNum()%>" id="link"><%=rt.removeHtmlTag(free.getContent()) %></a>
 							</td>
 						</tr>
 					</tbody>
@@ -168,7 +170,7 @@
 					<tbody>
 						<tr style="border-bottom:none;">
 							<td id="content">
-								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=issue.getContent() %></a>
+								<a href="./board/issue/content.jsp?num=<%=issue.getNum()%>" id="link"><%=rt.removeHtmlTag(issue.getContent()) %></a>
 							</td>
 						</tr>
 					</tbody>

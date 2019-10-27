@@ -67,13 +67,14 @@ public class Shop {
 		String sql = "";
 
         try {
-            sql = "insert into store_menu(unique_id, item_type, item_name, item_price, item_dec) values(?, ?, ?, ?, ?)";
+            sql = "insert into store_menu(unique_id, item_type, item_name, item_price, item_dec, item_img) values(?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, item.getUnique_id());
             pstmt.setString(2, item.getItem_type());
             pstmt.setString(3, item.getItem_name());
 			pstmt.setInt(4, item.getItem_price());
 			pstmt.setString(5, item.getItem_dec());
+			pstmt.setString(6, item.getItem_img());
 			
             pstmt.executeUpdate();
         } catch(Exception ex) {
@@ -92,14 +93,15 @@ public class Shop {
 		String sql = "";
 
         try {
-            sql = "update store_menu set unique_id=?, item_type=?, item_name=?, item_price=?, item_dec=? where id=?";
+            sql = "update store_menu set unique_id=?, item_type=?, item_name=?, item_price=?, item_dec=?, item_img=? where id=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, item.getUnique_id());
             pstmt.setString(2, item.getItem_type());
             pstmt.setString(3, item.getItem_name());
 			pstmt.setInt(4, item.getItem_price());
 			pstmt.setString(5, item.getItem_dec());
-			pstmt.setInt(6, id);
+			pstmt.setString(6, item.getItem_img());
+			pstmt.setInt(7, id);
 			
             pstmt.executeUpdate();
         } catch(Exception ex) {

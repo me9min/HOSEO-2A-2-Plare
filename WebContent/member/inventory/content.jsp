@@ -51,7 +51,7 @@
 
 	    String img = "/assets/images/test2.jpg";
 		if(item.getItem_img() != null) {
-			img = "/assets/upload/static/" + item.getItem_type() + "/" + item.getItem_img();
+			img = item.getItem_img();
 		}
 		String dec = "";
 		if(item.getItem_dec() != null) {

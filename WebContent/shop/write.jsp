@@ -43,7 +43,12 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">이미지 파일</td>
-				<td></td>
+				<td>
+					<div class="row uniform">
+						<div class="2u 12u$(small)"><a href="#" class="button alt" onclick="window.open('upload_image.html','이미지 첨부','width=800,height=600,top=0,left=0,toolbar=no,menubar=no,scrollbars=1,resizable=1')">첨부</a></div>
+						<div class="10u 12u$(small)"><input type="text" name="item_img" id="item_img"/></div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td height="200px" align="center" style="vertical-align: middle">아이템 설명</td>

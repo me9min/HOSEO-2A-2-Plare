@@ -3,6 +3,7 @@
 <%@ page import = "Bean.Shop" %>
 <%
 	request.setCharacterEncoding("utf-8");
+	
 %>
 <jsp:useBean id="item" scope="page" class="Bean.ShopBean">
 	<jsp:setProperty name="item" property="*"/>

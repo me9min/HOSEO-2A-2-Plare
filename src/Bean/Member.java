@@ -239,7 +239,7 @@ public class Member {
 			rs.next();
 			String cpw = rs.getString("password");
 			
-			if(pw == cpw) {
+			if(pw.equals(cpw)) {
 				pstmt = conn.prepareStatement("delete from member where email=?");
 				pstmt.setString(1, email);
 				

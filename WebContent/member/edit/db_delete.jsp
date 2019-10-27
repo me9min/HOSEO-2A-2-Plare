@@ -15,13 +15,13 @@
 </script>
 <%
 	} else {
-		boolean success = member.delete_member(email,pw);
+		boolean success = member.delete_member(email, pw);
 		if(success == true) {
 			session.invalidate();
 %>
 <script>
 	alert("회원탈퇴가 성공적으로 완료되었습니다.");
-	location.replace = "/";
+	location.href = "/";
 </script>
 <%
 		} else {

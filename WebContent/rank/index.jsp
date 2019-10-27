@@ -27,9 +27,19 @@
     List<RankBean> articleList = null;
     
     Rank rank = Rank.getInstance();
-    count = rank.getRankCount();
     
-	articleList = rank.getRank(startRow, pageSize, con, q);
+	if(con == null || q == null) {
+		count = rank.getRankCount();
+		if (count > 0) {
+			articleList = rank.getRank(startRow, pageSize);
+		}
+	} else {
+		con = q.trim();
+		count = rank.getRankCount(con, q);
+		if (count > 0) {
+			articleList = rank.getRank(startRow, pageSize, con, q);
+		}
+	}
 %>
 
 <!DOCTYPE HTML>
@@ -66,9 +76,8 @@
 	if(count == 0) { %>
 		<table>
 			<tr>
-				<td><center>랭크를 불러오는데 문제가 발생했습니다.</center></td>
+				<td><center>검색하신 플레이어가 없습니다</center></td>
 			</tr>
-		</table>
 <% } else { %>
 		<table class="table table-hover">
 			<thead>
@@ -107,21 +116,26 @@
            startPage = (int)(currentPage/5)*5 + 1;
 		else
            startPage = ((int)(currentPage/5)-1)*5 + 1;
-
 		int pageBlock = 5;
         int endPage = startPage + pageBlock - 1;
         if (endPage > pageCount) endPage = pageCount;
         
-        if (startPage > 5) { %>
-        	<a href="index.jsp?pageNum=<%= startPage - 5 %>" id="link">&lt;</a>
+        String href = "index.jsp?pageNum=";
+        
+    	if(con != null) {
+    		href = "index.jsp?con=" + con + "&q=" + q + "&pageNum=";
+    	}
+        if (startPage > 5) { 
+%>
+        	<a href="<%=href %><%= startPage - 5 %>" id="link">&lt;</a>
 <%      }
         
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        	<a href="index.jsp?pageNum=<%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
+        	<a href="<%=href %><%= i %>" id="link" <%if (i == currentPage) {%> style="font-weight:bold; color:#ff0000;"<% } %>>[<%= i %>]</a>
 <%      }
         
         if (endPage < pageCount) {  %>
-   	     	<a href="index.jsp?pageNum=<%= startPage + 5 %>" id="link">&gt;</a>
+   	     	<a href="<%=href %><%= startPage + 5 %>" id="link">&gt;</a>
 <%
         }
     }

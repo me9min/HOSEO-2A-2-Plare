@@ -11,7 +11,6 @@
 	.tx-toolbar-boundary .tx-tableedit {width:10px;height:18px;background:url(../../../images/icon/editor/skin/06/tx_icon_20130320.gif) no-repeat; background-position:-89px -152px; }
 	.tx-toolbar-table-boundary { border:1px solid #fff; padding:0 0 0 412px; height:5px; }
 	
-	
 	.tx-toolbar .tx-bar li {position:relative;z-index:4;}
 	
 	.tx-toolbar .tx-bar-left { float:left; margin:0 3px 0 0;}
@@ -405,8 +404,8 @@
 	}
 	
 	div.tx-canvas div.tx-wysiwyg-padding { height:100%; width:0; left:0; position:absolute; top:0; opacity:0.3; filter:alpha(opacity=30); overflow:hidden; }
-	div.tx-canvas div.tx-wysiwyg-padding-divL { float: right; width: 26px; height:26px; margin-top: 3px; }
-	div.tx-canvas div.tx-wysiwyg-padding-divR { float: left; width: 26px; height:26px; margin-top: 3px; }
+	div.tx-canvas div.tx-wysiwyg-padding-divL { float: right; width: 26px; height:26px; margin-top: 3px; margin-right: 0; }
+	div.tx-canvas div.tx-wysiwyg-padding-divR { float: left; width: 26px; height:26px; margin-top: 3px; margin-left: 0; }
 	div.tx-canvas div.tx-wysiwyg-padding-divL { margin-right: 0; }
 	div.tx-canvas div.tx-wysiwyg-padding-divR { margin-left: 0;}
 	

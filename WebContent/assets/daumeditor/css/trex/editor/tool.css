@@ -21,11 +21,11 @@
 	.tx-fontfamily-menu { width:168px; }
 	
 	.tx-fontfamily-menu .tx-menu-list-item a { height:18px; }
-
-    .tx-fontfamily-menu .tx-menu-list .tx-gulim {font-family:gulim, '援대┝'}
-    .tx-fontfamily-menu .tx-menu-list .tx-batang {font-family:batang, '諛뷀깢'}
-    .tx-fontfamily-menu .tx-menu-list .tx-dotum {font-family:dotum, '�룍��'}
-    .tx-fontfamily-menu .tx-menu-list .tx-gungseo {font-family:gungseo, '沅곸꽌'}
+	
+    .tx-fontfamily-menu .tx-menu-list .tx-gulim {font-family:gulim, '굴림'}
+    .tx-fontfamily-menu .tx-menu-list .tx-batang {font-family:batang, '바탕'}
+    .tx-fontfamily-menu .tx-menu-list .tx-dotum {font-family:dotum, '돋움'}
+    .tx-fontfamily-menu .tx-menu-list .tx-gungseo {font-family:gungseo, '궁서'}
     .tx-fontfamily-menu .tx-menu-list .tx-arial {font-family:Arial, Helvetica, sans-serif}
     .tx-fontfamily-menu .tx-menu-list .tx-verdana {font-family:Verdana, Geneva, sans-serif}
     .tx-fontfamily-menu .tx-menu-list .tx-courier-new {font-family:'Courier New', Courier, monospace}

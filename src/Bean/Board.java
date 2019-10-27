@@ -69,7 +69,7 @@ public class Board {
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("issue")) {
-            	sql = "insert into board_issue (writer,ip,num_rep,reg_date,title,content,attach_file,attach_file_name) values(?,?,?,now(),?,?,?,?,?,?)";
+            	sql = "insert into board_issue (writer,ip,num_rep,reg_date,title,content,attach_file,attach_file_name) values(?,?,?,now(),?,?,?,?)";
             	
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, article.getWriter());
@@ -78,8 +78,8 @@ public class Board {
 	            
 	            pstmt.setString(4, rt.removeHtmlTag(article.getTitle()));
 				pstmt.setString(5, article.getContent());
-				pstmt.setString(8, article.getAttach_file());
-				pstmt.setString(9, article.getAttach_file_name());
+				pstmt.setString(6, article.getAttach_file());
+				pstmt.setString(7, article.getAttach_file_name());
 				
 	            pstmt.executeUpdate();
             } else if (category.equals("event")) {

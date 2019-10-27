@@ -236,6 +236,7 @@ public class Member {
 			
 			rs = pstmt.executeQuery();
 			
+			rs.next();
 			String cpw = rs.getString("password");
 			
 			if(pw == cpw) {

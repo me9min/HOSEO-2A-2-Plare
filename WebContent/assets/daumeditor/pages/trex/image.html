@@ -195,18 +195,20 @@
 	}
 	
 	// 체크박스 전체선택 및 전체해제
-	$("#remove_all").click(function(){
-		if($("#remove_all").is(":checked")){
-			$(".remove").prop("checked", true);
-		}
-		else{
-			$(".remove").prop("checked", false);
-		}
-	});
-	
-	// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
-	$(".remove").click(function(){
-		$("#remove_all").prop("checked", false);
+	$(document).ready( function() {
+		$("#remove_all").click(function(){
+			if($("#remove_all").is(":checked")){
+				$(".remove").prop("checked", true);
+			}
+			else{
+				$(".remove").prop("checked", false);
+			}
+		});
+		
+		// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
+		$(".remove").click(function(){
+			$("#remove_all").prop("checked", false);
+		});
 	});
 </script>
 
@@ -222,7 +224,7 @@
 		<table class="table table-bordered" id="dataTable" width="100%">
 			<thead>
 				<tr>
-					<th style="width: 10%; vertical-align: middle;"><input type="checkbox" name="remove_all"></th>
+					<th style="width: 10%; vertical-align: middle;"><input type="checkbox" name="remove_all" id="remove_all"></th>
 					<th style="width: 50%; vertical-align: middle;">사진 이름</th>
 					<th style="width: 20%; vertical-align: middle;">사진 크기</th>
 					<th style="width: 20%; vertical-align: middle;">미리보기</th>

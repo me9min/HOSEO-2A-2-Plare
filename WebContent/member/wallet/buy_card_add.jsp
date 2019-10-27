@@ -45,14 +45,14 @@
 	 </script>
 	 <script>
 	 $(document).ready(function () {
+         temp = $text.val().replace(/[^0-9]/g, "");
+         $("#card_num").val(temp);
 		   $(function () {
 		            $('#card_number').keydown(function (event) {
 		             var key = event.charCode || event.keyCode || 0;
 		             var temp = "";
 		             $text = $(this); 
                 	 $text.val($text.val().replace(/[^0-9\-]/g, ""));
-                     temp = $text.val().replace(/[^0-9]/g, "");
-                     $("#card_num").val(temp);
 		             if (key !== 8 && key !== 9) {
 		                 if ($text.val().length === 4) {
 		                     $text.val($text.val() + '-');

@@ -146,7 +146,7 @@
 											} else if(card.getCard_bank().equals("shinhan")) {
 												bank = "신한";
 												color = "#1068ac";
-												font = "#707271";
+												font = "#ffffff";
 											} else if(card.getCard_bank().equals("hyundae")) {
 												bank = "현대";
 												color = "#ffffff";

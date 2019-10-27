@@ -21,6 +21,7 @@ public class Rank {
 		int count = 0;
 		
 		try {
+			
 			pstmt = conn.prepareStatement("select count(steam_id) as 'count' from nmrih_itemshop");
 			rs = pstmt.executeQuery();
 			
@@ -37,7 +38,32 @@ public class Rank {
 		return count;
 	}
 	
-	public List<RankBean> getRank(int startRow, int pageSize, String con,String q) throws Exception {
+	public int getRankCount(String con, String q) throws Exception {
+		Connection conn = Database.connect("nmrih_itemshop");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("select count(steam_id) as 'count' from nmrih_itemshop where "+con+" regexp ?");
+			pstmt.setString(1,q);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch(Exception ex) {
+		ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return count;
+	}
+	
+	public List<RankBean> getRank(int startRow, int pageSize) throws Exception {
 		Connection conn = Database.connect("nmrih_itemshop");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -48,6 +74,42 @@ public class Rank {
 			pstmt = conn.prepareStatement("select steam_id,name,cash from nmrih_itemshop order by cash desc,steam_id limit ?,?");
 			pstmt.setInt(1,startRow);
 			pstmt.setInt(2,pageSize);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				articleList = new ArrayList<RankBean>(rs.getRow());
+				do {
+					
+					RankBean article= new RankBean();
+					article.setSteam_id(rs.getString("steam_id"));
+					article.setName(rs.getString("name"));
+					article.setCash(rs.getInt("cash"));
+					articleList.add(article);
+				} while(rs.next());
+			}
+		} catch(Exception ex) {
+		ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return articleList;
+	}
+	
+	public List<RankBean> getRank(int startRow, int pageSize, String con, String q) throws Exception {
+		Connection conn = Database.connect("nmrih_itemshop");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<RankBean> articleList = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("select steam_id,name,cash from nmrih_itemshop where "+con+" regexp ? order by cash desc,steam_id limit ?,?");
+			pstmt.setString(1,q);
+			pstmt.setInt(2,startRow);
+			pstmt.setInt(3,pageSize);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

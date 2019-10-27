@@ -21,7 +21,7 @@ public class Database {
 		try {
 			conn = DriverManager.getConnection(JDBC_URL+"web", DB_ID, DB_PWD);
 		} catch(Exception e) {
-			System.out.println("Fail to Connect to Database");
+			System.out.println("Fail to Connect to 'web' Database");
 			e.printStackTrace();
 		}
 		return conn;
@@ -36,7 +36,8 @@ public class Database {
 		try {
 			conn = DriverManager.getConnection(JDBC_URL+database, DB_ID, DB_PWD);
 		} catch(Exception e) {
-			System.out.println("Fail to Connect to Database");
+			System.out.println("Fail to Connect to DB : "+database);
+			e.printStackTrace();
 		}
 		return conn;
 	}

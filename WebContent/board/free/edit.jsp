@@ -4,10 +4,12 @@
 <%@ page import = "Bean.BoardBean" %>
 <%@ page import = "java.sql.Timestamp" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "com.*" %>
 
 <%@ include file="/assets/include/login_check.jsp" %>
     
 <%
+	RemoveTag rt = new RemoveTag();
 	int num = Integer.parseInt(request.getParameter("num"));
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

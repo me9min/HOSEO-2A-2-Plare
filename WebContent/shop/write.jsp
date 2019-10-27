@@ -53,7 +53,7 @@
 			<tr>
 				<td height="200px" align="center" style="vertical-align: middle">아이템 설명</td>
 				<td height="200px">
-					<input type="text" name="item_dec" id="item_dec" style="height:200px;"/>
+					<input type="textarea" name="item_dec" id="item_dec" style="height:200px;width:600px;"/>
 				</td>
 			</tr>
 			<tr>

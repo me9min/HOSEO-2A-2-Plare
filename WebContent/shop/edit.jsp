@@ -5,9 +5,11 @@
 <%@ page import = "Bean.ShopBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "com.*" %>
 <%
+	RemoveTag rt = new RemoveTag();
 	int id = Integer.parseInt(request.getParameter("id"));
-
+	
 	try {
 		Shop shop = Shop.getInstance();
 		ShopBean item = shop.getItem(id);
@@ -57,12 +59,17 @@
 			</tr>
 			<tr>
 				<td align="center" style="vertical-align: middle">이미지 파일</td>
-				<td></td>
+				<td>
+					<div class="row uniform">
+						<div class="2u 12u$(small)"><a href="#" class="button alt" onclick="window.open('upload_image.html','이미지 첨부','width=800,height=600,top=0,left=0,toolbar=no,menubar=no,scrollbars=1,resizable=1')">첨부</a></div>
+						<div class="10u 12u$(small)"><input type="text" name="item_img" id="item_img" value="<%=item.getItem_img() %>"/></div>
+					</div>
+				</td>
 			</tr>
 			<tr>
-				<td height="200px" align="center" style="vertical-align: middle"></td>
+				<td height="200px" align="center" style="vertical-align: middle">아이템 설명</td>
 				<td height="200px">
-					<input type="text" name="item_dec" id="item_dec" style="height:200px;" value="<%=item.getItem_dec() %>"/>
+					<input type="textarea" name="item_dec" id="item_dec" style="height:200px;width:600px;"/>
 				</td>
 			</tr>
 			<tr>
@@ -74,7 +81,14 @@
 	
 <%@ include file="/assets/include/foot.jsp" %>
   </body>
- </html>
+</html>
+
+<script>
+	var content = '<%=rt.removeJSInput(item.getItem_dec())%>';
+	window.onload = function () {
+		document.getElementById('item_dec').value = content;
+	}
+</script>
  <%
 	} catch(Exception e) {}
  %>

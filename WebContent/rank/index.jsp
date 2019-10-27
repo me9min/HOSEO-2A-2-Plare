@@ -149,7 +149,6 @@
 						<select name="con" id="con">
 							<option value="name">닉네임</option>
 							<option value="steam_id">스팀 고유번호</option>
-							<option value="cash">캐시</option>
 						</select>
 						<input type="text" name="q" id="q"> 
 						<input type="submit" value="검색" class="button alt">

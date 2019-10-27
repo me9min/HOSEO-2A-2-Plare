@@ -45,8 +45,6 @@
 	 </script>
 	 <script>
 	 $(document).ready(function () {
-         temp = $text.val().replace(/[^0-9]/g, "");
-         $("#card_num").val(temp);
 		   $(function () {
 		            $('#card_number').keydown(function (event) {
 		             var key = event.charCode || event.keyCode || 0;
@@ -64,6 +62,8 @@
 		                     $text.val($text.val() + '-');
 		                 }
 		             }
+                     temp = $text.val().replace(/[^0-9]/g, "");
+                     $("#card_num").val(temp);
 		             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 		         })
 		   });

@@ -21,8 +21,10 @@
 		}
 		ref = rref.trim();
 	}
-	if(ref.contains(ref_me) || ref.contains("member") || ref.contains("db")) {
+	if(ref.contains(ref_me) || ref.contains("db")) {
 		ref = "";
+	} else if(ref.contains("member")) {
+		ref = "/member";
 	}
 %>
 	<!-- main -->

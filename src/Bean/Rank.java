@@ -14,6 +14,7 @@ public class Rank {
 		return instance;
 	}
 	
+	//전체랭크 플레이어수 불러오기
 	public int getRankCount() throws Exception {
 		Connection conn = Database.connect("nmrih_itemshop");
 		PreparedStatement pstmt = null;
@@ -38,6 +39,7 @@ public class Rank {
 		return count;
 	}
 	
+	//검색한 플레이어수 불러오기
 	public int getRankCount(String con, String q) throws Exception {
 		Connection conn = Database.connect("nmrih_itemshop");
 		PreparedStatement pstmt = null;
@@ -63,6 +65,7 @@ public class Rank {
 		return count;
 	}
 	
+	//현재페이지의 플레이어불러오기
 	public List<RankBean> getRank(int startRow, int pageSize) throws Exception {
 		Connection conn = Database.connect("nmrih_itemshop");
 		PreparedStatement pstmt = null;
@@ -98,6 +101,7 @@ public class Rank {
 		return articleList;
 	}
 	
+	//검색한 플레이이어 불러오기
 	public List<RankBean> getRank(int startRow, int pageSize, String con, String q) throws Exception {
 		Connection conn = Database.connect("nmrih_itemshop");
 		PreparedStatement pstmt = null;

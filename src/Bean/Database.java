@@ -12,6 +12,7 @@ public class Database {
 	private static Statement stmt = null;
 	private static ResultSet rs = null;
 	
+	//데이터베이스 연결 모듈 기본DB : web
 	public static Connection connect() {
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -27,6 +28,7 @@ public class Database {
 		return conn;
 	}
 	
+	//데이터베이스 연결 모듈 DB명을 파라미터에서받음
 	public static Connection connect(String database) {
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -42,6 +44,7 @@ public class Database {
 		return conn;
 	}
 	
+	//SQL문실행후 결과를 받음
 	public static ResultSet result_query(String sql) {
 		try {
 			stmt = conn.createStatement();
@@ -54,6 +57,7 @@ public class Database {
 		return rs;
 	}
 	
+	//SQL문실행
 	public void non_result_query(String sql) {
 		try {
 			stmt = conn.createStatement();

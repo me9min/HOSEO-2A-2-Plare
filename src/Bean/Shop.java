@@ -160,7 +160,7 @@ public class Shop {
 	}
 	
 	public int getItemCount(String category) {
-		// 전체 아이템 개수를 가져오는 함수
+		// 전체 아이템 개수를 가져오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -221,6 +221,7 @@ public class Shop {
 	}
 	
 	public List<ShopBean> getItems(String category, int start, int end) {
+		// 아이템을 리스트로 불러오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -383,6 +384,7 @@ public class Shop {
 	}
 	
 	public List<ShopBean> getItems(List<Integer> idList) {
+		// 아이디 리스트를 사용하여 아이템을 리스트로 불러오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -423,6 +425,7 @@ public class Shop {
 	}
 	
 	public List<ShopBean> getItems(String[] idList) {
+		// 아이디 배열을 사용하여 아이템을 리스트로 불러오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -463,6 +466,7 @@ public class Shop {
 	}
 	
 	public ShopBean getItem(int num) {
+		// 아이템 정보를 불러오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -71,6 +71,7 @@ public class Cart {
     }
     
     public int InsertCart(String email, int mid) {
+    	// 장바구니에 아이템을 넣는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -96,6 +97,7 @@ public class Cart {
 	}
     
     public void DeleteCart(String email, String menu_id) {
+    	// 장바구니에서 아이템을 삭제하는 메소드
     	Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		int mid = Integer.parseInt(menu_id);
@@ -115,6 +117,7 @@ public class Cart {
     }
 
     public int buyCart(String email, String mid) {
+    	// 장바구니에서 선택한 아이템을 구매하는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

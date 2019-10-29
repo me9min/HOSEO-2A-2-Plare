@@ -17,6 +17,7 @@ public class Board {
 	RemoveTag rt = new RemoveTag();
 	
 	public String getNickname(String email) {
+		// 회원의 이메일 정보로 닉네임을 불러오는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,12 +44,14 @@ public class Board {
 	}
 	
 	public void insertArticle(BoardBean article, String category) {
+		// 게시판에 글을 작성하는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
 		String sql="";
 
         try {
+        	// 카테고리에 따라 다른 sql문을 실행
             if(category.equals("free")) {
 	            sql = "insert into board_free (writer,ip,reg_date,title,content) values(?,?,now(),?,?)";
 	
@@ -101,6 +104,7 @@ public class Board {
     }
 	
 	public int getArticleCount(String category) throws Exception {
+		// 게시판에 총 몇 개의 글이 존재하는지 알아내는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -148,6 +152,7 @@ public class Board {
 	   }
 	
 	public int getSearchCount(String category, String condition, String content) throws Exception {
+		// 게시글 검색을 수행했을 때 결과 값의 개수를 구하는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -171,6 +176,7 @@ public class Board {
 		    		   pstmt.setString(1, "%" + content + "%");
 		               rs = pstmt.executeQuery();
 		    	   } else if(condition.equals("writer")) {
+		    		   // writer에 들어가는 항목은 이메일이기 때문에 해당 닉네임을 가진 회원의 이메일을 검색하여 그 값으로 검색
 		    		   pstmt = conn.prepareStatement("select email from member where nickname = ?");
 		    		   pstmt.setString(1, content);
 		    		   rs = pstmt.executeQuery();
@@ -272,6 +278,7 @@ public class Board {
 		}
 	
 	public List<BoardBean> getArticles(String category, int start, int end) throws Exception {
+		// 게시글 목록을 불러오는 메소드
        Connection conn = Database.connect();
        PreparedStatement pstmt = null;
        ResultSet rs = null;
@@ -383,6 +390,7 @@ public class Board {
    }
 	
 	public List<BoardBean> getSearchResults(String category, int start, int end, String condition, String content) throws Exception {
+		// 검색 결과를 리스트로 불러오는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -619,6 +627,7 @@ public class Board {
 	   }
 	
 	public BoardBean getLatestMotd() {
+		// 최근 공지사항 게시글 1개를 불러오는 메소드
 		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -647,6 +656,7 @@ public class Board {
     }
 	
 	public List<BoardBean> getLatestMotds() {
+		// 최근 공지사항 게시글 3개를 불러오는 메소드
 		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -680,6 +690,7 @@ public class Board {
 	    }
 	
 	public List<BoardBean> getLatestEvents() {
+		// 최근 이벤트 게시글 3개를 불러오는 메소드
 		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -713,6 +724,7 @@ public class Board {
 	 }
 		
 		public BoardBean getBestArticle() {
+			// 자유게시판에서 추천수가 가장 높은 게시글 1개를 불러오는 메소드
 			Connection conn = Database.connect();
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;
@@ -744,6 +756,7 @@ public class Board {
     }
 		
 	public List<BoardBean> getBestArticles() throws Exception {
+		// 자유게시판에서 추천수가 가장 높은 게시글 4개를 불러오는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -782,6 +795,7 @@ public class Board {
 	   }
 	
 	public List<BoardBean> getBestIssues() throws Exception {
+		// 문의게시판에서 공감수가 가장 높은 게시글 2개를 불러오는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -822,6 +836,7 @@ public class Board {
 	   }
 	
 	public BoardBean getArticle(String category, int num) {
+		// 게시글을 불러오는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -921,6 +936,7 @@ public class Board {
     }
 	
 	public void updateArticle(BoardBean article, String category) throws Exception {
+		// 게시글을 수정하는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs= null;
@@ -970,6 +986,7 @@ public class Board {
     }
 	
 	public void deleteArticle(String category, int num) throws Exception {
+		// 게시글을 삭제하는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs= null;
@@ -1011,6 +1028,7 @@ public class Board {
     }
 	
 	public BoardBean getIssueReply(int num) throws Exception {
+		// 문의게시판에서 특정 게시글의 답변을 불러오는 메소드
         Connection conn = Database.connect();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -1045,6 +1063,7 @@ public class Board {
     }
 	
 	public void up(String category, int num) {
+		// 게시글을 추천/공감하는 메소드
 		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
@@ -1070,6 +1089,7 @@ public class Board {
 	}
 	
 	public int getCommentCount(int num) throws Exception {
+		// 게시글에 달린 댓글 수를 불러오는 메소드
 	       Connection conn = Database.connect();
 	       PreparedStatement pstmt = null;
 	       ResultSet rs = null;
@@ -1095,6 +1115,7 @@ public class Board {
 	   }
 	
 	public List<BoardBean> getComments(int num_board) throws Exception {
+		// 게시글에 달린 댓글을 리스트로 불러오는 메소드
 		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -1131,6 +1152,7 @@ public class Board {
 	}
 	
 	public List<BoardBean> getReplys(int num_rep) throws Exception {
+		// 게시글에 달린 답변을 불러오는 메소드
 		Connection conn = Database.connect();
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -1167,6 +1189,7 @@ public class Board {
 	}
 	
 	public void insertComment(BoardBean comment) {
+		// 댓글을 작성하는 메소드
 		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
@@ -1192,6 +1215,7 @@ public class Board {
 	}
 	
 	public void updateComment(int num, String content) {
+		// 댓글을 수정하는 메소드
 		Connection conn = Database.connect();
         PreparedStatement pstmt = null;
 
@@ -1214,6 +1238,7 @@ public class Board {
 	}
 	
 	public void deleteComment(int num) {
+		// 댓글을 삭제하는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		

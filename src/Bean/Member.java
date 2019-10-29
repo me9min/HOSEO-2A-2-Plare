@@ -512,14 +512,14 @@ public class Member {
         String user = "plare2019_2a02"; //자신의 네이버 계정
         String password = "int=hell"; //자신의 네이버 패스워드
         
-        //SMTP 서버 정보를 설정한다.
+        //SMTP 서버 정보를 설정
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", 465);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "true");
         
-        //인증 번호 생성기
+        //인증 번호 생성
         StringBuffer temp =new StringBuffer();
         Random rnd = new Random();
         for(int i=0;i<5;i++)
@@ -555,9 +555,9 @@ public class Member {
             msg.setFrom(new InternetAddress(user, "Plare"));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             
-            //메일 제목
+            //메일 제목, MimeUtility를 이용하여 인코딩을 UTF-8로 바꾸어 한글 깨짐 방지
             msg.setSubject(MimeUtility.encodeText("Plare 비밀번호 찾기 인증 메일입니다.", "UTF-8", "B"));
-            //메일 내용
+            //메일 내용, charset을 UTF-8로 바꾸어 한글 깨짐 방지
             msg.setContent("인증 번호는 " + temp + " 입니다.", "text/html; charset=UTF-8");
             
             Transport.send(msg);
@@ -576,14 +576,14 @@ public class Member {
 		String user = "plare2019_2a02"; //자신의 네이버 계정
 		String password = "int=hell"; //자신의 네이버 패스워드
         
-        //SMTP 서버 정보를 설정한다.
+        //SMTP 서버 정보를 설정
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", 465);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "true");
         
-        //인증 번호 생성기
+        //인증 번호 생성
         StringBuffer temp =new StringBuffer();
         Random rnd = new Random();
         for(int i=0;i<10;i++)
@@ -619,9 +619,9 @@ public class Member {
             msg.setFrom(new InternetAddress(user, "Plare"));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             
-            //메일 제목
+            //메일 제목, MimeUtility를 이용하여 인코딩을 UTF-8로 바꾸어 한글 깨짐 방지
             msg.setSubject(MimeUtility.encodeText("Plare 임시 비밀번호 발급 이메일입니다.", "UTF-8", "B"));
-            //메일 내용
+            //메일 내용, charset을 UTF-8로 바꾸어 한글 깨짐 방지
             msg.setContent("임시 비밀번호는 " + temp + " 입니다. 해당 비밀번호를 사용하여 로그인해주세요.", "text/html; charset=UTF-8");
             
             Transport.send(msg);
@@ -1080,6 +1080,7 @@ public class Member {
     }
 	
 	public void sellItem(String email, String id) {
+		// 보유한 아이템을 되파는 메소드
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		

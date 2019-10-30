@@ -266,7 +266,7 @@
 		<div class="3u 12u$(xsmall)" style="visibility:hidden;"><a class="button">빈공간</a></div>
 		<div class="3u 12u$(xsmall)" style="text-align:right;">
 		<%
-			if(kakaoid == null) {
+			if(kakaoid == null || kakaoid.equals("unlink")) {
 		%>
 		<a onclick="kakao_link()">
 			<img alt="카카오연동" src="/assets/images/kakaolink_btn_medium_wb.png"/>

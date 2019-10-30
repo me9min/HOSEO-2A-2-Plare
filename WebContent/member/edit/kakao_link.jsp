@@ -16,7 +16,6 @@
 	String kakao_id = (String) Integer.toString(json_profile.get("id").getAsInt());
 	
 	JsonObject json_properties = (JsonObject) json_profile.get("properties");
-	//String kakao_nick = json_properties.get("nickname").getAsString();
 	String kakao_img = json_properties.get("thumbnail_image").getAsString();
 	
 	int res = kakao.updateMemberKakao(email, kakao_id, kakao_img);

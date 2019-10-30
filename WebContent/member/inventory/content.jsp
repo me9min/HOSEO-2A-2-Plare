@@ -59,6 +59,15 @@
 		}
 		int price_sell = (int)(item.getItem_price() * 0.5);
 %>
+<script>
+	function sell_confirm() {
+		if(confirm("정말 되파시겠습니까?") == true) {
+			location.href='db_sell.jsp?id=<%=item.getUnique_id()%>';
+		} else {
+			return;
+		}
+	}
+</script>
 <head>
 <title><%=item.getItem_name() %></title>
 </head>
@@ -89,7 +98,7 @@
 							  	   </h3>
 							  	</div>
 							  	<br>
-							  	<input type="button" value="되팔기"  id="shop_button" style="background-color:#ff0000 !important;" onclick="location.href='db_sell.jsp?id=<%=item.getUnique_id() %>'">
+							  	<input type="button" value="되팔기" id="shop_button" style="background-color:#ff0000 !important;" onclick="sell_confirm()">
 							  	<br><br>
 							</div>
 							<br>

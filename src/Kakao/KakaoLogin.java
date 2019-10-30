@@ -116,6 +116,58 @@ public class KakaoLogin {
 		System.out.println("");
 	}
 	
+	public void deleteKakaoId(String email) throws ClientProtocolException, IOException, SQLException {
+		
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String kakaoid = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("select kakaoid from member where email=?");
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				kakaoid = (String) rs.getString("kakaoid");
+			}
+		} catch(SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try{conn.close();}catch(SQLException sqle){}
+			if(rs!=null)
+				try{rs.close();}catch(SQLException sqle){}
+		}
+		
+		//http client 생성
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		
+		//get 메서드와 URL 설정
+		HttpPost post = new HttpPost("https://kapi.kakao.com/v1/user/unlink");
+		
+		//agent 정보 설정
+		post.addHeader("User-Agent", USER_AGENT);
+		post.addHeader("Authorization", "KakaoAK "+"카카오API어드민키");
+		post.addHeader("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+	    params.add(new BasicNameValuePair("target_id_type=user_id&target_id=", kakaoid));
+	    post.setEntity(new UrlEncodedFormEntity(params));
+		
+		//get 요청
+		CloseableHttpResponse httpResponse = httpClient.execute(post);
+		
+		System.out.println("GET Response Status");
+		System.out.println(httpResponse.getStatusLine().getStatusCode());
+		String res = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+		
+		httpClient.close();
+	}
+	
 	public String loginMemberKakao(String kakaoid) throws SQLException {
 		
 		Connection conn = Database.connect();
@@ -181,14 +233,14 @@ public class KakaoLogin {
 		return res;
 	}
 	
-	public void deleteMemberKakao(String email) {
+	public void deleteMemberKakao(String email) throws ClientProtocolException, IOException, SQLException{
 		
 		Connection conn = Database.connect();
 		PreparedStatement pstmt = null;
 		
 		try {
 			
-			pstmt = conn.prepareStatement("update member set kakaoid=null, kakako_profile_image=null where email=?");
+			pstmt = conn.prepareStatement("update member set kakaoid='unlink', kakako_profile_image=null where email=?");
 			pstmt.setString(1, email);
 			pstmt.executeUpdate();
 			

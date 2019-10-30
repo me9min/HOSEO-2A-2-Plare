@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, Bean.*" %>
 <%@ include file="/assets/include/logout_check.jsp" %>
+<%
+	String ka_email = request.getParameter("ka_email");
+	if(ka_email == null) {
+		ka_email = "";
+	}
+	String ka_birth = request.getParameter("ka_birth");
+	if(ka_birth == null) {
+		ka_birth = "";
+	}
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -17,7 +27,6 @@
 		<title>회원가입</title>
 		<script language="JavaScript" src="register.js"></script>
 <%@ include file="/assets/include/menu_member.jsp" %>
-
 
 <%@ include file="/assets/include/member_top.jsp" %>			
 		<!-- main -->
@@ -45,7 +54,7 @@
 			<div id="register_text">* 이메일</div>
 		</div>
 		<div class="6u 12u$(xsmall)">
-			<input type="text" name="email" id="email" maxlength="40" value="" placeholder="* 이메일" />
+			<input type="text" name="email" id="email" maxlength="40" value="<%=ka_email%>" placeholder="* 이메일" />
 		</div>
 		<div>
 			<a class="button alt" onclick="emailCheck()">중복확인</a>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.BoardBean" %>
@@ -30,10 +30,10 @@
 			#link:hover {color: red; text-decoration: none;}
 			#guide_bg{
 				background: url('./assets/images/background_2.png') no-repeat center center fixed;
-			    background-size: cover;
-			    -webkit-background-size: cover;
-			    -moz-background-size: cover;
-			    -o-background-size: cover;
+				background-size: cover;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
 			}
 		</style>
 		<title>plare.cf</title>
@@ -85,8 +85,8 @@
 	for(int i=0; i<motdList.size(); i++) {
 		BoardBean motd = motdList.get(i);
 %>
-			  <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+			<div class="col-md-4">
+			<div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;">
 					<table id="tb">
 					<thead>
@@ -105,7 +105,7 @@
 					</tbody>
 					</table>
 				</div>
-			  </div></div>
+			</div></div>
 <%
 	}
 %>
@@ -117,8 +117,8 @@
 	for(int i=0; i<eventList.size(); i++) {
 		BoardBean event = eventList.get(i);
 %>
-			  <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+			<div class="col-md-4">
+			<div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;">
 					<table id="tb">
 					<thead>
@@ -137,16 +137,16 @@
 					</tbody>
 					</table>
 				</div>
-			  </div></div>
+			</div></div>
 <%
 	}
 %>
-			  </div><br><br>
+			</div><br><br>
 
 			<div class="row">
 				<b style="font-size:20px;color:#ffffff"">인기글</b><br><br>
-			  <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+			<div class="col-md-4">
+			<div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;">
 					<table id="tb">
 					<thead>
@@ -165,14 +165,14 @@
 					</tbody>
 					</table>
 				</div>
-			  </div>
-			  </div>
-			    <%
+			</div>
+			</div>
+				<%
 	for(int i=0; i<issueList.size(); i++) {
 		BoardBean issue = issueList.get(i);
 %>
-			  <div class="col-md-4">
-			  <div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
+			<div class="col-md-4">
+			<div style="background-color:#ffffff; width:250px;height:250px;border:1px solid black;margin:15px;">
 				<div style="margin:10px;">
 					<table id="tb">
 					<thead>
@@ -191,8 +191,8 @@
 					</tbody>
 					</table>
 				</div>
-			  </div>
-			  </div>
+			</div>
+			</div>
 <%
 	}
 %> 

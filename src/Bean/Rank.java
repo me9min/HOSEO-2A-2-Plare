@@ -137,4 +137,30 @@ public class Rank {
 		}
 		return articleList;
 	}
+	
+	//나의랭크불러오기
+	public int getMyRank(String email) {
+		Connection conn = Database.connect();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cash = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement("call rank_selectRank(?)");
+			pstmt.setString(1,email);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				cash = rs.getInt("cash");
+			}
+		} catch(Exception ex) {
+		ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return cash;
+	}
 }

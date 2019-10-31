@@ -20,7 +20,7 @@
 		<form method="post" action="db_write.jsp" name="item_insert">
 		<table class="table">
 			<tr>
-				<td align="center" width="30%" style="vertical-align: middle">아이템 고유 아이디</td>
+				<td align="center" width="30%" style="vertical-align: middle">아이템<br>고유 아이디</td>
 				<td><input type="text" name="unique_id" id="unique_id" /></td>
 			</tr>
 			<tr>

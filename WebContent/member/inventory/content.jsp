@@ -57,6 +57,18 @@
 		if(item.getItem_dec() != null) {
 			dec = item.getItem_dec();
 		}
+		String type = "";
+		if(item.getItem_type().equals("playerskin")) {
+			type = "플레이어";
+		} else if(item.getItem_type().equals("hat")) {
+			type = "모자";
+		} else if(item.getItem_type().equals("pet")) {
+			type = "펫";
+		} else if(item.getItem_type().equals("grenadeskin")) {
+			type = "수류탄";
+		} else if(item.getItem_type().equals("lasersight")) {
+			type = "레이저 사이트";
+		}
 		int price_sell = (int)(item.getItem_price() * 0.5);
 %>
 <script>
@@ -105,7 +117,8 @@
 					</div>
 					<div class="row" style="margin-top:20px;">
 				  	  <div class="col-md-12" style="border: 1px solid white;">
-				  	     <h6><%=dec %></h6>
+				  	  	<h6 style="color:#a6a6a6;">해당 상품은 <%=type %> 외형 아이템으로 인게임 내에서 아무런 추가 효과가 없습니다.</h6><hr>
+				  	    <h5><%=dec %></h5>
 				  	  </div>
 					</div>
 				</div>

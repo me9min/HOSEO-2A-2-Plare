@@ -14,7 +14,7 @@ public class FutureWorkThread extends Thread{
 	@Override
 	public void run() {
 		try {
-			sleep(60000);
+			sleep(15000);
 			work();
 		} catch (InterruptedException e) {
 			e.printStackTrace();

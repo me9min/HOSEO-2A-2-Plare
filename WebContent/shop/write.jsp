@@ -3,6 +3,7 @@
 <% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ include file="/assets/include/login_check.jsp" %>
 <!DOCTYPE html>
  <html>
  	<head>

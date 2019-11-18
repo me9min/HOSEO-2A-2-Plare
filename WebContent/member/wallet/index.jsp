@@ -10,6 +10,7 @@
 <%@ page import = "java.text.NumberFormat" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%!
    int pageSize = 15;
    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");

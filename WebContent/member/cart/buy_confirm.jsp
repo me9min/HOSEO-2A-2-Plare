@@ -9,6 +9,7 @@
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%!
     int pageSize = 6;
 %>
@@ -21,7 +22,7 @@
     int startRow = (currentPage - 1) * pageSize + 1;
     int endRow = currentPage * pageSize;
     int count = 0;
-
+	
 	Board board = Board.getInstance();
     Shop shop = Shop.getInstance();
     Cart cart = Cart.getInstance();

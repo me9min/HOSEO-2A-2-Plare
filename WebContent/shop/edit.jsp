@@ -6,6 +6,7 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import = "com.*" %>
+<%@ include file="/assets/include/login_check.jsp" %>
 <%
 	RemoveTag rt = new RemoveTag();
 	int id = Integer.parseInt(request.getParameter("id"));

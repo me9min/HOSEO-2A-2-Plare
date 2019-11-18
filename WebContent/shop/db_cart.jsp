@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import = "Bean.Cart" %>
+<%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%
-	String email = (String)session.getAttribute("email");
 	int menu_id = Integer.parseInt(request.getParameter("id"));
 	
 	Cart cart = Cart.getInstance();

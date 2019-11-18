@@ -8,6 +8,7 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%	
 	Board board = Board.getInstance();
     Shop shop = Shop.getInstance();

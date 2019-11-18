@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="Bean.Shop" %>
+<%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%
-	String email = (String)session.getAttribute("email");
 	Shop shop = Shop.getInstance();
 	String id = request.getParameter("id");
 	

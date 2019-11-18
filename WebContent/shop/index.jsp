@@ -6,12 +6,13 @@
 <%@ page import = "Bean.ShopBean" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.NumberFormat" %>
-<%@ include file="/assets/include/login_check.jsp" %>
-<%@ include file="/assets/include/steamid_check.jsp" %>
 <%!
     int pageSize = 6;
 %>
 <%
+	request.setCharacterEncoding("utf-8");
+	String email = (String)session.getAttribute("email");
+	
 	Shop sh = new Shop();
 	int point = sh.getPoint(email);
 	

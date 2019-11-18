@@ -7,6 +7,7 @@
 <%@ page import = "Bean.CartBean" %>
 <%@ page import = "java.text.NumberFormat" %>
 <%@ include file="/assets/include/login_check.jsp" %>
+<%@ include file="/assets/include/steamid_check.jsp" %>
 <%!
     int pageSize = 6;
 %>

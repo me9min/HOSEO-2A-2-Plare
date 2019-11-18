@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Shop" %>
-<% 
-	request.setCharacterEncoding("UTF-8");
+<%@ include file="/assets/include/login_check.jsp" %>
+<%
 	Shop shop = Shop.getInstance();
-	
 	int id = Integer.parseInt(request.getParameter("id"));
-	
 	shop.deleteItem(id);
 %>
 <script>

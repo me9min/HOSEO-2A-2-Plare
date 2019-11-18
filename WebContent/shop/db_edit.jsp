@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "Bean.Shop" %>
-
+<%@ include file="/assets/include/login_check.jsp" %>
 <%
-	request.setCharacterEncoding("utf-8");
-	
 	int id = Integer.parseInt(request.getParameter("id"));
-	
 %>
 <jsp:useBean id="item" scope="page" class="Bean.ShopBean">
 	<jsp:setProperty name="item" property="*"/>

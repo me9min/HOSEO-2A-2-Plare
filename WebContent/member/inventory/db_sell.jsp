@@ -4,7 +4,6 @@
 <%@ include file="/assets/include/login_check.jsp" %>
 <%@ include file="/assets/include/steamid_check.jsp" %>
 <%
-	String email = (String)session.getAttribute("email");
 	Member member = Member.getInstance();
 	
 	if(request.getParameter("id") != null) {

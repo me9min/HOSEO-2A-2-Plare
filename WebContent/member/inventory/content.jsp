@@ -33,7 +33,7 @@
 		#link:hover {color: red; text-decoration: none;}
 		#blank {text-align: right; width: 5%;}
 	</style>
-<%@ include file="/assets/include/menu.jsp" %>
+<%@ include file="/assets/include/menu_member.jsp" %>
 <%@ include file="/assets/include/member_top.jsp" %>
 <%
 	int id = 0;

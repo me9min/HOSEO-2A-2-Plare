@@ -11,7 +11,7 @@
 <%!
     int pageSize = 6;
 %>
-<%	
+<%
 	String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
         pageNum = "1";

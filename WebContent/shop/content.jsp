@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8");%>
 <%@ page import = "Bean.Member" %>
 <%@ page import = "Bean.Board" %>
 <%@ page import = "Bean.Shop" %>
@@ -36,6 +35,7 @@
 <%@ include file="/assets/include/menu.jsp" %>
 <%@ include file="/assets/include/shop_top.jsp" %>
 <%
+	request.setCharacterEncoding("utf-8");
 	int id = 0;
 	String ids = request.getParameter("id");
 	if(ids != null) {

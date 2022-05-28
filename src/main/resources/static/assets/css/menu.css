@@ -1,0 +1,56 @@
+	.menubody{
+	margin:0;
+	padding:0;
+	}
+	
+	#menubox{
+	width: 100%;
+	height: 42px;
+	background: black;
+	z-index:99;
+	position:fixed;
+	}
+	#menuul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color:white;
+	}
+	#dropmenu{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color:white;
+	}
+	#menuul>li{
+	height: 40px;
+	width: 160px;
+	background: black;
+	float:right;
+	}
+	#menuul>li>a, #dropmenu>li>a{
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	line-height:40px;
+	color:white;
+	}
+	#dropmenu{
+	height: auto;
+	width: 160px;
+	position: absolute;
+	background: black;
+	opacity: 0;
+	visibility: hidden;
+	}
+	#menuul>li:hover #dropmenu{
+	opacity: 1;
+	visibility: visible;
+	}
+	#plare_logo{
+	padding:5px 10px;
+	position: absolute;
+	float: left;
+	vertical-align: middle;
+	}

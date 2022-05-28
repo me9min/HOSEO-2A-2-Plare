@@ -19,7 +19,7 @@
 %>
 	<b style="color:white;">?</b> 님<br><br>
 	<b style="color:white;">상점이용은<br>로그인과<br>스팀아이디<br>등록이<br>필요합니다</b><br><br>
-	<button type="button" class="button special" onclick="location.href='/member/login'">로그인하기</button>
+	<button type="button" class="button special" onclick="location.href='/member/login/'">로그인하기</button>
 <%
 	}
 %>

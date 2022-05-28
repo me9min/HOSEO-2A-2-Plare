@@ -8,7 +8,7 @@
 %>
 <script>
 	if(confirm("로그아웃이 필요합니다 로그아웃 하시겠습니까?") == true) {
-		location.replace('/member/logout');
+		location.replace('/member/logout/');
 	}
 	else {
 		history.back();

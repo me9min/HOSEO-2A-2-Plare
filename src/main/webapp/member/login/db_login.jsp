@@ -11,20 +11,11 @@
 <%
 	String ref = request.getParameter("ref");
 	ref = ref.trim();
-	if(ref == "") {
-		ref = null;
-	}
 	
 	MemberBean member_sql = member.login(member_form);
 	String email = member_sql.getEmail();
 	
 	if(email == null || email == "") {
-		
-		if(ref == null) {
-			ref = "./";
-		} else {
-			ref = "./index.jsp?ref="+ref;
-		}
 %>
 <script>
 	alert("이메일이나 비밀번호가 올바르지 않습니다. 다시 시도해주세요.");
@@ -32,10 +23,6 @@
 </script>
 <%
 	} else {
-		
-		if(ref == null) {
-			ref = "/";
-		}
 		session.setAttribute("email", email);
 %>
 <script>

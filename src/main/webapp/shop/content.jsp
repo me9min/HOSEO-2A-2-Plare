@@ -81,7 +81,7 @@
 		<div class="inner">
 			<div class="box">
 				<div class="content">
-				<a href="index.jsp" class="button alt pull-right">상품목록</a><br><br><br>
+				<a href="./" class="button alt pull-right">상품목록</a><br><br><br>
 					<div class="row">
 						<div class="col-md-8">
 							<div style="width:350px; background:white; margin:0 auto;" >

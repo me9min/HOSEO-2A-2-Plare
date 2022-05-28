@@ -11,20 +11,21 @@
 <%@ include file="/assets/include/member_top.jsp" %>
 
 <%
-	String ref_me = request.getRequestURL().toString();
 	String ref = request.getHeader("REFERER");
-	String rref = request.getParameter("ref");
+	String rref = null;
 	if(ref == null) {
-		
+		rref = request.getParameter("ref");
+
 		if(rref == null) {
-			rref = "";
+			ref = "/";
+		} else {
+			ref = rref.trim();
 		}
-		ref = rref.trim();
 	}
-	if(ref.contains(ref_me) || ref.contains("db")) {
-		ref = "";
+	if(ref.contains(request.getRequestURL().toString()) || ref.contains("db")) {
+		ref = "/";
 	} else if(ref.contains("member")) {
-		ref = "/member";
+		ref = "/member/";
 	}
 %>
 	<!-- main -->
@@ -57,8 +58,8 @@
 					<div class="3u 12u$(xsmall)  style="visibility:hidden;"></div>
 				    <ul class="actions">
 						<li><input type="submit" value="로그인" class="button special"></li>
-						<li><a href="../find" class="button alt">아이디/비밀번호 찾기</a></li>
-						<li><a href="../register" class="button alt">회원가입</a></li>
+						<li><a href="../find/" class="button alt">아이디/비밀번호 찾기</a></li>
+						<li><a href="../register/" class="button alt">회원가입</a></li>
 					</ul>
 				</div>
 			</form>

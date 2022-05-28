@@ -9,7 +9,7 @@
 	Boolean email_check = member.email_double_check(email);
 	
 	if(email_check == false) {
-		StringBuffer code_created = member.emailCode(email);
+		String code_created = member.emailCode(email);
 		if(code_created != null) {
 %>
 	<form method="post" name="randomCode" action="./">

@@ -8,7 +8,7 @@
 				<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 				<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-				<li><a href="https://bigstar131.myds.me/sb/" class="glyphicon glyphicon-new-window"><span class="label"></span></a></li>
+				<li><a href="http://amel.kr/sb/" class="glyphicon glyphicon-new-window"><span class="label"></span></a></li>
 			</ul>
 		</div>
 		<a href="https://templated.co/hielo">TEMPLATED by Hielo</a>

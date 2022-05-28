@@ -245,7 +245,7 @@
 	<div style="float:right;">
 		<ul class="actions">
 			<li><input type="button" value="회원가입" class="button special" onclick="inputCheck()"></li>
-			<li><a href="../login" class="button alt">로그인하기</a></li>
+			<li><a href="../login/" class="button alt">로그인하기</a></li>
 		</ul>
 	</div>
 </form> <br><br>

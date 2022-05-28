@@ -16,6 +16,7 @@
 	<description>HOSEO-2A-2-Plare JSP + Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<start-class>amel.plare2019_2a02.Plare20192a02Application</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -111,6 +112,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>amel.plare2019_2a02.Plare20192a02Application</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

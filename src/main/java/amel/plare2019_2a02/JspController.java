@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class JspController {
     
+    @RequestMapping(value = "/")
+    public String getIndexV0() {
+        return "/index";
+    }
+
     @RequestMapping(value = "/{v1}/")
     public String getIndexV1(@PathVariable("v1")String v1) {
         return v1+"/index";
